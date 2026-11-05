@@ -1,0 +1,1685 @@
+{
+  "CAM-01": {
+    "params": "locked axis (X / Y / both) · screen anchor · follow smoothing · max follow speed · teleport snap threshold · camera bounds",
+    "impl": "Convert the target position to the desired camera transform that keeps it at a fixed normalized screen anchor, then update only the selected axes. Apply optional damping during ordinary movement, but snap when displacement exceeds a teleport threshold, and constrain the result after following.",
+    "prompt": {
+      "zh": "在遊戲中加入角色固定位置跟隨：以 320×180 畫面為基準，把角色固定在畫面寬度 40%、高度 55% 的位置，水平與垂直軸都跟隨；一般移動用 0.12 秒平滑，角色瞬移超過 96 px 時立即對齊，最後套用關卡邊界。",
+      "en": "In your game, add locked-position following: for a 320×180 reference frame, keep the character at 40% of the screen width and 55% of its height, following on both axes. Smooth ordinary motion over 0.12 s, snap immediately after teleports greater than 96 px, and apply level bounds last.",
+      "ja": "ゲームに画面位置固定の追従を追加して。基準解像度 320×180 で、キャラクターを画面幅 40%、高さ 55% の位置に保ち、縦横の両軸を追従させる。通常移動は 0.12 秒で平滑化し、96 px を超えるワープ時は即座に合わせ、最後にステージ境界で制限する。"
+    }
+  },
+  "CAM-02": {
+    "params": "window width/height · window offset · per-axis enable · boundary response · follow smoothing · maximum lag",
+    "impl": "Define a rectangle in screen space around the desired composition. Leave the camera unchanged while the target remains inside it; when the target crosses an edge, move the camera by the minimum amount needed to place the target back on that edge.",
+    "prompt": {
+      "zh": "在遊戲中加入活動死區：以 320×180 畫面為基準，在中央設 80×44 px 的跟隨窗口；角色在窗口內走動時鏡頭完全不動，越過任何邊界後才以 0.18 秒平滑推動鏡頭，並只修正足以把角色放回邊界的距離。",
+      "en": "In your game, add a movement dead zone: on a 320×180 reference frame, place an 80×44 px follow window at the centre. Keep the camera completely still while the character is inside it; after any edge is crossed, move with 0.18 s smoothing and correct only enough to return the character to that edge.",
+      "ja": "ゲームに移動デッドゾーンを追加して。基準解像度 320×180 の中央に 80×44 px の追従ウィンドウを置く。キャラクターが内側にいる間はカメラを完全に止め、境界を越えた時だけ 0.18 秒で滑らかに動かし、キャラクターを境界まで戻す最小距離だけ補正する。"
+    }
+  },
+  "CAM-03": {
+    "params": "dead-zone size · soft-zone size · response curve · damping time · hard-limit margin · per-axis weighting",
+    "impl": "Use nested screen-space regions: zero correction in the inner dead zone, a correction weight that rises with distance through the soft zone, and full correction at the outer limit. Keep region dimensions separate from damping so designers can tune when following begins independently from how quickly it responds.",
+    "prompt": {
+      "zh": "在遊戲中加入柔性追趕區：中央 48×28 px 為完全不動的死區，外圍 128×72 px 為軟區；角色進入軟區後，跟隨強度由 0 平滑增加至 100%，阻尼時間設 0.25 秒；角色到達外框時必須停止繼續偏離。",
+      "en": "In your game, add a soft catch-up zone: use a 48×28 px central dead zone and a 128×72 px outer soft zone. As the character enters the soft zone, raise follow strength smoothly from 0% to 100% with 0.25 s damping, and prevent any further screen-space drift at the outer boundary.",
+      "ja": "ゲームにソフト追従領域を追加して。中央の 48×28 px は完全に動かないデッドゾーン、その外側の 128×72 px はソフトゾーンにする。キャラクターがソフトゾーンへ入ったら追従量を 0% から 100% まで滑らかに増やし、減衰時間は 0.25 秒。外枠に達したらそれ以上画面端へずれないようにする。"
+    }
+  },
+  "CAM-04": {
+    "params": "position smooth time · rotation smooth time · max speed · damping model · per-axis damping · teleport threshold",
+    "impl": "Filter the desired position and orientation with a critically damped spring or another frame-rate-independent smoothing function. Store velocity as part of the camera state, cap extreme speeds, and bypass the filter for teleports or scene resets.",
+    "prompt": {
+      "zh": "在遊戲中加入柔順跟隨：鏡頭位置以臨界阻尼彈簧追向角色，水平平滑時間 0.18 秒、垂直 0.28 秒，最高速度 900 px/秒；角色停下後容許鏡頭繼續收斂，但位移突然超過 128 px 時直接重設，避免長距離飛過畫面。",
+      "en": "In your game, add smooth following with a critically damped spring: use a 0.18 s horizontal smooth time, 0.28 s vertical smooth time, and a 900 px/s speed cap. Let the camera continue settling after the character stops, but reset directly when displacement suddenly exceeds 128 px.",
+      "ja": "ゲームに滑らかな追従を追加して。カメラ位置を臨界減衰ばねでキャラクターへ追従させ、平滑化時間は横 0.18 秒、縦 0.28 秒、最高速度は 900 px/秒。キャラクター停止後も収束を続けるが、差が急に 128 px を超えた場合は直接リセットして長距離を飛ばさない。"
+    }
+  },
+  "CAM-05": {
+    "params": "landing height threshold · grounded confirmation · realign delay · vertical smooth time · jump lock · drop-through rule",
+    "impl": "Hold the camera's vertical reference while the character is airborne, then update the reference from the confirmed landing surface. Ignore brief ground contacts, and smooth toward the new platform height unless the height change exceeds a deliberate snap threshold.",
+    "prompt": {
+      "zh": "在遊戲中加入落地才重新對齊：普通跳躍期間鎖住鏡頭高度；角色連續着地 0.08 秒，而且新平台與舊參考高度相差至少 24 px 時，才用 0.3 秒 ease-in-out 對齊新高度。從單向平台向下穿越時不要把短暫接觸當成落地。",
+      "en": "In your game, realign camera height only on landing: lock the vertical camera reference during normal jumps. After the character has remained grounded for 0.08 s and the new platform differs by at least 24 px, ease to its height over 0.3 s; ignore brief contacts while dropping through one-way platforms.",
+      "ja": "ゲームで、着地時だけカメラの高さを合わせ直して。通常ジャンプ中は縦の基準を固定し、キャラクターが 0.08 秒連続で接地し、新しい足場が以前の基準から 24 px 以上違う時だけ、0.3 秒のイーズイン・アウトで新しい高さへ移す。一方向床を下へ抜ける時の短い接触は着地扱いにしない。"
+    }
+  },
+  "CAM-06": {
+    "params": "prediction time · max look-ahead · speed threshold · acceleration smoothing · recenter time · vertical contribution",
+    "impl": "Estimate a projected focus from filtered target velocity, clamp its offset, and add it to the normal follow target. Use hysteresis around zero velocity and usually reduce or disable the vertical component so jumping does not make the view bob.",
+    "prompt": {
+      "zh": "在遊戲中加入速度預測前視：以角色最近 0.12 秒的平均水平速度預測前方 0.35 秒，把焦點最多偏移 56 px；速度低於 20 px/秒時不增加偏移，轉向後用 0.22 秒過渡，停下則用 0.4 秒回正。垂直速度只採用 20%，避免跳躍令畫面上下搖。",
+      "en": "In your game, add velocity-predictive look-ahead: average the character's horizontal velocity over 0.12 s, project 0.35 s ahead, and clamp the focus offset to 56 px. Add no offset below 20 px/s, transition direction over 0.22 s, recenter over 0.4 s when stopped, and use only 20% of vertical velocity.",
+      "ja": "ゲームに速度予測の先読みを追加して。直近 0.12 秒のキャラクターの平均水平速度から 0.35 秒先を予測し、注視点のずれは最大 56 px。20 px/秒未満ではずらさず、方向転換は 0.22 秒、停止後の中央復帰は 0.4 秒。ジャンプで上下に揺れないよう垂直速度は 20% だけ使う。"
+    }
+  },
+  "CAM-07": {
+    "params": "region volume · composition anchor · camera height · zoom/distance · region priority · transition duration · overlap hysteresis",
+    "impl": "Associate each level region with a camera-state preset containing its anchor, viewing distance, and framing rules. Resolve overlapping regions by explicit priority and hysteresis, then hand the selected state to a separate cut or blend system.",
+    "prompt": {
+      "zh": "在遊戲中加入分區構圖錨點：洞穴區把焦點放在入口上方 32 px，正交可見高度設 180 px；Boss 房把焦點設在房間中心，可見高度擴至 260 px。角色進入區域內 24 px 後才切換規則，重疊時 Boss 房優先，並用 0.6 秒平滑交接。",
+      "en": "In your game, add region-based composition anchors: in the cave, focus 32 px above the entrance with a 180 px orthographic visible height; in the boss room, focus on the room centre and widen to 260 px. Switch only after the character moves 24 px inside a region, give the boss room priority on overlap, and blend over 0.6 s.",
+      "ja": "ゲームに領域ごとの構図アンカーを追加して。洞窟では入口の 32 px 上を注視し、正投影の表示高さを 180 px にする。ボス部屋では部屋中央を注視し、表示高さを 260 px に広げる。領域へ 24 px 入ってから規則を切り替え、重複時はボス部屋を優先し、0.6 秒で滑らかに遷移する。"
+    }
+  },
+  "CAM-08": {
+    "params": "region weight · character weight · maximum offset · weight falloff · smoothing time · anchor radius",
+    "impl": "Compute a persistent weighted focus between the region anchor and the character rather than waiting for the camera to catch the character fully. Clamp the character-induced offset and smooth the resulting focus before applying camera bounds.",
+    "prompt": {
+      "zh": "在遊戲中加入區域與角色混合重心：謎題房內的鏡頭焦點固定採用房間中心 75%、角色位置 25%，角色造成的偏移最多 48 px；焦點以 0.25 秒平滑移動。即使角色停下，鏡頭也不要最終移到角色正中央。",
+      "en": "In your game, blend region and character focus in the puzzle room: set the camera focus to 75% room centre and 25% character position, clamp the character-driven offset to 48 px, and smooth it over 0.25 s. Even after the character stops, do not eventually centre the view fully on them.",
+      "ja": "ゲームのパズル部屋で、領域とキャラクターの注視点を混ぜて。カメラの焦点を部屋中央 75%、キャラクター位置 25% とし、キャラクターによるずれは最大 48 px、0.25 秒で平滑化する。停止後もキャラクターを完全な中央へ移さないこと。"
+    }
+  },
+  "CAM-09": {
+    "params": "boundary shape · viewport padding · aspect ratio · zoom-aware inset · soft edge distance · fallback for small rooms",
+    "impl": "Inset the allowed world shape by the camera's current half-extents, then project the desired camera centre onto that reduced shape. Recompute the inset when zoom or aspect ratio changes, and define a fallback centre when the room is smaller than the viewport.",
+    "prompt": {
+      "zh": "在遊戲中加入鏡頭邊界限制：用房間多邊形定義可見範圍，先按目前畫面半寬、半高把邊界向內縮，再限制鏡頭中心；四邊保留 8 px 安全邊距。16:9 與 21:9、以及縮放改變時都重新計算，確保畫面永遠不露出地圖外空白。",
+      "en": "In your game, add camera boundary constraints using a room polygon. Inset it by the current viewport half-width and half-height, plus an 8 px safety margin, then constrain the camera centre to the reduced shape. Recompute for 16:9, 21:9, and every zoom change so no space outside the map is revealed.",
+      "ja": "ゲームにカメラ境界制限を追加して。部屋のポリゴンを可視範囲とし、現在の画面の半幅・半高と 8 px の安全余白だけ内側へ縮めてから、カメラ中心をその領域に制限する。16:9、21:9、ズーム変更時に再計算し、マップ外の空白を見せない。"
+    }
+  },
+  "CAM-10": {
+    "params": "orbit radius · yaw sensitivity · pitch range · rotation smoothing · target height · collision radius · invert Y",
+    "impl": "Represent orbit orientation as yaw and pitch around a target pivot, clamp pitch before converting the angles and radius to a camera position, and look back at the pivot. Resolve camera collision along the pivot-to-camera segment and preserve the player's yaw while the character turns.",
+    "prompt": {
+      "zh": "在遊戲中加入繞角色旋轉鏡頭：樞軸設在角色腰以上 1.2 m，半徑 4.5 m；右搖桿每秒最多轉 150°，俯仰限制在 −25° 至 65°，旋轉用 0.08 秒平滑。角色轉身不要自動改變鏡頭 yaw，並以半徑 0.25 m 的碰撞體避免鏡頭穿牆。",
+      "en": "In your game, add an orbit camera around a pivot 1.2 m above the character with a 4.5 m radius. Let the right stick rotate up to 150°/s, clamp pitch from −25° to 65°, and smooth rotation over 0.08 s. Character turning must not overwrite camera yaw; use a 0.25 m collision radius against walls.",
+      "ja": "ゲームにキャラクター周回カメラを追加して。支点はキャラクターの腰より 1.2 m 上、半径は 4.5 m。右スティックで最大 150°/秒、ピッチは −25°〜65°、回転は 0.08 秒で平滑化する。キャラクターが向きを変えてもカメラの yaw は変えず、半径 0.25 m の衝突判定で壁抜けを防ぐ。"
+    }
+  },
+  "CAM-11": {
+    "params": "shoulder offset · camera distance/height · aim convergence distance · shoulder-swap time · FOV · collision response · reticle bias",
+    "impl": "Offset the camera laterally from a character-relative pivot while aiming through a separate screen-centre ray. For accurate aiming, resolve the reticle's world hit first and aim the weapon toward that point, then handle near-wall collision independently.",
+    "prompt": {
+      "zh": "在遊戲中加入越肩鏡頭：鏡頭置於角色後方 3.2 m、高 1.6 m、向右偏 0.55 m，垂直 FOV 55°；瞄準點由畫面中央射線決定。按鍵換肩時在 0.2 秒內把偏移由 +0.55 m 轉成 −0.55 m，鏡頭撞牆時推近，但不要讓準星跳離原本命中點。",
+      "en": "In your game, add an over-the-shoulder camera 3.2 m behind, 1.6 m high, and 0.55 m to the character's right, with a 55° vertical FOV. Determine aim from a screen-centre ray; on shoulder swap, blend the offset from +0.55 m to −0.55 m over 0.2 s. Push the camera inward near walls without making the reticle jump off its hit point.",
+      "ja": "ゲームに肩越しカメラを追加して。キャラクターの後方 3.2 m、高さ 1.6 m、右へ 0.55 m、垂直 FOV は 55°。照準点は画面中央のレイで決める。肩切り替え時は 0.2 秒で +0.55 m から −0.55 m へ補間し、壁際ではカメラを近づけるが、レティクルの命中点は跳ばせない。"
+    }
+  },
+  "CAM-12": {
+    "params": "idle delay · recenter reference · yaw speed · pitch return · input threshold · movement threshold · cancel conditions",
+    "impl": "After manual camera input becomes idle, derive a target heading from character facing or filtered movement direction and rotate toward it on the shortest arc. Reset the idle timer immediately on fresh camera input and use separate speeds for yaw and pitch return.",
+    "prompt": {
+      "zh": "在遊戲中加入自動回正：右搖桿輸入低於 0.12 並持續 1.2 秒後，鏡頭以每秒 90° 的速度轉到角色移動方向後方；俯仰則在 0.5 秒內回到 12°。角色速度低於 0.5 m/s 時暫停回正，玩家再次推搖桿便立即取消。",
+      "en": "In your game, add automatic recentering: after right-stick input stays below 0.12 for 1.2 s, rotate toward a position behind the character's movement direction at 90°/s, while pitch returns to 12° over 0.5 s. Pause recentering below 0.5 m/s and cancel it immediately when the player moves the stick again.",
+      "ja": "ゲームに自動リセンターを追加して。右スティック入力が 0.12 未満のまま 1.2 秒続いたら、キャラクターの移動方向の背後へ 90°/秒で回し、ピッチは 0.5 秒で 12°へ戻す。速度が 0.5 m/秒未満なら停止し、再びスティックを動かしたら即座に解除する。"
+    }
+  },
+  "CAM-13": {
+    "params": "target weights · edge margin · min/max distance · min/max FOV · framing axis · expand/contract smoothing · target exclusion",
+    "impl": "Build a weighted bounding volume around all active targets, centre the camera on it, and derive either distance or FOV needed to fit it with margins. Use asymmetric smoothing so widening happens faster than tightening, preventing a target from briefly leaving frame.",
+    "prompt": {
+      "zh": "在遊戲中加入多人同框構圖：每幀計算兩名玩家與 Boss 的包圍框，四邊保留畫面 10% 邊距；鏡頭距離限制在 6–18 m，垂直 FOV 限制在 45–68°。目標分開時用 0.25 秒拉闊，靠近時用 0.7 秒收近；已死亡目標在 1 秒後移除。",
+      "en": "In your game, frame two players and the boss together: compute their bounds every frame with a 10% screen margin on all sides, clamp camera distance to 6–18 m and vertical FOV to 45–68°. Widen over 0.25 s when targets separate, tighten over 0.7 s when they regroup, and remove defeated targets after 1 s.",
+      "ja": "ゲームで 2 人のプレイヤーとボスを同じ画面に収めて。毎フレーム全対象の範囲を求め、四辺に画面の 10% の余白を取る。カメラ距離は 6〜18 m、垂直 FOV は 45〜68°。離れる時は 0.25 秒で広げ、集まる時は 0.7 秒で寄せ、倒れた対象は 1 秒後に除外する。"
+    }
+  },
+  "CAM-14": {
+    "params": "collision shape radius · skin distance · obstacle layers · minimum distance · push-in speed · recovery speed · side-slide bias",
+    "impl": "Sweep a sphere or capsule from the target pivot toward the desired camera position and place the camera just before the nearest blocking surface. Move inward quickly when blocked and restore distance more slowly after clearance to avoid popping at wall edges.",
+    "prompt": {
+      "zh": "在遊戲中加入鏡頭避牆：從角色樞軸向理想鏡頭位置做半徑 0.25 m 的球形掃描，命中牆壁時停在表面前 0.08 m，最短距離 0.6 m；推近用 0.06 秒，牆壁離開後用 0.35 秒恢復原距離。忽略角色與可穿透粒子。",
+      "en": "In your game, add camera collision: sphere-sweep from the character pivot to the desired camera position with a 0.25 m radius, stopping 0.08 m before the nearest wall and never closer than 0.6 m. Push in over 0.06 s, restore distance over 0.35 s after clearance, and ignore the character and non-solid particles.",
+      "ja": "ゲームにカメラの壁回避を追加して。キャラクターの支点から理想位置まで半径 0.25 m の球をスイープし、最も近い壁の 0.08 m 手前で止め、最短距離は 0.6 m。押し込みは 0.06 秒、壁がなくなった後の復帰は 0.35 秒。キャラクター自身と非実体パーティクルは無視する。"
+    }
+  },
+  "CAM-15": {
+    "params": "line-of-sight probes · obstruction grace time · candidate angles · camera radius · solution hold time · return smoothing · target visibility ratio",
+    "impl": "Test line of sight from several camera samples to important target points, then score collision-free candidate positions around the target by visibility and deviation from the desired view. Hold a chosen solution briefly and add hysteresis so thin pillars do not make the camera alternate sides every frame.",
+    "prompt": {
+      "zh": "在遊戲中加入遮擋避讓：由鏡頭向角色頭、胸、腳三點射線檢查；超過 50% 探測點被擋 0.12 秒後，在目前角度左右各搜尋 15°、30°、45° 的候選位置，選擇改動最小而至少看見兩點的位置。新角度保持最少 0.4 秒，障礙消失後用 0.5 秒返回。",
+      "en": "In your game, preserve line of sight with rays to the character's head, chest, and feet. If more than 50% are blocked for 0.12 s, test candidate positions at ±15°, ±30°, and ±45° around the current view, choosing the smallest change that reveals at least two points. Hold it for 0.4 s minimum and return over 0.5 s.",
+      "ja": "ゲームに遮蔽回避を追加して。カメラからキャラクターの頭・胸・足へ 3 本のレイを飛ばし、50% を超える点が 0.12 秒隠れたら、現在角度の左右 ±15°、±30°、±45° を候補として調べる。2 点以上見える最小変更の位置を選び、最低 0.4 秒保持し、障害が消えたら 0.5 秒で戻す。"
+    }
+  },
+  "CAM-16": {
+    "params": "vertical FOV · near/far clip · aspect ratio · camera distance · lens shift · depth precision",
+    "impl": "Use a perspective projection matrix so projected size decreases with view-space depth. Choose the field-of-view axis explicitly, derive the other axis from aspect ratio, and keep the near plane as far out as practical to preserve depth-buffer precision.",
+    "prompt": {
+      "zh": "在遊戲中使用透視投影：主探索鏡頭採垂直 FOV 55°、近裁切 0.1 m、遠裁切 500 m，以 16:9 為構圖基準並按長寬比推算水平 FOV。放置兩個同高 2 m 的柱，距離鏡頭 5 m 與 15 m，確保遠柱在畫面上明顯較小。",
+      "en": "In your game, use perspective projection for the exploration camera: 55° vertical FOV, 0.1 m near clip, 500 m far clip, with composition based on 16:9 and horizontal FOV derived from aspect ratio. Place two 2 m pillars at 5 m and 15 m to verify that the farther pillar is visibly smaller on screen.",
+      "ja": "ゲームの探索カメラに透視投影を使って。垂直 FOV 55°、近クリップ 0.1 m、遠クリップ 500 m、16:9 を構図基準にして水平 FOV はアスペクト比から求める。高さ 2 m の柱を 5 m と 15 m に置き、遠い柱が画面上で明確に小さくなることを確認する。"
+    }
+  },
+  "CAM-17": {
+    "params": "visible height/width · aspect handling · camera angle · near/far clip · pixel snapping · zoom limits",
+    "impl": "Use an orthographic projection whose scale is defined by visible world height or width, not FOV. Recalculate the opposite dimension from aspect ratio, and for pixel art align the final camera transform to the world-units-per-pixel grid.",
+    "prompt": {
+      "zh": "在遊戲中使用正交投影：以 320×180 為基準，鏡頭顯示 180 個世界像素高，寬度按視窗長寬比延伸；每個世界像素對齊實際像素格，鏡頭位置亦取整。放置兩個同為 32 px 高、但深度相差 10 m 的角色，兩者畫面高度必須一致。",
+      "en": "In your game, use an orthographic view based on 320×180: show 180 world pixels vertically and extend width with the window aspect ratio. Align world pixels and the camera position to the physical pixel grid. Two 32 px-tall characters separated by 10 m in depth must remain the same height on screen.",
+      "ja": "ゲームで 320×180 基準の正投影を使って。縦に 180 ワールドピクセルを表示し、横幅はウィンドウのアスペクト比に合わせて広げる。ワールドピクセルとカメラ位置を実ピクセル格子へ揃える。奥行きが 10 m 違う高さ 32 px のキャラクター 2 体が、画面上で同じ高さになるようにする。"
+    }
+  },
+  "CAM-18": {
+    "params": "base vertical FOV · target FOV · transition time · aspect ratio · speed mapping · aim override · comfort limit",
+    "impl": "Animate the projection's FOV while leaving camera position unchanged, preferably interpolating focal length or tangent-half-angle for perceptually stable motion. Define all tuning against either vertical or horizontal FOV consistently and clamp accessibility-sensitive extremes.",
+    "prompt": {
+      "zh": "在遊戲中加入動態視野角：探索時垂直 FOV 60°，奔跑速度由 4 增至 8 m/s 時平滑擴至 72°，0.3 秒追上、0.5 秒返回；瞄準時改為 45°，0.18 秒過渡。鏡頭位置全程不變，設定選單可把奔跑增幅降至 0°。",
+      "en": "In your game, add dynamic FOV: use 60° vertical FOV while exploring, widening smoothly to 72° as running speed rises from 4 to 8 m/s, with 0.3 s attack and 0.5 s recovery. Aiming uses 45° over 0.18 s. Keep camera position fixed and let players reduce the sprint increase to 0°.",
+      "ja": "ゲームに動的な視野角を追加して。探索時の垂直 FOV は 60°、走行速度が 4 から 8 m/秒へ上がるにつれて 72°まで広げ、追従 0.3 秒、復帰 0.5 秒。照準時は 0.18 秒で 45°にする。カメラ位置は変えず、設定で走行時の増加量を 0°まで下げられるようにする。"
+    }
+  },
+  "CAM-19": {
+    "params": "wide/tele FOV · zoom duration · easing · zoom steps · sensitivity scaling · reticle overlay · projection mode",
+    "impl": "Change FOV for a perspective camera, or visible size for an orthographic camera, without moving its observation point. Scale look sensitivity with the zoom ratio and keep the same aim ray so entering zoom does not shift the target under the reticle.",
+    "prompt": {
+      "zh": "在遊戲中加入望遠鏡變焦：按住瞄準時鏡頭位置不動，垂直 FOV 在 0.22 秒內由 60° 收窄至 24°，放開後 0.3 秒返回；視角靈敏度同步降至 45%，畫面加圓形遮罩。變焦前後準星中央必須仍指向同一個世界點。",
+      "en": "In your game, add binocular zoom: while aim is held, keep the camera position fixed and narrow vertical FOV from 60° to 24° over 0.22 s, returning over 0.3 s on release. Reduce look sensitivity to 45%, add a circular mask, and keep the reticle centre on the same world point before and after zoom.",
+      "ja": "ゲームに双眼鏡ズームを追加して。照準を押している間はカメラ位置を固定し、垂直 FOV を 0.22 秒で 60°から 24°へ狭め、離したら 0.3 秒で戻す。視点感度は 45% に下げ、円形マスクを付ける。ズーム前後でレティクル中央が同じワールド座標を指すようにする。"
+    }
+  },
+  "CAM-20": {
+    "params": "start/end distance · travel duration · path direction · easing · fixed FOV · collision handling · focus target",
+    "impl": "Move the camera's world position along its viewing direction or another designed path while holding FOV constant. Continue recomputing orientation toward the subject if required, and collision-test the swept path rather than only the final position.",
+    "prompt": {
+      "zh": "在遊戲中做一次推近鏡頭：對話重點出現時，把鏡頭沿視線由角色外 8 m 移至 3.5 m，歷時 1.2 秒並用 ease-in-out；垂直 FOV 固定 55°，全程注視角色眼睛。前景與背景的相對大小要隨位置改變，路徑遇牆則停在牆前 0.15 m。",
+      "en": "In your game, add a push-in for a dialogue reveal: move the camera along its view from 8 m to 3.5 m from the character over 1.2 s with ease-in-out, keeping vertical FOV fixed at 55° and looking at the character's eyes. Foreground/background scale relationships must change; stop 0.15 m before any wall on the path.",
+      "ja": "ゲームの会話で重要な事実が明かされる時、カメラを視線方向にキャラクターから 8 m の位置から 3.5 m まで、1.2 秒のイーズイン・アウトで押し込んで。垂直 FOV は 55°で固定し、常に目を注視する。前景と背景の相対サイズを変化させ、経路上の壁の 0.15 m 手前で止める。"
+    }
+  },
+  "CAM-21": {
+    "params": "subject distance range · target screen height · FOV range · effect duration · easing · focus tracking · background depth",
+    "impl": "Animate camera distance and FOV in opposite directions while solving FOV each frame to preserve the subject's projected height. Clamp both values and measure the subject from a stable focus plane so animation or posture changes do not destabilize the effect.",
+    "prompt": {
+      "zh": "在遊戲中加入一次 dolly zoom：角色受驚時，鏡頭在 1.5 秒內由 8 m 推至 3 m，同時自動調整垂直 FOV，令角色一直佔畫面高度 42%；用 ease-in-out，焦點鎖在胸口，FOV 限制 20–75°。背景應明顯伸縮，但角色大小不得漂移超過 2%。",
+      "en": "In your game, add a dolly zoom when the character is shocked: move from 8 m to 3 m over 1.5 s while solving vertical FOV so the character remains 42% of screen height. Use ease-in-out, measure at the chest, clamp FOV to 20–75°, and keep subject-size drift below 2% while the background visibly stretches.",
+      "ja": "ゲームでキャラクターが衝撃を受けた時にドリーズームを入れて。1.5 秒で距離を 8 m から 3 m へ近づけながら垂直 FOV を調整し、キャラクターの高さを常に画面の 42% に保つ。イーズイン・アウト、胸を基準、FOV は 20〜75°。背景は大きく伸縮させ、被写体サイズのずれは 2% 未満にする。"
+    }
+  },
+  "CAM-22": {
+    "params": "subject thirds point · horizon line · look-room side · safe margin · anchor smoothing · composition override",
+    "impl": "Express composition anchors in normalized viewport coordinates, then solve camera position or aim so selected subjects land near those anchors. Treat thirds as a tunable guide and allow gameplay constraints or central compositions to override it.",
+    "prompt": {
+      "zh": "在遊戲中使用三分構圖：探索時把角色頭部放在左側三分線與上方三分線附近，即畫面座標 (0.33, 0.33)，地平線放在高度 0.66；角色向左移動時把錨點在 0.35 秒內鏡像到 x=0.67，四邊保留 5% 安全距離。",
+      "en": "In your game, use thirds-based composition while exploring: place the character's head near viewport (0.33, 0.33) and the horizon at y=0.66. When the character moves left, mirror the anchor to x=0.67 over 0.35 s, preserving a 5% safe margin on every edge.",
+      "ja": "ゲームの探索中に三分割構図を使って。キャラクターの頭を画面座標 (0.33, 0.33) 付近、地平線を y=0.66 に置く。左へ移動する時は 0.35 秒でアンカーを x=0.67 へ反転し、四辺に 5% の安全余白を残す。"
+    }
+  },
+  "CAM-23": {
+    "params": "subject screen share · open-space side · clutter density · tonal contrast · safe margin · transition time",
+    "impl": "Choose an off-centre subject anchor that reserves a controlled portion of the frame for low-detail space, then bias the camera toward that composition. Validate the intended region using scene tags or density/contrast metadata rather than assuming empty geometry automatically reads as negative space.",
+    "prompt": {
+      "zh": "在遊戲中為孤獨場景加入留白構圖：把角色放在畫面左側 28% 位置，角色高度只佔畫面 18%，右側至少 55% 範圍只保留低對比天空與遠景；以 0.8 秒由普通跟隨過渡過去。不要把 HUD 放進這片留白，也不要用前視速度改變它。",
+      "en": "In your game, compose the lonely scene with negative space: place the character at 28% of screen width and only 18% of screen height, reserving at least 55% on the right for low-contrast sky and distant scenery. Transition from normal follow over 0.8 s; keep HUD out of that space and do not drive it from velocity look-ahead.",
+      "ja": "ゲームの孤独な場面で余白を作って。キャラクターを画面幅 28% の位置に置き、高さは画面の 18% だけにする。右側の少なくとも 55% は低コントラストの空と遠景にし、通常追従から 0.8 秒で移行する。この余白に HUD を置かず、速度先読みでも動かさない。"
+    }
+  },
+  "CAM-24": {
+    "params": "shot duration · framing scale · reveal path · hold time · transition out · control lock · skip behaviour",
+    "impl": "Author an opening camera state or short path that establishes location and scale, then hand control back to the gameplay camera through a cut or blend. Keep the sequence state-driven so it can be skipped cleanly without leaving camera or input state half-applied.",
+    "prompt": {
+      "zh": "在遊戲中加入 Boss 場地交代鏡頭：進場先用 3.2 秒廣角展示整個 60 m 闊競技場，Boss 與角色同框並各佔畫面高度約 12%；首 0.6 秒停住，之後慢慢推向入口，最後 0.5 秒交接回玩法鏡頭。玩家可按鍵跳過，跳過後立即恢復操作。",
+      "en": "In your game, add an establishing shot for the boss arena: spend 3.2 s showing the full 60 m-wide space, with boss and player both in frame at roughly 12% of screen height. Hold for 0.6 s, then drift toward the entrance and blend to gameplay over the final 0.5 s. Allow skipping with immediate control restoration.",
+      "ja": "ゲームにボス闘技場の導入ショットを追加して。3.2 秒で幅 60 m の会場全体を見せ、ボスとプレイヤーを同じ画面に入れて各々の高さを約 12% にする。最初の 0.6 秒は静止し、その後入口へゆっくり寄り、最後の 0.5 秒でプレイ用カメラへ遷移する。スキップ時は即座に操作を戻す。"
+    }
+  },
+  "CAM-25": {
+    "params": "subject screen coverage · framing target · camera distance/FOV · entry duration · hold time · exit transition · headroom",
+    "impl": "Define the close-up by projected subject coverage and framing anchor, then solve distance or FOV according to scene constraints. Keep depth of field and focal length as independent artistic choices rather than implicitly enabling them with the shot scale.",
+    "prompt": {
+      "zh": "在遊戲中加入道具特寫：玩家取得鑰匙後，在 0.3 秒內切至手部構圖，鑰匙佔畫面高度 62%，中心位於 (0.5, 0.46)；保持 1.1 秒，再用 0.4 秒返回玩法鏡頭。背景景深維持原設定，不要因為特寫而自動加模糊。",
+      "en": "In your game, add a close-up when the player obtains the key: transition to the hand over 0.3 s, framing the key at 62% of screen height and viewport (0.5, 0.46). Hold for 1.1 s, then return to gameplay over 0.4 s. Preserve the existing depth-of-field settings instead of adding blur automatically.",
+      "ja": "ゲームで鍵を入手した時に手元のクローズアップを入れて。0.3 秒で切り替え、鍵を画面高さの 62%、画面座標 (0.5, 0.46) に配置する。1.1 秒保持し、0.4 秒でプレイ用カメラへ戻す。クローズアップだからといって背景ぼけを自動追加せず、既存の被写界深度設定を保つ。"
+    }
+  },
+  "CAM-26": {
+    "params": "roll angle · entry time · hold time · recovery time · roll direction · maximum angle · motion-reduction scale",
+    "impl": "Apply roll around the camera's forward axis after aim orientation is solved, then interpolate with a bounded easing curve. Expose an accessibility multiplier because sustained or oscillating roll can cause discomfort.",
+    "prompt": {
+      "zh": "在遊戲中加入斜水平鏡頭：角色進入幻覺區時，在 0.25 秒內把鏡頭沿視軸翻滾至 12°，維持最多 2 秒，再用 0.8 秒回到 0°；不要改變 pitch 或 yaw。設定中的「減少鏡頭動態」可把角度縮至 3° 或完全關閉。",
+      "en": "In your game, add a Dutch angle in the hallucination zone: roll the camera 12° around its view axis over 0.25 s, hold for at most 2 s, then recover to 0° over 0.8 s without changing pitch or yaw. A reduced-camera-motion option must lower it to 3° or disable it.",
+      "ja": "ゲームの幻覚エリアでダッチアングルを使って。視軸まわりに 0.25 秒で 12° ロールし、最大 2 秒保持してから 0.8 秒で 0°へ戻す。pitch と yaw は変えない。「カメラ動作を減らす」設定では 3°まで弱めるか無効にできるようにする。"
+    }
+  },
+  "CAM-27": {
+    "params": "spline control points · progress driver · travel duration · speed curve · look target · path offset · banking · player influence",
+    "impl": "Evaluate position on a spline by normalized arc length so speed remains consistent despite uneven control-point spacing. Drive progress from time or projected player position, evaluate orientation separately from a look target, and collision-test any optional player-controlled offset.",
+    "prompt": {
+      "zh": "在遊戲中加入沿預設路線運鏡：鏡頭沿 6 個控制點的曲線穿過山谷，全程 8 秒；按弧長重參數化，令基本速度均勻，首尾各用 0.7 秒加減速。鏡頭一直望向角色前方 4 m，玩家可用右搖桿在軌道兩側偏移最多 0.6 m，但不可離開路線。",
+      "en": "In your game, move the camera along a six-control-point route through the valley over 8 s. Reparameterize by arc length for constant base speed, easing in and out over 0.7 s at each end. Look 4 m ahead of the character and allow up to 0.6 m of right-stick offset beside the rail without leaving it.",
+      "ja": "ゲームで谷を通る 6 制御点の経路に沿ってカメラを 8 秒で移動させて。弧長で再パラメータ化して基本速度を一定にし、開始と終了は各 0.7 秒で加減速する。キャラクターの 4 m 前方を注視し、右スティックでレール横に最大 0.6 m だけずらせるが、経路からは外れないようにする。"
+    }
+  },
+  "CAM-28": {
+    "params": "focus distance · focus range · blur strength · near transition · far transition · maximum blur radius · quality tier",
+    "impl": "Use the depth buffer to estimate each pixel's distance from the focus plane, derive a signed circle-of-confusion value, and blur near and far samples separately before compositing. Keep HUD and other screen-space overlays outside the depth-of-field pass.",
+    "prompt": {
+      "zh": "在遊戲中加入景深：對話時把焦點距離設在角色眼睛，清晰範圍前後各 0.5 m；距離焦點超過 4 m 的背景逐步加至最大 8 px 模糊，鏡頭前 0.8 m 內的前景最高 5 px。焦點用 0.2 秒平滑更新，HUD 必須保持完全清晰。",
+      "en": "In your game, add depth of field during dialogue: focus on the character's eyes with a ±0.5 m sharp range. Ramp background blur to a maximum 8 px beyond 4 m from focus, and near-foreground blur to 5 px within 0.8 m of the camera. Smooth focus distance over 0.2 s and keep the HUD perfectly sharp.",
+      "ja": "ゲームの会話中に被写界深度を追加して。キャラクターの目へピントを合わせ、前後 ±0.5 m を鮮明にする。焦点から 4 m 以上離れた背景は最大 8 px、カメラから 0.8 m 以内の前景は最大 5 px まで徐々にぼかす。焦点距離は 0.2 秒で平滑化し、HUD は常に鮮明に保つ。"
+    }
+  },
+  "CAM-29": {
+    "params": "start/end focus distance · pull duration · easing · hold time · aperture/blur strength · focus target tracking",
+    "impl": "Animate only the focus distance between measured subject depths while keeping camera transform and FOV unchanged. Feed the animated value into the depth-of-field calculation, and use stable target anchors to avoid focus jitter from deforming meshes.",
+    "prompt": {
+      "zh": "在遊戲中加入移焦：鏡頭保持完全不動，先對準 2.2 m 外的前景角色；背景門在 11 m 外打開時，用 0.8 秒 ease-in-out 把焦點距離移至 11 m，前景由清變糊、門由糊變清，並保持 1.2 秒。FOV 與鏡頭位置全程不得改變。",
+      "en": "In your game, add a rack focus with the camera completely still: begin focused on the foreground character at 2.2 m, then when the door at 11 m opens, pull focus to 11 m over 0.8 s with ease-in-out and hold for 1.2 s. The character should blur as the door sharpens; do not change FOV or camera transform.",
+      "ja": "ゲームにラックフォーカスを追加して。カメラは完全に固定し、最初は 2.2 m の手前のキャラクターにピントを合わせる。11 m 先の扉が開いたら、0.8 秒のイーズイン・アウトで焦点距離を 11 m へ移し、1.2 秒保持する。手前はぼけ、扉は鮮明になるが、FOV とカメラ位置は変えない。"
+    }
+  },
+  "CAM-30": {
+    "params": "translation amplitude · rotation amplitude · duration · frequency · noise seed · envelope · distance falloff · motion-reduction scale",
+    "impl": "Generate deterministic band-limited noise for positional and rotational offsets, multiply it by an attack-decay envelope, and add it after normal camera following. Combine simultaneous impulses through a bounded intensity value and attenuate them by event distance and direction.",
+    "prompt": {
+      "zh": "在遊戲中加入鏡頭震動：近距離重擊觸發 0.22 秒震動，畫面平移最高 ±6 px、翻滾最高 ±1.2°、頻率約 24 Hz；首 0.03 秒快速增強，之後指數衰減。距離每增加 5 m 強度減半，20 m 外不觸發；「減少鏡頭動態」把強度降至 25%。",
+      "en": "In your game, add camera shake for a nearby heavy hit: 0.22 s duration, up to ±6 px translation, ±1.2° roll, and roughly 24 Hz noise, with a 0.03 s attack followed by exponential decay. Halve strength every 5 m and stop beyond 20 m; reduced camera motion scales intensity to 25%.",
+      "ja": "ゲームで近距離の強打にカメラシェイクを追加して。時間は 0.22 秒、平行移動は最大 ±6 px、ロールは ±1.2°、周波数は約 24 Hz。最初の 0.03 秒で立ち上げ、その後は指数的に減衰する。距離 5 m ごとに半減し、20 m 以上では発生させず、動作軽減設定では強度を 25% にする。"
+    }
+  },
+  "CAM-31": {
+    "params": "cut trigger · source/destination state · one-frame switch · input continuity · audio continuity · post-cut hold · orientation check",
+    "impl": "Replace the active camera state between rendered frames without interpolating position, rotation, or lens values. Update dependent visibility and audio-listener state atomically, and preserve or deliberately remap player input so the cut does not masquerade as a control reversal.",
+    "prompt": {
+      "zh": "在遊戲中加入直接切鏡：Boss 登場時，上一幀仍是角色背後鏡頭，下一幀立即切到 Boss 正面近鏡，完全不插值亦不淡化；保持 0.9 秒後再切回。兩個機位的畫面方向差不要超過 150°，切換同一幀更新可見性與音訊監聽位置。",
+      "en": "In your game, add a hard cut for the boss entrance: one frame is the camera behind the character and the next is a frontal close view of the boss, with no interpolation or fade. Hold for 0.9 s, then cut back; keep the shot directions within 150° and update visibility and the audio listener on the same frame.",
+      "ja": "ゲームのボス登場にハードカットを追加して。前のフレームはキャラクター背後、次のフレームはボス正面の寄りへ、補間もフェードもなく即座に切り替える。0.9 秒保持してから戻し、2 つのショット方向の差は 150°以内、可視判定と音声リスナーも同じフレームで更新する。"
+    }
+  },
+  "CAM-32": {
+    "params": "blend duration · position curve · rotation interpolation · lens interpolation · target handoff · collision checks · interruption policy",
+    "impl": "Interpolate one complete camera state into another: position along a chosen curve, orientation on the shortest rotation arc, and projection parameters in a perceptually suitable space. Evaluate collision and target visibility on intermediate states, and define whether a new request restarts from the current blended state or queues.",
+    "prompt": {
+      "zh": "在遊戲中加入平滑鏡頭交接：由探索鏡頭轉至對話構圖需 0.75 秒，位置用 cubic ease-in-out，旋轉走最短弧，垂直 FOV 由 60° 平滑變至 42°；每幀檢查中間位置是否穿牆。若期間再觸發新鏡頭，便以當前混合狀態作新起點，不要跳回舊鏡頭。",
+      "en": "In your game, blend from exploration to dialogue framing over 0.75 s: use cubic ease-in-out for position, the shortest rotation arc, and smoothly change vertical FOV from 60° to 42°. Test every intermediate position for walls; if another camera request arrives, start the new blend from the current blended state rather than snapping back.",
+      "ja": "ゲームで探索カメラから会話構図へ 0.75 秒で滑らかに引き継いで。位置は cubic ease-in-out、回転は最短弧、垂直 FOV は 60°から 42°へ滑らかに変える。途中位置は毎フレーム壁との衝突を調べ、新しい要求が来たら現在の混合状態を始点にして、元のカメラへ戻さない。"
+    }
+  },
+  "REN-01": {
+    "params": "base color · metallic · roughness · normal strength · environment intensity · exposure",
+    "impl": "Use an energy-aware surface model with a documented material workflow, consistent texture ranges, and calibrated lighting. Validate representative metal, dielectric, and stone assets under several environments rather than tuning them for one shot.",
+    "prompt": {
+      "zh": "在你的遊戲加入按物理規律反應的材質：同一測試場景放置金屬、塑膠及石材球各 1 個，metallic 設為 1、0、0，roughness 設為 0.2、0.35、0.8，並在日光與室內燈光下保持材質可辨。",
+      "en": "In your game, add physically based materials: place one metal, plastic, and stone sphere in the same test scene, set metallic to 1, 0, and 0 and roughness to 0.2, 0.35, and 0.8, then keep each material recognizable under daylight and indoor lighting.",
+      "ja": "ゲームに物理ベースのマテリアルを追加してください。同じテストシーンに金属・プラスチック・石の球を1個ずつ置き、metallicを1・0・0、roughnessを0.2・0.35・0.8に設定し、昼光と室内照明の両方で材質を判別できるようにします。"
+    }
+  },
+  "REN-02": {
+    "params": "tint · texture · opacity · emission value · depth mode · tone-map bypass",
+    "impl": "Render the surface from its texture and tint without evaluating scene lights. Decide explicitly whether exposure, tone mapping, fog, and depth testing still affect the result.",
+    "prompt": {
+      "zh": "在你的遊戲加入不受場景燈光影響的平色材質：把任務圖示設為 unlit、色值 #4DE1FF，讓它進入全黑陰影後仍保持同色，尺寸固定為畫面高度的 4%。",
+      "en": "In your game, add an unlit flat-color material: render the quest icon in #4DE1FF, keep the same color in fully dark shadow, and hold its size at 4% of screen height.",
+      "ja": "ゲームにシーン照明の影響を受けないフラットカラー材質を追加してください。クエストアイコンを#4DE1FFで描画し、完全な影の中でも同じ色を保ち、画面高の4%の大きさに固定します。"
+    }
+  },
+  "REN-03": {
+    "params": "band count · ramp colors · shadow threshold · softness · specular size · ambient fill",
+    "impl": "Map a lighting term through an artist-authored ramp or a small set of thresholds, with separate controls for shadow and highlight bands. Keep face or hero-character overrides available where raw normals produce unwanted bands.",
+    "prompt": {
+      "zh": "在你的遊戲加入動畫式分層明暗：角色使用 3 級色帶，暗面門檻 0.35、亮面門檻 0.7、過渡寬度 0.02，並把高光限制為一塊硬邊亮色。",
+      "en": "In your game, add toon shading: use three lighting bands on the character with thresholds at 0.35 and 0.7, a transition width of 0.02, and one hard-edged highlight patch.",
+      "ja": "ゲームにアニメ風の段階的な陰影を追加してください。キャラクターを3段階にし、しきい値を0.35と0.7、遷移幅を0.02に設定して、ハイライトは硬い縁の1色面にします。"
+    }
+  },
+  "REN-04": {
+    "params": "line width · line color · depth threshold · normal threshold · distance scaling · object mask",
+    "impl": "Generate contours from an expanded shell or from depth, normal, and object-ID discontinuities. Stabilize width in screen space and exclude small interior edges that would clutter the image.",
+    "prompt": {
+      "zh": "在你的遊戲加入物件輪廓線：玩家角色用 2 px 深藍外框，互動目標用 4 px 黃色外框，距離 5 至 30 米仍維持相同畫面粗幼。",
+      "en": "In your game, add object outlines: use a 2 px dark-blue contour for the player and a 4 px yellow contour for interactable targets, keeping the screen-space width stable from 5 to 30 meters.",
+      "ja": "ゲームにオブジェクトの輪郭線を追加してください。プレイヤーには2 pxの濃紺、操作対象には4 pxの黄色を使い、距離5〜30 mでも画面上の太さを一定に保ちます。"
+    }
+  },
+  "REN-05": {
+    "params": "rim color · rim power · rim width · light alignment · intensity · occlusion",
+    "impl": "Build a surface-edge mask from the view and normal angle, then optionally constrain it by light direction and occlusion. Apply the result inside the silhouette as a controlled lighting or emissive contribution.",
+    "prompt": {
+      "zh": "在你的遊戲加入表面邊緣亮帶：主角使用青色 rim light，寬度約佔輪廓內側 6%，強度 1.8，並只在主光背向角色時提升至 3.0。",
+      "en": "In your game, add rim lighting: give the hero a cyan rim covering about 6% inside the silhouette at intensity 1.8, increasing to 3.0 only when the key light is behind the character.",
+      "ja": "ゲームにリムライトを追加してください。主人公のシルエット内側約6%をシアンで光らせ、強度を1.8、キーライトが背後にある場合だけ3.0へ上げます。"
+    }
+  },
+  "REN-06": {
+    "params": "F0 · grazing strength · exponent · roughness · tint · view-angle bias",
+    "impl": "Evaluate angle-dependent reflectance from the view-normal relationship, using a physically plausible approximation for reflective materials. Keep any stylized emissive use as a separate, clearly labeled artistic layer.",
+    "prompt": {
+      "zh": "在你的遊戲加入菲涅耳反射：水面正視時反射率設為 0.02，掠射角逐步升至接近 1.0，並用 roughness 0.08 保留清晰遠景反射。",
+      "en": "In your game, add Fresnel reflectance to water: use 0.02 reflectance head-on, rise gradually toward 1.0 at grazing angles, and set roughness to 0.08 for a clear distant reflection.",
+      "ja": "ゲームの水面にフレネル反射を追加してください。正面の反射率を0.02、浅い角度では徐々に1.0近くまで上げ、roughnessを0.08にして遠景の映り込みを鮮明にします。"
+    }
+  },
+  "REN-07": {
+    "params": "base color · texture scale · tint · saturation · value range · vertex color",
+    "impl": "Store the surface's underlying color in a lighting-neutral texture appropriate to the chosen material workflow. Avoid accidental baked highlights and shadows unless they are an intentional part of a hand-painted style.",
+    "prompt": {
+      "zh": "在你的遊戲加入材質底色：石牆使用 2 m 一循環的灰褐色貼圖，明度限制於 0.25 至 0.65，並移除貼圖內固定方向的高光與黑色陰影。",
+      "en": "In your game, add a base-color map to the stone wall: tile it every 2 meters, keep values between 0.25 and 0.65, and remove highlights or black shadows tied to a fixed light direction.",
+      "ja": "ゲームの石壁にベースカラーマップを追加してください。2 mごとに繰り返し、明度を0.25〜0.65に収め、固定方向の光によるハイライトや黒い影は除きます。"
+    }
+  },
+  "REN-08": {
+    "params": "roughness · smoothness · map contrast · minimum value · maximum value · mip filtering",
+    "impl": "Drive reflection spread with a perceptually useful roughness or smoothness signal and document its direction and encoding. Filter high-frequency variation to prevent distant highlights from sparkling.",
+    "prompt": {
+      "zh": "在你的遊戲加入粗滑度變化：同一石地的乾位 roughness 設為 0.78，濕位設為 0.18，以 0.5 m 漸變區連接，保持底色亮度不變。",
+      "en": "In your game, add roughness variation to one stone floor: set dry areas to 0.78 and wet areas to 0.18, blend them over 0.5 meters, and keep base-color brightness unchanged.",
+      "ja": "ゲームの同じ石床に粗さの変化を追加してください。乾いた部分をroughness 0.78、濡れた部分を0.18にし、0.5 mの範囲でつなぎ、ベースカラーの明るさは変えません。"
+    }
+  },
+  "REN-09": {
+    "params": "metallic · base color · roughness · mask threshold · edge blend · environment intensity",
+    "impl": "Use a metallic mask to separate exposed conductive material from dielectric coatings such as paint or dirt. Supply meaningful surroundings to reflect and preserve roughness as an independent property.",
+    "prompt": {
+      "zh": "在你的遊戲加入金屬性遮罩：機械人的裸鋼區 metallic 設為 1、藍色漆面設為 0、磨損邊緣以 3 mm 遮罩露出金屬，兩者 roughness 同為 0.35。",
+      "en": "In your game, add a metallic mask: set the robot's bare steel to 1 and blue paint to 0, reveal metal with a 3 mm wear mask along edges, and keep both regions at roughness 0.35.",
+      "ja": "ゲームに金属性マスクを追加してください。ロボットの露出した鋼を1、青い塗装を0にし、縁の3 mm幅の摩耗マスクで金属を見せ、両方のroughnessは0.35に保ちます。"
+    }
+  },
+  "REN-10": {
+    "params": "specular intensity · roughness · light size · highlight tint · shape · view response",
+    "impl": "Compute highlights from the light, view, surface normal, and micro-surface parameters. For stylized art, quantize or reshape the highlight after preserving its angle-dependent movement.",
+    "prompt": {
+      "zh": "在你的遊戲加入光源高光：角色眼球各顯示 1 個直徑約 6 px 的白色亮點，roughness 設為 0.12，轉動鏡頭 45° 時亮點須沿球面移動。",
+      "en": "In your game, add specular highlights: show one white spot about 6 px wide on each eye at roughness 0.12, and make the spots move across the curved surface when the camera rotates 45 degrees.",
+      "ja": "ゲームにスペキュラハイライトを追加してください。各眼球に直径約6 pxの白い光点を1つ出し、roughnessを0.12に設定して、カメラを45度回したとき球面上を移動させます。"
+    }
+  },
+  "REN-11": {
+    "params": "anisotropy · tangent direction · roughness · rotation · highlight stretch · map strength",
+    "impl": "Use tangent-oriented micro-surface response so highlights stretch along a controlled direction. Ensure meshes and direction maps have stable tangent data, especially across UV seams.",
+    "prompt": {
+      "zh": "在你的遊戲加入方向性反光：拉絲鋁面 anisotropy 設為 0.75、roughness 0.3，拉絲方向沿水平切線，旋轉物件 90° 時拉長高光亦跟着轉向。",
+      "en": "In your game, add anisotropic reflection to brushed aluminum: set anisotropy to 0.75 and roughness to 0.3, align brushing with the horizontal tangent, and rotate the stretched highlight when the object turns 90 degrees.",
+      "ja": "ゲームのヘアライン加工アルミに異方性反射を追加してください。anisotropyを0.75、roughnessを0.3にし、加工方向を水平接線に合わせ、物体を90度回すと伸びたハイライトも回転させます。"
+    }
+  },
+  "REN-12": {
+    "params": "emission color · intensity · mask · pulse rate · GI contribution · exposure response",
+    "impl": "Add radiance from an emissive mask independently of direct illumination. If nearby surfaces must receive light, feed emission into an indirect-lighting solution or pair it with an explicit light source.",
+    "prompt": {
+      "zh": "在你的遊戲加入自發光表面：機械眼用 #FF3B2F、強度 8，暗房中仍可見；另加半徑 1.5 m 的紅光照亮附近牆身，但關閉 bloom 後眼睛仍保持明亮。",
+      "en": "In your game, add an emissive surface: render the mechanical eye in #FF3B2F at intensity 8 so it remains visible in darkness, and add a separate red light with a 1.5 m radius for the wall; the eye must stay bright with bloom disabled.",
+      "ja": "ゲームに発光面を追加してください。メカの目を#FF3B2F、強度8で暗闇でも見えるようにし、壁を照らす半径1.5 mの赤いライトを別に置きます。bloomを切っても目の明るさは保ちます。"
+    }
+  },
+  "REN-13": {
+    "params": "normal strength · tangent convention · texture scale · mip bias · detail blend · channel orientation",
+    "impl": "Perturb shading normals with a correctly decoded normal or height map while leaving mesh positions unchanged. Match tangent basis and channel orientation across asset creation and rendering.",
+    "prompt": {
+      "zh": "在你的遊戲加入法線貼圖：平坦磚牆以每塊磚 20 cm 的比例顯示 8 mm 深磚縫，normal strength 設為 0.8，移動燈光時凹凸明暗要轉變但牆身剪影不變。",
+      "en": "In your game, add normal mapping to a flat brick wall: use 20 cm bricks with apparent 8 mm mortar depth at strength 0.8, changing relief shading as the light moves while leaving the wall silhouette unchanged.",
+      "ja": "ゲームの平らなレンガ壁にノーマルマッピングを追加してください。レンガを20 cm、目地の見かけの深さを8 mm、strengthを0.8にし、光を動かすと凹凸の陰影だけが変わり、壁のシルエットは変えません。"
+    }
+  },
+  "REN-14": {
+    "params": "height scale · step count · refinement steps · view-angle fade · self-shadow · UV scale",
+    "impl": "Offset texture sampling by tracing through a height field along the view direction, with bounded iteration and refinement counts. Fade or simplify the effect at grazing angles and distance to control stretching and cost.",
+    "prompt": {
+      "zh": "在你的遊戲加入 POM 假深坑：石地高度設為 3 cm，使用 24 個基本步驟加 4 次細化，視角低於表面 12° 時逐步淡出，斜看時近處石塊可遮住後方紋理。",
+      "en": "In your game, add POM recesses to a stone floor: use a 3 cm height range, 24 primary steps plus 4 refinement steps, fade below a 12-degree surface angle, and let nearer stones occlude texture details behind them at oblique views.",
+      "ja": "ゲームの石床にPOMの疑似的なくぼみを追加してください。高さ範囲を3 cm、基本24ステップと細分化4回にし、表面に対する角度が12度未満ではフェードさせ、斜めから見た近い石が奥の模様を隠すようにします。"
+    }
+  },
+  "REN-15": {
+    "params": "displacement scale · mesh density · frequency · direction · bounds padding · shadow sync",
+    "impl": "Move actual vertices along a chosen direction using a height or procedural signal, and provide enough geometry for the target detail scale. Update culling bounds and all required shadow or collision representations deliberately.",
+    "prompt": {
+      "zh": "在你的遊戲加入頂點位移：水面網格每米至少 16 格，沿法線產生振幅 0.25 m、波長 4 m、速度 1.2 m/s 的波浪，剪影與投影都要同步改變。",
+      "en": "In your game, add vertex displacement to water: use at least 16 grid divisions per meter and normal-direction waves with 0.25 m amplitude, 4 m wavelength, and 1.2 m/s speed, updating both silhouette and cast shadow.",
+      "ja": "ゲームの水面に頂点変位を追加してください。1 mあたり16分割以上の格子を使い、法線方向に振幅0.25 m、波長4 m、速度1.2 m/sの波を作り、シルエットと投影を同期して変化させます。"
+    }
+  },
+  "REN-16": {
+    "params": "opacity · blend mode · depth write · sort priority · refraction amount · overdraw limit",
+    "impl": "Composite translucent surfaces with a defined straight- or premultiplied-alpha convention and a deliberate depth/sorting policy. Budget overlapping layers and handle shadows and reflections according to the chosen pipeline.",
+    "prompt": {
+      "zh": "在你的遊戲加入半透明幽靈：主體 opacity 設為 0.45、邊緣升至 0.7，採用預乘 alpha，最多容許 4 層重疊，從前後兩個視角都不可出現明顯排序跳動。",
+      "en": "In your game, add a translucent ghost: use opacity 0.45 in the body and 0.7 at the rim with premultiplied alpha, allow up to four overlapping layers, and avoid obvious sorting pops from front and rear views.",
+      "ja": "ゲームに半透明の幽霊を追加してください。胴体のopacityを0.45、縁を0.7にしてプリマルチプライドalphaを使い、最大4層の重なりでも前後の視点から目立つ描画順の跳びが出ないようにします。"
+    }
+  },
+  "REN-17": {
+    "params": "alpha threshold · edge softness · dither scale · alpha-to-coverage · mip level · shadow cutoff",
+    "impl": "Discard samples below a mask threshold for hard cutouts, using filtered masks and coverage or dithering when needed. Keep cutout behavior consistent in depth and shadow passes.",
+    "prompt": {
+      "zh": "在你的遊戲加入剪洞透明：樹葉 alpha threshold 設為 0.5，4× MSAA 時啟用 alpha-to-coverage，20 米外改用 4 px 藍噪聲漸變，葉片洞口與投影形狀要一致。",
+      "en": "In your game, add alpha-clipped foliage: use a 0.5 threshold, enable alpha-to-coverage with 4x MSAA, switch to a 4 px blue-noise fade beyond 20 meters, and keep leaf holes consistent in the shadow.",
+      "ja": "ゲームにアルファクリップの葉を追加してください。しきい値を0.5、4× MSAA時はalpha-to-coverageを有効にし、20 m以遠では4 pxのブルーノイズフェードへ切り替え、葉の穴と影の形を一致させます。"
+    }
+  },
+  "REN-18": {
+    "params": "index of refraction · distortion scale · thickness · normal strength · chromatic split · edge fade",
+    "impl": "Distort transmitted scene color from surface orientation, thickness, and material refraction parameters. For screen-space implementations, fade invalid or off-screen samples and provide a stable fallback.",
+    "prompt": {
+      "zh": "在你的遊戲加入玻璃折射：厚度設為 8 mm、折射率 1.5、擾動最大 12 px，畫面邊緣 20 px 內逐步淡回原背景，不能把折射誤當倒影。",
+      "en": "In your game, add glass refraction: use 8 mm thickness, index of refraction 1.5, and at most 12 px distortion, fading back to the undistorted background within 20 px of the screen edge.",
+      "ja": "ゲームにガラスの屈折を追加してください。厚さ8 mm、屈折率1.5、ゆがみ最大12 pxとし、画面端から20 px以内では元の背景へ徐々に戻します。屈折を反射として扱わないでください。"
+    }
+  },
+  "REN-19": {
+    "params": "scatter color · scatter radius · thickness · transmission · scale · profile strength",
+    "impl": "Diffuse lighting beneath the surface with a material-specific scattering profile and scale-aware radius. Use thickness or transmission data for backlit thin regions and prevent cross-object bleeding.",
+    "prompt": {
+      "zh": "在你的遊戲加入皮下散射：角色皮膚散射半徑設為 1.2 mm、紅色通道強度為藍色的 2.5 倍，耳朵厚度低於 3 mm 時在背光下出現柔和紅光，但不可滲到眼睛。",
+      "en": "In your game, add subsurface scattering to skin: use a 1.2 mm scatter radius with red strength 2.5 times blue, make ears thinner than 3 mm glow softly under backlight, and prevent the blur from bleeding into the eyes.",
+      "ja": "ゲームの肌にサブサーフェススキャタリングを追加してください。散乱半径を1.2 mm、赤の強度を青の2.5倍にし、厚さ3 mm未満の耳は逆光で柔らかく赤く光らせますが、目にはにじませません。"
+    }
+  },
+  "REN-20": {
+    "params": "bounce count · indirect intensity · update rate · probe spacing · color bleed · denoise radius",
+    "impl": "Capture or solve indirect diffuse and specular transport with a method suited to scene motion and scale. Blend spatial data smoothly, limit leaks, and keep direct lighting independently controllable.",
+    "prompt": {
+      "zh": "在你的遊戲加入全域光照：小房間至少計算 1 次反彈，間接光強度 0.8，紅牆令 0.5 米內白箱出現約 10% 紅色染光，移動門後 0.3 秒內更新。",
+      "en": "In your game, add global illumination: compute at least one bounce in the small room at indirect intensity 0.8, tint a white box within 0.5 meters of a red wall by about 10%, and update within 0.3 seconds after a door moves.",
+      "ja": "ゲームにグローバルイルミネーションを追加してください。小部屋で最低1回の反射、間接光強度0.8とし、赤い壁から0.5 m以内の白い箱に約10%の赤い色移りを出し、扉が動いてから0.3秒以内に更新します。"
+    }
+  },
+  "REN-21": {
+    "params": "occlusion strength · radius · distance · bent normal · direct-light influence · map resolution",
+    "impl": "Represent the fraction of surrounding ambient illumination blocked by nearby geometry, from baked data or a runtime estimate. Apply it chiefly to indirect/environment lighting so direct illumination does not become dirty or double-darkened.",
+    "prompt": {
+      "zh": "在你的遊戲加入環境遮蔽：牆角及箱底 10 cm 範圍內逐步加深，strength 設為 0.65，只影響間接光；正午直射光下不可把接觸位塗成純黑。",
+      "en": "In your game, add ambient occlusion: darken gradually within 10 cm of corners and crate contacts at strength 0.65, affect indirect light only, and never turn contacts pure black under direct noon light.",
+      "ja": "ゲームにアンビエントオクルージョンを追加してください。壁の角や箱の接地点から10 cm以内をstrength 0.65で徐々に暗くし、間接光だけに作用させ、真昼の直射光では接触部を真っ黒にしません。"
+    }
+  },
+  "REN-22": {
+    "params": "sample radius · sample count · depth bias · normal weight · intensity · denoise radius",
+    "impl": "Estimate local visibility from screen depth and normals with a bounded sampling radius, then edge-aware filter the result. Reject depth discontinuities and accept that off-screen or hidden geometry is unavailable.",
+    "prompt": {
+      "zh": "在你的遊戲加入 SSAO：以 0.6 米半徑、16 個樣本、0.02 米 depth bias 計算，強度 0.7，再用 5 px 深度感知濾波；角色離開畫面時不可留下固定暗印。",
+      "en": "In your game, add SSAO: use a 0.6 m radius, 16 samples, 0.02 m depth bias, intensity 0.7, and a 5 px depth-aware filter; do not leave a fixed dark mark after the character exits the frame.",
+      "ja": "ゲームにSSAOを追加してください。半径0.6 m、16サンプル、depth bias 0.02 m、強度0.7で計算し、5 pxの深度対応フィルターを使います。キャラクターが画面外へ出た後に暗い跡を残しません。"
+    }
+  },
+  "REN-23": {
+    "params": "probe spacing · capture resolution · influence volume · roughness mip · blend distance · intensity",
+    "impl": "Sample environmental radiance from reflection captures or an image-based-lighting source, selecting and blending data by position. Prefilter the source by roughness and provide parallax correction where nearby geometry makes the approximation obvious.",
+    "prompt": {
+      "zh": "在你的遊戲加入環境反射：每個房間放置 1 個 256 px reflection probe，門口用 2 米範圍混合兩邊資料，金屬球 roughness 0.1 時反射清楚、0.8 時變朦。",
+      "en": "In your game, add environment reflections: place one 256 px reflection probe per room, blend both probes across 2 meters at each doorway, and make a metal sphere reflect sharply at roughness 0.1 and diffusely at 0.8.",
+      "ja": "ゲームに環境反射を追加してください。各部屋に256 pxのreflection probeを1つ置き、出入口の2 m範囲で両方をブレンドし、金属球はroughness 0.1で鮮明、0.8でぼけた映り込みにします。"
+    }
+  },
+  "REN-24": {
+    "params": "ray steps · maximum distance · thickness · stride · edge fade · history weight",
+    "impl": "March reflection rays through screen depth, validate intersections with a thickness tolerance, and temporally stabilize accepted samples. Fade near screen boundaries and blend missing rays into probes or another reflection source.",
+    "prompt": {
+      "zh": "在你的遊戲加入 SSR：濕地反射使用最多 48 步、最遠 20 米、厚度容差 0.15 米，畫面邊緣 8% 內淡出，缺失位置回退至 reflection probe。",
+      "en": "In your game, add screen-space reflections to wet ground: use up to 48 steps, a 20 m maximum distance, 0.15 m thickness tolerance, fade within the outer 8% of the screen, and fall back to a reflection probe for missing data.",
+      "ja": "ゲームの濡れた地面にSSRを追加してください。最大48ステップ、距離20 m、厚み許容0.15 mとし、画面外周8%でフェードし、情報がない部分はreflection probeへフォールバックします。"
+    }
+  },
+  "REN-25": {
+    "params": "light size · shadow resolution · filter radius · depth bias · normal bias · cascade distance",
+    "impl": "Project occluders into a shadow representation and filter visibility in a way that reflects the apparent light size. Tune bias by world scale, preserve contact, and allocate resolution according to camera importance.",
+    "prompt": {
+      "zh": "在你的遊戲加入柔邊投影：直徑 0.5 米的面光源令角色腳邊半影約 2 cm、離地 3 米的物件半影約 20 cm，shadow bias 以不出 acne 且影不離地為準。",
+      "en": "In your game, add soft cast shadows from a 0.5 m area light: target about 2 cm penumbra at the character's feet and 20 cm for an object 3 meters above the ground, tuning bias to avoid both acne and detached shadows.",
+      "ja": "ゲームに柔らかい投影を追加してください。直径0.5 mの面光源で、足元の半影を約2 cm、地面から3 m上の物体の半影を約20 cmにし、acneと影の浮きの両方が出ないようbiasを調整します。"
+    }
+  },
+  "REN-26": {
+    "params": "fog color · start distance · end distance · density · height falloff · sky blend",
+    "impl": "Blend scene radiance toward an atmospheric color as a function of view distance and optionally world height. Define how sky, transparent surfaces, and post-processing participate so layers remain consistent.",
+    "prompt": {
+      "zh": "在你的遊戲加入距離霧：由 40 米開始，120 米達到 90% 霧量，霧色 #A9BCC8；天空及透明粒子須用相同霧色，10 米內角色不受影響。",
+      "en": "In your game, add distance fog: begin at 40 meters, reach 90% fog by 120 meters, and use #A9BCC8; apply the same fog color to sky and transparent particles while leaving characters within 10 meters unaffected.",
+      "ja": "ゲームに距離フォグを追加してください。40 mから始め、120 mで90%に達し、色は#A9BCC8にします。空と透明パーティクルにも同じ色を適用し、10 m以内のキャラクターには影響させません。"
+    }
+  },
+  "REN-27": {
+    "params": "density · scattering · absorption · anisotropy · volume resolution · temporal weight",
+    "impl": "Integrate light scattering and extinction through a participating medium, including shadowed regions along each view path. Use jittered low-resolution sampling and guarded temporal accumulation to balance cost and stability.",
+    "prompt": {
+      "zh": "在你的遊戲加入體積光：教堂窗外陽光穿過密度 0.04 的薄霧，scattering anisotropy 設為 0.6，以每條光線 64 步取樣，門柱遮擋後形成 3 條清楚但柔邊的光柱。",
+      "en": "In your game, add volumetric lighting: send sunlight through church windows into fog of density 0.04, use scattering anisotropy 0.6 and 64 samples per ray, and form three distinct soft-edged beams behind the pillars.",
+      "ja": "ゲームにボリューメトリックライトを追加してください。教会の窓から密度0.04の霧へ日光を通し、散乱のanisotropyを0.6、1本あたり64サンプルにして、柱の遮蔽で3本の明瞭かつ柔らかい光筋を作ります。"
+    }
+  },
+  "REN-28": {
+    "params": "buffer range · white point · exposure · highlight threshold · precision · output mode",
+    "impl": "Accumulate scene lighting in a format that preserves values well above display white, then apply exposure and display mapping later. Keep internal HDR rendering distinct from the final SDR or HDR display encoding.",
+    "prompt": {
+      "zh": "在你的遊戲加入 HDR 渲染流程：場景緩衝保留至少 0 至 16 的線性亮度，窗外日光峰值設為 12、室內燈為 2，調低曝光 2 stops 後兩者仍有層次。",
+      "en": "In your game, add an HDR rendering pipeline: preserve at least 0 to 16 linear scene brightness, set exterior sunlight peaks to 12 and interior lamps to 2, and retain gradation in both after reducing exposure by 2 stops.",
+      "ja": "ゲームにHDRレンダリングを追加してください。シーンバッファで少なくとも0〜16の線形輝度を保持し、屋外の日光ピークを12、室内灯を2に設定して、露出を2 stops下げても両方の階調を残します。"
+    }
+  },
+  "REN-29": {
+    "params": "threshold · knee · intensity · radius · mip count · tint",
+    "impl": "Extract or weight bright image regions, blur them across several scales, and add the result back conservatively. Keep the source image intact and expose controls that prevent halos from swallowing nearby detail.",
+    "prompt": {
+      "zh": "在你的遊戲加入 bloom：亮度門檻設為 1.2、soft knee 0.5、強度 0.35、最大光暈半徑 24 px；強度為 8 的招牌可見柔光，但白色 UI 不可觸發。",
+      "en": "In your game, add bloom: use threshold 1.2, soft knee 0.5, intensity 0.35, and a maximum 24 px halo radius; an emissive sign at intensity 8 should glow, while white UI must not trigger it.",
+      "ja": "ゲームにbloomを追加してください。しきい値1.2、soft knee 0.5、強度0.35、光輪の最大半径24 pxとし、強度8の発光看板は光らせますが、白いUIには反応させません。"
+    }
+  },
+  "REN-30": {
+    "params": "compensation · minimum EV · maximum EV · adaptation up · adaptation down · metering mask",
+    "impl": "Estimate representative scene luminance with robust metering, convert it to a bounded exposure target, and approach that target at separate brightening and darkening rates. Exclude overlays and exceptional pixels from metering where appropriate.",
+    "prompt": {
+      "zh": "在你的遊戲加入自動曝光：限制於 EV −2 至 12，由暗轉亮以 3 EV/s 適應、由亮轉暗以 1.5 EV/s 適應，中央 60% 畫面佔主要測光權重，UI 不參與。",
+      "en": "In your game, add auto exposure: clamp it from EV -2 to 12, adapt dark-to-bright at 3 EV/s and bright-to-dark at 1.5 EV/s, give the central 60% of the image most metering weight, and exclude UI.",
+      "ja": "ゲームに自動露出を追加してください。EV -2〜12に制限し、暗所から明所は3 EV/s、明所から暗所は1.5 EV/sで順応させ、画面中央60%を測光の中心にしてUIは除外します。"
+    }
+  },
+  "REN-31": {
+    "params": "curve · white point · toe · shoulder · contrast · output gamut",
+    "impl": "Map scene-referred HDR values into the target display range with a smooth toe and highlight shoulder. Apply the transform in a documented color pipeline and test hue preservation in saturated highlights.",
+    "prompt": {
+      "zh": "在你的遊戲加入電影式 tone mapping：白點設為線性值 11.2，高光由 4 開始柔和壓縮，0.18 中灰保持約 45% 顯示亮度，紅色霓虹達 8 時不可突然變純白。",
+      "en": "In your game, add filmic tone mapping: set the linear white point to 11.2, begin a soft highlight shoulder at 4, map 0.18 middle gray to about 45% display brightness, and keep a red neon value of 8 from abruptly turning white.",
+      "ja": "ゲームにフィルミックなトーンマッピングを追加してください。線形白点を11.2、ハイライト圧縮の開始を4、0.18の中間グレーを表示輝度約45%にし、値8の赤いネオンが急に白くならないようにします。"
+    }
+  },
+  "REN-32": {
+    "params": "temperature · tint · saturation · contrast · shadow color · highlight color · LUT strength",
+    "impl": "Apply white balance and creative grading in a known color space at a fixed point in the display pipeline. Blend grades by scene state and verify that neutral references and skin tones remain controllable.",
+    "prompt": {
+      "zh": "在你的遊戲加入全畫面調色：雪地白平衡設為 7500 K、飽和度 0.9，陰影加入 8% 藍青、高光加入 4% 暖黃，LUT 強度 0.7，角色膚色偏移不得超過 5%。",
+      "en": "In your game, add whole-image color grading: set the snow scene white balance to 7500 K and saturation to 0.9, add 8% cyan-blue to shadows and 4% warm yellow to highlights, use LUT strength 0.7, and keep skin-tone shift below 5%.",
+      "ja": "ゲームに画面全体のカラーグレーディングを追加してください。雪原のホワイトバランスを7500 K、彩度を0.9にし、シャドウへ8%の青緑、ハイライトへ4%の暖色を加え、LUT強度0.7で肌色のずれを5%未満にします。"
+    }
+  },
+  "REN-33": {
+    "params": "shutter angle · camera contribution · object velocity · sample count · maximum radius · depth rejection",
+    "impl": "Blur along per-pixel camera and object motion over a simulated shutter interval, rejecting samples across depth discontinuities. Supply correct velocities for skeletal and vertex-deformed geometry and cap the radius for readability.",
+    "prompt": {
+      "zh": "在你的遊戲加入速度模糊：以 60 fps、180° shutter 計算，模糊半徑上限 20 px；快速橫移的車身沿速度方向拉開，但車前 1 米的靜止路牌邊緣不可被抹走。",
+      "en": "In your game, add motion blur: simulate a 180-degree shutter at 60 fps with a 20 px maximum radius; stretch a fast-moving car along its velocity while preserving the edge of a stationary sign one meter in front of it.",
+      "ja": "ゲームにモーションブラーを追加してください。60 fpsで180度シャッター、最大半径20 pxとし、高速移動する車体は速度方向へ伸ばしますが、その1 m手前にある静止標識の縁はにじませません。"
+    }
+  },
+  "REN-34": {
+    "params": "focus distance · aperture · focal length · near blur · far blur · bokeh blades",
+    "impl": "Derive a circle of confusion from camera focus and aperture, then gather or scatter color while respecting foreground/background depth boundaries. Treat transparent and hair-like geometry with an explicit compositing strategy.",
+    "prompt": {
+      "zh": "在你的遊戲加入景深：50 mm 鏡頭、f/2.0，焦點距離 4 米；3.5 至 4.5 米的角色保持清楚，12 米外燈點形成直徑約 18 px 的六角散景。",
+      "en": "In your game, add depth of field: use a 50 mm lens at f/2.0 focused at 4 meters, keep the character sharp from 3.5 to 4.5 meters, and turn lights beyond 12 meters into roughly 18 px hexagonal bokeh.",
+      "ja": "ゲームに被写界深度を追加してください。50 mmレンズ、f/2.0、焦点距離4 mとし、3.5〜4.5 mのキャラクターは鮮明に、12 m以遠の光点は直径約18 pxの六角形ボケにします。"
+    }
+  },
+  "REN-35": {
+    "params": "ghost count · flare intensity · streak length · chromatic tint · occlusion · threshold",
+    "impl": "Generate lens ghosts and streaks from bright, visible light sources or bright image regions using a controlled optical-style layout. Test source occlusion and suppress the effect when the light is behind solid geometry.",
+    "prompt": {
+      "zh": "在你的遊戲加入鏡頭耀光：太陽亮度超過 6 時沿畫面中心線產生 5 個光斑及 80 px 光線，總強度 0.3；太陽被建築遮住超過 70% 時在 0.1 秒內淡走。",
+      "en": "In your game, add lens flare: when the sun exceeds brightness 6, create five ghosts along the screen-center axis and an 80 px streak at total intensity 0.3; fade it within 0.1 seconds when a building occludes more than 70% of the sun.",
+      "ja": "ゲームにレンズフレアを追加してください。太陽の輝度が6を超えたら画面中心軸上に5個のゴーストと80 pxのストリークを合計強度0.3で出し、建物が太陽を70%以上隠したら0.1秒以内に消します。"
+    }
+  },
+  "REN-36": {
+    "params": "radial strength · channel offset · center point · edge falloff · intensity · UI exclusion",
+    "impl": "Offset color channels radially by a small, position-dependent amount, normally increasing toward the image edge. Apply it before UI composition and clamp the displacement to preserve text and gameplay readability.",
+    "prompt": {
+      "zh": "在你的遊戲加入色差：畫面中心偏移為 0 px，最外 10% 範圍逐步增至紅藍各 1.5 px；角色受重擊時 0.15 秒內升至 4 px，再於 0.4 秒回復，UI 不受影響。",
+      "en": "In your game, add chromatic aberration: use 0 px offset at the center and ramp red/blue separation to 1.5 px in the outer 10%; on a heavy hit, peak at 4 px within 0.15 seconds and recover over 0.4 seconds, excluding UI.",
+      "ja": "ゲームに色収差を追加してください。画面中央は0 px、外側10%で赤青のずれを1.5 pxまで増やし、大ダメージ時は0.15秒で4 pxに達して0.4秒で戻します。UIには適用しません。"
+    }
+  },
+  "REN-37": {
+    "params": "render scale · sample rate · texture filtering · roughness floor · LOD bias · temporal stability",
+    "impl": "Diagnose aliasing by separating silhouette, texture, specular, and temporal undersampling. Address each source with appropriate sampling, filtering, level-of-detail, or material bandwidth controls rather than one universal switch.",
+    "prompt": {
+      "zh": "在你的遊戲檢查及處理走樣：以 1080p、60 fps 沿鐵網橫移鏡頭 10 秒，記錄輪廓鋸齒、幼線閃爍及高光閃點，令每類可見閃爍相對基準減少至少 70%。",
+      "en": "In your game, audit and reduce aliasing: at 1080p and 60 fps, pan past a wire fence for 10 seconds, record silhouette jaggies, thin-line shimmer, and specular sparkle separately, and reduce each visible artifact by at least 70% from baseline.",
+      "ja": "ゲームのエイリアシングを検査して低減してください。1080p・60 fpsで金網の前を10秒間パンし、輪郭のジャギー、細線のちらつき、ハイライトのきらつきを別々に記録し、各アーティファクトを基準から70%以上減らします。"
+    }
+  },
+  "REN-38": {
+    "params": "sample count · alpha-to-coverage · resolve filter · target format · depth samples · quality level",
+    "impl": "Store multiple coverage and depth samples at geometric edges, then resolve them into the final pixel. Match sample counts across relevant targets and use separate measures for shader or alpha-cutout aliasing.",
+    "prompt": {
+      "zh": "在你的遊戲加入 4× MSAA：平滑 1080p 畫面中的模型斜邊，顏色及深度目標均使用 4 個樣本；樹葉另配 alpha-to-coverage，切換前後平均 GPU 時間增幅須記錄。",
+      "en": "In your game, add 4x MSAA: smooth mesh diagonals at 1080p with four samples in both color and depth targets, pair foliage with alpha-to-coverage, and record the average GPU-time increase before and after enabling it.",
+      "ja": "ゲームに4× MSAAを追加してください。1080pのモデル斜線を滑らかにし、カラーと深度の両ターゲットを4サンプルにします。葉にはalpha-to-coverageも使い、有効化前後の平均GPU時間増加を記録します。"
+    }
+  },
+  "REN-39": {
+    "params": "edge threshold · local contrast · search steps · blend weight · quality preset · sharpness",
+    "impl": "Detect high-contrast edge patterns in the current resolved image and blend across them with bounded neighborhood searches. Run after opaque compositing but before crisp UI, and protect fine texture with contrast thresholds.",
+    "prompt": {
+      "zh": "在你的遊戲加入單幀後製抗鋸齒：以 edge threshold 0.1、最多 16 步搜尋處理 1080p 畫面，令欄杆斜邊較順，同時保持 12 px 字體筆劃至少 90% 原有對比。",
+      "en": "In your game, add spatial post-process antialiasing: use an edge threshold of 0.1 and up to 16 search steps at 1080p, smooth diagonal railings, and preserve at least 90% of the original stroke contrast in 12 px text.",
+      "ja": "ゲームに単一フレームのポストプロセスAAを追加してください。1080pでedge threshold 0.1、最大16探索ステップを使い、斜めの手すりを滑らかにしながら12 px文字の線のコントラストを90%以上保ちます。"
+    }
+  },
+  "REN-40": {
+    "params": "jitter sequence · history weight · velocity scale · rejection threshold · clamp radius · sharpening",
+    "impl": "Jitter subpixel sampling, reproject prior results with motion vectors, reject invalid history, and accumulate only within a stable neighborhood bound. Treat disocclusion, transparency, and animated geometry explicitly before applying restrained sharpening.",
+    "prompt": {
+      "zh": "在你的遊戲加入 TAA：使用 8 幀 jitter 序列、靜止 history weight 0.9、移動時降至 0.6，深度差超過 2% 即拒絕歷史，最後加 0.15 銳化；草葉移動不可留下明顯尾影。",
+      "en": "In your game, add TAA: use an 8-frame jitter sequence, history weight 0.9 when still and 0.6 in motion, reject history above a 2% depth difference, and apply 0.15 sharpening; moving grass must not leave obvious trails.",
+      "ja": "ゲームにTAAを追加してください。8フレームのjitter列、静止時history weight 0.9、移動時0.6を使い、深度差が2%を超えた履歴は棄却し、最後に0.15のシャープ化を加えます。動く草に目立つ尾を残しません。"
+    }
+  },
+  "REN-41": {
+    "params": "motion vectors · history rejection · disocclusion mask · reactive mask · transparency velocity · frame weight",
+    "impl": "Identify which temporal accumulator owns the stale history, then verify motion vectors, disocclusion, and validity masks in that pass. Reject or reduce history around newly revealed pixels and surfaces whose shading changes independently of geometry.",
+    "prompt": {
+      "zh": "在你的遊戲修正舊影拖尾：讓角色以 8 m/s 橫過高反差牆面，分別關閉 motion blur、TAA／升頻及體積效果作 A/B；修正後尾影須在 2 幀內消失，新露出背景在 3 幀內恢復清晰。",
+      "en": "In your game, diagnose and fix temporal ghosting: move a character at 8 m/s across a high-contrast wall and A/B test motion blur, TAA/upscaling, and volumetrics separately; after the fix, trails must disappear within two frames and disoccluded background must recover within three.",
+      "ja": "ゲームの時間的ゴーストを診断して修正してください。キャラクターを8 m/sで高コントラストの壁の前を横切らせ、motion blur、TAA／アップスケーリング、ボリューム効果を別々にA/Bします。修正後は尾を2フレーム以内、新たに見えた背景を3フレーム以内に回復させます。"
+    }
+  },
+  "REN-42": {
+    "params": "internal scale · output resolution · jitter · history weight · reactive mask · sharpening · mip bias",
+    "impl": "Reconstruct output pixels from lower-resolution spatial samples and, for temporal methods, reprojected history plus motion data. Adjust texture level-of-detail and reactive masks for transparency, and measure gains only when rendering resolution is the actual bottleneck.",
+    "prompt": {
+      "zh": "在你的遊戲加入升頻：內部以 67% 線性解像度渲染並輸出 2560×1440，時間式重建使用正確 motion vectors、透明 reactive mask 0.8 及銳化 0.2；畫質測試須涵蓋幼線與快速移動邊界。",
+      "en": "In your game, add upscaling: render internally at 67% linear resolution and output 2560x1440, using correct motion vectors, a 0.8 transparency reactive mask, and 0.2 sharpening for temporal reconstruction; test thin lines and fast-moving boundaries.",
+      "ja": "ゲームにアップスケーリングを追加してください。内部は線形解像度67%で描画し、2560×1440へ出力します。時間再構成には正しいmotion vectors、透明用reactive mask 0.8、シャープ化0.2を使い、細線と高速移動する境界を検証します。"
+    }
+  },
+  "ACT-01": {
+    "params": "grace duration · grounded timestamp · jump eligibility · vertical velocity · edge state",
+    "impl": "Record the last time the character was grounded and accept a ground jump for a short interval after that time. Consume the eligibility on use so the grace period cannot become an extra aerial jump.",
+    "prompt": {
+      "zh": "加入 100 ms 離地跳躍寬限：角色行出平台邊緣後仍可起跳一次，但用掉後不可在空中再次觸發。",
+      "en": "Add a 100 ms ledge grace period: allow one jump after walking off a platform, then consume it so it cannot become a double jump.",
+      "ja": "足場を離れてから100 msだけ地上ジャンプを1回許可し、使用後は空中で再発動できないようにしてください。"
+    }
+  },
+  "ACT-02": {
+    "params": "buffer duration · input timestamp · held requirement · validity check · consume rule",
+    "impl": "Timestamp a jump press and retain it only for a bounded buffer period. When jumping becomes legal, execute and consume the stored intent; optionally require the button to remain held.",
+    "prompt": {
+      "zh": "加入 120 ms 跳躍輸入緩衝：落地前按住跳掣可在着地首個合法更新自動起跳，放開或逾時即取消。",
+      "en": "Add a 120 ms jump buffer: if jump is held shortly before landing, jump on the first valid update after contact; cancel on release or timeout.",
+      "ja": "120 msのジャンプ先行入力を追加し、着地前にボタンを押し続けた場合は着地後最初の有効更新で跳び、離すか時間切れで破棄してください。"
+    }
+  },
+  "ACT-03": {
+    "params": "apex speed threshold · gravity scale · hang duration · jump hold · fall gravity",
+    "impl": "Detect when vertical speed is near zero and temporarily apply a lower downward acceleration, optionally only while jump is held. Restore normal falling behavior outside the apex band.",
+    "prompt": {
+      "zh": "當垂直速度在 ±0.8 m/s 內且仍按住跳掣時，把重力降至 55%，最多維持 90 ms；離開頂點區即恢復正常。",
+      "en": "While vertical speed is within ±0.8 m/s and jump remains held, reduce gravity to 55% for at most 90 ms, then restore normal gravity outside the apex band.",
+      "ja": "垂直速度が±0.8 m/s以内でジャンプを押し続けている間、重力を55%にして最大90 ms維持し、頂点範囲を外れたら通常値へ戻してください。"
+    }
+  },
+  "ACT-04": {
+    "params": "corner probe · lateral nudge · clearance test · ascent only · collision mask",
+    "impl": "When an ascending character grazes a platform corner, test a few small horizontal offsets toward clearance. Apply the smallest collision-free offset without disabling solid collision.",
+    "prompt": {
+      "zh": "角色上升時若頭頂擦到平台角位，測試左右最多 6 cm 的橫向修正並採用最小可通過位移；完整牆面仍須阻擋。",
+      "en": "When the character's head grazes a platform corner while rising, test lateral corrections up to 6 cm and apply the smallest clear offset; full walls must still block movement.",
+      "ja": "上昇中に頭が足場の角へ触れたら左右最大6 cmの補正を試し、通過できる最小量だけずらしてください。壁本体の衝突は無効にしないでください。"
+    }
+  },
+  "ACT-05": {
+    "params": "wall probe distance · surface normal · jump impulse · approach side · use limit",
+    "impl": "Probe for a valid wall within a small spatial tolerance rather than requiring direct contact. Launch away from the detected surface and consume the wall-jump opportunity according to the movement rules.",
+    "prompt": {
+      "zh": "牆跳容許角色離牆最多 12 cm：偵測最近有效牆面法線，施加離牆方向速度，並限制每次離牆只觸發一次。",
+      "en": "Allow wall jumps from up to 12 cm away: use the nearest valid wall normal to launch outward, and permit only one trigger per wall departure.",
+      "ja": "壁から最大12 cm離れていても壁ジャンプを許可し、最寄りの有効な壁法線から外向きに跳ばしてください。壁を離れるたびに1回だけ発動可能にしてください。"
+    }
+  },
+  "ACT-06": {
+    "params": "platform velocity · storage duration · launch contribution · stop timestamp · consume rule",
+    "impl": "Cache the supporting platform's useful velocity when it stops or contact ends. For a brief period, add that cached contribution to the next jump once, then clear it.",
+    "prompt": {
+      "zh": "升降台停止後保存其最後向上速度 120 ms；期間內起跳可取得 80% 額外上升速度一次，逾時或使用後清除。",
+      "en": "Store a lift's last upward velocity for 120 ms after it stops; a jump during that interval receives 80% of the stored boost once, then the value expires.",
+      "ja": "昇降床が停止してから120 msだけ直前の上向き速度を保存し、その間のジャンプへ80%を1回だけ加算して、使用後または時間切れで消去してください。"
+    }
+  },
+  "ACT-07": {
+    "params": "max speed · ground acceleration · braking rate · reversal rate · stop threshold",
+    "impl": "Move horizontal speed toward a target at separate acceleration, braking, and reversal rates. Keep maximum speed independent from how quickly it is reached or shed.",
+    "prompt": {
+      "zh": "地面移動最高速設為 7 m/s、起步加速度 24 m/s²、放手煞車 36 m/s²、反向加速度 48 m/s²，低於 0.05 m/s 時歸零。",
+      "en": "Set ground movement to 7 m/s maximum speed, 24 m/s² acceleration, 36 m/s² release braking, and 48 m/s² reversal, snapping below 0.05 m/s to zero.",
+      "ja": "地上移動を最高7 m/s、加速24 m/s²、入力を離した制動36 m/s²、反転48 m/s²とし、0.05 m/s未満は0へ丸めてください。"
+    }
+  },
+  "ACT-08": {
+    "params": "air acceleration · air max speed · steering multiplier · reversal control · vertical independence",
+    "impl": "Apply horizontal acceleration from directional input while airborne, capped independently from vertical motion. Tune same-direction steering and reversal separately so air control changes landing position without adding jump height.",
+    "prompt": {
+      "zh": "空中左右輸入使用 9 m/s² 加速度，水平速度上限 5 m/s，反向轉向乘數 1.4；不可改變垂直速度或提供額外跳躍。",
+      "en": "Use 9 m/s² horizontal air acceleration with a 5 m/s cap and a 1.4 reversal multiplier; steering must not alter vertical speed or grant extra height.",
+      "ja": "空中の左右入力に9 m/s²の加速度、水平上限5 m/s、反転倍率1.4を設定し、垂直速度やジャンプ高度は増やさないでください。"
+    }
+  },
+  "ACT-09": {
+    "params": "anticipation duration · key pose · attack direction · startup timing · release cue",
+    "impl": "Insert a clear preparatory pose before the main action, oriented to reveal direction and force. Keep its visual duration aligned with the intended startup while preserving responsive timing for player-controlled actions.",
+    "prompt": {
+      "zh": "為敵人向下重擊加入 180 ms 預備動作：先把武器拉高並停留 40 ms，再清楚朝目標方向釋放；攻擊判定只可在釋放後開始。",
+      "en": "Give the enemy's downward heavy strike a 180 ms anticipation: raise the weapon with a 40 ms hold, then release clearly toward the target; activate the hit only after release begins.",
+      "ja": "敵の振り下ろし強攻撃に180 msの予備動作を付け、武器を持ち上げて40 ms止めてから目標方向へ振ってください。攻撃判定は振り始めた後だけ有効にしてください。"
+    }
+  },
+  "ACT-10": {
+    "params": "squash scale · stretch scale · apparent volume · recovery duration · collider policy",
+    "impl": "Apply brief nonuniform visual scaling around impacts and launches, compensating other axes to preserve apparent volume. Keep gameplay collision unchanged unless the design explicitly calls for a separate rule.",
+    "prompt": {
+      "zh": "着地時把角色外觀壓至高度 85%、闊度 108%，用 120 ms 回復；起跳首 80 ms 拉至高度 112%、闊度 94%，碰撞體保持不變。",
+      "en": "On landing, squash the visual to 85% height and 108% width, recovering over 120 ms; for the first 80 ms of takeoff, stretch to 112% height and 94% width, without changing the collider.",
+      "ja": "着地時に見た目を高さ85%・幅108%へつぶして120 msで戻し、跳び始めの80 msは高さ112%・幅94%へ伸ばしてください。コライダーは変更しないでください。"
+    }
+  },
+  "ACT-11": {
+    "params": "total duration · pose timestamps · sample spacing · acceleration impression · key poses",
+    "impl": "Choose when important poses occur, then shape the distances traveled between equal-time samples. Timing establishes rhythm, while spacing establishes the perceived speed between those poses.",
+    "prompt": {
+      "zh": "製作 600 ms 抬手動作，以每 100 ms 取樣：首三段位移 2、4、8 cm，後三段 8、4、2 cm，總時長不變但呈現先加速後減速。",
+      "en": "Create a 600 ms arm raise sampled every 100 ms, with successive travel distances of 2, 4, 8, 8, 4, and 2 cm, preserving duration while showing acceleration then deceleration.",
+      "ja": "600 msの腕上げを100 msごとに取り、移動距離を順に2、4、8、8、4、2 cmとして、総時間を変えずに加速から減速へ見せてください。"
+    }
+  },
+  "ACT-12": {
+    "params": "curve shape · ease-in ratio · ease-out ratio · tangent slope · impact exception",
+    "impl": "Use a curve with shallow slopes near selected endpoints and a steeper middle section. Reserve abrupt slope changes for impacts or deliberately sharp actions rather than easing every movement uniformly.",
+    "prompt": {
+      "zh": "把 500 ms 手部移動設為首 20% 漸入、末 30% 漸出，中段較快；碰撞一刻則在 1 個更新內急停，不套用末段緩停。",
+      "en": "For a 500 ms hand motion, ease in over the first 20% and ease out over the last 30%, with a faster middle; if it impacts, stop within one update instead of applying the final ease.",
+      "ja": "500 msの手の移動を最初の20%でイーズイン、最後の30%でイーズアウトし、中間を速くしてください。衝突時は終端イーズを使わず1更新以内で止めてください。"
+    }
+  },
+  "ACT-13": {
+    "params": "primary stop time · trailing delay · damping · settle duration · control independence",
+    "impl": "Let flexible parts continue after the main body reaches its stop, then damp them toward rest. Treat this residual visual motion independently from whether gameplay control has returned.",
+    "prompt": {
+      "zh": "角色急停後讓披風多擺 2 次：首擺幅 18°、次擺幅 7°，在 420 ms 內穩定；玩家操控須在身體停下時立即恢復。",
+      "en": "After the character stops abruptly, let the cape swing twice at 18° then 7° and settle within 420 ms; return player control as soon as the body stops.",
+      "ja": "キャラクターの急停止後、マントを18°、次に7°の2回振らせ、420 ms以内に収束させてください。操作は本体が止まった時点で戻してください。"
+    }
+  },
+  "ACT-14": {
+    "params": "part hierarchy · start offsets · stop offsets · drag amount · overlap duration",
+    "impl": "Offset the start and stop times of connected body regions so motion propagates through the hierarchy. Use small delays for drag during the main action, distinct from the settling motion that follows it.",
+    "prompt": {
+      "zh": "180° 轉身時軀幹先動，肩延遲 35 ms、雙手延遲 65 ms、頭髮延遲 90 ms，並把各部分停止時間錯開 40 ms。",
+      "en": "For a 180° turn, start the torso first, delay the shoulders by 35 ms, hands by 65 ms, and hair by 90 ms, with each region's stop offset by another 40 ms.",
+      "ja": "180°の振り向きで胴体を先に動かし、肩を35 ms、手を65 ms、髪を90 ms遅らせ、各部位の停止も40 msずつずらしてください。"
+    }
+  },
+  "ACT-15": {
+    "params": "arc control points · path curvature · travel duration · orientation along path · hit path separation",
+    "impl": "Guide important limb or prop positions through a smooth curved path using a small set of control points. Evaluate gameplay hit detection separately instead of assuming the visible trail defines it.",
+    "prompt": {
+      "zh": "讓劍尖在 320 ms 內沿半徑 1.1 m、約 140° 的平滑弧線揮過，移除中途折角；傷害判定另用 3 段時間窗口設定。",
+      "en": "Move the sword tip through a smooth 140° arc of roughly 1.1 m radius over 320 ms, removing angular kinks; define damage detection separately in three timed segments.",
+      "ja": "剣先を320 msで半径約1.1 m・140°の滑らかな弧に沿って動かし、途中の折れをなくしてください。ダメージ判定は別途3つの時間区間で設定してください。"
+    }
+  },
+  "ACT-16": {
+    "params": "primary action · secondary gesture · gesture amplitude · focus hierarchy · emotional intent",
+    "impl": "Layer a restrained expressive gesture onto the main action, ensuring its timing and silhouette support rather than obscure the primary read. Use the gesture to communicate a specific emotion or intention.",
+    "prompt": {
+      "zh": "在 2.4 秒步行循環中加入 300 ms 握拳次要動作，手指收緊幅度控制在完整握拳的 70%，步伐與身體輪廓仍須保持清楚。",
+      "en": "Add a 300 ms fist-clench secondary action within a 2.4 s walk cycle, reaching 70% of a full clench while keeping the gait and body silhouette clearly readable.",
+      "ja": "2.4秒の歩行ループに300 msの拳を握る副次動作を加え、握りを最大の70%に抑えつつ、歩行と全身シルエットを明瞭に保ってください。"
+    }
+  },
+  "ACT-17": {
+    "params": "silhouette separation · camera angle · contrast · effect density · attack direction",
+    "impl": "Arrange pose, camera, background contrast, and effects so the important action reads as a distinct silhouette. Remove or redirect elements that obscure the weapon path or intended target.",
+    "prompt": {
+      "zh": "為敵人斬擊預備姿勢保留武器與軀幹至少 12 px 輪廓間隙，背景亮度差達 25%，並在出招前 250 ms 把非必要特效減至一半。",
+      "en": "Stage the enemy's slash anticipation with at least 12 px of silhouette separation between weapon and torso, 25% background luminance contrast, and half the nonessential effects during the 250 ms tell.",
+      "ja": "敵の斬撃予備姿勢で武器と胴体のシルエットを最低12 px離し、背景との輝度差を25%確保し、250 msの予告中は不要なエフェクトを半分にしてください。"
+    }
+  },
+  "ACT-18": {
+    "params": "startup duration · first active instant · input timestamp · telegraph pose · frame convention",
+    "impl": "Represent startup as the interval from accepted input until attack detection first becomes active. Document whether the first active update is included in reported startup counts to avoid off-by-one ambiguity.",
+    "prompt": {
+      "zh": "重攻擊輸入後設 240 ms 起手，攻擊判定只在第 241 ms 起啟用；前 160 ms 顯示抬手提示，並清楚記錄計時是否包含首個有效更新。",
+      "en": "Give the heavy attack 240 ms of startup and enable attack detection from 241 ms onward; show a readable arm raise for the first 160 ms and document whether the first active update is included in timing counts.",
+      "ja": "強攻撃に240 msの発生前時間を設け、攻撃判定は241 msから有効にしてください。最初の160 msは腕を上げる予告を見せ、最初の有効更新を計数に含むか明記してください。"
+    }
+  },
+  "ACT-19": {
+    "params": "active intervals · hit volume · target filters · repeat-hit rule · contact state",
+    "impl": "Enable attack detection only during explicit active intervals and test it against valid targets and protection rules. Track prior contacts when a move should hit each target only once.",
+    "prompt": {
+      "zh": "劍擊在 240–330 ms 啟用攻擊判定，共 90 ms；每個目標只可命中一次，距離不足、無敵或已命中時均不可造成接觸效果。",
+      "en": "Activate the sword hit volume from 240 to 330 ms for a 90 ms window; allow one hit per target and reject contacts that are out of range, invulnerable, or already recorded.",
+      "ja": "剣の攻撃判定を240～330 msの90 ms間だけ有効にし、対象ごとに1回のみ命中させ、範囲外・無敵中・命中済みの接触は無効にしてください。"
+    }
+  },
+  "ACT-20": {
+    "params": "recovery duration · action lockout · allowed cancels · cooldown separation · whiff modifier",
+    "impl": "After active detection ends, keep selected actions unavailable for a defined recovery interval. Track recovery separately from visual animation tails and skill cooldowns, and expose only intentional cancel routes.",
+    "prompt": {
+      "zh": "重攻擊有效期結束後加入 420 ms 收招硬直；首 300 ms 不可攻擊或閃避，末 120 ms 只可格擋，而技能冷卻另計 2.0 秒。",
+      "en": "After the heavy attack's active window, add 420 ms of recovery: disallow attacks and dodges for 300 ms, allow only guard during the final 120 ms, and track a separate 2.0 s skill cooldown.",
+      "ja": "強攻撃の持続終了後に420 msの硬直を設け、最初の300 msは攻撃と回避を禁止し、最後の120 msはガードのみ許可してください。技のクールダウン2.0秒は別に管理してください。"
+    }
+  },
+  "ACT-21": {
+    "params": "pause duration · affected actors · timer domains · input policy · effect policy",
+    "impl": "On a confirmed hit, pause the selected attacker and target simulation clocks for a short interval while deciding independently whether input, effects, camera, and environment continue. Resume from the held contact poses without converting the pause into hitstun.",
+    "prompt": {
+      "zh": "重擊命中時讓攻擊者停 55 ms、受擊者停 75 ms；背景與輸入採樣繼續，火花照常播放，停頓結束後才開始計 260 ms 受擊硬直。",
+      "en": "On a heavy hit, pause the attacker for 55 ms and the target for 75 ms while background motion, input sampling, and sparks continue; begin the 260 ms hitstun only after the pause.",
+      "ja": "強攻撃の命中時、攻撃側を55 ms、被弾側を75 ms停止し、背景・入力取得・火花は継続してください。260 msの被弾硬直は停止終了後から数えてください。"
+    }
+  },
+  "ACT-22": {
+    "params": "stun duration · control lockout · reaction pose · escape options · combo scaling",
+    "impl": "Apply a timed action restriction after a valid hit while allowing explicitly listed escape or defensive actions. Keep the reaction animation and health change separate from the authoritative stun state.",
+    "prompt": {
+      "zh": "普通命中施加 280 ms 受擊硬直，期間禁止移動與攻擊，但在最後 80 ms 容許一次耗資源脫離；受擊動畫不可單獨決定失控時間。",
+      "en": "Apply 280 ms of hitstun on a normal hit, blocking movement and attacks but allowing one resource-cost escape during the final 80 ms; do not derive control lockout solely from the reaction animation.",
+      "ja": "通常ヒットで280 msの被弾硬直を与え、移動と攻撃を禁止しつつ、最後の80 msだけ資源を消費する脱出を1回許可してください。操作不能時間をリアクションアニメだけで決めないでください。"
+    }
+  },
+  "ACT-23": {
+    "params": "blockstun duration · guard pushback · chip policy · counter options · guard state",
+    "impl": "On a successful block, apply a distinct timed restriction and any configured pushback without treating it as a guard break. Define permitted guard cancels and health effects explicitly per attack.",
+    "prompt": {
+      "zh": "成功格擋輕攻擊後施加 160 ms 格擋硬直及 0.35 m 推離，不扣血；最後 40 ms 可用一次防禦取消，但不可當作破防。",
+      "en": "After blocking a light attack, apply 160 ms of blockstun and 0.35 m of pushback with no health loss; permit one guard cancel during the final 40 ms without treating it as a guard break.",
+      "ja": "弱攻撃のガード成功時に160 msのガード硬直と0.35 mの押し戻しを与え、体力は減らさないでください。最後の40 msだけガードキャンセルを1回許可し、ガードブレイク扱いにはしないでください。"
+    }
+  },
+  "ACT-24": {
+    "params": "source state · destination action · cancel permission · transition cost · hit condition",
+    "impl": "Define explicit transitions that may interrupt a source action before its normal completion. Validate destination, timing, hit state, and resource cost in gameplay rules rather than inferring permission from visual blending.",
+    "prompt": {
+      "zh": "輕攻擊命中後可在動作完成前取消至重攻擊或閃避：重攻擊消耗 20 能量，閃避消耗 30；揮空時兩者都不可提前切換。",
+      "en": "After a light attack hits, allow cancellation into heavy attack for 20 energy or dodge for 30 before the animation ends; permit neither early transition on whiff.",
+      "ja": "弱攻撃が命中した場合のみ、終了前にエネルギー20で強攻撃、30で回避へキャンセル可能にし、空振り時はどちらも早期遷移できないようにしてください。"
+    }
+  },
+  "ACT-25": {
+    "params": "window start · window end · destination filter · hit requirement · input buffer",
+    "impl": "Open and close cancel permission at explicit points in the source action, with conditions per destination and contact result. Store early input in a separate bounded buffer, then execute it only once the cancel window opens.",
+    "prompt": {
+      "zh": "攻擊的閃避取消窗口設於 360–480 ms，並保存提早 90 ms 內的閃避輸入；窗口前只記錄按鍵，不可立即轉換，逾時即丟棄。",
+      "en": "Set the attack's dodge-cancel window to 360–480 ms and buffer dodge inputs up to 90 ms early; before the window, remember the press without transitioning, then discard it on timeout.",
+      "ja": "攻撃の回避キャンセル受付を360～480 msに設定し、最大90 ms前の回避入力を保存してください。受付前は遷移せず記録だけ行い、時間切れなら破棄してください。"
+    }
+  },
+  "ACT-26": {
+    "params": "attacker unlock · defender unlock · on-hit value · on-block value · distance context",
+    "impl": "Measure advantage as the difference between when the attacker and defender can next act after contact. Report hit and block outcomes separately, and evaluate follow-ups with startup, distance, and special defenses rather than the sign alone.",
+    "prompt": {
+      "zh": "格擋後攻擊者在 420 ms 解鎖、防守者在 460 ms 解鎖，顯示為 +40 ms；另列命中時 +90 ms，並檢查 180 ms 起手的下一招是否真的夠距離接上。",
+      "en": "If the attacker unlocks at 420 ms after a block and the defender at 460 ms, report +40 ms; also report +90 ms on hit and test whether a 180 ms follow-up actually reaches at the resulting distance.",
+      "ja": "ガード後に攻撃側が420 ms、防御側が460 msで行動可能になる場合は+40 msと表示し、ヒット時は別に+90 msとしてください。発生180 msの次の技が実際の距離で届くかも確認してください。"
+    }
+  },
+  "ACT-27": {
+    "params": "invulnerable channels · start time · end time · hurtbox state · rehit protection",
+    "impl": "During a defined action interval, reject only the configured damage or grab categories while leaving other interactions intact. Distinguish rule-based invulnerability from attacks missing because hurtboxes moved.",
+    "prompt": {
+      "zh": "翻滾開始後 80–260 ms 對打擊與飛行道具無敵，但投技仍有效；保留受擊盒供除錯顯示，並由規則明確拒絕指定類型。",
+      "en": "From 80 to 260 ms after a roll starts, grant invulnerability to strikes and projectiles while throws remain valid; keep hurtboxes visible in debug and reject the specified channels by rule.",
+      "ja": "ローリング開始後80～260 msは打撃と飛び道具に無敵とし、投げは有効のままにしてください。デバッグでは喰らい判定を表示し、指定種別をルールで拒否してください。"
+    }
+  },
+  "ACT-28": {
+    "params": "armor interval · hit capacity · damage threshold · interrupt exceptions · damage policy",
+    "impl": "While armor is active, process damage normally unless configured otherwise but suppress ordinary interruption within its capacity. Break or bypass armor on explicit hit counts, thresholds, throws, or other exception categories.",
+    "prompt": {
+      "zh": "重攻擊的 180–520 ms 啟用可承受 2 次打擊的霸體：傷害照扣，第 3 擊或單次傷害超過 40 即中斷，投技直接無視霸體。",
+      "en": "Give the heavy attack two-hit armor from 180 to 520 ms: damage still applies, the third hit or any single hit above 40 interrupts, and throws bypass armor.",
+      "ja": "強攻撃の180～520 msに2発分のアーマーを付け、ダメージは通常どおり受け、3発目または単発40超で中断し、投げはアーマーを無視してください。"
+    }
+  },
+  "ACT-29": {
+    "params": "push distance · push duration · direction · stun duration · wall response",
+    "impl": "Compute displacement from contact direction and apply it over its own duration, separately from any action lockout. Define wall and corner behavior so spacing changes remain predictable.",
+    "prompt": {
+      "zh": "普通命中把目標沿接觸反方向推 1.2 m、歷時 180 ms，同時施加獨立的 300 ms 受擊硬直；遇牆時停止位移但硬直照常計。",
+      "en": "On a normal hit, push the target 1.2 m away from contact over 180 ms while applying a separate 300 ms hitstun; stop displacement at walls without shortening the stun.",
+      "ja": "通常ヒット時、接触の反対方向へ1.2 mを180 msかけて押し、別に300 msの被弾硬直を与えてください。壁では移動だけ止め、硬直時間は短縮しないでください。"
+    }
+  },
+  "ACT-30": {
+    "params": "root translation · root rotation · extraction scale · collision sweep · control blend",
+    "impl": "Extract authored root translation and rotation each update and apply them to world movement through normal collision checks. Blend or constrain player steering explicitly rather than assuming root-driven actions forbid correction.",
+    "prompt": {
+      "zh": "突刺動畫的根節點在 700 ms 內前進 2.4 m 並轉向 15°；把位移套用至角色碰撞體並逐段掃描碰撞，同時容許玩家修正最多 ±8°。",
+      "en": "For a thrust animation whose root travels 2.4 m and rotates 15° over 700 ms, apply that motion to the character collider with swept collision and allow up to ±8° of player steering.",
+      "ja": "700 msでルートが2.4 m前進し15°回転する突きアニメについて、その移動をスイープ衝突付きでキャラクターへ適用し、プレイヤーの方向補正を±8°まで許可してください。"
+    }
+  },
+  "ACT-31": {
+    "params": "controller speed · animation rate · stride length · turn rate · foot phase",
+    "impl": "Drive world-space translation and rotation from movement rules while the locomotion clip has no net root travel. Match playback rate and gait selection to controller speed to limit visible foot sliding.",
+    "prompt": {
+      "zh": "用程式以 4.5 m/s 推動角色，播放沒有根節點淨前移的跑步循環；按 3.6 m 步幅調整播放率，並把轉向上限設為每秒 540°。",
+      "en": "Move the character by code at 4.5 m/s while playing a run cycle with no net root travel; scale playback for a 3.6 m stride and cap turning at 540° per second.",
+      "ja": "ルートの正味移動がない走行ループを再生しつつ、コードで4.5 m/s移動させ、歩幅3.6 mに合わせて再生速度を調整し、旋回を毎秒540°までにしてください。"
+    }
+  },
+  "ACT-32": {
+    "params": "source weight · target weight · blend duration · curve · interruption policy",
+    "impl": "Interpolate pose weights from the source animation to the target over a bounded transition using an appropriate curve. Keep transition smoothness separate from gameplay permission to interrupt an action.",
+    "prompt": {
+      "zh": "站立轉步行使用 180 ms 交叉淡化，來源權重由 1 降至 0、目標由 0 升至 1，採平滑曲線；攻擊轉閃避仍須另過取消規則。",
+      "en": "Crossfade idle to walk over 180 ms, lowering source weight from 1 to 0 and raising target weight from 0 to 1 on a smooth curve; attack-to-dodge transitions must still pass separate cancel rules.",
+      "ja": "待機から歩行へ180 msでクロスフェードし、元の重みを1から0、遷移先を0から1へ滑らかに変えてください。攻撃から回避への遷移は別のキャンセル規則で判定してください。"
+    }
+  },
+  "ACT-33": {
+    "params": "speed parameter · direction parameter · sample positions · weight normalization · playback scaling",
+    "impl": "Map movement parameters into a sample space or tree and blend nearby locomotion poses with normalized weights. Treat the chosen organization explicitly; it need not be a motion-matching system.",
+    "prompt": {
+      "zh": "建立 0–6 m/s 一維移動混合：0 用站立、1.8 用步行、4.0 用慢跑、6.0 用跑步；在樣本間線性混合並把權重總和維持為 1。",
+      "en": "Create a one-dimensional 0–6 m/s locomotion blend with idle at 0, walk at 1.8, jog at 4.0, and run at 6.0; blend linearly between neighboring samples with weights summing to 1.",
+      "ja": "0～6 m/sの1次元移動ブレンドを作り、0に待機、1.8に歩行、4.0にジョグ、6.0に走行を配置し、隣接サンプルを重み合計1で線形補間してください。"
+    }
+  },
+  "ACT-34": {
+    "params": "base layer · upper-body mask · layer weight · override mode · blend boundary",
+    "impl": "Evaluate a base full-body pose, then apply another animation only to bones selected by a mask. Specify whether the layer overrides or adds offsets and soften weights near the mask boundary when needed.",
+    "prompt": {
+      "zh": "跑步作基礎全身層，上半身裝填以脊椎第 2 節至雙手的骨骼遮罩覆蓋，權重 0.85；骨盆與雙腳維持跑步，肩部邊界用 100 ms 淡入。",
+      "en": "Use running as the full-body base and override from spine bone 2 through both hands with a reload layer at 0.85 weight; keep pelvis and legs running and fade the shoulder boundary in over 100 ms.",
+      "ja": "走行を全身ベースにし、背骨の第2ボーンから両手までをリロード層で重み0.85の上書きにしてください。骨盤と脚は走行を維持し、肩の境界を100 msでフェードインしてください。"
+    }
+  },
+  "ACT-35": {
+    "params": "reference pose · additive delta · layer weight · pose space · affected bones",
+    "impl": "Compute the animation's change relative to a declared reference pose in a consistent pose space, then compose that delta over the base action. Limit bones and weight so the overlay does not replace the underlying gait.",
+    "prompt": {
+      "zh": "以武器待機姿勢作參考，把 6° 後座旋轉及 3 cm 肩膀後移作加法偏移疊到跑步，權重 0.7，120 ms 內回零，雙腳不受影響。",
+      "en": "Relative to the weapon-idle reference pose, add 6° of recoil rotation and 3 cm of shoulder travel over the run at 0.7 weight, returning to zero within 120 ms without affecting the legs.",
+      "ja": "武器待機ポーズを基準に、6°の反動回転と肩の3 cm後退を重み0.7で走行へ加算し、120 ms以内にゼロへ戻してください。脚には適用しないでください。"
+    }
+  },
+  "ACT-36": {
+    "params": "end-effector target · chain length · joint limits · solver weight · FK base pose",
+    "impl": "Author the main motion with direct joint rotations, then solve selected bone chains toward hand or foot targets. Clamp unreachable targets and joint limits, and blend solver weight to avoid snapping.",
+    "prompt": {
+      "zh": "保留 FK 步行姿勢，再用兩節腿 IK 把腳掌貼合 ±25° 斜坡；每隻腳的解算權重在 120 ms 內由 0 升至 1，超出腿長 95% 的目標要夾限。",
+      "en": "Keep the FK walk pose, then use two-bone leg IK to align feet to slopes up to ±25°; blend each solver from 0 to 1 over 120 ms and clamp targets beyond 95% of leg reach.",
+      "ja": "FKの歩行ポーズを保ち、2ボーン脚IKで足裏を±25°までの斜面へ合わせてください。各ソルバーを120 msで0から1へブレンドし、脚の到達距離95%を超える目標は制限してください。"
+    }
+  },
+  "ACT-37": {
+    "params": "warp window · target transform · translation scale · rotation scale · collision validation",
+    "impl": "During a marked interval, redistribute authored root translation and rotation so the action reaches a nearby target transform. Limit correction magnitude and validate the adjusted path against collision; warping should not guarantee a hit.",
+    "prompt": {
+      "zh": "翻越動作在 220–680 ms 扭配根運動以對準障礙頂點，最多修正前後 0.6 m、左右 0.25 m 及朝向 20°；路徑碰撞失敗時取消動作。",
+      "en": "Warp root motion from 220 to 680 ms to align a vault with the obstacle top, limiting correction to 0.6 m forward/back, 0.25 m sideways, and 20° facing; abort if the adjusted path fails collision validation.",
+      "ja": "乗り越え動作の220～680 msでルートモーションを障害物上端へ合わせ、前後0.6 m、左右0.25 m、向き20°までに補正を制限し、経路の衝突検証に失敗したら中止してください。"
+    }
+  },
+  "ACT-38": {
+    "params": "event timestamp · state interval · payload · duplicate guard · authority boundary",
+    "impl": "Associate one-shot callbacks and bounded state intervals with animation timeline positions, then dispatch them reliably when those positions are crossed. Keep cosmetic synchronization separate from authoritative hit or network decisions where required.",
+    "prompt": {
+      "zh": "在步行循環 18% 與 68% 位置各觸發一次腳步聲；劍擊 240–360 ms 開啟拖尾通知區段並在結束關閉，但傷害仍由獨立戰鬥規則判定。",
+      "en": "Trigger one footstep at 18% and another at 68% of the walk cycle; enable a sword-trail state from 240 to 360 ms and disable it on exit, while damage remains authoritative in separate combat rules.",
+      "ja": "歩行ループの18%と68%で足音を1回ずつ発火し、剣の軌跡通知区間を240～360 msだけ有効にして終了時に切ってください。ダメージ判定は別の戦闘規則で管理してください。"
+    }
+  },
+  "FX-01": {
+    "params": "spawn rate · sprite size · facing mode · velocity alignment · lifetime · opacity curve",
+    "impl": "Emit textured planes and choose camera-facing, axis-locked, or velocity-aligned orientation per effect. Vary size, rotation, and opacity over lifetime so the group creates volume without implying physical geometry.",
+    "prompt": {
+      "zh": "製作一團持續 2.5 秒的魔法煙霧：每秒生成 40 張半透明貼片，七成面向鏡頭、三成沿速度方向對齊，尺寸由 0.15 米放大至 0.6 米並逐步淡出。",
+      "en": "Create a 2.5-second magical smoke puff that emits 40 translucent planes per second; face 70% toward the camera, align 30% to velocity, and grow each from 0.15 m to 0.6 m while fading out.",
+      "ja": "2.5秒続く魔法の煙を作成し、半透明の平面を毎秒40枚放出してください。70%はカメラ向き、30%は速度方向に合わせ、各要素を0.15 mから0.6 mへ拡大しながらフェードアウトさせてください。"
+    }
+  },
+  "FX-02": {
+    "params": "sample interval · ribbon width · history length · UV tiling · taper · fade time",
+    "impl": "Sample a moving attachment point and connect recent positions into a continuous strip. Taper and fade older samples while keeping the rendered path distinct from separately emitted smoke particles.",
+    "prompt": {
+      "zh": "為刀尖製作 0.35 秒長的揮砍拖尾，每 8 毫秒記錄一次位置，帶寬由 12 厘米收窄至 0，尾端在 0.18 秒內淡走，清楚顯示完整揮砍弧線。",
+      "en": "Build a 0.35-second sword-tip trail sampled every 8 ms, taper its width from 12 cm to zero, and fade the tail over 0.18 seconds so the full swing arc remains readable.",
+      "ja": "剣先に0.35秒分のトレイルを作り、8ミリ秒ごとに位置を記録してください。幅を12 cmから0まで細くし、末端を0.18秒で消して、斬撃の弧全体を読み取れるようにしてください。"
+    }
+  },
+  "FX-03": {
+    "params": "snapshot interval · ghost count · pose retention · tint · opacity decay · silhouette offset",
+    "impl": "Capture discrete character silhouettes or simplified pose proxies at timed positions, then fade each independently. Preserve visible gaps between ghosts so the result reads as repeated poses rather than continuous motion blur.",
+    "prompt": {
+      "zh": "為 6 米衝刺加入 5 個殘影，每隔 70 毫秒保留一次姿勢；首個殘影透明度設為 55%，各自在 0.4 秒內淡出，輪廓之間要有明顯空隙。",
+      "en": "Add five afterimages to a 6 m dash, retaining one pose every 70 ms; start the first ghost at 55% opacity and fade each over 0.4 seconds, with clear gaps between silhouettes.",
+      "ja": "6 mのダッシュに残像を5体追加し、70ミリ秒ごとにポーズを1つ残してください。最初の残像は不透明度55%から始め、各残像を0.4秒で消し、輪郭同士の間隔を明確にしてください。"
+    }
+  },
+  "FX-04": {
+    "params": "frame count · playback rate · atlas layout · frame blending · lifetime · random start",
+    "impl": "Store the evolving shape as ordered frames in a texture atlas and advance the frame index over particle lifetime. Keep frame playback independent from scale and opacity curves so the interior visibly changes instead of merely enlarging.",
+    "prompt": {
+      "zh": "用 8×8 圖集製作 64 格爆炸動畫，以每秒 32 格播放 2 秒；同時只把整體尺寸由 0.4 米放大至 2.2 米，確保內部火焰輪廓每格都有變化。",
+      "en": "Create a 64-frame explosion from an 8×8 atlas, play it at 32 fps for 2 seconds, and scale the carrier only from 0.4 m to 2.2 m while ensuring the internal flame silhouette changes every frame.",
+      "ja": "8×8のアトラスから64フレームの爆発を作り、32 fpsで2秒間再生してください。表示面は0.4 mから2.2 mまで拡大しつつ、炎の内部形状が毎フレーム変化するようにしてください。"
+    }
+  },
+  "FX-05": {
+    "params": "mesh set · spawn count · angular velocity · scale range · ballistic arc · lifetime · collision mode",
+    "impl": "Spawn lightweight mesh instances with independent translation, rotation, and scale curves. Use preset ballistic motion unless actual collision response is required; visible thickness alone should not imply rigid-body simulation.",
+    "prompt": {
+      "zh": "命中石牆時生成 18 塊立體碎石，從 4 款網格中抽選，初速設為每秒 3–7 米、旋轉速度每秒 180–540 度，於 1.4 秒內落下並淡出，不啟用剛體碰撞。",
+      "en": "On a stone-wall hit, spawn 18 three-dimensional fragments selected from four meshes, launch them at 3–7 m/s with 180–540°/s rotation, and let them fall and fade within 1.4 seconds without rigid-body collision.",
+      "ja": "石壁への命中時に4種類のメッシュから18個の立体破片を生成し、初速3～7 m/s、回転速度180～540°/sで飛ばしてください。剛体衝突は使わず、1.4秒以内に落下して消えるようにしてください。"
+    }
+  },
+  "FX-06": {
+    "params": "projection size · surface offset · normal alignment · lifetime · opacity · receiver mask · edge feather",
+    "impl": "Project or place a surface-aligned mark only on eligible receivers, with a small depth offset to avoid flicker. Fade or remove it according to gameplay state without assuming that every surface mark requires a dedicated decal renderer.",
+    "prompt": {
+      "zh": "每次火球命中後留下直徑 0.9 米的焦痕，貼合牆面或地面法線，離表面偏移 2 毫米，邊緣羽化 8 厘米，維持 6 秒後用 1 秒淡出。",
+      "en": "After each fireball hit, leave a 0.9 m scorch mark aligned to the wall or floor normal, offset it 2 mm from the surface, feather the edge by 8 cm, hold it for 6 seconds, then fade it over 1 second.",
+      "ja": "火球が命中するたびに直径0.9 mの焦げ跡を残し、壁または床の法線に合わせて表面から2 mm離してください。縁を8 cmぼかし、6秒維持した後に1秒で消してください。"
+    }
+  },
+  "FX-07": {
+    "params": "distortion strength · screen radius · normal map speed · falloff · duration · chromatic offset",
+    "impl": "Render a localized displacement field that samples and offsets the already rendered background. Limit the effect spatially and temporally so it reads as local heat or refraction rather than whole-camera movement.",
+    "prompt": {
+      "zh": "製作一個由半徑 0.2 米擴至 2.5 米的衝擊扭曲圈，歷時 0.45 秒；中心位移上限為畫面寬度 1.5%，外緣在最後 0.12 秒歸零，不要移動整個鏡頭。",
+      "en": "Create a shock-distortion ring that expands from a 0.2 m to 2.5 m radius over 0.45 seconds; cap displacement at 1.5% of screen width and reduce it to zero at the rim during the final 0.12 seconds without moving the camera.",
+      "ja": "半径0.2 mから2.5 mへ0.45秒で広がる衝撃の歪みリングを作成してください。変位は画面幅の1.5%以下にし、最後の0.12秒で外縁をゼロまで弱め、カメラ自体は動かさないでください。"
+    }
+  },
+  "FX-08": {
+    "params": "warning duration · area shape · radius · active duration · boundary width · timing cue · team state",
+    "impl": "Drive the warning cue and the affected-area display from the same gameplay geometry and timing data. Distinguish the pre-action telegraph from any area that remains active after impact through animation, labeling, or state change.",
+    "prompt": {
+      "zh": "為半徑 4 米的地面重擊加入 1.2 秒預警：首 0.9 秒顯示穩定圓形邊界，最後 0.3 秒加快脈衝至每秒 4 次；命中後把區域改為 2 秒持續傷害狀態。",
+      "en": "Add a 1.2-second telegraph for a 4 m radius ground slam: show a stable circular boundary for 0.9 seconds, pulse it four times per second during the final 0.3 seconds, then change it to a distinct 2-second active-damage state after impact.",
+      "ja": "半径4 mの地面叩きつけに1.2秒の予告を追加してください。最初の0.9秒は安定した円形境界を表示し、最後の0.3秒は毎秒4回点滅させ、命中後は見た目を変えて2秒間の持続ダメージ範囲にしてください。"
+    }
+  },
+  "FX-09": {
+    "params": "contact position · burst duration · spike count · debris count · peak brightness · scale curve · material response",
+    "impl": "Spawn a short, localized burst at the confirmed contact point, with its main shape peaking immediately and resolving quickly. Keep attack-swing decoration separate so the burst functions as unambiguous hit confirmation.",
+    "prompt": {
+      "zh": "近戰確認命中時，在接觸點生成 10 條放射尖光和 6 粒碎屑；主爆點於 30 毫秒達到最大 0.7 米，總長 0.16 秒，未命中時完全不要播放。",
+      "en": "On a confirmed melee hit, spawn 10 radial spikes and six debris pieces at the contact point; make the main burst reach a 0.7 m maximum in 30 ms and end within 0.16 seconds, with no burst on a miss.",
+      "ja": "近接攻撃の命中が確定したときだけ、接触点に放射状の光10本と破片6個を生成してください。主バーストは30ミリ秒で最大0.7 mに達し、全体を0.16秒以内に終了させ、空振り時は再生しないでください。"
+    }
+  },
+  "FX-10": {
+    "params": "silhouette family · directionality · curvature · aspect ratio · enclosure · repetition · grayscale readability",
+    "impl": "Define a small, consistent silhouette vocabulary for direction, spread, enclosure, and state. Validate each family without color and teach its meaning through repeated use within the same product rather than relying on universal symbolism.",
+    "prompt": {
+      "zh": "建立 3 組招式形狀：直線攻擊用長寬比 5:1 的前指尖形、範圍爆發用完整圓環、防護用包住角色的閉合罩；每組製作 4 個變體，轉成灰階後仍要一眼分辨。",
+      "en": "Define three ability-shape families: a forward-pointing 5:1 form for linear attacks, a complete ring for radial bursts, and a closed shell around the character for protection; create four variants of each that remain distinguishable in grayscale.",
+      "ja": "アビリティの形状を3系統定義してください。直線攻撃は前方を指す比率5:1の形、範囲爆発は完全な円環、防御はキャラクターを包む閉じた殻とし、各4種類を作ってグレースケールでも即座に区別できるようにしてください。"
+    }
+  },
+  "FX-11": {
+    "params": "primary silhouette · secondary count · size ratio · luminance ratio · onset order · detail density · thumbnail scale",
+    "impl": "Build the effect around one dominant form that communicates direction or coverage, then add lower-contrast supporting details. Check the result at reduced size and remove details that compete with the primary message.",
+    "prompt": {
+      "zh": "為重擊先做一個佔畫面效果面積約 70% 的主弧形，再加入最多 12 粒火星和 2 層薄煙；輔助元素峰值亮度不得超過主形的 60%，縮至 25% 尺寸仍要看清攻擊方向。",
+      "en": "Build a heavy strike around one primary arc occupying about 70% of the effect area, then add at most 12 sparks and two thin smoke layers; keep supporting peak luminance below 60% of the main form and preserve attack direction at 25% display size.",
+      "ja": "重攻撃はエフェクト面積の約70%を占める主弧を先に作り、火花は最大12個、薄い煙は2層まで追加してください。補助要素の最大輝度を主形状の60%未満に抑え、表示を25%に縮小しても攻撃方向を読めるようにしてください。"
+    }
+  },
+  "FX-12": {
+    "params": "focal value · support value · saturation range · background contrast · grayscale groups · peak area",
+    "impl": "Assign distinct value and saturation bands to the focal event, supporting forms, and background. Review in grayscale and against representative scenes because saturation alone cannot guarantee separation.",
+    "prompt": {
+      "zh": "把技能核心限制在最亮的首 10% 面積，主形與背景維持至少 30% 明度差，陪襯飽和度降至核心的約一半；在 3 款場景截圖上做灰階檢查，焦點仍須清楚。",
+      "en": "Reserve the brightest values for the central 10% of the ability, maintain at least a 30% value difference between the main form and background, and reduce supporting saturation to roughly half the core; verify the focal point in grayscale over three representative scenes.",
+      "ja": "アビリティ中央の10%だけに最も明るい値を割り当て、主形状と背景の明度差を30%以上に保ち、補助要素の彩度を中心の約半分にしてください。代表的な3つの場面でグレースケール確認を行い、焦点が明確か検証してください。"
+    }
+  },
+  "FX-13": {
+    "params": "anticipation duration · contraction amount · light buildup · directional cue · preparatory sound · release frame",
+    "impl": "Stage a visible and audible preparation before release, such as contraction, gathering light, or direction establishment. Align its release with gameplay timing while allowing the presentation interval to differ from the complete startup interval.",
+    "prompt": {
+      "zh": "為直線能量炮製作 0.8 秒預備段：首 0.5 秒把光點由 1.2 米收縮至 0.25 米，最後 0.3 秒亮度升至 180%，並在發射前 100 毫秒加入短促提示音。",
+      "en": "Create a 0.8-second anticipation for a linear energy blast: contract light from 1.2 m to 0.25 m during the first 0.5 seconds, raise brightness to 180% over the final 0.3 seconds, and add a short cue 100 ms before release.",
+      "ja": "直線エネルギー砲に0.8秒の予備演出を作ってください。最初の0.5秒で光を1.2 mから0.25 mへ収縮させ、最後の0.3秒で明るさを180%まで上げ、発射100ミリ秒前に短い予告音を入れてください。"
+    }
+  },
+  "FX-14": {
+    "params": "build duration · burst duration · hold interval · decay duration · hit spacing · speed curve · silence gap",
+    "impl": "Divide the effect into preparation, peak, and resolution phases with deliberately contrasting rates. Use gaps and hit spacing to separate beats instead of increasing density uniformly.",
+    "prompt": {
+      "zh": "設計 3 擊連招節奏：每擊相隔 0.28 秒，前兩擊各用 0.08 秒爆發和 0.16 秒收尾；第三擊先停 0.18 秒，再用 0.04 秒達峰值，並以 0.6 秒慢慢消散。",
+      "en": "Design a three-hit combo with 0.28 seconds between hits: give the first two hits a 0.08-second burst and 0.16-second decay, then hold for 0.18 seconds before the third hit peaks in 0.04 seconds and resolves over 0.6 seconds.",
+      "ja": "3段コンボを0.28秒間隔で設計してください。最初の2段は0.08秒で爆発し0.16秒で収束させ、3段目の前に0.18秒止めてから0.04秒でピークに達し、0.6秒かけて消散させてください。"
+    }
+  },
+  "FX-15": {
+    "params": "fade duration · erosion threshold · edge noise · breakup scale · residual lifetime · damage cutoff",
+    "impl": "Animate opacity for broad fading and a spatial mask for local erosion, combining them when useful. End gameplay activity independently and make the remaining decorative tail visibly non-damaging.",
+    "prompt": {
+      "zh": "能量柱在傷害結束後保留 0.7 秒退場：首 0.2 秒把整體透明度降至 65%，其後 0.5 秒以噪聲遮罩由邊緣侵蝕至 100%；傷害判定必須在退場開始一刻關閉。",
+      "en": "After an energy column stops dealing damage, keep a 0.7-second exit: reduce overall opacity to 65% during the first 0.2 seconds, then erode from the edges to 100% with a noise mask over 0.5 seconds; disable damage at the start of the exit.",
+      "ja": "エネルギー柱のダメージ終了後に0.7秒の消散を残してください。最初の0.2秒で全体の不透明度を65%まで下げ、その後0.5秒でノイズマスクにより縁から100%侵食し、消散開始時点でダメージ判定を無効にしてください。"
+    }
+  },
+  "FX-16": {
+    "params": "priority tier · particle budget · screen coverage · danger boundary · character visibility · low-effects floor · crowd test",
+    "impl": "Assign effects to priority tiers and cap decorative density or coverage before reducing decision-critical cues. Test representative crowded scenes, ensuring low-effects modes preserve characters, targeting information, and hazard boundaries.",
+    "prompt": {
+      "zh": "在 8 名角色同場、同時播放 12 個技能的壓力場景測試清晰度：裝飾粒子總數限制為 1,200，單個次要效果覆蓋畫面不多於 8%，低特效模式仍要保留所有危險邊界。",
+      "en": "Test clarity in a stress scene with eight characters and 12 simultaneous abilities: cap decorative particles at 1,200, limit each secondary effect to no more than 8% screen coverage, and preserve every hazard boundary in low-effects mode.",
+      "ja": "8人のキャラクターと12個のアビリティが同時に存在する負荷場面で明瞭性を確認してください。装飾パーティクルを合計1,200個に制限し、各補助エフェクトの画面占有率を8%以下にして、低エフェクト設定でも危険境界をすべて残してください。"
+    }
+  },
+  "FX-17": {
+    "params": "onset layer · body layer · tail layer · sync offset · gain balance · frequency role · variation set",
+    "impl": "Build one event from simultaneous components with distinct roles, such as transient contact, low-frequency weight, and material tail. Balance timing and spectrum so the layers fuse without masking one another.",
+    "prompt": {
+      "zh": "為重錘命中疊加 3 層聲音：20–40 毫秒的尖銳起音、約 180 毫秒的低頻主體，以及 0.8 秒碎石尾音；三層起點誤差控制在 10 毫秒內，並避免 150–300 Hz 互相遮蔽。",
+      "en": "Layer a hammer impact from three simultaneous parts: a 20–40 ms sharp onset, a roughly 180 ms low-frequency body, and a 0.8-second stone-fragment tail; keep start offsets within 10 ms and prevent masking in the 150–300 Hz range.",
+      "ja": "大槌の命中音を3層で構成してください。20～40ミリ秒の鋭い立ち上がり、約180ミリ秒の低域主体、0.8秒の石片テールを重ね、開始ずれを10ミリ秒以内にし、150～300 Hzでのマスキングを避けてください。"
+    }
+  },
+  "FX-18": {
+    "params": "trigger event · retrigger rule · attack time · tail duration · concurrency limit · cooldown · stop behavior",
+    "impl": "Trigger the sound once per discrete event and allow it to complete without a held input. Define retrigger and concurrency behavior so rapid events remain intelligible even when one-shots overlap.",
+    "prompt": {
+      "zh": "每次角色落地只觸發 1 次單次音效，起音在接觸後 20 毫秒內播放，主體約 0.25 秒、混響尾最長 1.2 秒；同一角色最多同時保留 2 個落地聲。",
+      "en": "Trigger one one-shot per landing, start it within 20 ms of contact, use a roughly 0.25-second body with up to a 1.2-second reverb tail, and allow no more than two overlapping landing sounds per character.",
+      "ja": "着地1回につきワンショットを1回だけ発音し、接地から20ミリ秒以内に開始してください。本体は約0.25秒、リバーブテールは最大1.2秒とし、同一キャラクターの着地音は同時に2つまでにしてください。"
+    }
+  },
+  "FX-19": {
+    "params": "start segment · loop region · crossfade length · sustain gain · stop segment · release time · seam check",
+    "impl": "Separate an ongoing sound into start, seamless sustain, and stop segments controlled by the activity state. Crossfade loop boundaries and route stop requests into a deliberate release rather than cutting the waveform abruptly.",
+    "prompt": {
+      "zh": "把火焰噴射器拆成 0.35 秒起動、1.6 秒無縫循環和 0.5 秒停止段；循環接點交叉淡化 40 毫秒，放開按鍵後在 60 毫秒內轉入停止段，不可出現爆音。",
+      "en": "Split a flamethrower into a 0.35-second start, a seamless 1.6-second sustain loop, and a 0.5-second stop; crossfade the loop seam over 40 ms and enter the stop segment within 60 ms of release without clicks.",
+      "ja": "火炎放射器の音を0.35秒の開始、1.6秒のシームレスな持続ループ、0.5秒の停止に分けてください。ループ境界を40ミリ秒でクロスフェードし、入力解除から60ミリ秒以内に停止部分へ移行してクリック音を防いでください。"
+    }
+  },
+  "FX-20": {
+    "params": "sample pool · no-repeat window · pitch range · gain range · selection weight · cooldown · identity anchor",
+    "impl": "Select from a curated sample pool and vary pitch or gain within restrained ranges. Track recent choices when consecutive repetition is undesirable, while retaining common spectral features that identify the event.",
+    "prompt": {
+      "zh": "為石地腳步準備 8 個樣本，採用最近 3 個不重複的抽選規則；每次音高在 ±3% 內、音量在 ±1.5 dB 內變化，連續 20 步測試時仍要保持同一材質身份。",
+      "en": "Prepare eight stone-footstep samples, exclude the three most recent choices from selection, vary pitch within ±3% and gain within ±1.5 dB, and verify over 20 consecutive steps that the material identity remains consistent.",
+      "ja": "石床の足音を8サンプル用意し、直近3つを選択対象から外してください。ピッチは±3%、音量は±1.5 dBの範囲で変化させ、20歩連続でも同じ材質として聞こえることを確認してください。"
+    }
+  },
+  "FX-21": {
+    "params": "input parameter · normalization range · layer crossfade · pitch curve · smoothing time · update rate · fallback state",
+    "impl": "Map a normalized gameplay value to continuous gain, filter, or pitch curves and smooth incoming changes. Crossfade multiple recordings where one source cannot cover the full range naturally.",
+    "prompt": {
+      "zh": "把車速 0–180 km/h 映射到 3 層引擎錄音：0–60、40–120、100–180 km/h 區間交叉淡化，參數每秒更新 30 次並以 120 毫秒平滑，避免轉速硬切。",
+      "en": "Map vehicle speed from 0–180 km/h across three engine recordings covering 0–60, 40–120, and 100–180 km/h; update the parameter 30 times per second and smooth it over 120 ms to avoid abrupt RPM changes.",
+      "ja": "車速0～180 km/hを、0～60、40～120、100～180 km/hを担当する3層のエンジン録音へ割り当ててクロスフェードしてください。パラメーターを毎秒30回更新し、120ミリ秒で平滑化して回転数の急変を防いでください。"
+    }
+  },
+  "FX-22": {
+    "params": "azimuth · elevation · spatial blend · listener orientation · HRTF mode · pan law · localization test",
+    "impl": "Transform each source into listener-relative direction and render it with an appropriate panning or binaural method. Treat localization separately from distance attenuation and test front, rear, and elevation cues on supported outputs.",
+    "prompt": {
+      "zh": "把警報聲放在聽者右後方 135°、高 2 米的位置；玩家旋轉 360° 時聲像要連續移動，以 8 個方位和 3 個高度做耳機測試，音量保持固定以獨立檢查定位。",
+      "en": "Place an alarm 135° behind and to the listener’s right at a height of 2 m; as the player turns 360°, move the image continuously and test eight azimuths at three elevations on headphones while holding level constant to isolate localization.",
+      "ja": "警報音をリスナーの右後方135°、高さ2 mに配置してください。プレイヤーが360°回転すると音像が連続して移動するようにし、音量を一定に保ったまま8方位×3高度をヘッドホンで確認してください。"
+    }
+  },
+  "FX-23": {
+    "params": "minimum distance · maximum distance · rolloff curve · near-field plateau · floor gain · source priority",
+    "impl": "Evaluate source-listener distance against a designed attenuation curve with an optional near-field plateau and distant floor. Tune the curve for gameplay reach rather than assuming physically exact falloff.",
+    "prompt": {
+      "zh": "為發電機設定距離衰減：0–3 米維持 0 dB，3–20 米平滑降至 -18 dB，20–35 米再降至 -36 dB，35 米外靜音；用 1 米間距走測，避免音量突然跳變。",
+      "en": "Set generator attenuation to hold 0 dB from 0–3 m, fall smoothly to −18 dB by 20 m, reach −36 dB at 35 m, and mute beyond that; walk-test at 1 m intervals to catch abrupt level changes.",
+      "ja": "発電機の距離減衰を、0～3 mは0 dB、20 mで−18 dB、35 mで−36 dBまで滑らかに下げ、35 mより遠くでは無音に設定してください。1 m間隔で歩行確認し、音量の急変がないようにしてください。"
+    }
+  },
+  "FX-24": {
+    "params": "emission cone · rear attenuation · source length · attenuation volume · orientation · edge blend · listener distance",
+    "impl": "Model emission direction or spatial extent independently from output panning. Blend smoothly across cone or volume boundaries and use elongated or box regions only when they match the source’s functional shape.",
+    "prompt": {
+      "zh": "為擴音器設定 60° 內錐和 120° 外錐：正面維持 0 dB，側面降至 -9 dB，背面降至 -18 dB，跨越錐邊界時用 15° 範圍平滑過渡，並固定測試距離為 5 米。",
+      "en": "Give a loudspeaker a 60° inner cone and 120° outer cone: hold 0 dB in front, reduce the side to −9 dB and the rear to −18 dB, smooth transitions over 15° at cone boundaries, and test at a fixed 5 m distance.",
+      "ja": "スピーカーに内側60°、外側120°の指向性コーンを設定してください。正面は0 dB、側面は−9 dB、背面は−18 dBとし、境界の15°で滑らかに補間して、距離5 m固定で確認してください。"
+    }
+  },
+  "FX-25": {
+    "params": "distance range · low-pass cutoff · high-shelf gain · filter slope · smoothing time · dry level · obstacle override",
+    "impl": "Map distance to gradual high-frequency reduction in addition to level attenuation. Smooth filter changes and keep distance-driven filtering distinguishable from obstacle-driven occlusion in the control logic.",
+    "prompt": {
+      "zh": "為遠距槍聲加入空氣吸收：10 米內低通截止維持 18 kHz，於 10–80 米逐步降至 4.5 kHz，斜率 12 dB/oct，參數以 200 毫秒平滑；不要在穿牆時重用同一距離參數。",
+      "en": "Add air absorption to distant gunfire: keep the low-pass cutoff at 18 kHz within 10 m, reduce it gradually to 4.5 kHz from 10–80 m with a 12 dB/oct slope, and smooth changes over 200 ms; do not reuse the distance parameter for wall occlusion.",
+      "ja": "遠距離の銃声に空気吸収を加え、10 m以内はローパスのカットオフを18 kHzに保ち、10～80 mで4.5 kHzまで徐々に下げてください。傾きは12 dB/oct、変化は200ミリ秒で平滑化し、壁の遮蔽には同じ距離パラメーターを使わないでください。"
+    }
+  },
+  "FX-26": {
+    "params": "visibility probes · direct gain · low-pass cutoff · indirect send · attack time · release time · obstacle class",
+    "impl": "Estimate blockage between source and listener with one or more visibility probes, then drive direct level, filtering, and indirect routing as separate controls. Smooth transitions and avoid presenting a simple probe as complete acoustic propagation.",
+    "prompt": {
+      "zh": "每 100 毫秒以 3 條探測線檢查聲源至聽者的遮擋比例；全遮擋時直達聲降 12 dB、低通降至 1.8 kHz，進入效果用 150 毫秒、恢復用 350 毫秒，間接聲比例另行控制。",
+      "en": "Check blockage between source and listener with three probes every 100 ms; at full blockage, reduce direct sound by 12 dB and low-pass it to 1.8 kHz, applying over 150 ms and recovering over 350 ms while controlling indirect sound separately.",
+      "ja": "音源とリスナーの遮蔽率を100ミリ秒ごとに3本のプローブで確認してください。完全遮蔽時は直接音を12 dB下げ、ローパスを1.8 kHzにし、適用150ミリ秒、復帰350ミリ秒で補間し、間接音は別に制御してください。"
+    }
+  },
+  "FX-27": {
+    "params": "dry level · wet level · decay time · pre-delay · room profile · distance send · transition time",
+    "impl": "Send sources to a room-appropriate reverberant path while preserving a controllable dry signal. Blend room changes and dry–wet ratios smoothly, and keep dense reverberation distinct from discrete delay repeats.",
+    "prompt": {
+      "zh": "為石室拍手設定 25 毫秒 pre-delay 和 1.8 秒混響尾；距離 2 米時乾濕比為 80:20，距離 15 米時改為 45:55，跨房間時用 0.6 秒交叉淡化。",
+      "en": "For a clap in a stone chamber, use 25 ms pre-delay and a 1.8-second reverb tail; set the dry–wet balance to 80:20 at 2 m and 45:55 at 15 m, with a 0.6-second crossfade between rooms.",
+      "ja": "石造りの部屋の拍手に25ミリ秒のプリディレイと1.8秒のリバーブテールを設定してください。距離2 mではドライ対ウェットを80:20、15 mでは45:55とし、部屋の切り替えは0.6秒でクロスフェードしてください。"
+    }
+  },
+  "FX-28": {
+    "params": "bus priority · dialogue headroom · frequency slot · duck amount · attack time · release time · user sliders",
+    "impl": "Organize voice, warnings, effects, ambience, and music into controllable groups with explicit priorities and headroom. Create separation through arrangement, spectrum, and level before applying selective ducking where needed.",
+    "prompt": {
+      "zh": "建立音樂、語音、效果 3 個獨立音量組；重要警告出現時，音樂在 80 毫秒內降低 4 dB、於 500 毫秒恢復，並確保對白峰值保留 6 dB headroom，在 5 組混戰錄音中都可辨認。",
+      "en": "Create separate music, voice, and effects controls; when a critical warning plays, lower music by 4 dB within 80 ms and recover over 500 ms, preserve 6 dB of dialogue peak headroom, and verify intelligibility in five combat captures.",
+      "ja": "音楽・音声・効果音の3つを独立して調整できるようにしてください。重要警告時は音楽を80ミリ秒で4 dB下げ、500ミリ秒で戻し、台詞のピークに6 dBのヘッドルームを確保して、5種類の戦闘録音で聞き取れるか確認してください。"
+    }
+  },
+  "FX-29": {
+    "params": "synchronized stems · intensity value · layer thresholds · crossfade bars · phase lock · gain matrix · exit hysteresis",
+    "impl": "Keep musical stems synchronized to a shared timeline and vary their gains or participation according to state. Quantize or smooth changes so layers enter musically without replacing the current passage.",
+    "prompt": {
+      "zh": "把 120 BPM 配樂拆成鼓、低音、和聲、旋律 4 條同步音軌；威脅值超過 40% 加入低音，超過 70% 再加入鼓，每次變化跨 2 小節淡入，跌回門檻以下 10% 才退出。",
+      "en": "Split a 120 BPM score into four synchronized stems—drums, bass, harmony, and melody; add bass above 40% threat and drums above 70%, crossfade each change over two bars, and remove a layer only after threat falls 10% below its threshold.",
+      "ja": "120 BPMの楽曲をドラム、ベース、ハーモニー、メロディーの同期した4ステムに分けてください。脅威度40%超でベース、70%超でドラムを加え、各変化を2小節でクロスフェードし、閾値より10%下がった時だけレイヤーを外してください。"
+    }
+  },
+  "FX-30": {
+    "params": "segment graph · transition marker · bar length · minimum stay · state condition · bridge segment · fallback path",
+    "impl": "Represent music as segments connected by musically valid transition points and select the next segment from gameplay state. Respect bar or phrase boundaries and provide bridge and fallback routes for state changes.",
+    "prompt": {
+      "zh": "為 100 BPM 音樂建立探索、戰鬥、勝利 3 個段落；狀態改變後最遲在下一個 4 小節邊界轉接，探索至戰鬥先播 1 小節過橋，任何段落最少播放 8 小節才可普通切換。",
+      "en": "Build exploration, combat, and victory segments for a 100 BPM score; after a state change, transition no later than the next four-bar boundary, use a one-bar bridge from exploration to combat, and require an eight-bar minimum stay for ordinary switches.",
+      "ja": "100 BPMの楽曲に探索・戦闘・勝利の3セグメントを作ってください。状態変更後は遅くとも次の4小節境界で切り替え、探索から戦闘へは1小節のブリッジを使い、通常の切り替えでは各セグメントを最低8小節再生してください。"
+    }
+  },
+  "FX-31": {
+    "params": "cue length · beat quantization · overlay gain · cooldown · event priority · tonal variant · interruption rule",
+    "impl": "Overlay a short musical phrase on the continuing score and schedule it at an appropriate beat or bar when latency permits. Define priority and cooldown rules so frequent events do not create musical clutter.",
+    "prompt": {
+      "zh": "拾到稀有物件時，在持續配樂上疊加 1.5 秒音樂短句；若下一拍在 250 毫秒內便等到拍點播放，否則立即播放，同類短句設 3 秒冷卻，音量峰值比配樂高 3 dB。",
+      "en": "When a rare item is collected, overlay a 1.5-second musical stinger on the continuing score; if the next beat is within 250 ms, wait for it, otherwise play immediately, with a 3-second same-type cooldown and a peak 3 dB above the score.",
+      "ja": "レアアイテム取得時、継続中の曲に1.5秒のスティンガーを重ねてください。次の拍まで250ミリ秒以内なら拍に合わせ、それ以上なら即時再生し、同種には3秒のクールダウンを設け、ピークを楽曲より3 dB高くしてください。"
+    }
+  },
+  "FX-32": {
+    "params": "amplitude · duration · motor balance · attack · release · event priority · device fallback",
+    "impl": "Trigger a bounded haptic envelope for the event and adapt it to the capabilities exposed by each device. Treat haptics as an additional channel, preserving equivalent visual or audio feedback when unavailable.",
+    "prompt": {
+      "zh": "角色由 3 米高處落地時播放 180 毫秒震動：20 毫秒升至 65% 強度、維持 80 毫秒，再於 80 毫秒降至 0；裝置不支援震動或玩家關閉時，仍保留畫面及聲音確認。",
+      "en": "For a landing from 3 m, play a 180 ms vibration that rises to 65% intensity in 20 ms, holds for 80 ms, and releases to zero over 80 ms; preserve visual and audio confirmation when vibration is unsupported or disabled.",
+      "ja": "3 mの高さから着地したとき、180ミリ秒の振動を再生してください。20ミリ秒で強度65%まで上げ、80ミリ秒維持し、80ミリ秒でゼロへ戻し、振動非対応または無効時も映像と音の確認を残してください。"
+    }
+  },
+  "FX-33": {
+    "params": "pulse count · pulse duration · interval · amplitude profile · pattern length · overlap priority · recognition test",
+    "impl": "Assign events distinct temporal envelopes rather than differentiating them only by strength. Resolve overlaps by priority or blending, and validate recognition with users while retaining non-haptic cues.",
+    "prompt": {
+      "zh": "設定 3 種震動模式：命中為 1 次 60 毫秒脈衝、警告為 3 次各 80 毫秒且相隔 120 毫秒、持續受傷為每 500 毫秒 1 次 150 毫秒脈衝；以 12 名測試者驗證，不可把震動當唯一提示。",
+      "en": "Define three haptic patterns: one 60 ms pulse for a hit, three 80 ms pulses separated by 120 ms for a warning, and one 150 ms pulse every 500 ms for ongoing damage; test recognition with 12 participants and never use vibration as the sole cue.",
+      "ja": "振動パターンを3種類設定してください。命中は60ミリ秒を1回、警告は80ミリ秒を120ミリ秒間隔で3回、継続ダメージは500ミリ秒ごとに150ミリ秒を1回とし、12人で識別性を確認して、振動だけを唯一の合図にしないでください。"
+    }
+  },
+  "FX-34": {
+    "params": "master toggle · intensity steps · per-device scaling · default value · preview pattern · persistent setting · non-haptic fallback",
+    "impl": "Expose a persistent master toggle and adjustable intensity, then scale requests through each device’s capability range. Ensure disabling haptics removes no gameplay information and do not describe percentage values as physical safety measurements.",
+    "prompt": {
+      "zh": "在設定加入震動總開關、0–100% 強度滑桿和 1 秒預覽模式，預設 50%，每次調整以 5% 為一步並儲存至玩家設定；關閉後用畫面及聲音保留全部必要警告。",
+      "en": "Add a master vibration toggle, a 0–100% intensity slider, and a one-second preview, defaulting to 50% with 5% steps and persistent storage; when disabled, retain every essential warning through visual and audio cues.",
+      "ja": "設定に振動の全体スイッチ、0～100%の強度スライダー、1秒のプレビューを追加してください。初期値は50%、5%刻みで保存し、無効時も必要な警告を映像と音ですべて維持してください。"
+    }
+  },
+  "FX-35": {
+    "params": "visual cue · audio cue · haptic cue · channel toggle · semantic match · timing tolerance · fallback audit",
+    "impl": "Encode the same event meaning across independent sensory channels with closely aligned timing and consistent urgency. Audit every channel-off combination so no required information depends on one sense or device.",
+    "prompt": {
+      "zh": "為 1 秒後爆炸的危險加入紅白邊界圖形、每 250 毫秒加速的警告音和可選 3 脈衝震動，三者起始時間相差不多於 50 毫秒；逐一關閉聲音、震動或畫面輔助測試資訊是否仍完整。",
+      "en": "For a hazard that explodes in one second, provide a red-and-white boundary graphic, a warning tone accelerating every 250 ms, and an optional three-pulse vibration, with channel onsets within 50 ms; test each sound-off, haptics-off, and visual-assist-off combination for complete information.",
+      "ja": "1秒後に爆発する危険に、赤白の境界表示、250ミリ秒ごとに加速する警告音、任意の3パルス振動を用意し、各開始時刻の差を50ミリ秒以内にしてください。音・振動・視覚補助を個別に切った状態でも情報が完全か確認してください。"
+    }
+  },
+  "FX-36": {
+    "params": "sound label · source identity · direction · distance band · display duration · priority · concurrency limit",
+    "impl": "Convert important non-speech sounds into concise text and directional visuals using source metadata. Prioritize and merge repeated cues to prevent captions from obscuring the scene, and do not rely on arrows alone to communicate sound identity.",
+    "prompt": {
+      "zh": "敵人敲門時顯示「〔右後方 8 米：急促敲門聲〕」2 秒，方向每 100 毫秒更新；同時最多顯示 3 條音效字幕，0.5 秒內同類腳步合併為 1 條並保留方向。",
+      "en": "When an enemy knocks, display “[8 m, rear right: rapid knocking]” for two seconds and update direction every 100 ms; show at most three sound captions at once and merge same-type footsteps within 0.5 seconds while retaining direction.",
+      "ja": "敵がドアを叩いたら「［右後方8 m：激しいノック音］」を2秒表示し、方向を100ミリ秒ごとに更新してください。同時表示は最大3件とし、0.5秒以内の同種の足音は方向を残して1件にまとめてください。"
+    }
+  },
+  "FX-37": {
+    "params": "camera shake scale · motion blur toggle · flash reduction · essential motion floor · preview · per-effect override · fallback feedback",
+    "impl": "Provide controls that reduce nonessential camera and effect motion while preserving aiming, hazard boundaries, and spatial information. Replace disabled motion-based feedback with stable visual or audio confirmation and test the complete gameplay flow.",
+    "prompt": {
+      "zh": "加入「減少動態」設定：鏡頭震動可選 0%、25%、50%、100%，motion blur 可獨立關閉；設為 0% 時以 0.12 秒命中輪廓和短音效補回確認，並測試 10 個主要攻擊。",
+      "en": "Add a Reduced Motion setting with camera shake at 0%, 25%, 50%, or 100% and an independent motion-blur toggle; at 0% shake, replace hit feedback with a 0.12-second outline and short sound, then test all 10 major attacks.",
+      "ja": "「動きの軽減」設定を追加し、カメラ振動を0%、25%、50%、100%から選べるようにし、モーションブラーは個別に無効化してください。振動0%では0.12秒の命中輪郭と短い音で補い、主要攻撃10種類を確認してください。"
+    }
+  },
+  "FX-38": {
+    "params": "full-frame capture · flash analysis · red-flash review · pattern contrast · overlap scenario · mitigation variant · tool report",
+    "impl": "Analyze captured final gameplay output, including overlapping effects and post-processing, with an appropriate photosensitivity risk tool. Review flagged intervals manually, reduce or replace risky presentation, and avoid treating a passing result as a medical guarantee.",
+    "prompt": {
+      "zh": "擷取 30 分鐘、60 fps 的實際遊戲合成畫面，包含 6 個效果同時疊加的最壞情況；用合適工具分析全屏閃光、紅閃和高對比圖樣，逐項複核所有標記時段，輸出原版與 2 個減風險版本，不可聲稱絕對安全。",
+      "en": "Capture 30 minutes of final gameplay output at 60 fps, including a worst case with six overlapping effects; analyze full-screen flashes, red flashes, and high-contrast patterns with an appropriate tool, manually review every flagged interval, and produce the original plus two reduced-risk variants without claiming absolute safety.",
+      "ja": "6個のエフェクトが重なる最悪条件を含め、最終ゲーム映像を60 fpsで30分キャプチャしてください。適切なツールで全画面フラッシュ、赤色フラッシュ、高コントラストパターンを分析し、検出区間をすべて手動確認して、原版とリスク低減版2案を作成し、絶対的な安全性は主張しないでください。"
+    }
+  },
+  "UX-01": {
+    "params": "health · ammunition · compass · visibility rules · safe margins · combat state",
+    "impl": "Bind each HUD element to live player state and a small set of visibility states such as exploration, combat, and menus. Keep critical status readable within safe margins, and fade only information that is not currently needed.",
+    "prompt": {
+      "zh": "設計一個 16:9 戰鬥 HUD：左下顯示 0–100 血量，右下顯示 30/120 彈藥，上方顯示 8 方位指南針；脫離戰鬥 5 秒後淡出彈藥，但血量低於 25% 時必須保留。",
+      "en": "Design a 16:9 combat HUD with 0–100 health at bottom left, 30/120 ammunition at bottom right, and an 8-point compass at the top; fade ammunition 5 seconds after combat, but keep health visible below 25%.",
+      "ja": "16:9の戦闘HUDを設計し、左下に0～100のHP、右下に30/120の弾薬、上部に8方位コンパスを表示してください。戦闘終了から5秒後に弾薬表示を消し、HPが25%未満ならHP表示は残してください。"
+    }
+  },
+  "UX-02": {
+    "params": "current value · maximum value · segments · percentage · low-state cue · color-independent coding",
+    "impl": "Map the meter fill to the documented value scale and pair color with text, shape, or pattern. Define explicit thresholds and animate value changes briefly without delaying the underlying state update.",
+    "prompt": {
+      "zh": "製作血量及耐力量表：血量以 0–100% 長條加數字顯示，低於 20% 時加入斜紋及「危急」文字；耐力分成 5 格，每次動作用 1 格，不能只靠紅綠色傳意。",
+      "en": "Create health and stamina meters: show health as a 0–100% bar plus a number, add hatching and a Critical label below 20%, and divide stamina into 5 segments consumed 1 at a time without relying on red and green alone.",
+      "ja": "HPとスタミナのゲージを作成してください。HPは0～100%のバーと数値で示し、20%未満では斜線パターンと「危険」を追加します。スタミナは5区画で、行動ごとに1区画消費し、赤と緑だけに依存しないでください。"
+    }
+  },
+  "UX-03": {
+    "params": "center point · spread radius · weapon state · target feedback · trajectory offset · contrast",
+    "impl": "Render the reticle as an aiming reference driven by weapon spread and interaction state, while leaving hit resolution to gameplay rules. If projectile drop or offset matters, communicate uncertainty rather than promising an exact impact point.",
+    "prompt": {
+      "zh": "設計一個準星：靜止時半徑 6 px、移動時擴至 18 px、裝填時變成虛線；另以獨立落點提示 20 m 距離的彈道下墜，並明確避免令玩家以為準星代表必中。",
+      "en": "Design a reticle with a 6 px radius while still, expanding to 18 px while moving and becoming dashed during reload; add a separate impact cue for projectile drop at 20 m without implying a guaranteed hit.",
+      "ja": "照準表示を設計してください。静止時は半径6px、移動時は18pxに広げ、リロード中は破線にします。20m先の弾道落下は別の着弾目安で示し、命中保証に見えないようにしてください。"
+    }
+  },
+  "UX-04": {
+    "params": "world marker · distance · objective text · progress count · occlusion · route context",
+    "impl": "Treat the waypoint and objective tracker as separate components backed by the same objective state. Clamp off-screen markers, state whether they are occluded, and avoid presenting a straight-line marker as a traversable route.",
+    "prompt": {
+      "zh": "建立任務導引：世界標記顯示「發電機」及 142 m，畫面右側追蹤「啟動發電機 1/3」；標記被牆遮住時改為空心，距離少於 10 m 才顯示入口提示，不要假裝直線就是可行路線。",
+      "en": "Build objective guidance with a world marker labeled Generator at 142 m and a side tracker reading Activate generators 1/3; make the marker hollow through walls and show an entrance cue only within 10 m rather than implying a straight traversable route.",
+      "ja": "目標案内を作成し、ワールドマーカーに「発電機」と142m、画面右側に「発電機を起動 1/3」と表示してください。壁越しではマーカーを中抜きにし、10m以内でのみ入口案内を出して、直線が通行可能な経路だと誤解させないでください。"
+    }
+  },
+  "UX-05": {
+    "params": "interaction range · facing angle · action label · bound input · priority · dismissal",
+    "impl": "Evaluate prompts from current range, facing, eligibility, and interaction priority, then display the actual bound input. Remove the prompt when those conditions fail, not because the system assumes the player has learned it.",
+    "prompt": {
+      "zh": "製作情境操作提示：玩家在箱子 2 m 內並面向它 45° 以內時顯示「E 開啟」，改鍵後即時換成新按鍵；離開範圍 0.3 秒後隱藏，附近有 2 個目標時優先顯示最近可用的一個。",
+      "en": "Create a contextual prompt that shows E: Open when the player is within 2 m of a chest and facing it within 45 degrees, updates immediately after rebinding, hides 0.3 seconds after leaving range, and prioritizes the nearest valid target when 2 overlap.",
+      "ja": "状況依存プロンプトを作成してください。宝箱から2m以内かつ向きが45度以内なら「E 開ける」を表示し、キー変更後は即時更新します。範囲外になって0.3秒後に消し、対象が2つ重なる場合は最も近い有効対象を優先してください。"
+    }
+  },
+  "UX-06": {
+    "params": "focus ring · selected state · hover state · input method · contrast · focus restore",
+    "impl": "Represent focus, hover, and selected or equipped state with distinct visual tokens. Maintain a single logical focus target and restore it predictably when a panel or dialog closes.",
+    "prompt": {
+      "zh": "設計 3×2 裝備格：手把焦點用 3 px 實線框，滑鼠 hover 用淺底色，已裝備物品用剔號；三種狀態可同時存在但不能混淆，關閉詳情頁後要回到原本第 4 格。",
+      "en": "Design a 3-by-2 equipment grid using a 3 px solid ring for controller focus, a light background for mouse hover, and a checkmark for equipped items; allow states to coexist without confusion and restore focus to slot 4 after closing details.",
+      "ja": "3×2の装備グリッドを設計してください。コントローラーのフォーカスは3pxの実線枠、マウスホバーは薄い背景、装備中はチェックで示します。3状態が同時でも区別でき、詳細を閉じたら4番目の枠へ戻してください。"
+    }
+  },
+  "UX-07": {
+    "params": "tab order · directional neighbors · confirm · back · wrapping · focus memory",
+    "impl": "Define explicit directional neighbors for non-linear layouts and a stable order for linear lists. Preserve focus per tab, keep confirm and back behavior consistent, and test every path without a pointer.",
+    "prompt": {
+      "zh": "建立「裝備／地圖／技能」3 個分頁及每頁 4×3 項目網格；左右肩鍵切頁，方向鍵按視覺鄰位移動，網格邊緣不循環，返回上一頁時恢復各分頁最後焦點。",
+      "en": "Build 3 tabs—Equipment, Map, and Skills—with a 4-by-3 item grid on each; use shoulder buttons for tabs, move focus to visual neighbors with directional input, do not wrap at grid edges, and restore each tab’s last focus on return.",
+      "ja": "「装備／マップ／スキル」の3タブと、各タブに4×3の項目グリッドを作成してください。ショルダーボタンでタブを切り替え、方向入力では見た目上の隣へ移動し、端では循環させず、戻った際は各タブの最後のフォーカスを復元してください。"
+    }
+  },
+  "UX-08": {
+    "params": "blocking state · initial focus · focus containment · confirm · cancel · background input",
+    "impl": "Place a modal in a dedicated blocking layer, move focus to a safe initial action, and contain navigation until the dialog resolves. Disable background interaction, restore prior focus on close, and do not infer that simulation is paused.",
+    "prompt": {
+      "zh": "製作刪除存檔模態框，顯示「刪除第 3 個存檔？」及「取消／刪除」2 個按鈕；初始焦點放在取消，Tab 只能在框內循環，Esc 關閉後回到第 3 個存檔，背景遊戲仍可按產品規則繼續。",
+      "en": "Create a delete-save modal asking Delete save 3? with 2 buttons, Cancel and Delete; put initial focus on Cancel, keep Tab inside the dialog, restore focus to save 3 on Escape, and do not assume the background simulation pauses.",
+      "ja": "「セーブ3を削除しますか？」と「キャンセル／削除」の2ボタンを持つモーダルを作成してください。初期フォーカスはキャンセルに置き、Tabはダイアログ内に限定し、Escで閉じた後はセーブ3へ戻し、背後のゲーム停止は別ルールとして扱ってください。"
+    }
+  },
+  "UX-09": {
+    "params": "primary settings · advanced section · disclosure control · persisted state · search · importance",
+    "impl": "Show frequent and safety-critical controls at the first level, with optional details behind a clearly labeled disclosure control. Preserve the expanded state when useful and ensure hidden options remain discoverable through labels or search.",
+    "prompt": {
+      "zh": "整理設定頁：首層顯示主音量、字幕及文字大小 3 項，按「進階音訊」才展開動態範圍等 5 項；字幕不能收起，搜尋「夜間」要直接找到隱藏選項，展開狀態在同一工作階段保留。",
+      "en": "Organize a settings page with 3 first-level controls—master volume, subtitles, and text size—and reveal 5 less-used options under Advanced Audio; never hide subtitles, let a search for night find the concealed option, and preserve expansion for the session.",
+      "ja": "設定画面を整理し、最初にマスター音量、字幕、文字サイズの3項目を表示し、「高度な音声」で使用頻度の低い5項目を展開してください。字幕は隠さず、「夜間」の検索で非表示項目へ直接移動でき、展開状態は同一セッション中保持してください。"
+    }
+  },
+  "UX-10": {
+    "params": "speaker label · dialogue · sound cue · direction · line length · display duration",
+    "impl": "Build captions from timed dialogue and meaningful non-speech events, with optional speaker and direction metadata. Limit line length, guarantee sufficient reading time, and omit ambient sounds that do not affect understanding or decisions.",
+    "prompt": {
+      "zh": "設計字幕／CC：每行最多 42 個字元、最多 2 行、最少顯示 2 秒；對白標示講者，將重要聲音寫成「［背後腳步］」並加方向箭嘴，但不要逐一轉錄連續 10 秒的無關風聲。",
+      "en": "Design subtitles and closed captions with at most 42 characters per line, 2 lines, and a 2-second minimum duration; identify speakers, caption important audio as [Footsteps behind] with direction, and omit 10 seconds of irrelevant wind ambience.",
+      "ja": "字幕／CCを設計し、1行42文字以内、最大2行、最低2秒表示にしてください。話者名を示し、重要音は方向付きで「［背後の足音］」と表示し、10秒続く無関係な風音は逐語化しないでください。"
+    }
+  },
+  "UX-11": {
+    "params": "world ownership · character access · physical placement · legibility · interaction distance · fallback",
+    "impl": "Anchor the interface to an object acknowledged by the fictional world and let character actions operate it. Preserve readability across viewing distances and provide a fallback when perspective, lighting, or occlusion makes the in-world surface unusable.",
+    "prompt": {
+      "zh": "設計角色世界內的氧氣手錶：錶面顯示 0–100% 及剩餘 12:30，角色抬手 0.4 秒後才可讀；在強光下加入高對比模式，數值低於 15% 時由手錶本身發出警示。",
+      "en": "Design an in-world oxygen watch showing 0–100% and 12:30 remaining, readable after a 0.4-second raise-hand action; add a high-contrast mode for bright light and have the watch itself warn below 15%.",
+      "ja": "物語世界内に存在する酸素腕時計を設計し、0～100%と残り12:30を表示してください。腕を上げて0.4秒後に読めるようにし、強い光では高コントラスト表示、15%未満では腕時計自体が警告するようにしてください。"
+    }
+  },
+  "UX-12": {
+    "params": "player-only data · screen anchor · inventory slots · health value · visual theme · visibility",
+    "impl": "Render player-only information in a screen-anchored layer independent of world objects. It may share the setting’s visual language, but its visibility and behavior should be governed by player information needs rather than fictional-world access.",
+    "prompt": {
+      "zh": "製作玩家專用疊加介面：左上固定顯示 73/100 血量，底部顯示 8 格快捷欄；即使鏡頭轉動亦保持位置，選單採舊紙風格但不要暗示角色真的看見這些數值。",
+      "en": "Create a player-only overlay with 73/100 health fixed at top left and an 8-slot quick bar at the bottom; keep positions stable as the camera turns, and use an old-paper style without implying the character literally sees these values.",
+      "ja": "プレイヤー専用オーバーレイを作成し、左上に73/100のHP、下部に8枠のクイックバーを固定表示してください。カメラ回転でも位置を維持し、古紙風の見た目でもキャラクターが数値を実際に見ているとは扱わないでください。"
+    }
+  },
+  "UX-13": {
+    "params": "world anchor · screen projection · distance scaling · occlusion · edge clamping · narrative status",
+    "impl": "Attach each cue to a world position, then choose world rendering or screen projection independently of its narrative classification. Define distance, occlusion, overlap, and off-screen behavior so spatial relationships remain understandable.",
+    "prompt": {
+      "zh": "設計 4 個隊友頭頂名牌及一條地面導航線：名牌在 5–30 m 內縮放，被牆遮住時隱藏，離屏時只保留隊長箭嘴；這些提示連結場景位置，但不當作角色世界內實物。",
+      "en": "Design nameplates for 4 teammates plus a ground navigation trail: scale nameplates from 5–30 m, hide them behind walls, and retain only the leader arrow off-screen; keep them spatially anchored without treating them as physical world objects.",
+      "ja": "4人の仲間の頭上ネームプレートと地面の誘導線を設計してください。ネームプレートは5～30mで縮尺を変え、壁の裏では隠し、画面外ではリーダーの矢印だけを残します。空間に結び付けつつ、世界内の実物とは扱わないでください。"
+    }
+  },
+  "UX-14": {
+    "params": "injury intensity · screen edge · status mapping · fade timing · accessibility · competing effects",
+    "impl": "Drive screen effects from the character state with bounded intensity and a clear recovery curve. Keep essential scene and interface details visible, offer intensity controls, and avoid classifying every stylized overlay as the same narrative device.",
+    "prompt": {
+      "zh": "設計受傷 meta UI：血量由 40% 降至 15% 時，畫面邊緣污跡透明度由 10% 升至 35%，回復後 1.5 秒淡走；中央 60% 畫面不得被遮，並提供 0／50／100% 效果強度設定。",
+      "en": "Design injury meta UI where edge grime rises from 10% to 35% opacity as health drops from 40% to 15%, then fades over 1.5 seconds after recovery; never obscure the central 60% and offer 0, 50, and 100% intensity settings.",
+      "ja": "負傷状態のメタUIを設計してください。HPが40%から15%へ下がる間、画面端の汚れを不透明度10%から35%へ増やし、回復後1.5秒で消します。中央60%は遮らず、効果強度0／50／100%を用意してください。"
+    }
+  },
+  "UX-15": {
+    "params": "coordinate space · perspective · occlusion · projection · screen anchor · distance",
+    "impl": "Choose world or screen coordinates according to the desired perspective, occlusion, and stability. A world-following cue may still be projected and drawn in screen space, so keep coordinate implementation separate from diegetic classification.",
+    "prompt": {
+      "zh": "比較 2 種介面：牆上 1×0.6 m 面板要隨透視縮放並可被柱遮擋；右上任務卡固定於離畫面邊 32 px。敵人頭頂血條用 3D 點投影至 2D，不要因而稱它為故事內介面。",
+      "en": "Implement 2 interface spaces: a 1-by-0.6 m wall panel that scales with perspective and can be occluded by a pillar, and an objective card fixed 32 px from the top-right edge; project enemy head positions into 2D for health bars without calling them diegetic.",
+      "ja": "2種類のUI空間を実装してください。壁の1×0.6mパネルは遠近で縮小し柱に隠れ、目標カードは右上端から32pxに固定します。敵頭上のHPバーは3D座標を2Dへ投影し、それだけで世界内UIとは分類しないでください。"
+    }
+  },
+  "UX-16": {
+    "params": "transition duration · easing · focus animation · input lock · reduced motion · state continuity",
+    "impl": "Use motion to explain state changes while keeping focus and input outcomes immediately legible. Cap transition durations, define interruption behavior, and provide a reduced-motion path that preserves function without large movement or flashing.",
+    "prompt": {
+      "zh": "設計分頁轉場：面板在 180 ms 內滑動，焦點框用 120 ms 淡變，轉場途中仍顯示目前分頁；連按 3 次切頁時直接追到最新輸入，減少動態模式改用 80 ms 交叉淡入。",
+      "en": "Design tab transitions with a 180 ms panel slide and a 120 ms focus fade while always showing the current tab; if 3 tab inputs arrive quickly, resolve to the latest one, and use an 80 ms crossfade in reduced-motion mode.",
+      "ja": "タブ遷移を設計し、パネルは180msでスライド、フォーカス枠は120msで変化させ、遷移中も現在のタブを示してください。3回連続入力されたら最新へ追従し、モーション低減時は80msのクロスフェードにしてください。"
+    }
+  },
+  "UX-17": {
+    "params": "hit event · relative direction · arc width · health delta · audio cue · decay",
+    "impl": "Convert incoming-hit direction into a screen-relative sector and combine it with health and audio or haptic feedback. Use the cue for approximate threat direction only, with decay and overlap rules for multiple attackers.",
+    "prompt": {
+      "zh": "製作方向受傷提示：來襲方向量化成 8 個扇區，顯示 70° 弧線 0.8 秒，同步扣除 18 點血及播放痛叫；1 秒內有 3 次攻擊時可疊加強度，但不可把弧線當敵人精確座標或命中敵人的 hit marker。",
+      "en": "Create directional damage feedback using 8 incoming sectors, a 70-degree arc lasting 0.8 seconds, an 18-point health loss, and a pain sound; accumulate intensity for 3 hits within 1 second without implying an exact enemy position or a hit marker.",
+      "ja": "方向付き被ダメージ表示を作成してください。攻撃方向を8区分にし、70度の弧を0.8秒表示し、HPを18減らして痛みの音を同期します。1秒以内の3回攻撃は強度を加算しても、敵の正確な位置や命中マーカーとは扱わないでください。"
+    }
+  },
+  "UX-18": {
+    "params": "visual cue · audio cue · haptic cue · semantic equivalence · channel controls · intensity",
+    "impl": "Publish one semantic event to visual, audio, and haptic presenters so each channel communicates the same core fact. Let players adjust or disable channels independently, and avoid multiplying intensity merely because several channels are active.",
+    "prompt": {
+      "zh": "為新任務提供 3 通道回饋：顯示 4 秒文字及菱形圖案、播放 0.6 秒提示音、震動 150 ms；任何一個通道關閉後仍可理解「新任務已加入」，紅色加綠色不可當作兩個感官通道。",
+      "en": "Provide 3-channel feedback for a new objective: show text and a diamond icon for 4 seconds, play a 0.6-second sound, and vibrate for 150 ms; the event must remain understandable with any channel disabled, and red plus green does not count as 2 channels.",
+      "ja": "新しい目標に3経路のフィードバックを用意してください。文字とひし形を4秒表示し、0.6秒の音と150msの振動を出します。どの経路を無効にしても「新目標追加」が理解でき、赤と緑を2つの感覚経路とは数えないでください。"
+    }
+  },
+  "UX-20": {
+    "params": "camera shake · head bob · menu motion · auto-scroll · flashing · intensity preset",
+    "impl": "Expose independent controls for nonessential camera, interface, scrolling, and flashing effects, plus a convenient reduced-motion preset. Replace large movement with stable state changes while retaining all information and actions.",
+    "prompt": {
+      "zh": "加入減少動態設定：鏡頭震動 0–100%、頭部晃動開關、選單背景動畫開關、自動滾動開關；啟用預設後將震動降至 10%、停用晃動及滑入，但保留相同 6 個功能及清楚焦點。",
+      "en": "Add reduced-motion settings for 0–100% camera shake, head bob, animated menu backgrounds, and auto-scroll; the preset should set shake to 10%, disable bob and sliding, and preserve the same 6 functions and clear focus.",
+      "ja": "モーション低減設定を追加し、カメラ揺れ0～100%、頭部の上下動、メニュー背景アニメ、自動スクロールを個別設定できるようにしてください。プリセットでは揺れを10%にし、上下動とスライドを止めても同じ6機能と明確なフォーカスを保ってください。"
+    }
+  },
+  "UX-21": {
+    "params": "actor capability · object property · rule check · action range · state change · failure reason",
+    "impl": "Compute affordance from the relationship between actor capabilities, object properties, and current rules. Expose a consistent action result and a useful failure reason, while leaving visual communication of that possibility to separate signifiers.",
+    "prompt": {
+      "zh": "定義翻越可行性：角色跳躍高度 1.2 m，只有 0.4–1.0 m 高且上方有 0.6 m 淨空的牆可翻；負重超過 30 kg 時不可翻並回報原因，牆面有沒有黃漆不能改變規則。",
+      "en": "Define vault affordance for a character with a 1.2 m jump: only walls 0.4–1.0 m high with 0.6 m overhead clearance are vaultable; block the action above 30 kg carried weight and report why, regardless of yellow paint.",
+      "ja": "跳び越えのアフォーダンスを定義してください。ジャンプ高1.2mのキャラクターは、高さ0.4～1.0mで上に0.6mの空間がある壁だけ越えられます。所持重量30kg超では理由を示して禁止し、黄色い塗装の有無で規則を変えないでください。"
+    }
+  },
+  "UX-22": {
+    "params": "interaction outline · handle shape · action label · consistency · false cue · state cue",
+    "impl": "Use consistent visual, textual, or environmental cues to signal actual available actions and states. Generate cues from interaction eligibility where possible so decorative objects do not accidentally promise unavailable behavior.",
+    "prompt": {
+      "zh": "為可用拉柄設計 3 個提示符：清楚把手形狀、2 px 輪廓及「拉下」文字；玩家在 3 m 內才顯示輪廓，已鎖定時改顯示鎖圖案，不可讓 5 個純裝飾拉柄使用同一醒目外觀。",
+      "en": "Design 3 signifiers for a usable lever: a clear handle shape, a 2 px outline, and the label Pull; show the outline within 3 m, replace it with a lock symbol when disabled, and do not give 5 decorative levers the same conspicuous treatment.",
+      "ja": "使用可能なレバーに3つのシグニファイアを設計してください。明確な取っ手形状、2pxの輪郭、「引く」の文字を使い、3m以内で輪郭を表示し、ロック中は鍵記号へ変えます。装飾用レバー5個に同じ目立つ外観を使わないでください。"
+    }
+  },
+  "UX-23": {
+    "params": "current location · destination · route choice · landmarks · map · confirmation",
+    "impl": "Support orientation with recognizable area identity and support navigation with route choices, landmarks, maps, or signs. Confirm progress at decision points without forcing players onto a single route or invoking NPC pathfinding concepts.",
+    "prompt": {
+      "zh": "設計 3 區導覽：玩家要先靠大鐘辨認自己在大堂，再從 2 個路口選實驗室或花園；每個路口提供地圖及地標確認，偏離主路 20 m 時只提示方位，不強迫返回。",
+      "en": "Design navigation across 3 areas: players first identify the lobby by a large clock, then choose the laboratory or garden at 2 junctions; provide map and landmark confirmation at each junction, and show direction only after a 20 m deviation without forcing a return.",
+      "ja": "3エリアの案内を設計してください。大時計でロビーだと把握し、2つの分岐で研究室か庭園を選びます。各分岐に地図とランドマークの確認を置き、主経路から20m外れた場合も方向だけ示して帰還を強制しないでください。"
+    }
+  },
+  "UX-24": {
+    "params": "junction · arrow · destination label · arrival sign · readability distance · visual hierarchy",
+    "impl": "Place explicit signs where players make route decisions and confirmation signs where they arrive. Make destinations readable before the decision point and visually distinguish operational signage from decorative set dressing.",
+    "prompt": {
+      "zh": "在 T 字路口前 8 m 放置方向牌，左箭嘴寫「醫療區 40 m」、右箭嘴寫「機庫 65 m」；門口再放 1 個區域名稱作抵達確認，文字須在 10 m 可讀並與 6 張裝飾海報分開。",
+      "en": "Place a directional sign 8 m before a T-junction, with Medical 40 m to the left and Hangar 65 m to the right; add 1 arrival label above each doorway, readable from 10 m and visually distinct from 6 decorative posters.",
+      "ja": "T字路の8m手前に方向標識を置き、左を「医療区画 40m」、右を「格納庫 65m」としてください。各入口には到着確認用の名称を1つ置き、10mから読め、6枚の装飾ポスターと区別できるようにしてください。"
+    }
+  },
+  "UX-25": {
+    "params": "distinct silhouette · multi-angle visibility · route reference · memory anchor · scale · POI distinction",
+    "impl": "Choose a landmark with a unique silhouette and expose it from relevant decision points with stable directional relationships. Test whether players can use it to describe and recover a route, rather than assuming any attractive point of interest provides navigation.",
+    "prompt": {
+      "zh": "建立一座 30 m 高三角塔作地標，須從 3 個主要路口都看見並可用「塔底轉左」描述路線；另放 2 個只供探索的 POI，但不要假設看不見路口的漂亮雕像也能協助認路。",
+      "en": "Create a 30 m triangular tower visible from 3 major junctions so routes can be described as turn left at the tower base; add 2 exploration-only POIs, but do not treat an attractive statue hidden from junctions as a navigational landmark.",
+      "ja": "高さ30mの三角形の塔をランドマークとして作り、主要な3分岐から見えて「塔の根元で左」と経路を説明できるようにしてください。探索用POIを2つ追加しても、分岐から見えない美しい像を案内用ランドマークとは扱わないでください。"
+    }
+  },
+  "UX-26": {
+    "params": "floor seams · rails · destination framing · traversable path · obstacle · validation",
+    "impl": "Compose lines and spatial forms so they visually point toward a relevant destination, then validate them against actual traversability and objective logic. Treat the composition as a supporting cue, never as a guarantee that attention or movement will follow it.",
+    "prompt": {
+      "zh": "用 4 條地板接縫及 2 條電纜朝出口形成方向構圖，但在中間加入障礙，讓實際路線向右繞 6 m；再以可行路面及出口標記補足，不可假設玩家會無意識沿線直行。",
+      "en": "Use 4 floor seams and 2 cables to point compositionally toward an exit, but place an obstacle requiring a 6 m detour to the right; reinforce the traversable route and exit separately rather than assuming players subconsciously follow the lines.",
+      "ja": "4本の床目地と2本のケーブルを出口へ向けて構図上の方向を作りつつ、中央の障害物により実際は右へ6m迂回させてください。通行可能面と出口表示でも補い、線に無意識で従うとは仮定しないでください。"
+    }
+  },
+  "UX-27": {
+    "params": "observer point · target point · occlusion · glass · shot blocking · route visibility",
+    "impl": "Evaluate visual connection separately from movement and projectile rules. Frame useful targets from likely observer positions, then record whether each intervening material blocks sight, traversal, or shots independently.",
+    "prompt": {
+      "zh": "由走廊入口建立 25 m 視線至下一區出口，並讓玩家隔玻璃看到 1 個敵人；玻璃允許看見但阻擋步行及射擊，實際入口在右方 12 m，畫面要避免將可見誤讀成可直達。",
+      "en": "Create a 25 m sightline from the corridor entrance to the next exit and show 1 enemy through glass; the glass permits sight but blocks movement and shots, while the actual entrance is 12 m to the right, so visibility must not imply direct access.",
+      "ja": "廊下入口から次の出口まで25mの視線を作り、ガラス越しに敵1体を見せてください。ガラスは視認のみ許可し、移動と射撃を遮断します。実際の入口は右12mに置き、見えることが直行可能だと誤解されないようにしてください。"
+    }
+  },
+  "UX-28": {
+    "params": "overlook height · preview targets · approach route · entrance visibility · descent · spatial plan",
+    "impl": "Reveal the next space from an approach or overlook before entry, framing the objective, hazards, and route into the area. Ensure the preview supports a usable spatial plan rather than functioning only as scenery.",
+    "prompt": {
+      "zh": "設計一段 20 m 窄道通往高 6 m 的眺望位，玩家可先看見廣場內 3 個敵人、1 個出口及左側下降坡道；停留至少 2 秒後才進場，並確保入口與下去方法都清楚。",
+      "en": "Design a 20 m narrow approach to a 6 m-high overlook where players can preview 3 enemies, 1 exit, and a descent ramp on the left; allow at least 2 seconds to observe before entry and make both the entrance and descent legible.",
+      "ja": "20mの狭いアプローチの先に高さ6mの見晴らし地点を設け、広場の敵3体、出口1つ、左側の下降スロープを先に見せてください。進入前に最低2秒観察でき、入口と降り方の両方が明確になるようにしてください。"
+    }
+  },
+  "UX-29": {
+    "params": "trail item · spacing · visibility chain · reward value · alternate reading · endpoint",
+    "impl": "Place a sequence of cues so at least the next one is discoverable from each pickup or trace. Balance their spacing and value so they invite exploration without making completion mandatory or assuming collection guarantees forward movement.",
+    "prompt": {
+      "zh": "沿 35 m 支路放置 7 個金色補給物，每件相距 4–6 m，站在上一件位置至少看見下一件；終點是小型寶箱，但玩家收集 3 件後折返亦可，不要將它做成網站式層級 breadcrumb。",
+      "en": "Place 7 golden supplies along a 35 m side path, spaced 4–6 m apart so the next is visible from the previous one; end at a small chest, but allow players to turn back after collecting 3 and do not present this as website hierarchy breadcrumbs.",
+      "ja": "35mの脇道に金色の補給物を7個、4～6m間隔で置き、前の位置から次が見えるようにしてください。終点は小箱にしつつ、3個回収して引き返してもよく、ウェブサイト階層のパンくずとは別物にしてください。"
+    }
+  },
+  "UX-30": {
+    "params": "exit lighting · area palette · symbol · luminance contrast · color-blind support · atmosphere",
+    "impl": "Use stable lighting and palette relationships to distinguish areas and emphasize relevant entrances, then reinforce them with shape, labels, or symbols. Verify luminance and context because the brightest object is not inherently the destination.",
+    "prompt": {
+      "zh": "為 3 個區域設定穩定配色，並以較背景高 4.5:1 的門口燈光標出出口；醫療區同時用加號，機庫用三角形，不能只靠紅綠分辨，也不要令場內最亮的裝飾燈誤導玩家。",
+      "en": "Give 3 areas stable palettes and mark exits with doorway lighting at 4.5:1 contrast against the background; also use a plus for Medical and a triangle for Hangar, avoiding red/green-only coding and misleading brighter decorative lights.",
+      "ja": "3エリアに一貫した配色を与え、背景に対して4.5:1のコントラストを持つ入口照明で出口を示してください。医療区画には十字、格納庫には三角も併用し、赤緑だけの区別や、より明るい装飾灯による誤誘導を避けてください。"
+    }
+  },
+  "UX-31": {
+    "params": "required objective · main route · optional branch · reward · rejoin point · player choice",
+    "impl": "Model required progression separately from optional branches and communicate their consequences without forbidding exploration. Let side paths rejoin cleanly and avoid equating the critical path with either the shortest geometry or the only valid play style.",
+    "prompt": {
+      "zh": "設計 1 條主路經過必須啟動的 2 個開關，另加 2 條支路，各藏補給或故事；支路在 30–45 m 後接回主路，玩家可先探索，主路不必是幾何最短線。",
+      "en": "Design 1 main progression route containing 2 required switches and 2 optional branches with supplies or story; rejoin each branch after 30–45 m, let players explore first, and do not require the main path to be geometrically shortest.",
+      "ja": "必須起動するスイッチ2個を含むメインルート1本と、物資または物語を置く任意の脇道2本を設計してください。各脇道は30～45m後に本線へ戻し、先に探索できるようにし、メインルートを幾何学的最短路に限定しないでください。"
+    }
+  },
+  "UX-32": {
+    "params": "blocking condition · hard barrier · progress count · unlock event · feedback · persistence",
+    "impl": "Represent the gate as a rule that fully blocks passage until an explicit condition becomes true. Show condition progress and failure feedback, then transition the barrier once and persist the unlocked state as required.",
+    "prompt": {
+      "zh": "建立硬門檻：閘門在敵人計數 4/4 未清除前完全阻擋，靠近時顯示「清除敵人 2/4」；歸零後 1.2 秒開門並永久記錄已解鎖，不能靠翻滾或繞邊穿過。",
+      "en": "Build a hard gate that completely blocks passage until all 4 enemies are cleared, showing Clear enemies 2/4 on approach; open it over 1.2 seconds at zero, persist the unlock, and prevent rolling or edge bypasses.",
+      "ja": "敵4体をすべて倒すまで完全に通行を阻むハードゲートを作成し、接近時に「敵を倒す 2/4」と表示してください。残数0で1.2秒かけて開き、解除状態を保存し、回避や端抜けで通れないようにしてください。"
+    }
+  },
+  "UX-33": {
+    "params": "pressure source · traversal cost · bypass chance · risk signal · alternate preparation · progression role",
+    "impl": "Create a passage that remains technically possible while imposing a meaningful cost or risk that usually encourages preparation or delay. Confirm that the pressure actually regulates access, rather than labeling any difficult encounter a soft gate.",
+    "prompt": {
+      "zh": "設計軟門檻：出口機關要持續操作 4 秒，期間有 3 名敵人射擊；熟練玩家可用 2 個煙霧彈強行通過，一般玩家則先清場，介面要顯示風險但不可把出口絕對鎖死。",
+      "en": "Design a soft gate where an exit control requires a 4-second hold under fire from 3 enemies; skilled players may rush it using 2 smoke grenades while most clear the room first, and the UI should signal risk without locking the exit absolutely.",
+      "ja": "出口装置を4秒間操作する間に敵3体から攻撃されるソフトゲートを設計してください。熟練者はスモーク2個で強行でき、通常は先に排除する想定とし、危険を示しても出口を完全ロックしないでください。"
+    }
+  },
+  "UX-34": {
+    "params": "locked obstacle · key state · ability prerequisite · foreshadowing · return route · unlock feedback",
+    "impl": "Store the obstacle’s prerequisite as an explicit item, quest, or ability state and provide feedback both before and after acquisition. Preserve enough context or mapping for players to revisit earlier gates without confusing an unavailable ability with failure to perform it.",
+    "prompt": {
+      "zh": "在第 1 區放置 2 面裂牆，首次檢查顯示「需要衝擊能力」；玩家在第 3 區解鎖能力後，地圖標記舊障礙並可返回破牆。不要要求額外操作考試，也不要把能力未解鎖寫成玩家操作失敗。",
+      "en": "Place 2 cracked walls in area 1 that report Impact ability required; after unlocking the ability in area 3, mark the old obstacles on the map and allow return to break them, without adding a separate skill test or treating the locked ability as player error.",
+      "ja": "エリア1にひび割れ壁を2枚置き、初回は「衝撃能力が必要」と表示してください。エリア3で能力を解放した後は古い障害を地図に示し、戻って破壊できるようにします。別の操作試験を課さず、未解放を操作ミスとは表示しないでください。"
+    }
+  },
+  "UX-35": {
+    "params": "one-way edge · return scope · warning · local loop · point of no return · save state",
+    "impl": "Encode the connection as one-way and state exactly which area or route becomes inaccessible. Reserve stronger point-of-no-return warnings for larger irreversible progression changes, and verify save and collectible consequences before committing.",
+    "prompt": {
+      "zh": "設計一個 3 m 高落差作局部單向入口，落下後不能原路返回但可在 8 分鐘內經另一通道繞回；另在章末真正無法回到前 4 區前顯示一次確認，清楚列出未完成支線數目。",
+      "en": "Design a 3 m drop as a local one-way entrance that cannot be climbed back but loops around within about 8 minutes; separately show one confirmation before the chapter-ending point of no return to the previous 4 areas, listing unfinished side objectives.",
+      "ja": "高さ3mの落差を局所的な一方通行入口として設計し、同じ道では戻れないものの約8分で別経路から戻れるようにしてください。章末で過去4エリアへ本当に戻れなくなる前には、未完了の脇目標数を示す確認を1回表示してください。"
+    }
+  },
+  "UX-36": {
+    "params": "initial blockage · far-side unlock · loopback · travel reduction · spatial reveal · persistent state",
+    "impl": "Present the shortcut as blocked on first contact, then allow it to be opened only after reaching the far side through the long route. Persist the change and make the new connection legible as part of the area’s topology, not as teleportation.",
+    "prompt": {
+      "zh": "玩家首次由大堂看到鎖住鐵門，要繞行 180 m 到背面才可開；解鎖後兩區距離縮至 25 m，地圖即時畫出連線並永久保留，不能用快速傳送或單純短路徑冒充捷徑。",
+      "en": "Show a locked iron gate from the lobby, requiring a 180 m route to reach and open its far side; afterward reduce travel between the areas to 25 m, update the map connection, persist it, and do not substitute fast travel or an always-open short path.",
+      "ja": "ロビーから施錠された鉄門を見せ、反対側へ到達して開けるまで180mの迂回を必要にしてください。解除後は両区域間を25mに短縮し、地図へ接続を即時追加して保存し、ファストトラベルや最初から開いた短路で代用しないでください。"
+    }
+  },
+  "UX-37": {
+    "params": "safe practice · contextual prompt · repetition · application · mastery check · skip support",
+    "impl": "Teach one action at a time through a safe prompt, immediate practice, and a later situation that reuses it with meaningful context. Observe successful use rather than assuming a displayed instruction was learned, and support returning or experienced players without removing essential knowledge.",
+    "prompt": {
+      "zh": "設計跳躍新手引導：先在無跌落風險位置顯示 1 次按鍵提示，讓玩家完成 3 次短跳；30 秒內安排 1 個 1.5 m 缺口作應用，失敗 2 次才重現提示，熟手可略過文字但不能略過必要能力授予。",
+      "en": "Design jump onboarding with 1 control prompt in a no-fall area, 3 safe practice jumps, and a 1.5 m gap applying the action within 30 seconds; repeat the prompt only after 2 failures, and let experienced players skip text but not required ability grants.",
+      "ja": "ジャンプ導入を設計し、落下しない場所で操作表示を1回出し、安全な短いジャンプを3回練習させ、30秒以内に幅1.5mの隙間で応用させてください。2回失敗した時だけ再表示し、経験者は文章を省略できても必要能力の付与は省かないでください。"
+    }
+  },
+  "UX-38": {
+    "params": "checkpoint trigger · respawn location · restored state · autosave · retry distance · quit behavior",
+    "impl": "Define checkpoint activation, respawn position, restored world and inventory state, and persistent save writes as separate rules. Test death, manual load, and quit-restart independently, including unsafe autosave prevention and retry distance.",
+    "prompt": {
+      "zh": "設定 3 個檢查點，每段重試路程少於 45 秒；死亡後在最近旗點重生並保留已撿道具，但敵人重置。完成遭遇才自動存檔，戰鬥中不寫檔，並分別測試死亡、讀檔及退出重開 3 種恢復結果。",
+      "en": "Configure 3 checkpoints with under 45 seconds of replay between them; on death respawn at the latest flag, retain collected items, and reset enemies. Autosave only after encounters, never mid-combat, and test death, load, and quit-restart as 3 distinct recovery paths.",
+      "ja": "3つのチェックポイントを設定し、再試行区間を45秒未満にしてください。死亡時は最新の旗で復活し、取得物は保持して敵はリセットします。オートセーブは戦闘終了後のみ行い、死亡、ロード、終了後再開の3経路を個別にテストしてください。"
+    }
+  }
+}

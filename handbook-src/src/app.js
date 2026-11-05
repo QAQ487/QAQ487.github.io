@@ -41,33 +41,25 @@ step(dt){if(!this.playing||this.static)return;this.t+=dt/this.dur;if(this.t>=1)t
 class SPlayer{constructor(e,fig){this.e=e;this.svg=fig.querySelector('svg');this.dur=e.dur||0;this.static=!this.dur;this.t=0;this.playing=!this.static&&!globalPause;try{if(this.svg.pauseAnimations)this.svg.pauseAnimations()}catch(x){}this.wire(fig);this.render();this.ui()}
 render(){this.drawn=true;if(this.static)return;try{this.svg.setCurrentTime(this.t*this.dur)}catch(err){console.error('svg '+this.e.id+': '+err.message);this.err=true;this.playing=false}}}
 ['wire','ui','step'].forEach(k=>SPlayer.prototype[k]=Player.prototype[k]);
-function figHtml(e){if(e.layer==='p'&&!DEMOS[e.id]){const st=!e.dur;return `<figure class="visual svgfig">${e.svg}${st?'<figcaption class="ctl"><span class="stl"></span></figcaption>':'<figcaption class="ctl"><button class="pp"></button><button class="rp"></button><input type="range" min="0" max="1" step="0.001" value="0" aria-label="time"></figcaption>'}<p class="cap"></p></figure>`}
-const st=DEMOS[e.id]&&DEMOS[e.id].s;return `<figure class="visual"><canvas width="480" height="270"></canvas>${st?'<figcaption class="ctl"><span class="stl"></span></figcaption>':'<figcaption class="ctl"><button class="pp"></button><button class="rp"></button><input type="range" min="0" max="1" step="0.001" value="0" aria-label="time"></figcaption>'}${e.layer==='p'?'<p class="cap"></p>':''}</figure>`}
+function figHtml(e){/* SVG fallback only when no canvas demo is registered for this id */
+if(e.svg&&!DEMOS[e.id]){const st=!e.dur;return `<figure class="visual svgfig">${e.svg}${st?'<figcaption class="ctl"><span class="stl"></span></figcaption>':'<figcaption class="ctl"><button class="pp"></button><button class="rp"></button><input type="range" min="0" max="1" step="0.001" value="0" aria-label="time"></figcaption>'}<p class="cap"></p></figure>`}
+const st=DEMOS[e.id]&&DEMOS[e.id].s;const hasCap=!!(e.zh&&(e.zh.caph||e.zh.cap));return `<figure class="visual"><canvas width="480" height="270"></canvas>${st?'<figcaption class="ctl"><span class="stl"></span></figcaption>':'<figcaption class="ctl"><button class="pp"></button><button class="rp"></button><input type="range" min="0" max="1" step="0.001" value="0" aria-label="time"></figcaption>'}${hasCap?'<p class="cap"></p>':''}</figure>`}
 function card(e){const a=document.createElement('article');a.id=e.id;a.tabIndex=-1;a.dataset.grp=e.grp;a.innerHTML=`<header class="hd"><span class="eid">${e.id}</span><span class="badge t-${e.type}"></span><span class="subn"></span><span class="hit" hidden></span><a class="entry-link" href="#${e.id}" title="link">#</a></header><button class="row" type="button" aria-expanded="false"><span class="rid">${e.id}</span><span class="rnm"></span><span class="rstd"></span><span class="rpv"></span><span class="rtg"></span><span class="hit" hidden></span></button><h2 class="nm"></h2><div class="std"></div><div class="tags"></div><div class="banner"></div><p class="recog"><b class="rl"></b> <span class="rt"></span></p>${figHtml(e)}<div class="body"></div>`;return a}
 function relLinks(list){return list.map(r=>{let k=r.split(' ')[0];k=resolveId(k)||k;return byId[k]?`<a href="#${k}">${k} ${esc(byId[k][lang].name)}</a>`:`<span class="ext">${esc(r)}</span>`}).join(' · ')}
 function extras(e){const u=UI[lang];let h='';if(e.ex)h+=`<dt>${u.ex}</dt><dd class="ex">${esc(e.ex[lang])}</dd>`;if(e.see&&e.see.length)h+=`<dt>${u.see}</dt><dd>${relLinks(e.see)}</dd>`;return h}
-/* "not to be confused with" fields become an amber callout */
-const isConf=k=>/混淆|誤解|confus|misconcep|混同/i.test(k);
-const isUse=k=>/^(用途|Purpose|Uses?|目的)$/i.test(k),isSrc=k=>/來源|參考|核對|Source|References|出典|参考|確認用資料/i.test(k);
 const det=(name,inner,cls)=>`<details class="sec${cls?' '+cls:''}"><summary>${name}</summary>${inner}</details>`;
 const callout=(k,v)=>`<div class="callout"><div class="ct">${UI[lang].warn} ${k}</div><div class="cb">${v}</div></div>`;
 const chips=p=>String(p||'').split(/\s+·\s+|;\s+/).filter(Boolean).map(x=>`<span class="param-chip">${esc(x)}</span>`).join('');
-function bodyP(e){const L=e[lang];const rf=recogField(e);const fs=L.fields.filter(f=>f!==rf);let h=rf&&L.intro?`<p class="pintro">${linkify(L.intro)}</p>`:'';
-fs.filter(([k])=>isConf(k)).forEach(([k,v])=>h+=callout(esc(k),linkify(v)));
-let rows='';fs.filter(([k])=>isUse(k)).concat(fs.filter(([k])=>!isConf(k)&&!isUse(k)&&!isSrc(k))).forEach(([k,v])=>rows+=`<dt>${esc(k)}</dt><dd>${linkify(v)}</dd>`);rows+=extras(e);if(rows)h+=`<dl class="pf">${rows}</dl>`;
-fs.filter(([k])=>isSrc(k)).forEach(([k,v])=>h+=det(esc(k),`<div class="srcv">${linkify(v)}</div>`,'refs'));return h}
-function body(e){if(e.layer==='p')return bodyP(e);const u=UI[lang],L=e[lang];const lt=s=>linkText(esc(s));const refs=(e.refs||[]).map(r=>`<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)}</a></li>`).join('');const rel=relLinks(e.related||[]);
+/* single body path for every entry: notThis callout, use/related, then params / prompt / impl / refs */
+function body(e){const u=UI[lang],L=e[lang];const lt=s=>linkText(esc(s));const refs=(e.refs||[]).map(r=>`<li><a href="${esc(r.u)}" target="_blank" rel="noopener">${esc(r.t)}</a></li>`).join('');const rel=relLinks(e.related||[]);
 return `${callout(u.notThis,lt(L.notThis))}<dl><dt>${u.use}</dt><dd>${lt(L.use)}</dd>${rel?`<dt>${u.related}</dt><dd>${rel}</dd>`:''}${extras(e)}</dl>`+
 det(u.params,`<div class="params">${chips(e.params)}</div>`,'params')+
 det(u.prompt,`<div class="prompt"><div class="ph"><button class="cp" type="button">${u.copy}</button></div><p>${esc(L.prompt)}</p></div>`,'pr')+
 det(u.impl,`<p class="mono">${lt(e.impl)}</p>`,'impl')+
 det(u.refs,`${e.nosrc?`<em class="nosrc">${u.nosrc}</em>`:''}<ul>${refs}</ul>`,'refs')}
-const subKey=e=>e.layer==='p'?e.subL.zh:e.sub;
-function subName(e){if(e.layer==='p')return e.subL[lang];return SUBS[e.sub]?SUBS[e.sub][lang]:e.sub}
-const PVRE=/畫面所見|可見現象|辨認現象|^現象|What you see|Visible|Recognition|見た目|見える現象|見られる現象|見分けるポイント/i,TERMRE=/名稱性質|Terminology|名称の区分/;
-function recogField(e){return e[lang].fields.find(([k])=>PVRE.test(k))||null}
-/* one-line recognition: label is unified (畫面所見 / What you see / 見た目の特徴) unless the source field also covers purpose */
-function recog(e){const u=UI[lang],L=e[lang];if(e.layer!=='p')return [u.observe,linkText(esc(L.observe))];const f=recogField(e);if(f)return [/用途|purpose|目的/i.test(f[0])?f[0]:u.observe,linkify(f[1])];return [u.observe,L.intro?linkify(L.intro):'']}
+const subKey=e=>e.sub;
+function subName(e){return SUBS[e.sub]?SUBS[e.sub][lang]:e.sub}
+function recog(e){const u=UI[lang],L=e[lang];return [u.observe,linkText(esc(L.observe))]}
 function preview(e){return strip(recog(e)[1]).replace(/\s+/g,' ').trim()}
 const tagOk=e=>!tagSel.size||e.tags.some(t=>tagSel.has(t));
 const el={};const sect={};
@@ -101,9 +93,9 @@ function openModal(a){if(view!=='gallery'||!a||modalArt===a)return;if(modalArt)c
 /* hash / link navigation: resolve old ID -> canonical, show it even if filters hide it, expand (list view), scroll, focus */
 function goTo(raw){closeModal();const id=resolveId(raw);const t=id&&el[id];if(!t)return false;if(id!==raw){history.replaceState(null,'','#'+id);toast(UI[lang].redir(raw,id))}if(t.hidden)clearFilters();if(view==='list')openRow(t,true);t.scrollIntoView();t.focus({preventScroll:true});t.classList.add('flash');setTimeout(()=>t.classList.remove('flash'),1200);return true}
 function openRow(a,on){a.classList.toggle('open',on);a.querySelector('.row').setAttribute('aria-expanded',on)}
-function init(){const cards=$('#cards');let cur='';E.forEach(e=>{const vt={};['zh','en','ja'].forEach(l=>{const L=e[l];vt[l]=(e.layer==='p'?[L.name,strip(L.intro),...L.fields.map(f=>f[0]+' '+strip(f[1])),L.caph,L.cap]:[L.name,L.observe,L.use,L.notThis,L.prompt,e.params]).concat(e.ex?[e.ex[l]]:[]).join(' ').toLowerCase()});e._v=vt;e._al=e.aliases.join(' ').toLowerCase();e._std=String(e.std).toLowerCase();e._impl=String(e.impl||'').toLowerCase();e._old=(e.olds||[]).join(' ').toLowerCase();e._s=[e.id.toLowerCase(),e._old,e._std,e._al,e._impl,vt.zh,vt.en,vt.ja].join(' ');
+function init(){const cards=$('#cards');let cur='';E.forEach(e=>{const vt={};['zh','en','ja'].forEach(l=>{const L=e[l];vt[l]=[L.name,L.observe,L.use,L.notThis,L.prompt,e.params,L.caph||'',L.cap||''].concat(e.ex?[e.ex[l]]:[]).join(' ').toLowerCase()});e._v=vt;e._al=e.aliases.join(' ').toLowerCase();e._std=String(e.std).toLowerCase();e._impl=String(e.impl||'').toLowerCase();e._old=(e.olds||[]).join(' ').toLowerCase();e._s=[e.id.toLowerCase(),e._old,e._std,e._al,e._impl,vt.zh,vt.en,vt.ja].join(' ');
 if(e.grp!==cur){cur=e.grp;const h=document.createElement('h2');h.className='sect';h.id='sec-'+cur;h.dataset.g=cur;cards.appendChild(h);sect[cur]=h}const a=card(e);el[e.id]=a;cards.appendChild(a)});
-E.forEach(e=>{const a=el[e.id];const fig=a.querySelector('figure');const p=e.layer==='p'&&!DEMOS[e.id]?new SPlayer(e,fig):new Player(e,fig);players.push(p);a._p=p;a.querySelector('.row').onclick=()=>openRow(a,!a.classList.contains('open'))});
+E.forEach(e=>{const a=el[e.id];const fig=a.querySelector('figure');const p=e.svg&&!DEMOS[e.id]?new SPlayer(e,fig):new Player(e,fig);players.push(p);a._p=p;a.querySelector('.row').onclick=()=>openRow(a,!a.classList.contains('open'))});
 /* only on-screen demos are drawn/advanced; first canvas draw is deferred until the card scrolls into view */
 const io=new IntersectionObserver(es=>es.forEach(x=>{const p=x.target.closest('article')._p;if(x.isIntersecting){visible.add(p);if(!p.drawn)p.render()}else if(modalArt!==x.target.closest('article'))visible.delete(p)}),{rootMargin:'100px'});E.forEach(e=>io.observe(el[e.id].querySelector('figure')));
 addEventListener('beforeprint',()=>players.forEach(p=>{if(!p.drawn)p.render()}));

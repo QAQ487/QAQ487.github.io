@@ -21,7 +21,6 @@ dict(id='MATX',zh='材質與表面',en='Materials & surfaces',ja='マテリア�
 dict(id='A11Y',zh='可讀性與無障礙',en='Readability & accessibility',ja='可読性とアクセシビリティ'),
 dict(id='DIAG',zh='畫面問題診斷',en='Rendering diagnostics',ja='描画トラブル診断'),
 dict(id='PHY',zh='物理模擬',en='Physics simulation',ja='物理シミュレーション')]
-for c in CATS: c['layer']='e'
 SUBS={'視覺模式與舒適度':('Visual modes & comfort','表示モードと快適性'),'瞄準與操控':('Aiming & handling','照準と操作感'),'節奏同步':('Rhythm sync','リズム同期'),'路徑引導':('Path guidance','経路誘導'),'文字可讀性':('Text legibility','文字の可読性'),'透明與合成':('Transparency & compositing','透明と合成'),'色彩空間與動態範圍':('Colour space & dynamic range','色空間とダイナミックレンジ'),'貼圖取樣':('Texture sampling','テクスチャサンプリング'),'深度精度':('Depth precision','深度の精度'),'法線與高光':('Normals & specular','法線とスペキュラー'),'反射對位':('Reflection alignment','反射の位置合わせ'),
 '動畫原則':('Animation principles','アニメーションの原則'),'角色狀態':('Character states','キャラクターの状態'),'動畫系統技術':('Animation systems','アニメーションシステム'),
 '跟隨與構圖規則':('Follow & framing rules','追従と構図のルール'),'投影與鏡頭':('Projection & lens','投影とレンズ'),'運鏡與剪接':('Camera moves & cuts','カメラワークとカット'),
@@ -43,10 +42,12 @@ import merge as MG
 sys.path.insert(0,'tools')
 from check_handbook import check,report
 ORIG=json.load(open('data/orig_entries.json'))
+from prin_unify import load_enrich,unify_entry
+PRIN_ENRICH=load_enrich()
 OCATS=[]
 for cid in ['CAM','REN','ACT','FX','UX']:
   e0=next(e for e in ORIG['entries'] if e['cat']==cid)
-  OCATS.append(dict(id=cid,layer='p',**{L:e0['catname'][L] for L in ('zh','en','ja')}))
+  OCATS.append(dict(id=cid,**{L:e0['catname'][L] for L in ('zh','en','ja')}))
 CATS=OCATS+CATS
 order={c['id']:i for i,c in enumerate(CATS)}
 ents=sorted(ENTRIES,key=lambda e:(order[e['cat']],e['id']))
@@ -54,6 +55,11 @@ oids=[e['id'] for e in ORIG['entries']]
 ids=set(e['id'] for e in ents)|set(oids);errs=[]
 assert not (set(e['id'] for e in ents)&set(oids))
 ids|=set(MG.REDIRECTS)
+# register original-chapter subcategory names into SUBS so every entry uses the same sub key
+for e in ORIG['entries']:
+  zh=e['sub']['zh']
+  if zh and zh not in SUBS:
+    SUBS[zh]=(e['sub']['en'],e['sub']['ja'])
 for e in ents:
   if e['sub'] not in SUBS: errs.append(('sub',e['id'],e['sub']))
   for r in e['refs']:
@@ -66,14 +72,13 @@ see={}
 for a,b in SEEALSO: see.setdefault(a,[]).append(b);see.setdefault(b,[]).append(a)
 canon={}
 for a,b in POINTERS.items(): canon.setdefault(b,[]).append(a)
-# effect entries cross-reference the former "original handbook" entries by ID; the handbook is now unified, so drop the qualifier and keep the bare ID
-RENAME={'zh':[(r'原手冊的?\s*(?=[A-Z]{2,4}-\d)','')],'en':[(r"(?:[Tt]he )?original handbook(?:'s)?\s+(?=[A-Z]{2,4}-\d)",'')],'ja':[(r'元のハンドブック(?:の)?\s*(?=[A-Z]{2,4}-\d)','')]}
+# drop leftover "original handbook / principles layer / effects layer" wording from effect-entry text
+RENAME={'zh':[(r'原手冊的?\s*(?=[A-Z]{2,4}-\d)',''),(r'原則層|效果層|原理層','')],'en':[(r"(?:[Tt]he )?original handbook(?:'s)?\s+(?=[A-Z]{2,4}-\d)",''),(r'Principles layer|Effects layer','')],'ja':[(r'元のハンドブック(?:の)?\s*(?=[A-Z]{2,4}-\d)',''),(r'原理レイヤー|効果レイヤー','')]}
+def ren_str(s,L='en'):
+  for a,b in RENAME[L]: s=_re.sub(a,b,s)
+  return s
 def ren(d,L):
-  out={}
-  for k,v in d.items():
-    for a,b in RENAME[L]: v=_re.sub(a,b,v)
-    out[k]=v
-  return out
+  return {k:ren_str(v,L) if isinstance(v,str) else v for k,v in d.items()}
 varsOf={}
 for a,b in MG.VARIANTS.items(): varsOf.setdefault(b,[]).append(a)
 oldsOf={}
@@ -94,7 +99,6 @@ def meta(d,id,cat):
   if id in MG.NOTES: d['note']=MG.NOTES[id]
   if id in EXAMPLES: d['ex']=EXAMPLES[id]
   return d
-SRCK=_re.compile(r'來源|參考|核對|Source|References|出典|参考|確認用資料')
 OBY={e['id']:e for e in ORIG['entries']}
 # unified display taxonomy: entry IDs and source cats stay unchanged; `grp` drives navigation only.
 # members: source cat id, or (source cat id, original zh subcategory) to split the broad original chapters by topic
@@ -123,38 +127,48 @@ def grp_of(cat,subzh=None):
   return GMAP.get((cat,subzh)) or GMAP[cat]
 gorder={g['id']:i for i,g in enumerate(GROUPS)}
 out=[]
+missing_enrich=[]
 for e in ORIG['entries']:
   if e['id'] in MG.REDIRECTS: continue
-  d=dict(id=e['id'],cat=e['cat'],layer='p',type=e['type'],std=e['std'],aliases=e['aliases'],svg=e['svg'],dur=e['dur'],refs=e['refs'],
-    subL=e['sub'],**{L:dict(name=e[L]['name'],intro=e[L]['intro'],fields=e[L]['fields'],caph=e[L]['caph'],cap=e[L]['cap']) for L in ('zh','en','ja')})
-  if e['id'] in MG.FIELDS_ADD:
-    for L,f in MG.FIELDS_ADD[e['id']].items():
-      fl=[list(x) for x in d[L]['fields']];i=next((j for j,x in enumerate(fl) if SRCK.search(x[0])),len(fl));fl.insert(i,list(f));d[L]['fields']=fl
+  if e['id'] not in PRIN_ENRICH:
+    missing_enrich.append(e['id']);continue
+  d=unify_entry(e,PRIN_ENRICH,MG.FIELDS_ADD.get(e['id']))
   if e['id'] in MG.TAKE_SVG:
     s0=OBY[MG.TAKE_SVG[e['id']]];d['svg']=s0['svg'].replace(s0['id'],e['id']);d['dur']=s0['dur']
     for L in ('zh','en','ja'): d[L]['caph'],d[L]['cap']=s0[L]['caph'],s0[L]['cap']
-  d['grp']=grp_of(e['cat'],e['sub']['zh']);out.append(meta(d,e['id'],e['cat']))
+  subzh=d.pop('subL')['zh']
+  d['grp']=grp_of(e['cat'],subzh)
+  d['related']=list(d.get('related') or [])+[r for r in MG.RELATED_ADD.get(e['id'],[]) if r not in (d.get('related') or [])]
+  out.append(meta(d,e['id'],e['cat']))
+if missing_enrich: errs.append(('missing-enrich',len(missing_enrich),missing_enrich[:10]))
 for e in ents:
-  d=dict(id=e['id'],cat=e['cat'],layer='e',sub=e['sub'],std=e['en'],aliases=e['aliases'],type=e['type'],zh=ren(e['zh'],'zh'),en=ren(e['en_'],'en'),ja=ren(e['ja'],'ja'),params=e['params'],impl=e['impl'],related=list(e['related'])+[r for r in MG.RELATED_ADD.get(e['id'],[]) if r not in e['related']],refs=[dict(t=REFS[r][0],u=REFS[r][1]) for r in e['refs'] if r in REFS],nosrc=e['nosrc'],grp=grp_of(e['cat']))
+  d=dict(id=e['id'],cat=e['cat'],sub=e['sub'],std=e['en'],aliases=e['aliases'],type=e['type'],zh=ren(e['zh'],'zh'),en=ren(e['en_'],'en'),ja=ren(e['ja'],'ja'),params=ren_str(e['params'],'en'),impl=ren_str(e['impl'],'en'),related=list(e['related'])+[r for r in MG.RELATED_ADD.get(e['id'],[]) if r not in e['related']],refs=[dict(t=REFS[r][0],u=REFS[r][1]) for r in e['refs'] if r in REFS],nosrc=e['nosrc'],grp=grp_of(e['cat']))
   out.append(meta(d,e['id'],e['cat']))
 out.sort(key=lambda d:(order[d['cat']],d['id']))
-subk=lambda d:d['subL']['zh'] if d['layer']=='p' else d['sub']
+subk=lambda d:d['sub']
 sorder={}
 for d in out: sorder.setdefault((d['grp'],subk(d)),len(sorder))
 out.sort(key=lambda d:(gorder[d['grp']],sorder[(d['grp'],subk(d))]))  # stable: keeps previous order inside a subcategory
 for L in ('zh','en','ja'):
-  left=[d['id'] for d in out if d['layer']=='e' and _re.search('原手冊|original handbook|元のハンドブック|原理層|效果層|Principles layer|Effects layer|原理レイヤー|効果レイヤー',json.dumps(d[L],ensure_ascii=False))]
+  left=[d['id'] for d in out if _re.search('原手冊|original handbook|元のハンドブック|原理層|效果層|Principles layer|Effects layer|原理レイヤー|効果レイヤー',json.dumps(d[L],ensure_ascii=False)+' '+str(d.get('impl',''))+' '+str(d.get('params','')))]
   if left: errs.append(('layer-wording',L,left))
+# every entry must expose the unified body fields
+for d in out:
+  for L in ('zh','en','ja'):
+    for k in ('observe','notThis','use','prompt'):
+      if not str(d[L].get(k) or '').strip(): errs.append(('empty-field',d['id'],L+'.'+k))
+  if not str(d.get('params') or '').strip(): errs.append(('empty-field',d['id'],'params'))
+  if not str(d.get('impl') or '').strip(): errs.append(('empty-field',d['id'],'impl'))
 PRIN_FILES=['demos_prin.js','demos_prin_cam.js','demos_prin_act.js','demos_prin_ren.js','demos_prin_fx.js','demos_prin_ux.js']
 PRIN_IDS=set()
 for f in PRIN_FILES:
   if os.path.exists('src/'+f): PRIN_IDS|=set(_re.findall(r"DEMOS\['([A-Z]+-\d+)'\]=",open('src/'+f).read()))
 for d in out:
-  if d['id'] in PRIN_IDS and d.get('layer')=='p': d['svg']=''  # canvas remake replaces the SVG
-print('PRIN canvas',len(PRIN_IDS))
+  if d['id'] in PRIN_IDS: d['svg']=''  # canvas remake replaces the SVG
+print('PRIN canvas',len(PRIN_IDS),'unified former-p',sum(1 for d in out if d['id'] in PRIN_ENRICH))
 data=dict(redirects=MG.REDIRECTS,groups=GROUPS,cats=CATS,subs={k:dict(zh=k,en=v[0],ja=v[1]) for k,v in SUBS.items()},tags=TAGLAB,entries=out,intro=ORIG['intro'],notes=ORIG['extras'])
 cerrs,cwarns,cstats=check(data);report(cerrs,cwarns,cstats)
-if cerrs: print('ERRS',errs+cerrs);sys.exit('handbook check failed')
+if cerrs or errs: print('ERRS',errs+cerrs);sys.exit('handbook check failed')
 js=''.join(open('src/'+f).read()+'\n' for f in ['core.js']+[f'demos_{m}.js' for m in mods if os.path.exists(f'src/demos_{m}.js')]+[f for f in PRIN_FILES if os.path.exists('src/'+f)])
 app=open('src/app.js').read()
 css=open('src/style.css').read()
