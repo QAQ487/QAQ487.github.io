@@ -10,7 +10,27 @@ ALIAS_ADD={'FX-13':['Anticipation / Wind-up','Charge-up VFX','Attack wind-up VFX
            'FX-36':['Captions (non-speech sounds)','Sound visualization','Directional sound indicator'],
            'FX-32':['Controller vibration','Tactile feedback','手把震動','コントローラー振動']}
 ALIAS_DROP={'DIAG-06':['Alpha-To-Coverage'],'MATX-01':['MatCap']}  # case-only duplicates of std
-RELATED_ADD={'FB-07':['CAM-30']}
+RELATED_ADD={
+ 'FB-07':['CAM-30'],
+ # platform-feel family + new jump height
+ 'ACT-01':['ACT-02','ACT-04','ACT-06','ACT-39'],
+ 'ACT-02':['ACT-01','ACT-04','ACT-06','ACT-39'],
+ 'ACT-03':['ACT-39','ACT-01'],
+ 'ACT-04':['ACT-01','ACT-02','ACT-06','ACT-39'],
+ 'ACT-06':['ACT-01','ACT-02','ACT-04','ACT-39'],
+ # combat
+ 'ACT-22':['ACT-41','ACT-28'],
+ 'ACT-23':['ACT-42','ACT-41'],
+ 'ACT-28':['ACT-41','ACT-22'],
+ 'FB-10':['ACT-43'],
+ # pins / markers
+ 'UX-02':['ACT-40','UX-39'],
+ 'UX-04':['UI-08','NAV-14','UX-41'],
+ # attack direction / telegraph
+ 'NAV-04':['UI-09','ACT-43'],
+ 'NAV-05':['UI-08','UX-04'],
+ 'MATX-06':['REN-43'],
+}
 # merged content from UX-19 into FX-32 (inserted before the sources field)
 FIELDS_ADD={'FX-32':{
  'zh':('設定與替代','提供強度調整與完全關閉的選項；不是人人開著震動，亦不是所有裝置有馬達，所以關鍵資訊不能只靠震動，要同時有畫面或聲音提示。（舊條目 UX-19「手把震動／觸覺回饋」已併入本條。）'),

@@ -1,0 +1,23 @@
+# Expansion-batch refs (curl-checked 2026-11-05 where possible)
+EXTRA={
+'ex_gmtk_toolkit':('Game Maker\'s Toolkit — Platformer Toolkit','https://gmtk.itch.io/platformer-toolkit'),
+'ex_gmtk_behind':('GMTK — Behind The Code (Platformer Toolkit)','https://gmtk.itch.io/platformer-toolkit/devlog/395523/behind-the-code'),
+'ex_celeste_forgive':('Maddy Thorson — Celeste & Forgiveness','https://www.maddymakesgames.com/articles/celeste_and_forgiveness/index.html'),
+'ex_botw_wiki':('Wikipedia — The Legend of Zelda: Breath of the Wild','https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Breath_of_the_Wild'),
+'ex_botw_guide_jp':('Nintendo — ブレス オブ ザ ワイルド：冒険の手引き（耐力／攀爬）','https://www.nintendo.com/jp/zelda/botw/guide/index.html'),
+'ex_botw_explorers':('Nintendo — Breath of the Wild Explorer\'s Guide (PDF)','https://media.nintendo.com/zelda/breath-of-the-wild/assets/ExplorersGuide.pdf'),
+'ex_elden_poise':('Fextralife — Elden Ring Poise','https://eldenring.wiki.fextralife.com/Poise'),
+'ex_elden_wiki':('Wikipedia — Elden Ring','https://en.wikipedia.org/wiki/Elden_Ring'),
+'ex_gow_a11y':('PlayStation — God of War Ragnarök Accessibility (Enemy Off-screen indicator)','https://www.playstation.com/en-us/games/god-of-war-ragnarok/accessibility/'),
+'ex_totk_wiki':('Wikipedia — The Legend of Zelda: Tears of the Kingdom','https://en.wikipedia.org/wiki/The_Legend_of_Zelda:_Tears_of_the_Kingdom'),
+'ex_w_stealth':('Wikipedia — Stealth game','https://en.wikipedia.org/wiki/Stealth_game'),
+'ex_w_lod':('Wikipedia — Level of detail (computer graphics)','https://en.wikipedia.org/wiki/Level_of_detail_(computer_graphics)'),
+'ex_w_voice':('Wikipedia — Voice allocation / polyphony (voice stealing context)','https://en.wikipedia.org/wiki/Polyphony_(instrument)#Electronic_instruments'),
+'ex_w_hold':('Wikipedia — Sticky keys / modifier key hold patterns (accessibility context)','https://en.wikipedia.org/wiki/Sticky_keys'),
+'ex_gag_hold':('Game Accessibility Guidelines — Provide a choice between toggle and hold','https://gameaccessibilityguidelines.com/provide-a-choice-between-toggle-and-hold/'),
+'ex_xag_controls':('Xbox Accessibility Guideline 106 — Input','https://learn.microsoft.com/en-us/gaming/accessibility/xbox-accessibility-guidelines/106'),
+'ex_w_ping':('Wikipedia — Ping (multiplayer communication)','https://en.wikipedia.org/wiki/Ping_(video_gaming)'),
+'ex_w_radial':('Wikipedia — Pie menu','https://en.wikipedia.org/wiki/Pie_menu'),
+'ex_w_durability':('Wikipedia — Item durability','https://en.wikipedia.org/wiki/Durability'),
+'ex_sf_guard':('Street Fighter — Frame data / guard concepts (example recognition)','https://www.streetfighter.com/6/en-us/character/ryu/frame'),
+}

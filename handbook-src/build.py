@@ -2,7 +2,7 @@ import json,sys,os,importlib
 sys.path.insert(0,'data')
 from common import ENTRIES
 from refs import REFS
-mods=[m for m in ['fb','trn','env','vfx','pix','ui','nav','lgt','cin','pp','ani','cam','npr','mat','a11y','diag','phy','batch2'] if os.path.exists(f'data/{m}.py')]
+mods=[m for m in ['fb','trn','env','vfx','pix','ui','nav','lgt','cin','pp','ani','cam','npr','mat','a11y','diag','phy','batch2','expand'] if os.path.exists(f'data/{m}.py')]
 for m in mods: importlib.import_module(m)
 CATS=[dict(id='FB',zh='戰鬥回饋與手感',en='Combat feedback & game feel',ja='戦闘フィードバックと手触り'),
 dict(id='PIX',zh='2D／像素美術技巧',en='2D & pixel-art techniques',ja='2D・ドット絵技法'),
@@ -35,7 +35,12 @@ SUBS={'視覺模式與舒適度':('Visual modes & comfort','表示モードと�
 '時間與天空':('Time & sky','時間と空'),'天氣':('Weather','天候'),'地表與植被':('Ground & foliage','地面と植生'),'水':('Water','水'),'世界狀態':('World state','ワールドの状態'),
 '載體與技術':('Carriers & techniques','表現手段と技術'),'戰鬥特效':('Combat VFX','戦闘エフェクト'),'元素':('Elements','属性エフェクト'),'狀態與增益':('States & buffs','状態・バフ'),'破壞':('Destruction','破壊'),
 '顯示與縮放':('Display & scaling','表示とスケーリング'),'色彩':('Colour','色彩'),'線條與形體':('Line & form','線と形'),'動畫':('Animation','アニメーション'),'場景構成':('Scene construction','シーン構成'),'光照':('Lighting','ライティング'),
-'布料與繩索':('Cloth & ropes','布とロープ'),'軟體與變形':('Soft bodies & deformation','ソフトボディと変形')}
+'布料與繩索':('Cloth & ropes','布とロープ'),'軟體與變形':('Soft bodies & deformation','ソフトボディと変形'),
+'移動與容錯':('Movement & forgiveness','移動と操作の許容'),'戰鬥節奏':('Combat timing','戦闘のタイミング'),
+'資源與狀態':('Resources & status','リソースと状態'),'多人提示':('Multiplayer cues','マルチプレイの合図'),
+'潛行與感知':('Stealth & awareness','ステルスと知覚'),'細節層級':('Level of detail','細部レベル'),
+'系統互動':('Systemic interactions','システム連動'),'輸入方式':('Input modes','入力方式'),
+'Audio':('Audio','オーディオ')}
 import re as _re
 from meta2 import POINTERS,SEEALSO,TAGLAB,tags,EXAMPLES
 import merge as MG
@@ -104,20 +109,20 @@ OBY={e['id']:e for e in ORIG['entries']}
 # members: source cat id, or (source cat id, original zh subcategory) to split the broad original chapters by topic
 GROUPS=[
 dict(id='CAM',zh='鏡頭與構圖',en='Camera & composition',ja='カメラと構図',m=['CAM','CAMX']),
-dict(id='REN',zh='畫質與渲染問題診斷',en='Image quality & render diagnostics',ja='画質と描画トラブル診断',m=[('REN','清晰度、閃爍與殘影'),'DIAG']),
+dict(id='REN',zh='畫質與渲染問題診斷',en='Image quality & render diagnostics',ja='画質と描画トラブル診断',m=[('REN','清晰度、閃爍與殘影'),'DIAG',('REN','細節層級')]),
 dict(id='LGT',zh='光照與陰影',en='Lighting & shadows',ja='ライティングと影',m=['LGT',('REN','光照、遮蔽、倒影與空氣')]),
 dict(id='MAT',zh='材質與表面',en='Materials & surfaces',ja='マテリアルと表面',m=['MATX',('REN','材質的顏色、表面與透光')]),
 dict(id='PP',zh='後處理與畫面濾鏡',en='Post-processing & screen filters',ja='ポストプロセスと画面フィルター',m=['PP',('REN','相機、色彩與後製')]),
 dict(id='NPR',zh='風格化渲染',en='Stylized rendering (NPR)',ja='ノンフォトリアルレンダリング（NPR）',m=['NPR',('REN','整體風格與邊線')]),
 dict(id='PIX',zh='2D／像素美術技巧',en='2D & pixel-art techniques',ja='2D・ドット絵技法',m=['PIX']),
-dict(id='ANI',zh='動畫、移動與物理',en='Animation, movement & physics',ja='アニメーション・移動・物理',m=['ANI',('ACT','動畫原則與動作可讀性'),('ACT','骨骼動畫、移動與姿勢組合'),('ACT','移動、跳躍與容錯'),'PHY']),
-dict(id='FB',zh='戰鬥回饋與手感',en='Combat feedback & game feel',ja='戦闘フィードバックと手触り',m=['FB',('ACT','戰鬥時間、命中反應與防護')]),
+dict(id='ANI',zh='動畫、移動與物理',en='Animation, movement & physics',ja='アニメーション・移動・物理',m=['ANI',('ACT','動畫原則與動作可讀性'),('ACT','骨骼動畫、移動與姿勢組合'),('ACT','移動、跳躍與容錯'),('ACT','移動與容錯'),'PHY']),
+dict(id='FB',zh='戰鬥回饋與手感',en='Combat feedback & game feel',ja='戦闘フィードバックと手触り',m=['FB',('ACT','戰鬥時間、命中反應與防護'),('ACT','戰鬥節奏')]),
 dict(id='VFX',zh='特效與粒子',en='VFX & particles',ja='エフェクトとパーティクル',m=['VFX',('FX','Realtime VFX')]),
 dict(id='SND',zh='音效與觸覺',en='Audio & haptics',ja='音響と触覚',m=[('FX','Audio'),('FX','Haptics、Accessibility 與跨感官資訊')]),
 dict(id='ENV',zh='環境、天氣與時間',en='Environment, weather & time',ja='環境・天候・時間',m=['ENV']),
 dict(id='TRN',zh='轉場',en='Transitions',ja='画面転換',m=['TRN']),
-dict(id='UI',zh='介面與 HUD',en='UI & HUD',ja='UI と HUD',m=['UI',('UX','介面在哪裡'),('UX','動態與操作回饋'),('UX','畫面資訊與選單')]),
-dict(id='NAV',zh='視覺引導與關卡導航',en='Visual guidance & wayfinding',ja='視覚誘導とレベル内の道案内',m=['NAV',('UX','空間辨認與帶路'),('UX','通行規則、重返與學習')]),
+dict(id='UI',zh='介面與 HUD',en='UI & HUD',ja='UI と HUD',m=['UI',('UX','介面在哪裡'),('UX','動態與操作回饋'),('UX','畫面資訊與選單'),('UX','資源與狀態'),('UX','多人提示')]),
+dict(id='NAV',zh='視覺引導與關卡導航',en='Visual guidance & wayfinding',ja='視覚誘導とレベル内の道案内',m=['NAV',('UX','空間辨認與帶路'),('UX','通行規則、重返與學習'),('UX','潛行與感知')]),
 dict(id='A11Y',zh='可讀性與無障礙',en='Readability & accessibility',ja='可読性とアクセシビリティ',m=['A11Y']),
 dict(id='CIN',zh='演出與敘事',en='Cinematics & narrative',ja='演出と物語表現',m=['CIN'])]
 GMAP={}
@@ -142,7 +147,7 @@ for e in ORIG['entries']:
   out.append(meta(d,e['id'],e['cat']))
 if missing_enrich: errs.append(('missing-enrich',len(missing_enrich),missing_enrich[:10]))
 for e in ents:
-  d=dict(id=e['id'],cat=e['cat'],sub=e['sub'],std=e['en'],aliases=e['aliases'],type=e['type'],zh=ren(e['zh'],'zh'),en=ren(e['en_'],'en'),ja=ren(e['ja'],'ja'),params=ren_str(e['params'],'en'),impl=ren_str(e['impl'],'en'),related=list(e['related'])+[r for r in MG.RELATED_ADD.get(e['id'],[]) if r not in e['related']],refs=[dict(t=REFS[r][0],u=REFS[r][1]) for r in e['refs'] if r in REFS],nosrc=e['nosrc'],grp=grp_of(e['cat']))
+  d=dict(id=e['id'],cat=e['cat'],sub=e['sub'],std=e['en'],aliases=e['aliases'],type=e['type'],zh=ren(e['zh'],'zh'),en=ren(e['en_'],'en'),ja=ren(e['ja'],'ja'),params=ren_str(e['params'],'en'),impl=ren_str(e['impl'],'en'),related=list(e['related'])+[r for r in MG.RELATED_ADD.get(e['id'],[]) if r not in e['related']],refs=[dict(t=REFS[r][0],u=REFS[r][1]) for r in e['refs'] if r in REFS],nosrc=e['nosrc'],grp=grp_of(e['cat'],e['sub']))
   out.append(meta(d,e['id'],e['cat']))
 out.sort(key=lambda d:(order[d['cat']],d['id']))
 subk=lambda d:d['sub']
