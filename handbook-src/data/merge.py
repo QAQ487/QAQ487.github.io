@@ -28,8 +28,21 @@ RELATED_ADD={
  'UX-04':['UI-08','NAV-14','UX-41'],
  # attack direction / telegraph
  'NAV-04':['UI-09','ACT-43'],
- 'NAV-05':['UI-08','UX-04'],
+ 'NAV-05':['UI-08','UX-04','UI-22'],
  'MATX-06':['REN-43'],
+ # UI/HUD expansion cross-links
+ 'UX-01':['UI-24','UI-25','UI-26'],
+ 'UX-05':['UI-03','UI-20','A11Y-07'],
+ 'UX-06':['UI-03','UI-21','UI-23','UX-08'],
+ 'UX-07':['UX-16','UI-23','UI-19'],
+ 'UX-08':['UX-06','UI-03'],
+ 'UX-11':['UI-19','UI-10'],
+ 'UX-16':['UX-07','UI-01','UI-23'],
+ 'UI-03':['UX-06','UX-08','UI-21'],
+ 'UI-04':['UI-12','UI-21','UI-22'],
+ 'UI-11':['UI-21','UI-22','UI-23'],
+ 'UI-12':['UI-04','UI-23','UI-22'],
+ 'A11Y-02':['UI-25','UI-26','UI-23'],
 }
 # merged content from UX-19 into FX-32 (inserted before the sources field)
 FIELDS_ADD={'FX-32':{

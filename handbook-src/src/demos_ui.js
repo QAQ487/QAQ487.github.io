@@ -29,25 +29,37 @@ for(const[e,a]of EV){const k=seg(s,e,e+.7);if(k>0&&k<1){c.globalAlpha=1-k;otxt(c
 if(i===1)bar(c,x-30,84,60,2,clamp(Math.max(seg(s,.5,1.3),0)*(s<2.1?1:0)+seg(s,2.1,2.9)),P.gold)});
 tl(c,t,EV.map(e=>e[0]/p.dur))}};
 
-/* UI-03 button states */
+/* UI-03 button + equip-slot states (focus / equipped / pressed / disabled) */
 function btn(c,x,y,w,h,st,txtS,pop){/* st: 0 normal 1 hover 2 pressed 3 disabled */const base=st===3?'#5e636e':P.blue;let dy=st===1?-1:st===2?2:0;const sc=1+pop*.08;c.save();c.translate(x+w/2,y+h/2+dy);c.scale(sc,sc);c.translate(-w/2,-h/2);if(st!==2)R(c,0,2,w,h,st===3?'#3a3f48':'#24365e');R(c,-1,-1,w+2,h+2,st===1?'#fff':P.ink);R(c,0,0,w,h,st===2?'#3a5fa0':st===1?'#6a96e0':base);R(c,1,1,w-2,1,'rgba(255,255,255,'+(st===3?.08:.3)+')');c.globalAlpha=st===3?.5:1;txt(c,txtS,w/2,h/2+.5,st===3?'#aab':'#fff',8);c.restore()}
-DEMOS['UI-03']={d:4,hi:true,f:(c,t,_w,_h,p)=>{G(c);bg(c);const s=t*p.dur;const A=[50,48,60,18],B=[134,48,60,18];
-const path=[[0,120,112],[.5,78,58],[1.9,78,58],[2.3,162,58],[3.5,162,58],[4,120,112]];let cx=120,cy=112;for(let i=0;i<path.length-1;i++){const[a0,x0,y0]=path[i],[a1,x1,y1]=path[i+1];if(s>=a0&&s<=a1){const k=ease((s-a0)/(a1-a0));cx=lerp(x0,x1,k);cy=lerp(y0,y1,k)}}
-const onA=cx>A[0]&&cx<A[0]+A[2]&&cy>A[1]-2&&cy<A[1]+A[3]+2,onB=cx>B[0]&&cx<B[0]+B[2]&&cy>B[1]-2&&cy<B[1]+B[3]+2;const pressA=onA&&s>1.0&&s<1.3,pressB=onB&&s>2.8&&s<3.1;
-const pop=s>1.3&&s<1.45?Math.sin(seg(s,1.3,1.45)*Math.PI):0;const stA=pressA?2:onA?1:0;btn(c,...A,stA,'PLAY',pop);btn(c,...B,3,'SHOP',0);
-if(pressA)burst(c,A[0]+A[2]/2,A[1]+9,s-1.0,8,3,{speed:30,life:.3,col:'#cfe1ff',size:()=>1});
-cursor(c,cx,cy+(pressA||pressB?1:0),onB&&s>2.6);
-const cur=onB?3:stA;['NORMAL','HOVER','PRESSED','DISABLED'].forEach((n,i)=>{const x=30+i*60,on=cur===i;R(c,x-27,90,54,13,on?P.gold:'#263042');txt(c,n,x,97,on?P.ink:'#8a96a8',7)});
-label(c,'press shows on press, not release',120,122,'#8aa')}};
+DEMOS['UI-03']={d:5,hi:true,f:(c,t,_w,_h,p)=>{G(c);bg(c);const u=prWrap(t),focus=Math.floor(u*6)%3,press=u>.3&&u<.42;
+ // equip slots row
+ txt(c,'EQUIP SLOT STATES',8,12,'#cfd8e3',6,'left');
+ const slots=[{n:'Sword',eq:1,dis:0},{n:'Bow',eq:0,dis:0},{n:'Broken',eq:0,dis:1}];
+ slots.forEach((it,i)=>{const x=30+i*70,y=28,f=i===focus,pr=f&&press&&!it.dis,sc=pr?.9:1;c.save();c.translate(x+28,y+14);c.scale(sc,sc);c.translate(-(x+28),-(y+14));
+  R(c,x,y,56,28,it.dis?'#2a2e36':'#1d2533');if(f&&!it.dis){c.strokeStyle='#fff';c.lineWidth=2;c.strokeRect(x-1,y-1,58,30)}
+  if(it.eq){R(c,x+44,y+2,10,10,P.gold);txt(c,'EQ',x+49,y+8,P.ink,5)}
+  if(it.dis){R(c,x+8,y+10,6,7,'#8a96a8');R(c,x+10,y+8,2,4,'#8a96a8');txt(c,'LOCK',x+34,y+14,P.red,5)}else txt(c,it.n,x+28,y+15,f?'#fff':'#cfd8e3',6);
+  c.restore()});
+ // classic buttons below
+ const A=[50,78,60,18],B=[134,78,60,18];const stA=press&&focus===0?2:focus===0?1:0;btn(c,...A,stA,'PLAY',0);btn(c,...B,3,'SHOP',0);
+ ['FOCUS','EQUIPPED','PRESSED','DISABLED'].forEach((n,i)=>{const x=30+i*55;R(c,x-24,110,50,12,P.gold);txt(c,n,x,116,P.ink,5)});
+ label(c,'one slot: white focus · check · squash · lock',120,128,'#8aa')}};
 
-/* UI-04 error shake on a code field */
-DEMOS['UI-04']={d:4,hi:true,f:(c,t,_w,_h,p)=>{G(c);bg(c);const s=t*p.dur;const tries=[{t0:.2,code:'1234',end:1.0,ok:0},{t0:2.0,code:'7294',end:2.8,ok:1}];
-let shown='',state=0,se=-1;for(const tr of tries){if(s<tr.t0)break;const n=Math.min(4,Math.floor((s-tr.t0)/.2)+1);shown=tr.code.slice(0,n);if(s>=tr.end){state=tr.ok?2:1;se=s-tr.end}if(!tr.ok&&s>=1.85){shown='';state=0}}
-let ox=0;if(state===1&&se<.35){const k=se/.35;ox=6*Math.sin(k*TAU*3)*Math.pow(1-k,2)}
-label(c,'ENTER CODE',120,26,'#cfd8e3');const col=state===1?P.red:state===2?'#5be35b':'#e9edf2';
-for(let i=0;i<4;i++){const x=72+i*26+ox;R(c,x-1,39,22,26,P.ink);R(c,x,40,20,24,col);R(c,x+1,41,18,22,'#141a24');if(shown[i])otxt(c,shown[i],x+10,52.5,'#fff',12);else if(i===shown.length&&state===0&&Math.floor(s*3)%2)R(c,x+6,58,8,1,'#fff')}
-if(state===1)txt(c,'WRONG CODE',120+ox,78,P.red,8);if(state===2){txt(c,'UNLOCKED',120,78,'#5be35b',8)}
-label(c,'only the field moves — screen stays still',120,104,'#8aa');tl(c,t,[1.0/p.dur,2.8/p.dur])}};
+/* UI-04 error shake + inline rejection at control */
+DEMOS['UI-04']={d:5,hi:true,f:(c,t,_w,_h,p)=>{G(c);bg(c);const s=t*p.dur;const u=prWrap(t);
+ // hotbar reject phase
+ const reject=s>=.4&&s<2.0;let ox=0;if(reject){const k=Math.min(1,(s-.4)/.35);ox=6*Math.sin(k*TAU*3)*Math.pow(1-k,2)}
+ txt(c,'HOTBAR',20,18,'#cfd8e3',6,'left');
+ for(let i=0;i<4;i++){const x=20+i*28+(i===2&&reject?ox:0),y=28;R(c,x,y,24,24,i===2?'#2a3a52':'#1d2533');c.strokeStyle=i===2?'#fff':'#5e636e';c.lineWidth=1;c.strokeRect(x+.5,y+.5,23,23);if(i<2)circ(c,x+12,y+12,6,P.gold)}
+ if(reject){txt(c,'Inventory full',90+ox,42,P.red,6,'left');txt(c,'focus kept',90+ox,52,'#9aa6b8',5,'left')}
+ // code field phase
+ const tries=[{t0:2.2,code:'1234',end:3.0,ok:0},{t0:3.6,code:'7294',end:4.4,ok:1}];
+ let shown='',state=0,se=-1;for(const tr of tries){if(s<tr.t0)break;const n=Math.min(4,Math.floor((s-tr.t0)/.2)+1);shown=tr.code.slice(0,n);if(s>=tr.end){state=tr.ok?2:1;se=s-tr.end}if(!tr.ok&&s>=3.4){shown='';state=0}}
+ let ox2=0;if(state===1&&se<.35){const k=se/.35;ox2=6*Math.sin(k*TAU*3)*Math.pow(1-k,2)}
+ if(s>=2.0){label(c,'ENTER CODE',120,70,'#cfd8e3');const col=state===1?P.red:state===2?'#5be35b':'#e9edf2';
+ for(let i=0;i<4;i++){const x=72+i*26+ox2;R(c,x-1,78,22,22,P.ink);R(c,x,79,20,20,col);R(c,x+1,80,18,18,'#141a24');if(shown[i])otxt(c,shown[i],x+10,89,'#fff',11)}
+ if(state===1)txt(c,'WRONG CODE',120+ox2,110,P.red,7);if(state===2)txt(c,'UNLOCKED',120,110,'#5be35b',7)}
+ label(c,'reason at control · optional shake',120,128,'#8aa');tl(c,t,[.4/p.dur,2.2/p.dur,3.6/p.dur])}};
 
 /* UI-05 cooldown sweep */
 function icon(c,k,x,y){R(c,x,y,28,28,['#3a4f7a','#7a3a2a','#2f5a4a'][k]);if(k===0){c.strokeStyle='#e9edf2';c.lineWidth=3;c.beginPath();c.moveTo(x+7,y+21);c.lineTo(x+21,y+7);c.stroke();R(c,x+6,y+17,6,2,P.gold)}else if(k===1){circ(c,x+14,y+15,8,P.orange);circ(c,x+14,y+16,4,P.gold)}else{c.fillStyle=P.cyan;c.beginPath();c.moveTo(x+14,y+5);c.lineTo(x+22,y+9);c.lineTo(x+20,y+19);c.lineTo(x+14,y+24);c.lineTo(x+8,y+19);c.lineTo(x+6,y+9);c.fill()}}
@@ -114,17 +126,19 @@ circ(c,0,0,ri-2,'rgba(20,26,36,.9)');if(s>.6)txt(c,ITEMS[sel][0],0,0,'#fff',5);c
 if(s>=C0&&s<C0+.15){c.globalAlpha=1-seg(s,C0,C0+.15);ring(c,cx,cy,ro*.7+seg(s,C0,C0+.15)*20,3,'#fff');c.globalAlpha=1}
 panel(c,6,108,62,20);txt(c,open?'HOLD [Q]':'[Q] ITEMS',37,118,open?P.gold:'#cfd8e3',7);const cur=s>=C0?5:2;panel(c,206,108,26,20);circ(c,219,118,5,ITEMS[s>=C0?ITEMS.length-3:2][1]);label(c,ITEMS[s>=C0?5:2][0],219,103,'#fff');void cur;tl(c,t,[O0/p.dur,C0/p.dur])}};
 
-/* UI-12 tooltip with hover delay and edge flip */
-const SLOTS=[0,1,2,3,4,5,6,7].map(i=>[64+(i%4)*36,40+Math.floor(i/4)*30]);
-const TIP={1:['IRON SWORD','#e9edf2',['ATK +12','Common']],3:['EMBER STAFF',P.purple,['MAG +31','Epic \u2022 burns']]};
+/* UI-12 tooltip with hover delay, edge flip, and compare deltas */
+const SLOTS=[0,1,2,3,4,5,6,7].map(i=>[40+(i%4)*36,36+Math.floor(i/4)*30]);
+const TIP={1:['IRON SWORD','#e9edf2',[['ATK','12','+4'],['DEF','2','0']],1],3:['EMBER STAFF',P.purple,[['MAG','31','+18'],['WT','3.0','-1']],1]};
 function slotIcon(c,i,x,y){const cols=['#7a5034','#cfd8e3','#5fa8c8',P.purple,P.red,P.gold,'#6fbf4a','#e3c99a'];const col=cols[i];if(i===1){c.strokeStyle=col;c.lineWidth=2;c.beginPath();c.moveTo(x+5,y+17);c.lineTo(x+17,y+5);c.stroke()}else if(i===3){R(c,x+10,y+6,2,13,'#7a5034');circ(c,x+11,y+6,3.5,P.orange)}else circ(c,x+11,y+11,5,col)}
-DEMOS['UI-12']={d:5,hi:true,f:(c,t,_w,_h,p)=>{G(c);bg(c,'#1b2333','#121822');txt(c,'INVENTORY',64,22,'#cfd8e3',8,'left');const s=t*p.dur;
-const path=[[0,40,118],[.6,93,52],[2.0,93,52],[2.2,150,100],[2.5,190,52],[4.3,190,52],[5,40,118]];let cx=40,cy=118;for(let i=0;i<path.length-1;i++){const[a0,x0,y0]=path[i],[a1,x1,y1]=path[i+1];if(s>=a0&&s<=a1){const k=ease((s-a0)/(a1-a0));cx=lerp(x0,x1,k);cy=lerp(y0,y1,k)}}
+DEMOS['UI-12']={d:5,hi:true,f:(c,t,_w,_h,p)=>{G(c);bg(c,'#1b2333','#121822');txt(c,'INVENTORY',40,22,'#cfd8e3',8,'left');txt(c,'EQ: Sword',180,22,P.gold,6,'left');const s=t*p.dur;
+const path=[[0,40,118],[.6,70,48],[2.0,70,48],[2.2,150,100],[2.5,160,48],[4.3,160,48],[5,40,118]];let cx=40,cy=118;for(let i=0;i<path.length-1;i++){const[a0,x0,y0]=path[i],[a1,x1,y1]=path[i+1];if(s>=a0&&s<=a1){const k=ease((s-a0)/(a1-a0));cx=lerp(x0,x1,k);cy=lerp(y0,y1,k)}}
 let hov=-1;SLOTS.forEach(([x,y],i)=>{const on=cx>=x&&cx<x+22&&cy>=y&&cy<y+22;if(on)hov=i;R(c,x-1,y-1,24,24,on?'#fff':P.ink);R(c,x,y,22,22,'#273246');slotIcon(c,i,x,y)});
 let rest=0;if(hov===1)rest=s-.6;else if(hov===3)rest=s-2.5;const D=.35;
-if(hov>=0&&TIP[hov]&&rest>D){const[nm,col,lines]=TIP[hov];const a=clamp((rest-D)/.1);const w=72,h=34;let tx=cx+8,ty=cy+8;let flip=false;if(tx+w>W-2){tx=cx-8-w;flip=true}if(ty+h>H-2)ty=cy-8-h;c.globalAlpha=a;R(c,tx-1,ty-1,w+2,h+2,col);R(c,tx,ty,w,h,'rgba(20,26,36,.95)');txt(c,nm,tx+4,ty+7,col,7,'left');lines.forEach((l,i)=>txt(c,l,tx+4,ty+17+i*9,'#9aa6b8',6,'left'));c.globalAlpha=1;if(flip)label(c,'flipped left at edge',tx+w/2,ty+h+6,P.gold)}
+if(hov>=0&&TIP[hov]&&rest>D){const[nm,col,stats]=TIP[hov];const a=clamp((rest-D)/.1);const w=100,h=44;let tx=cx+8,ty=cy+8;let flip=false;if(tx+w>W-2){tx=cx-8-w;flip=true}if(ty+h>H-2)ty=cy-8-h;c.globalAlpha=a;R(c,tx-1,ty-1,w+2,h+2,col);R(c,tx,ty,w,h,'rgba(20,26,36,.95)');txt(c,nm,tx+4,ty+7,col,7,'left');txt(c,'COMPARE',tx+w-4,ty+7,P.gold,5,'right');
+ stats.forEach((row,i)=>{const y=ty+18+i*10;txt(c,row[0],tx+4,y,'#9aa6b8',6,'left');txt(c,row[1],tx+40,y,'#e9edf2',6,'left');const d=row[2],up=d[0]==='+';txt(c,d,tx+70,y,d==='0'?'#9aa6b8':up?'#7ee36b':P.red,6,'left')});
+ c.globalAlpha=1;if(flip)label(c,'flipped',tx+w/2,ty+h+6,P.gold)}
 if(hov>=0&&TIP[hov]&&rest>0&&rest<D){ring(c,cx+3,cy-3,3,1,'rgba(255,255,255,.25)');c.strokeStyle='#fff';c.lineWidth=1;c.beginPath();c.arc(cx+3,cy-3,3,-Math.PI/2,-Math.PI/2+TAU*rest/D);c.stroke()}
-cursor(c,cx,cy);label(c,'0.35 s hover delay',200,126,'#8aa')}};
+cursor(c,cx,cy);label(c,'compare deltas · same order',160,128,'#8aa')}};
 
 /* UI-13 toasts: slide in, stack, merge duplicates, expire */
 const TOASTS=[{b:.3,r:.6,txt:s=>s<.6?'+1 WOOD':'+2 WOOD',col:'#b9925e'},{b:1.4,r:1.4,txt:()=>'QUEST UPDATED',col:P.cyan},{b:2.2,r:2.2,txt:()=>'ACHIEVEMENT!',col:P.gold},{b:2.7,r:2.7,txt:()=>'+5 GOLD',col:P.gold}];

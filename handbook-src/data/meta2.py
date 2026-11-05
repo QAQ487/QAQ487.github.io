@@ -13,7 +13,9 @@ SEEALSO=[('FX-04','VFX-20'),('ACT-12','UI-01'),('ACT-10','FB-13'),('ACT-27','FB-
  ('ACT-32','ANI-18'),('REN-16','DIAG-01'),('REN-17','DIAG-06'),('REN-28','DIAG-04'),('FX-38','A11Y-01'),('UX-10','A11Y-02'),
  ('FX-03','VFX-08'),('UX-11','UI-10'),('UX-29','NAV-02'),('FX-06','FB-12'),('REN-29','PP-11'),('REN-36','PP-12'),('REN-33','PP-13'),
  ('REN-18','MATX-11'),('FX-09','VFX-21'),('UX-03','FB-19'),('UX-29','NAV-07'),('UX-30','NAV-08'),('UX-20','A11Y-05'),('FX-38','A11Y-04'),
- ('FX-36','A11Y-06'),('FX-35','A11Y-03'),('ANI-10','PHY-01'),('ANI-09','PHY-03'),('ACT-29','FB-21'),('UX-10','FX-36'),('FX-13','ACT-09')]
+ ('FX-36','A11Y-06'),('FX-35','A11Y-03'),('ANI-10','PHY-01'),('ANI-09','PHY-03'),('ACT-29','FB-21'),('UX-10','FX-36'),('FX-13','ACT-09'),
+ ('UX-01','UI-24'),('UX-11','UI-19'),('UI-11','UI-21'),('NAV-05','UI-22'),('A11Y-02','UI-25'),
+ ('UX-06','UI-03'),('UX-07','UX-16'),('UI-04','UI-12')]
 TAGLAB={'px':dict(zh='#2D像素',en='#2D pixel',ja='#2Dドット'),'real':dict(zh='#3D寫實',en='#3D realistic',ja='#3Dリアル'),
  'npr':dict(zh='#NPR',en='#NPR',ja='#NPR'),'a11y':dict(zh='#無障礙',en='#Accessibility',ja='#アクセシビリティ'),'perf':dict(zh='#效能敏感',en='#Perf-sensitive',ja='#高負荷')}
 PX_EXTRA={'PP-05','NPR-10','NPR-13','NPR-14','ANI-07','FX-04','ANI-02','CAMX-05','PP-03'}

@@ -15629,6 +15629,7 @@
    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 300\" role=\"img\" aria-labelledby=\"title desc\"><title id=\"UX-05-title\">Contextual prompt: near + facing</title><desc id=\"UX-05-desc\">The prompt appears near and facing the chest; disappearance can mean lost range or facing, not mastery.</desc><rect width=\"640\" height=\"300\" rx=\"12\" fill=\"#081322\"/><g font-family=\"Arial, sans-serif\"><text x=\"24\" y=\"32\" fill=\"#e5edf6\" font-size=\"19\">UX-05  Contextual prompt: near + facing</text><rect x=\"28\" y=\"58\" width=\"584\" height=\"210\" rx=\"7\" fill=\"#10243a\" stroke=\"#486078\"/><path d=\"M30 220 L160 145 245 205 370 118 610 220\" fill=\"none\" stroke=\"#29455c\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"415\" y=\"155\" width=\"65\" height=\"65\" rx=\"7\" fill=\"#1b354b\" stroke=\"#486078\"/><circle cx=\"295\" cy=\"215\" r=\"10\" fill=\"#53dac7\"/><path d=\"M290 217 L295 210 L300 217\" fill=\"none\" stroke=\"#092033\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><rect x=\"336\" y=\"201\" width=\"50\" height=\"30\" rx=\"7\" fill=\"#4a3e2c\" stroke=\"#f4ce76\"/><rect x=\"314\" y=\"151\" width=\"130\" height=\"33\" rx=\"7\" fill=\"#101e33\" stroke=\"#92a8be\"/><text x=\"326\" y=\"173\" fill=\"#f4ce76\" font-size=\"14\">[E] Open</text><path d=\"M280 238 Q350 165 410 238\" fill=\"none\" stroke=\"#92a8be\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-dasharray=\"5 5\"/><text x=\"60\" y=\"111\" fill=\"#53dac7\" font-size=\"14\">Within interaction range</text><text x=\"60\" y=\"132\" fill=\"#92a8be\" font-size=\"14\">Facing the chest</text><text x=\"24\" y=\"287\" fill=\"#92a8be\" font-size=\"10\">SCHEMATIC / NOT TO SCALE</text></g></svg>",
    "dur": 0,
    "refs": [
+    "https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5.0-release-notes?application_version=5.0",
     "https://gameaccessibilityguidelines.com/full-list"
    ],
    "sub": {
@@ -15644,22 +15645,27 @@
     "fields": [
      [
       "現象／用途",
-      "靠近箱子才出現「E 開啟」，碰到梯子才提示攀爬；資訊貼著當下可做的事，減少死記按鍵。"
+      "靠近可互動物件才出現操作提示；圖示跟目前輸入裝置與實際綁定走——接上手把後「E」變成「A」（或你改過的鍵），改鍵後即時更新。"
      ],
      [
       "常見誤解",
-      "提示消失不一定代表已學會；亦可能是距離、面向或目標選取變了。改鍵之後應留意圖示有沒有跟著更新。"
+      "提示消失不一定代表已學會；亦可能是距離、面向變了。搖桿在死區內漂移不應令圖示閃爍。"
      ],
      [
       "來源",
-      "<a href=\"https://gameaccessibilityguidelines.com/full-list\">Game Accessibility Guidelines：Full list</a>，包含 contextual in-game help 與遊玩期間控制提醒。"
+      "<a href=\"https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5.0-release-notes?application_version=5.0\">Unreal Engine 5.0 Release Notes — Common UI / input</a>；另見 <a href=\"https://gameaccessibilityguidelines.com/full-list\">Game Accessibility Guidelines</a>。"
      ]
     ],
     "caph": "原創概念示意 · 非遊戲實機",
     "cap": "接近並面向箱子才顯示開啟提示；提示消失可能是距離或朝向改變，並非已學會。"
    },
    "std": "Contextual prompt / Context-sensitive help",
-   "aliases": [],
+   "aliases": [
+    "Dynamic input glyphs",
+    "Device-aware prompts",
+    "即時按鍵圖示",
+    "入力図柄の切替"
+   ],
    "en": {
     "name": "Control prompts that appear when relevant",
     "title": "Contextual prompt / Context-sensitive help｜Control prompts that appear when relevant",
@@ -15667,15 +15673,15 @@
     "fields": [
      [
       "What you see / purpose",
-      "“E: Open” appears only when you approach a chest, or a climbing prompt appears when you reach a ladder. Information is tied to the actions currently available, reducing the need to memorize controls."
+      "Contextual prompts appear only near valid interactables; glyphs follow the active device and live bindings—after a gamepad connects, E becomes A (or your rebound control) immediately."
      ],
      [
       "Common misconceptions",
-      "A disappearing prompt does not necessarily mean the player has learned the action; distance, facing, or target selection may have changed. After rebinding controls, check whether the displayed icons update too."
+      "A disappearing prompt does not mean mastery; range or facing may have changed. Stick drift inside the dead zone must not flicker glyphs."
      ],
      [
       "Source",
-      "<a href=\"https://gameaccessibilityguidelines.com/full-list\">Game Accessibility Guidelines: Full list</a>, including contextual in-game help and control reminders during play."
+      "<a href=\"https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5.0-release-notes?application_version=5.0\">Unreal Engine 5.0 Release Notes — Common UI / input</a>; also <a href=\"https://gameaccessibilityguidelines.com/full-list\">Game Accessibility Guidelines</a>."
      ]
     ],
     "caph": "Original conceptual illustration · not game footage",
@@ -15688,15 +15694,15 @@
     "fields": [
      [
       "現象／用途",
-      "箱に近づくと「E：開く」が出る、はしごに接すると登る操作が表示される、といった仕組みです。今できる行動に情報を結びつけ、ボタンの丸暗記を減らします。"
+      "操作できる物の近くでのみヒントが出る。図柄は現在の入力装置と実バインドに従い、パッド接続後は「E」が直ちに「A」（または再バインド）へ変わる。"
      ],
      [
       "よくある誤解",
-      "表示が消えたからといって、プレイヤーが操作を覚えたとは限りません。距離、向き、対象の選択が変わった可能性もあります。キー割り当てを変更した後は、表示アイコンも更新されるかに注意します。"
+      "ヒントが消えても習得済みとは限らない。距離や向きの変化かも。デッドゾーン内のドリフトで図柄を点滅させない。"
      ],
      [
       "出典",
-      "<a href=\"https://gameaccessibilityguidelines.com/full-list\">Game Accessibility Guidelines：Full list</a>。contextual in-game helpと、プレイ中の操作リマインダーを含みます。"
+      "<a href=\"https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5.0-release-notes?application_version=5.0\">Unreal Engine 5.0 Release Notes — Common UI / input</a>；<a href=\"https://gameaccessibilityguidelines.com/full-list\">Game Accessibility Guidelines</a>。"
      ]
     ],
     "caph": "オリジナル概念図・ゲームの実機映像ではありません",
@@ -15731,22 +15737,27 @@
     "fields": [
      [
       "現象／用途",
-      "用手把上下移動，某個按鈕變粗框、加底色或圖案，表示按確認會作用在哪裡項。"
+      "選單上「現在指着哪一項」的焦點框，與「已裝備／已選」標記是兩回事：白框可移去第二格，剔號仍留在第一格；同一格還可再疊按下收縮或停用鎖。"
      ],
      [
       "常見誤解",
-      "focus 不等於已選用／已裝備；hover 亦不一定等於鍵盤焦點。輕微發光不保證看得清。"
+      "焦點≠已選。關閉模態後應回到原焦點；若原項已移除，改選最近可用項。"
      ],
      [
       "來源",
-      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/113\">Microsoft XAG 113：UI focus handling</a>，明確解釋 focus indicator 及可見性。"
+      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/113\">Xbox Accessibility Guideline 113 — UI focus</a>。"
      ]
     ],
     "caph": "原創概念示意 · 非遊戲實機",
     "cap": "粗框顯示弓目前取得焦點，但盾仍是已裝備物品；焦點與選取狀態必須分開。"
    },
    "std": "Focus indicator / Focus highlight",
-   "aliases": [],
+   "aliases": [
+    "Focus vs selected",
+    "Equipment slot states",
+    "焦點與已選",
+    "フォーカスと選択"
+   ],
    "en": {
     "name": "The highlight showing which item currently has focus",
     "title": "Focus indicator / Focus highlight｜The highlight showing which item currently has focus",
@@ -15754,15 +15765,15 @@
     "fields": [
      [
       "What you see / purpose",
-      "Moving up and down with a controller gives a button a thicker border, background color, or pattern, showing which item will respond to the confirm input."
+      "The focus ring (what you are pointing at) is separate from the equipped/selected mark: the ring can move to slot two while the check stays on slot one; the same slot can also show press squash or a disabled lock."
      ],
      [
       "Common misconceptions",
-      "Focus does not mean an option is already selected or an item equipped; hover does not necessarily mean keyboard focus either. A faint glow is not guaranteed to be readable."
+      "Focus ≠ selected. After a modal closes, restore the prior focus, or the nearest enabled item if it was removed."
      ],
      [
       "Source",
-      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/113\">Microsoft XAG 113: UI focus handling</a>, explicitly explaining focus indicators and visibility."
+      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/113\">Xbox Accessibility Guideline 113 — UI focus</a>."
      ]
     ],
     "caph": "Original conceptual illustration · not game footage",
@@ -15775,15 +15786,15 @@
     "fields": [
      [
       "現象／用途",
-      "コントローラーで上下に移動すると、ボタンの枠が太くなる、背景色や模様が付くなどして、決定操作がどの項目に作用するかを示します。"
+      "フォーカス枠（今指している項）と装備／選択マークは別。枠は2番へ移ってもチェックは1番に残る。同じ枠に押下や無効の鍵も重ねられる。"
      ],
      [
       "よくある誤解",
-      "focusは、すでに選択済み・装備済みという意味ではありません。hoverも、キーボードフォーカスと同じとは限りません。わずかな発光だけでは、はっきり見える保証はありません。"
+      "フォーカス≠選択。モーダル後は元フォーカスへ。削除済みなら最も近い有効項へ。"
      ],
      [
       "出典",
-      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/113\">Microsoft XAG 113：UI focus handling</a>。focus indicatorと、その視認性を明確に説明しています。"
+      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/113\">Xbox Accessibility Guideline 113 — UI focus</a>."
      ]
     ],
     "caph": "オリジナル概念図・ゲームの実機映像ではありません",
@@ -15803,6 +15814,7 @@
    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 300\" role=\"img\" aria-labelledby=\"title desc\"><title id=\"UX-07-title\">Tabs and focus order</title><desc id=\"UX-07-desc\">Top controls switch tabs; arrows show item focus order. Visual adjacency does not guarantee correct navigation.</desc><rect width=\"640\" height=\"300\" rx=\"12\" fill=\"#081322\"/><g font-family=\"Arial, sans-serif\"><text x=\"24\" y=\"32\" fill=\"#e5edf6\" font-size=\"19\">UX-07  Tabs and focus order</text><rect x=\"50\" y=\"65\" width=\"540\" height=\"198\" rx=\"7\" fill=\"#101e33\" stroke=\"#92a8be\"/><text x=\"72\" y=\"91\" fill=\"#92a8be\" font-size=\"12\">SETTINGS</text><rect x=\"72\" y=\"104\" width=\"145\" height=\"34\" rx=\"7\" fill=\"#193349\" stroke=\"#53dac7\"/><text x=\"84\" y=\"126\" fill=\"#53dac7\" font-size=\"14\">Equipment</text><rect x=\"224\" y=\"104\" width=\"145\" height=\"34\" rx=\"7\" fill=\"#193349\" stroke=\"#92a8be\"/><text x=\"236\" y=\"126\" fill=\"#e5edf6\" font-size=\"14\">Map</text><rect x=\"376\" y=\"104\" width=\"145\" height=\"34\" rx=\"7\" fill=\"#193349\" stroke=\"#92a8be\"/><text x=\"388\" y=\"126\" fill=\"#e5edf6\" font-size=\"14\">Skills</text><rect x=\"80\" y=\"170\" width=\"140\" height=\"34\" rx=\"7\" fill=\"#193349\" stroke=\"#92a8be\"/><text x=\"92\" y=\"192\" fill=\"#e5edf6\" font-size=\"14\">1. Slot</text><rect x=\"245\" y=\"170\" width=\"140\" height=\"34\" rx=\"7\" fill=\"#193349\" stroke=\"#92a8be\"/><text x=\"257\" y=\"192\" fill=\"#e5edf6\" font-size=\"14\">2. Slot</text><rect x=\"410\" y=\"170\" width=\"140\" height=\"34\" rx=\"7\" fill=\"#193349\" stroke=\"#92a8be\"/><text x=\"422\" y=\"192\" fill=\"#e5edf6\" font-size=\"14\">3. Slot</text><path d=\"M145 218 L310 218\" fill=\"none\" stroke=\"#53dac7\" stroke-width=\"3\"/><path d=\"M301.22417438109625 222.79425538604204 L310 218 L301.22417438109625 213.20574461395796\" fill=\"none\" stroke=\"#53dac7\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M310 218 L475 218\" fill=\"none\" stroke=\"#53dac7\" stroke-width=\"3\"/><path d=\"M466.22417438109625 222.79425538604204 L475 218 L466.22417438109625 213.20574461395796\" fill=\"none\" stroke=\"#53dac7\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><text x=\"170\" y=\"251\" fill=\"#92a8be\" font-size=\"14\">Predictable left / right order</text><text x=\"24\" y=\"287\" fill=\"#92a8be\" font-size=\"10\">SCHEMATIC / NOT TO SCALE</text></g></svg>",
    "dur": 0,
    "refs": [
+    "https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/114",
     "https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/112"
    ],
    "sub": {
@@ -15818,22 +15830,27 @@
     "fields": [
      [
       "現象／用途",
-      "左右切「裝備／地圖／技能」是 tabs；方向鍵在項目間移動是 focus order。穩定佈局與確認／返回規則，讓你記得怎樣到達目的頁。"
+      "用分頁、焦點次序與返回規則走完選單；頂部顯示頁名與所屬分類，避免入咗幾層唔知自己喺邊。返回時保留分頁、焦點與捲動。"
      ],
      [
       "常見誤解",
-      "有滑鼠按得不代表手把行得通；視覺上旁邊的按鈕，程式焦點可能跳去另一角。線性清單首尾循環不應不加分辨套用到四向網格。"
+      "不要假設玩家記得路徑；沒有指標裝置時每條路都要可走完。"
      ],
      [
       "來源",
-      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/112\">Microsoft XAG 112：UI navigation</a>。"
+      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/114\">Xbox Accessibility Guideline 114</a>；焦點見 <a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/112\">XAG 112</a>。"
      ]
     ],
     "caph": "原創概念示意 · 非遊戲實機",
     "cap": "上列切換分頁，下列箭頭表示焦點次序；畫面相鄰不保證程式焦點正確。"
    },
    "std": "Menu navigation / Focus order；Tabs",
-   "aliases": [],
+   "aliases": [
+    "Menu hierarchy",
+    "Focus order",
+    "選單位置",
+    "メニュー階層"
+   ],
    "en": {
     "name": "Moving through menus, focus order, and tabs",
     "title": "Menu navigation / Focus order；Tabs｜Moving through menus, focus order, and tabs",
@@ -15841,15 +15858,15 @@
     "fields": [
      [
       "What you see / purpose",
-      "Switching horizontally between “Equipment / Map / Skills” uses tabs; how directional inputs move between items is focus order. Stable layouts and consistent confirm/back behavior help you remember how to reach a page."
+      "Tabs, focus order and back rules carry the player through menus; show the page title and category so deep stacks stay oriented. Restore tab, focus and scroll on return."
      ],
      [
       "Common misconceptions",
-      "Mouse accessibility does not guarantee controller navigation works. Buttons that look adjacent may send programmatic focus to opposite corners. End-to-start wrapping in a linear list should not be applied indiscriminately to a four-directional grid."
+      "Do not assume path memory; every route must work without a pointer."
      ],
      [
       "Source",
-      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/112\">Microsoft XAG 112: UI navigation</a>."
+      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/114\">Xbox Accessibility Guideline 114</a>; focus also <a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/112\">XAG 112</a>."
      ]
     ],
     "caph": "Original conceptual illustration · not game footage",
@@ -15862,15 +15879,15 @@
     "fields": [
      [
       "現象／用途",
-      "「装備／マップ／スキル」を左右に切り替えるのがtabs、方向入力で項目間をどう移動するかがfocus orderです。レイアウトや決定・戻るのルールが安定していると、目的の画面への行き方を覚えやすくなります。"
+      "タブ・フォーカス順・戻る規則でメニューを進む。ページ名と分類を示し、深い階層でも現在地が分かる。戻りでタブ・フォーカス・スクロールを復元。"
      ],
      [
       "よくある誤解",
-      "マウスでクリックできても、コントローラーで移動できるとは限りません。見た目では隣同士のボタンでも、プログラム上のフォーカスが別の隅へ飛ぶことがあります。縦横どちらか一列のリストで使う端から端へのループを、四方向に移動するグリッドへ無条件に適用すべきではありません。"
+      "経路記憶を前提にしない。ポインタなしで全経路を完走できること。"
      ],
      [
       "出典",
-      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/112\">Microsoft XAG 112：UI navigation</a>。"
+      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/114\">Xbox Accessibility Guideline 114</a>；フォーカスは <a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/112\">XAG 112</a>。"
      ]
     ],
     "caph": "オリジナル概念図・ゲームの実機映像ではありません",
@@ -15920,7 +15937,12 @@
     "cap": "焦點留在確認與取消之間，背景不能操作；對話框不代表遊戲世界已暫停。"
    },
    "std": "Modal dialog",
-   "aliases": [],
+   "aliases": [
+    "Focus containment",
+    "Modal focus trap",
+    "模態焦點",
+    "フォーカストラップ"
+   ],
    "en": {
     "name": "A modal dialog; related mechanism: Focus containment",
     "title": "Modal dialog｜A modal dialog; related mechanism: Focus containment",
@@ -16586,7 +16608,7 @@
    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 300\" role=\"img\" aria-labelledby=\"title desc\"><title id=\"UX-16-title\">UI transition: stable frame, moving panel</title><desc id=\"UX-16-desc\">The panel slides inside a stable frame. This six-second teaching loop is not a timing prescription; offer reduced motion.</desc><rect width=\"640\" height=\"300\" rx=\"12\" fill=\"#081322\"/><g font-family=\"Arial, sans-serif\"><text x=\"24\" y=\"32\" fill=\"#e5edf6\" font-size=\"19\">UX-16  UI transition: stable frame, moving panel</text><rect x=\"50\" y=\"65\" width=\"540\" height=\"198\" rx=\"7\" fill=\"#101e33\" stroke=\"#92a8be\"/><text x=\"72\" y=\"91\" fill=\"#92a8be\" font-size=\"12\">SETTINGS</text><rect x=\"75\" y=\"105\" width=\"145\" height=\"34\" rx=\"7\" fill=\"#193349\" stroke=\"#53dac7\"/><text x=\"87\" y=\"127\" fill=\"#53dac7\" font-size=\"14\">Map</text><rect x=\"230\" y=\"105\" width=\"145\" height=\"34\" rx=\"7\" fill=\"#193349\" stroke=\"#92a8be\"/><text x=\"242\" y=\"127\" fill=\"#e5edf6\" font-size=\"14\">Skills</text><g><rect x=\"80\" y=\"156\" width=\"230\" height=\"77\" rx=\"7\" fill=\"#163c46\" stroke=\"#53dac7\"/><text x=\"96\" y=\"185\" fill=\"#53dac7\" font-size=\"14\">Map page</text><path d=\"M99 211 H150 V193 H215\" fill=\"none\" stroke=\"#f4ce76\" stroke-width=\"3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><animateTransform attributeName=\"transform\" type=\"translate\" values=\"0 0;200 0;200 0;0 0;0 0\" dur=\"6s\" repeatCount=\"indefinite\"/></g><text x=\"397\" y=\"235\" fill=\"#92a8be\" font-size=\"12\">6 s demo loop</text><text x=\"24\" y=\"287\" fill=\"#92a8be\" font-size=\"10\">SCHEMATIC / NOT TO SCALE</text></g></svg>",
    "dur": 6.0,
    "refs": [
-    "https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/113",
+    "https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/114",
     "https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/117"
    ],
    "sub": {
@@ -16602,22 +16624,27 @@
     "fields": [
      [
       "現象／用途",
-      "選單滑入、分頁切換、焦點角色短動畫，令狀態改變有可見過程；搜尋時加 <code>game UI transition animation</code>。"
+      "介面換頁用成對方向表達進入與返回（例如右推入／右推出），並在過渡中保持頁名與分類可見；減少動態時改短淡入，功能不變。"
      ],
      [
       "常見誤解",
-      "越多動畫不代表越清楚；文字動、背景動、閃爍會分散注意力，亦可能令人不舒服。動畫不應遮住「按了未／現在在哪裡」。"
+      "動效不能遮住目前焦點或令輸入丟失；連按應落到最新意圖。"
      ],
      [
       "來源",
-      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/113\">Microsoft XAG 113</a>，有動畫焦點例子；<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/117\">XAG 117：Visual distractions and motion settings</a>，解釋動態閱讀障礙。"
+      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/114\">XAG 114</a>；動效見 <a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/117\">XAG 117</a>。"
      ]
     ],
     "caph": "原創概念示意 · 非遊戲實機",
     "cap": "面板在固定框架中滑動，焦點仍清楚可見；此六秒示意非建議轉場速度，實作應提供減少動態選項。"
    },
    "std": "UI motion / UI transition / Animated focus",
-   "aliases": [],
+   "aliases": [
+    "Push-pop transition",
+    "Menu hierarchy motion",
+    "換頁過渡",
+    "プッシュポップ遷移"
+   ],
    "en": {
     "name": "Interface movement, page transitions, and focus animation",
     "title": "UI motion / UI transition / Animated focus｜Interface movement, page transitions, and focus animation",
@@ -16625,15 +16652,15 @@
     "fields": [
      [
       "What you see / purpose",
-      "Sliding menus, tab transitions, and short animations on a focused character make state changes visibly unfold. Add <code>game UI transition animation</code> to your searches."
+      "Page changes use paired push/pop directions so enter and back read clearly, keeping page title and category visible; under reduced motion swap travel for a short fade without losing function."
      ],
      [
       "Common misconceptions",
-      "More animation does not mean greater clarity. Moving text, moving backgrounds, and flashing can distract or cause discomfort. Animation should not obscure whether an input registered or where you currently are."
+      "Motion must not hide focus or drop input; mashed presses resolve to the latest intent."
      ],
      [
       "Source",
-      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/113\">Microsoft XAG 113</a>, with animated-focus examples; <a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/117\">XAG 117: Visual distractions and motion settings</a>, explaining how motion can impede reading."
+      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/114\">XAG 114</a>; motion also <a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/117\">XAG 117</a>."
      ]
     ],
     "caph": "Original conceptual illustration · not game footage",
@@ -16646,15 +16673,15 @@
     "fields": [
      [
       "現象／用途",
-      "メニューのスライドイン、タブの切り替え、フォーカス中のキャラクターの短いアニメーションなどが、状態の変化を目に見える過程として示します。検索時は <code>game UI transition animation</code> を加えます。"
+      "ページ遷移は進入と戻りの対になる方向（例：右からプッシュ／逆にポップ）で示し、遷移中もページ名と分類を見せる。モーション低減時は短いフェードに替え、機能は保つ。"
      ],
      [
       "よくある誤解",
-      "アニメーションが多いほどわかりやすいわけではありません。動く文字や背景、点滅は注意をそらし、不快感を生むこともあります。「入力が受け付けられたか」「今どこにいるか」がアニメーションでわからなくなってはいけません。"
+      "動きでフォーカスを隠したり入力を落とさない。連打は最新の意図へ。"
      ],
      [
       "出典",
-      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/113\">Microsoft XAG 113</a>にはフォーカスアニメーションの例があります。<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/117\">XAG 117：Visual distractions and motion settings</a>は、動きによる読みにくさを説明しています。"
+      "<a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/114\">XAG 114</a>；モーションは <a href=\"https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/117\">XAG 117</a>。"
      ]
     ],
     "caph": "オリジナル概念図・ゲームの実機映像ではありません",

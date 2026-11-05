@@ -8,8 +8,9 @@ function panel(c,x,y,w,h,tab,tabX,focus,fs,dim=1){R(c,x,y,w,h,'rgba(20,26,36,.94
 /* timeline shared by both demos */
 const tl16=u=>{const open=seg(u,.05,.18),close=seg(u,.86,.96),tabX=prKeys([[0,0],[.34,0],[.42,1],[.6,1],[.68,2],[1,2]],u,eo),tab=u<.38?0:u<.64?1:2,focus=u<.24?0:u<.3?1:u<.38?2:u<.5?0:u<.64?1:u<.76?0:1;const tf=[.24,.3,.38,.5,.64,.76].reduce((a,b)=>u>=b?b:a,0);return{open,close,tabX,tab,focus,tf}};
 DEMOS['UX-16']={d:6,hi:true,f:(c,t,_w,_h,p)=>{c.scale(2,2);const u=prWrap(t),s=tl16(u);c.drawImage(scene('eday'),0,0);R(c,0,0,W,H,'rgba(13,22,48,'+(.45*eo(s.open)*(1-s.close)).toFixed(3)+')');
- const px=lerp(W+4,W-118,eo(s.open))+lerp(0,122,ei(s.close)),fe=(u-s.tf)*p.dur,fs=1+.08*Math.exp(-fe*10)*Math.cos(fe*30);panel(c,px,16,110,84,s.tab,s.tabX,s.focus,fs);
- prTag(c,u<.2?'panel slides in':u<.34?'focus bounce':u<.7?'tab underline glides':u<.86?'focus bounce':'panel slides out',4,4,P.gold);prTag(c,'UI motion',4,H-14,'#e9edf2')}};
+ const px=lerp(W+4,W-118,eo(s.open))+lerp(0,122,ei(s.close)),fe=(u-s.tf)*p.dur,fs=1+.08*Math.exp(-fe*10)*Math.cos(fe*30);panel(c,px,22,110,84,s.tab,s.tabX,s.focus,fs);
+ const crumb=['Menu › Items','Menu › Skills','Menu › Map'][s.tab];txt(c,crumb,px+8,20,'#9aa6b8',5,'left');
+ prTag(c,u<.2?'PUSH in →':u<.34?'focus bounce':u<.7?'tab underline':u<.86?'focus bounce':'← POP out',4,4,P.gold);prTag(c,'paired push/pop hierarchy',4,H-14,'#e9edf2')}};
 /* UX-20 reduced motion: same states, no travel */
 DEMOS['UX-20']={d:6,hi:true,f:(c,t,_w,_h,p)=>{c.scale(2,2);const u=prWrap(t),s=tl16(u);for(const i of[0,1]){const x0=i*121;c.save();c.beginPath();c.rect(x0,0,119,H);c.clip();c.translate(x0,0);
  R(c,0,0,119,H,P.sky);const drift=i?0:u*60;for(let k=0;k<4;k++){const x=((k*40+hash(k+3)*20-drift)%160+160)%160-30;R(c,x,10+k*7,22,4,'#d8eef7')}c.fillStyle='#8cc79a';for(let k=-1;k<4;k++){const hx=k*45-(i?0:(u*30)%45);c.beginPath();c.arc(hx+22,H,30,Math.PI,0);c.fill()}R(c,0,H-18,119,18,P.grass);
@@ -51,25 +52,34 @@ DEMOS['UX-04']={d:6,hi:true,f:(c,t)=>{G(c);const u=prWrap(t),hx=lerp(60,320,u),h
  R(c,4,4,110,22,'rgba(10,14,24,.8)');txt(c,'OBJ  Reach the gate',8,11,'#e9edf2',6,'left');txt(c,'tracker = what',8,20,P.cyan,5,'left');
  prTag(c,'diamond = where',W-4,4,P.gold,'rgba(10,14,24,.75)',6,'right');prTag(c,'through wall != route',4,H-14,'#9aa6b8')}};
 
-/* UX-05 contextual prompt: near + facing */
+/* UX-05 contextual prompt + dynamic input glyphs (E → A) */
 DEMOS['UX-05']={d:6,hi:true,f:(c,t)=>{G(c);const u=prWrap(t);c.drawImage(scene('eday'),0,0);const cx=150,cy=95;chest(c,cx,cy);const pathX=prKeys([[0,40],[.25,40],[.45,140],[.6,140],[.75,140],[.95,40],[1,40]],u);
  const faceR=pathX<145||(u>.45&&u<.72);shadow(c,pathX,cy+4,5);spr(c,'hero',pathX,cy+4,{sx:2,sy:2,flip:!faceR});
- const near=Math.abs(pathX-cx)<28&&faceR;if(near){const bob=Math.round(Math.sin(u*TAU*4));R(c,cx-22,cy-28+bob,44,14,'rgba(10,14,24,.85)');txt(c,'[E] Open',cx,cy-21+bob,P.gold,6);ring(c,cx,cy-4,18,1,'rgba(127,227,216,.5)')}
- prTag(c,near?'in range + facing':faceR?'too far':'wrong facing',4,4,near?P.cyan:P.gold);prTag(c,'contextual prompt',4,H-14,'#e9edf2')}};
+ const pad=u>.55;const glyph=pad?'[A]':'[E]';const near=Math.abs(pathX-cx)<28&&faceR;if(near){const bob=Math.round(Math.sin(u*TAU*4));R(c,cx-26,cy-28+bob,52,14,'rgba(10,14,24,.85)');txt(c,glyph+' Open',cx,cy-21+bob,P.gold,6);ring(c,cx,cy-4,18,1,'rgba(127,227,216,.5)')}
+ if(pad){R(c,4,20,70,12,'rgba(10,14,24,.8)');txt(c,'PAD connected',39,26,P.cyan,5)}
+ prTag(c,near?(pad?'glyph → A':'glyph E'):faceR?'too far':'wrong facing',4,4,near?P.cyan:P.gold);prTag(c,'dynamic glyphs',4,H-14,'#e9edf2')}};
 
-/* UX-06 focus ≠ equipped selection */
-DEMOS['UX-06']={d:5,hi:true,f:(c,t)=>{G(c);const u=prWrap(t),focus=Math.floor(u*6)%3,pulse=.5+.5*Math.sin(u*TAU*6);R(c,0,0,W,H,'#16202e');R(c,30,16,180,104,'#1d2533');R(c,30,16,180,1,P.gold);txt(c,'EQUIPMENT',40,26,'#9aa6b8',6,'left');
- const items=['Shield','Bow','Potion'];items.forEach((n,i)=>{const y=40+i*24,f=i===focus,eq=i===0;R(c,42,y,156,18,f?'rgba(127,227,216,'+(.15+.15*pulse)+')':eq?'rgba(242,201,76,.12)':'#141a24');
-  if(f)R(c,42,y,3,18,P.cyan);if(eq)R(c,42,y,156,1,P.gold);txt(c,n,52,y+9,f?'#fff':'#cfd8e3',7,'left');if(eq)txt(c,'EQUIPPED',188,y+9,P.gold,5,'right');if(f)txt(c,'FOCUS',188,y+9,P.cyan,5,'right')});
- R(c,42,118,156,3,'#2f3a4d');R(c,42+focus*52,118,52,3,P.cyan);prTag(c,'focus moves; shield stays equipped',4,H-14,'#e9edf2')}};
+/* UX-06 focus / equipped / pressed / disabled on one slot family */
+DEMOS['UX-06']={d:6,hi:true,f:(c,t)=>{G(c);const u=prWrap(t),focus=Math.floor(u*8)%4,pulse=.5+.5*Math.sin(u*TAU*6),press=u>.35&&u<.48;R(c,0,0,W,H,'#16202e');R(c,30,16,180,110,'#1d2533');R(c,30,16,180,1,P.gold);txt(c,'EQUIPMENT',40,26,'#9aa6b8',6,'left');
+ const items=[{n:'Shield',eq:1,dis:0},{n:'Bow',eq:0,dis:0},{n:'Potion',eq:0,dis:0},{n:'Broken',eq:0,dis:1}];
+ items.forEach((it,i)=>{const y=36+i*22,f=i===focus,eq=it.eq,dis=it.dis,pr=f&&press&&!dis;const sc=pr?.92:1;c.save();c.translate(120,y+9);c.scale(sc,sc);c.translate(-120,-y-9);
+  R(c,42,y,156,18,dis?'#1a1e26':f?'rgba(127,227,216,'+(.15+.15*pulse)+')':eq?'rgba(242,201,76,.12)':'#141a24');
+  if(f&&!dis){R(c,41,y-1,158,20,'rgba(0,0,0,0)');c.strokeStyle='#fff';c.lineWidth=1;c.strokeRect(41.5,y-.5,157,19)}
+  if(eq){R(c,184,y+2,10,10,P.gold);txt(c,'OK',189,y+8,P.ink,5)}
+  if(dis){R(c,48,y+4,8,10,'#5e636e');R(c,48,y+5,6,7,'#8a96a8');R(c,50,y+3,2,4,'#8a96a8');txt(c,'locked: broken',100,y+9,P.red,5,'left')}
+  else txt(c,it.n,52,y+9,f?'#fff':'#cfd8e3',7,'left');
+  if(f&&!dis)txt(c,pr?'PRESSED':'FOCUS',170,y+9,P.cyan,5,'right');
+  c.restore()});
+ prTag(c,'white focus · check = equipped · lock = disabled',4,H-14,'#e9edf2')}};
 
-/* UX-07 tabs + focus order arrows */
+/* UX-07 tabs + crumb + focus order */
 DEMOS['UX-07']={d:6,hi:true,f:(c,t)=>{G(c);const u=prWrap(t),tabX=prKeys([[0,0],[.28,0],[.38,1],[.62,1],[.72,2],[1,2]],u,eo),tab=Math.round(tabX),fi=Math.floor(u*8)%4;R(c,0,0,W,H,'#16202e');R(c,20,14,200,108,'#1d2533');R(c,20,14,200,1,P.gold);
- const tabs=['EQUIP','SKILL','MAP'];tabs.forEach((s,i)=>{const x=30+i*64,on=i===tab;R(c,x,22,58,14,on?'#2a3a52':'#141a24');txt(c,s,x+29,29,on?P.cyan:'#7d8798',6)});R(c,30+tabX*64+4,34,50,2,P.cyan);
+ txt(c,'Menu › '+(tab===0?'Equipment':tab===1?'Skills':'Map'),30,22,'#9aa6b8',5,'left');
+ const tabs=['EQUIP','SKILL','MAP'];tabs.forEach((s,i)=>{const x=30+i*64,on=i===tab;R(c,x,28,58,14,on?'#2a3a52':'#141a24');txt(c,s,x+29,35,on?P.cyan:'#7d8798',6)});R(c,30+tabX*64+4,40,50,2,P.cyan);
  const names=[['Sword','Bow','Shield','Cape'],['Slash','Guard','Dash','Heal'],['Town','Field','Pond','Gate']][tab];
- names.forEach((n,i)=>{const col=i%2,r=Math.floor(i/2),x=40+col*90,y=50+r*28,f=i===fi;R(c,x,y,80,22,f?'rgba(127,227,216,.25)':'#141a24');if(f)R(c,x,y,2,22,P.cyan);txt(c,n,x+40,y+11,f?'#fff':'#cfd8e3',6)});
- const order=[[80,61],[170,61],[170,89],[80,89]];for(let i=0;i<3;i++){const a=order[i],b=order[i+1];prLine(c,a[0],a[1],b[0],b[1],'rgba(242,201,76,.7)',1);tri(c,b[0],b[1],Math.atan2(b[1]-a[1],b[0]-a[0]),4,P.gold)}
- const cur=order[fi];ring(c,cur[0],cur[1],8+Math.sin(u*TAU*4)*2,1,P.gold);prTag(c,'tabs switch · arrows = focus order',4,H-14,P.gold)}};
+ names.forEach((n,i)=>{const col=i%2,r=Math.floor(i/2),x=40+col*90,y=52+r*28,f=i===fi;R(c,x,y,80,22,f?'rgba(127,227,216,.25)':'#141a24');if(f)R(c,x,y,2,22,P.cyan);txt(c,n,x+40,y+11,f?'#fff':'#cfd8e3',6)});
+ const order=[[80,63],[170,63],[170,91],[80,91]];for(let i=0;i<3;i++){const a=order[i],b=order[i+1];prLine(c,a[0],a[1],b[0],b[1],'rgba(242,201,76,.7)',1);tri(c,b[0],b[1],Math.atan2(b[1]-a[1],b[0]-a[0]),4,P.gold)}
+ const cur=order[fi];ring(c,cur[0],cur[1],8+Math.sin(u*TAU*4)*2,1,P.gold);prTag(c,'crumb · tabs · focus order · back keeps scroll',4,H-14,P.gold)}};
 
 /* UX-08 modal: focus trapped, world may keep moving */
 DEMOS['UX-08']={d:5,hi:true,f:(c,t)=>{G(c);const u=prWrap(t);c.drawImage(scene('eday'),0,0);const hx=30+((u*140)%180),bob=Math.round(Math.sin(u*TAU*5)*2);shadow(c,hx,98,5);spr(c,'hero',hx,98+bob,{sx:2,sy:2,flip:Math.sin(u*TAU*2)>0});

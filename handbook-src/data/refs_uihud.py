@@ -1,0 +1,25 @@
+# UI/HUD expansion refs (first-hand developer articles + optional Game UI Database browse links only — no scraping).
+EXTRA={
+'ps_returnal_ux':('PlayStation Blog — Designing the UX of Returnal (Housemarque)','https://blog.playstation.com/?p=348960'),
+'ps_horizon_a11y':('PlayStation Blog — Accessibility features in Horizon Forbidden West (Guerrilla)','https://blog.playstation.com/2022/02/10/accessibility-features-in-horizon-forbidden-west/'),
+'acnh_nookphone':('Nintendo — Animal Crossing: New Horizons tips (NookPhone / in-game apps)','https://play.nintendo.com/news-tips/tips-tricks/animal-crossing-new-horizons-discover-tips/'),
+'d4_ui_feb2020':('Blizzard — Diablo IV Quarterly Update · February 2020 (early UI)','https://news.blizzard.com/en-gb/article/23308274/diablo-iv-quarterly-updatefebruary-2020'),
+'mc_controls':('Minecraft — Controls','https://www.minecraft.net/article/minecraft-controls'),
+'re4_attache':('Capcom — Resident Evil 4 Attache Case manual (inventory grid)','https://game.capcom.com/manual/re4/en/ps4/page/4/1'),
+'xag_114':('Xbox Accessibility Guideline 114 — UI navigation and focus order','https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/114'),
+'xag_113':('Xbox Accessibility Guideline 113 — UI focus and interaction','https://learn.microsoft.com/en-us/xbox/accessibility/xbox-accessibility-guidelines/113'),
+'ue_umg_safe':('Epic — UMG Safe Zones in Unreal Engine','https://dev.epicgames.com/documentation/unreal-engine/umg-safe-zones-in-unreal-engine?lang=en-US'),
+'ue_common_ui':('Epic — Unreal Engine 5.0 Release Notes (Common UI / input)','https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5.0-release-notes?application_version=5.0'),
+'wow_edit_mode':('Blizzard — Get into the grid of things with the updated UI and HUD (WoW Edit Mode)','https://news.blizzard.com/en-gb/article/23837944/get-into-the-grid-of-things-with-the-updated-ui-and-hud'),
+'hig_feedback':('Apple Human Interface Guidelines — Feedback','https://developer.apple.com/design/human-interface-guidelines/feedback'),
+'d3_item_compare':('Blizzard — Diablo Then & Now: Item Comparison Evolution','https://news.blizzard.com/en-us/article/20120910/diablo-then-now-item-comparison-evolution'),
+# Game UI Database — human-browse entry points only (do not scrape / download images)
+'guidb_settings':('Game UI Database — Settings menus (browse)','https://www.gameuidatabase.com/index.php?&scrn=26'),
+'guidb_title':('Game UI Database — Title screens (browse)','https://www.gameuidatabase.com/index.php?&scrn=1'),
+'guidb_equip':('Game UI Database — Equipment & skills (browse)','https://www.gameuidatabase.com/index.php?&scrn=131'),
+'guidb_items':('Game UI Database — Items & unlocks (browse)','https://www.gameuidatabase.com/index.php?&set=0&scrn=906'),
+'guidb_health':('Game UI Database — Player health & resources (browse)','https://www.gameuidatabase.com/index.php?&scrn=133'),
+'guidb_minimap':('Game UI Database — Minimap (browse)','https://www.gameuidatabase.com/index.php?&scrn=135'),
+'guidb_hud':('Game UI Database — HUD & game screen (browse)','https://www.gameuidatabase.com/index.php?&set=0&scrn=904'),
+'guidb_controls':('Game UI Database — Control layouts (browse)','https://www.gameuidatabase.com/index.php?&scrn=23'),
+}

@@ -1386,39 +1386,39 @@
     }
   },
   "UX-05": {
-    "params": "interaction range · facing angle · action label · bound input · priority · dismissal",
-    "impl": "Evaluate prompts from current range, facing, eligibility, and interaction priority, then display the actual bound input. Remove the prompt when those conditions fail, not because the system assumes the player has learned it.",
+    "params": "interaction range · facing angle · action label · bound input · device glyphs · rebind refresh · stick-drift ignore · priority · dismissal",
+    "impl": "Evaluate prompts from range, facing, eligibility and priority, then render glyphs from the active input device and the live binding table. Swap keyboard letters for gamepad face buttons the moment the device changes or a rebind lands; ignore stick drift below the dead zone so glyphs do not flicker. Hide when conditions fail — never because the system assumes mastery.",
     "prompt": {
-      "zh": "製作情境操作提示：玩家在箱子 2 m 內並面向它 45° 以內時顯示「E 開啟」，改鍵後即時換成新按鍵；離開範圍 0.3 秒後隱藏，附近有 2 個目標時優先顯示最近可用的一個。",
-      "en": "Create a contextual prompt that shows E: Open when the player is within 2 m of a chest and facing it within 45 degrees, updates immediately after rebinding, hides 0.3 seconds after leaving range, and prioritizes the nearest valid target when 2 overlap.",
-      "ja": "状況依存プロンプトを作成してください。宝箱から2m以内かつ向きが45度以内なら「E 開ける」を表示し、キー変更後は即時更新します。範囲外になって0.3秒後に消し、対象が2つ重なる場合は最も近い有効対象を優先してください。"
+      "zh": "製作情境操作提示：玩家在箱子 2 m 內並面向它 45° 以內時顯示按鍵圖示。接上手把後「E」即時換成「A」（或實際綁定），改鍵後同樣即更新；忽略搖桿死區內漂移。離開範圍 0.3 秒後隱藏，重疊目標優先最近可用者。",
+      "en": "Create a contextual prompt that shows the live bound glyph when the player is within 2 m of a chest and facing it within 45 degrees. After a gamepad connects, replace E with A (or the real binding) immediately, and refresh again after rebinds; ignore stick drift inside the dead zone. Hide 0.3 seconds after leaving range and prefer the nearest valid overlapping target.",
+      "ja": "状況依存プロンプトを作成してください。宝箱から2m以内かつ向きが45度以内なら、現在のバインド図柄を表示します。パッド接続後は「E」を直ちに「A」（または実バインド）へ替え、再バインド後も即更新。スティックのデッドゾーン内ドリフトは無視。範囲外0.3秒で消し、重なる対象は最も近い有効なものを優先。"
     }
   },
   "UX-06": {
-    "params": "focus ring · selected state · hover state · input method · contrast · focus restore",
-    "impl": "Represent focus, hover, and selected or equipped state with distinct visual tokens. Maintain a single logical focus target and restore it predictably when a panel or dialog closes.",
+    "params": "focus ring · selected / equipped mark · pressed squash · disabled lock · hover · contrast · focus restore",
+    "impl": "On one equipment slot, show distinct tokens: white/cyan focus ring, corner check for equipped/selected, brief press squash, and a lock plus reason when disabled. States may stack (focused+equipped) without looking identical. Restore the prior focus after a modal closes; if that item was removed, select the nearest remaining enabled slot.",
     "prompt": {
-      "zh": "設計 3×2 裝備格：手把焦點用 3 px 實線框，滑鼠 hover 用淺底色，已裝備物品用剔號；三種狀態可同時存在但不能混淆，關閉詳情頁後要回到原本第 4 格。",
-      "en": "Design a 3-by-2 equipment grid using a 3 px solid ring for controller focus, a light background for mouse hover, and a checkmark for equipped items; allow states to coexist without confusion and restore focus to slot 4 after closing details.",
-      "ja": "3×2の装備グリッドを設計してください。コントローラーのフォーカスは3pxの実線枠、マウスホバーは薄い背景、装備中はチェックで示します。3状態が同時でも区別でき、詳細を閉じたら4番目の枠へ戻してください。"
+      "zh": "同一個裝備格示範四態：白框＝焦點，角落剔號＝已裝備，按下短暫收縮，停用加鎖及原因文字。焦點與已裝備可並存但外形不同；關閉模態後回原焦點，若原項已移除則選最近可用項。對比度要在暗底上仍可辨。",
+      "en": "On one equipment slot show four states: a white focus ring, a corner check for equipped, a brief press squash, and a lock with reason when disabled. Focus and equipped may coexist but must not look the same; restore focus after a modal, or the nearest enabled slot if the original was removed. Keep contrast readable on a dark panel.",
+      "ja": "同じ装備枠で四状態を示す：白枠＝フォーカス、隅のチェック＝装備中、押下で短く縮む、無効は鍵と理由。フォーカスと装備は共存できても形は違う。モーダル閉鎖後は元フォーカスへ、削除済みなら最も近い有効枠へ。暗いパネルでもコントラストを確保。"
     }
   },
   "UX-07": {
-    "params": "tab order · directional neighbors · confirm · back · wrapping · focus memory",
-    "impl": "Define explicit directional neighbors for non-linear layouts and a stable order for linear lists. Preserve focus per tab, keep confirm and back behavior consistent, and test every path without a pointer.",
+    "params": "tab order · page title · category crumb · directional neighbors · confirm · back · wrapping · focus & scroll memory",
+    "impl": "Show the current page name and its category so deep menus stay oriented. Define directional neighbors for grids and a stable order for lists. Preserve per-tab focus and scroll on back; keep confirm/back consistent across pages.",
     "prompt": {
-      "zh": "建立「裝備／地圖／技能」3 個分頁及每頁 4×3 項目網格；左右肩鍵切頁，方向鍵按視覺鄰位移動，網格邊緣不循環，返回上一頁時恢復各分頁最後焦點。",
-      "en": "Build 3 tabs—Equipment, Map, and Skills—with a 4-by-3 item grid on each; use shoulder buttons for tabs, move focus to visual neighbors with directional input, do not wrap at grid edges, and restore each tab’s last focus on return.",
-      "ja": "「装備／マップ／スキル」の3タブと、各タブに4×3の項目グリッドを作成してください。ショルダーボタンでタブを切り替え、方向入力では見た目上の隣へ移動し、端では循環させず、戻った際は各タブの最後のフォーカスを復元してください。"
+      "zh": "建立「裝備／地圖／技能」分頁，頂部顯示頁名與所屬分類（例如 選單 › 裝備）。左右肩鍵切頁，方向鍵按視覺鄰位移動，網格邊緣不循環；進入子頁再返回時保留分頁、焦點與捲動位置。",
+      "en": "Build Equipment / Map / Skills tabs with a page title and category crumb (e.g. Menu › Equipment). Shoulder buttons change tabs; directions move to visual neighbours without wrapping at grid edges; returning from a child page restores tab, focus and scroll.",
+      "ja": "「装備／マップ／スキル」タブを作り、上部にページ名と分類（例：メニュー › 装備）を示す。ショルダーでタブ切替、方向は視覚上の隣へ、端では循環しない。子ページから戻るとタブ・フォーカス・スクロールを復元。"
     }
   },
   "UX-08": {
-    "params": "blocking state · initial focus · focus containment · confirm · cancel · background input",
-    "impl": "Place a modal in a dedicated blocking layer, move focus to a safe initial action, and contain navigation until the dialog resolves. Disable background interaction, restore prior focus on close, and do not infer that simulation is paused.",
+    "params": "blocking state · initial focus · focus containment · confirm · cancel · press vs disabled · background input · focus restore",
+    "impl": "Trap focus inside the modal, start on a safe action, and restore the previous outside focus on close (nearest enabled if gone). Show pressed and disabled distinctly on modal buttons. Do not assume the world is paused.",
     "prompt": {
-      "zh": "製作刪除存檔模態框，顯示「刪除第 3 個存檔？」及「取消／刪除」2 個按鈕；初始焦點放在取消，Tab 只能在框內循環，Esc 關閉後回到第 3 個存檔，背景遊戲仍可按產品規則繼續。",
-      "en": "Create a delete-save modal asking Delete save 3? with 2 buttons, Cancel and Delete; put initial focus on Cancel, keep Tab inside the dialog, restore focus to save 3 on Escape, and do not assume the background simulation pauses.",
-      "ja": "「セーブ3を削除しますか？」と「キャンセル／削除」の2ボタンを持つモーダルを作成してください。初期フォーカスはキャンセルに置き、Tabはダイアログ内に限定し、Escで閉じた後はセーブ3へ戻し、背後のゲーム停止は別ルールとして扱ってください。"
+      "zh": "製作刪除存檔模態：取消／刪除兩鈕；初始焦點在取消，Tab 只在框內循環。刪除鈕可顯示按下收縮；若存檔受保護則刪除為停用並顯示鎖與原因。Esc 關閉後回到第 3 個存檔（已刪則最近可用）。",
+      "en": "Build a delete-save modal with Cancel / Delete; start focus on Cancel and keep Tab inside. Delete may show a press squash; if the save is protected, Delete is disabled with a lock and reason. On Escape restore save 3, or the nearest enabled save if it was removed.",
+      "ja": "セーブ削除モーダルでキャンセル／削除。初期フォーカスはキャンセル、Tabは枠内のみ。削除は押下で縮めてもよい。保護セーブなら削除は無効で鍵と理由。Esc後はセーブ3へ（削除済みなら最も近い有効へ）。"
     }
   },
   "UX-09": {
@@ -1485,12 +1485,12 @@
     }
   },
   "UX-16": {
-    "params": "transition duration · easing · focus animation · input lock · reduced motion · state continuity",
-    "impl": "Use motion to explain state changes while keeping focus and input outcomes immediately legible. Cap transition durations, define interruption behavior, and provide a reduced-motion path that preserves function without large movement or flashing.",
+    "params": "push / pop direction · page title · category crumb · transition duration · easing · focus animation · scroll memory · reduced motion",
+    "impl": "Enter deeper pages with a paired push direction and leave with the opposite pop so hierarchy is readable. Keep page title and category visible during motion. Cap durations, resolve to the latest input if mashed, and replace travel with a short crossfade under reduced motion while still restoring focus and scroll.",
     "prompt": {
-      "zh": "設計分頁轉場：面板在 180 ms 內滑動，焦點框用 120 ms 淡變，轉場途中仍顯示目前分頁；連按 3 次切頁時直接追到最新輸入，減少動態模式改用 80 ms 交叉淡入。",
-      "en": "Design tab transitions with a 180 ms panel slide and a 120 ms focus fade while always showing the current tab; if 3 tab inputs arrive quickly, resolve to the latest one, and use an 80 ms crossfade in reduced-motion mode.",
-      "ja": "タブ遷移を設計し、パネルは180msでスライド、フォーカス枠は120msで変化させ、遷移中も現在のタブを示してください。3回連続入力されたら最新へ追従し、モーション低減時は80msのクロスフェードにしてください。"
+      "zh": "設計選單層級過渡：進入子頁由右推入、返回向右推出（成對方向）；頂部保留「選單 › 設定 › 音訊」路徑。面板 180 ms、焦點 120 ms；連按 3 次追最新輸入；減少動態時改 80 ms 交叉淡入，仍還原焦點與捲動。",
+      "en": "Design menu hierarchy motion: push child pages in from the right and pop them out the opposite way; keep a Menu › Settings › Audio crumb visible. Use 180 ms panels and 120 ms focus; resolve triple-taps to the latest input; under reduced motion use an 80 ms crossfade still restoring focus and scroll.",
+      "ja": "メニュー階層の遷移：子ページは右からプッシュ、戻りは逆方向にポップ。上部に「メニュー › 設定 › 音声」を維持。パネル180ms・フォーカス120ms。3連打は最新へ。モーション低減時は80msクロスフェードでもフォーカスとスクロールを復元。"
     }
   },
   "UX-17": {
