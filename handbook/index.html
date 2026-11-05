@@ -4,7 +4,7 @@
 article{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;scroll-margin-top:70px;min-width:0}article:target{border-color:var(--accent);box-shadow:0 0 0 2px rgba(145,207,191,.3)}
 .hd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px}.eid{font-family:ui-monospace,monospace;color:var(--accent);font-weight:700}.badge{border-radius:5px;padding:1px 7px;font-weight:600}.t-S{background:#21433b;color:#9ff0d6}.t-C{background:#463a1f;color:#f3d48f}.t-D{background:#3d2a4a;color:#e0b8ff}.subn{color:var(--tag)}.entry-link{margin-left:auto;color:var(--muted);text-decoration:none;font-weight:700;font-size:15px}.entry-link:hover{color:var(--accent)}
 h2.nm{margin:6px 0 0;font-size:20px}.std{color:var(--muted);font-size:13px;margin-bottom:8px}.std b{color:var(--text)}.al{color:var(--muted)}
-.visual{margin:0 0 10px;background:#0b1426;border:1px solid var(--line);border-radius:9px;overflow:hidden}.visual canvas{display:block;width:100%;aspect-ratio:16/9;image-rendering:pixelated;background:#152435}
+.visual{margin:0 0 10px;background:#0b1426;border:1px solid var(--line);border-radius:9px;overflow:hidden}.visual canvas{display:block;width:100%;max-width:100%;aspect-ratio:16/9;image-rendering:-moz-crisp-edges;image-rendering:pixelated;image-rendering:crisp-edges;-ms-interpolation-mode:nearest-neighbor;background:#152435}
 .ctl{display:flex;gap:6px;align-items:center;padding:6px 8px;background:var(--panel2)}.ctl input{flex:1;accent-color:var(--accent)}.ctl button{padding:3px 10px;min-width:64px}.stl{color:var(--muted);font-size:12px}
 dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}dt{color:var(--accent);font-size:12.5px;font-weight:600;white-space:nowrap;padding-top:1px}dd{margin:0;font-size:14px}.mono{font-family:ui-monospace,'Cascadia Mono',Consolas,monospace;font-size:12.5px;color:#cdd6e4}
 details{margin:6px 0 8px}summary{cursor:pointer;color:var(--accent);font-size:13px;font-weight:600}details p{margin:6px 0 0}
@@ -30,7 +30,7 @@ html{scroll-padding-top:calc(var(--top) + 12px)}
 .seg{display:flex;gap:2px;padding:2px;border:1px solid var(--btnline);border-radius:8px}.seg button{border:none;padding:3px 9px}
 #count{color:var(--muted);font-size:12.5px;white-space:nowrap;margin-left:auto}
 .menu{display:none}
-.layout{display:grid;grid-template-columns:var(--side) minmax(0,1fr);max-width:1240px;margin:0 auto;gap:28px;padding:0 20px}
+.layout{display:grid;grid-template-columns:var(--side) minmax(0,1fr);max-width:1480px;margin:0 auto;gap:28px;padding:0 20px}
 .side{position:sticky;top:var(--top);align-self:start;height:calc(100vh - var(--top));overflow-y:auto;padding:14px 4px 30px 0;scrollbar-width:thin}
 .tagbar{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:12px;margin-bottom:10px;border-bottom:1px solid var(--line)}
 .tagbar .tl{width:100%;color:var(--muted);font-size:12px;margin-bottom:2px}.tagbar .th{display:block;font-size:11px;opacity:.75}
@@ -44,16 +44,23 @@ html{scroll-padding-top:calc(var(--top) + 12px)}
 .toc .subs{display:none;padding:2px 0 6px 10px}.toc .tg.spy .subs{display:block}
 .toc .ts{font-size:12.5px;color:var(--muted);padding:2px 8px}
 .guidelink{display:block;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:13px;color:var(--accent);text-decoration:none}
-.main{min-width:0;max-width:880px;width:100%;padding:16px 0 40px}
+.main{min-width:0;max-width:none;width:100%;padding:16px 0 40px}
 .subtitle{margin:0 0 10px;color:var(--muted);font-size:13.5px;max-width:75ch}
 .guide details{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 14px;margin:6px 0}
 .guide details details{background:var(--panel2)}.guide summary{font-weight:600}.guide h3{font-size:14px;margin:12px 0 4px;color:var(--muted)}
-.typehelp{color:var(--muted);font-size:12.5px;margin:8px 0}#empty{text-align:center;color:var(--muted)}
-#cards{display:flex;flex-direction:column;gap:16px;margin-top:10px}
-h2.sect{display:flex;align-items:baseline;gap:10px;margin:22px 0 0;padding-bottom:6px;border-bottom:1px solid var(--line);font-size:18px;scroll-margin-top:calc(var(--top) + 8px)}
+.typehelp{color:var(--muted);font-size:12.5px;margin:8px 0}#empty{text-align:center;color:var(--muted);grid-column:1/-1}
+/* gallery: ~2 cols on tablet/desktop, up to 3 on wide; list stays a single compact column */
+#cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:12px;margin-top:10px;align-items:start}
+.view-list #cards{display:flex;flex-direction:column;gap:0}
+h2.sect{display:flex;align-items:baseline;gap:10px;margin:18px 0 0;padding-bottom:6px;border-bottom:1px solid var(--line);font-size:18px;scroll-margin-top:calc(var(--top) + 8px);grid-column:1/-1}
 h2.sect .n{color:var(--muted);font-size:12px;font-weight:400}
 article{scroll-margin-top:calc(var(--top) + 12px)}
+body:not(.view-list) article{padding:12px 12px}
+body:not(.view-list) h2.nm{font-size:17px;line-height:1.35;overflow-wrap:anywhere}
+body:not(.view-list) .recog{font-size:13.5px;max-width:none}
+body:not(.view-list) .body{max-width:none}
 .body{max-width:72ch}
+.view-list .main .body{max-width:72ch}
 footer{margin-top:30px;padding:10px 0 20px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line)}
 /* card polish */
 .callout{margin:8px 0;padding:8px 12px;background:rgba(218,184,128,.08);border-left:3px solid var(--tag);border-radius:0 8px 8px 0}
@@ -67,7 +74,6 @@ mark.kw-match{background:rgba(145,207,191,.32);color:#fff;padding:0 1px;border-r
 .hit{border-radius:5px;padding:0 7px;font-size:11.5px;background:#2b2440;color:#e0c8ff;border:1px solid #5a4a80;white-space:nowrap}
 /* list view: compact rows, expand in place */
 .row{display:none}
-.view-list #cards{gap:0}
 .view-list article{padding:0;border-radius:0;border-width:0 0 1px;background:transparent}
 .view-list article>*:not(.row){display:none}
 .view-list article.open{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:0 14px 12px;margin:6px 0}
@@ -4044,10 +4050,20 @@ const linkText=s=>s.replace(IDRE,(m)=>resolveId(m)?`<a class="idl" href="#${m}">
 function linkify(html){let inA=0;return String(html).split(/(<[^>]+>)/).map(p=>{if(p.startsWith('<')){if(/^<a[\s>]/i.test(p))inA++;else if(/^<\/a>/i.test(p))inA=Math.max(0,inA-1);return p}return inA?p:linkText(p)}).join('')}
 const strip=h=>String(h).replace(/<[^>]+>/g,' ').replace(/&[a-z#0-9]+;/g,' ');
 const players=[];const visible=new Set();
-class Player{constructor(e,fig){this.e=e;this.def=DEMOS[e.id];this.cv=fig.querySelector('canvas');this.dc=this.cv.getContext('2d');this.hi=!!(this.def&&this.def.hi);if(!this.hi){this.buf=mk(W,H);this.bc=this.buf.getContext('2d')}this.t=this.def&&this.def.t0!=null?this.def.t0:0;this.dur=(this.def&&this.def.d)||4;this.static=!this.def||!!this.def.s;this.playing=!this.static&&!globalPause;this.wire(fig);this.ui()}
+/* Promote demos to hi:true (480×270) so monospace labels stay crisp under CSS scale.
+   - Skip demos that already set hi / buf
+   - Skip demos that write raw 240×135 ImageData on the demo canvas (put/get/createImageData / outData)
+   - If the draw fn already starts from scale(2,2)/G(c), only flip hi (avoid double-scale)
+   - Otherwise wrap with scale(2,2) so existing 240-space demos keep their coordinates */
+(()=>{const bad=/c\.(?:put|get|create)ImageData\s*\(|outData\s*\(\s*c\s*\)/;const scaled=/(?:^|[^\w.])(?:c\.scale\(\s*2\s*,\s*2\s*\)|G\(\s*c\s*\))/;for(const id of Object.keys(DEMOS)){const d=DEMOS[id];if(!d||d.hi||d.buf||typeof d.f!=='function')continue;let src='';try{src=Function.prototype.toString.call(d.f)}catch(e){continue}if(bad.test(src)){d.buf=true;continue}d.hi=true;if(scaled.test(src))continue;const f=d.f;d.f=(c,t,w,h,p)=>{c.scale(2,2);f(c,t,w,h,p)}}})();
+/* Display canvas is 480×270 logical; multiply by devicePixelRatio so CSS upscaling stays nearest-neighbour crisp. */
+const pxSmooth=(c,on)=>{c.imageSmoothingEnabled=!!on;if('mozImageSmoothingEnabled' in c)c.mozImageSmoothingEnabled=!!on;if('webkitImageSmoothingEnabled' in c)c.webkitImageSmoothingEnabled=!!on;if('msImageSmoothingEnabled' in c)c.msImageSmoothingEnabled=!!on};
+class Player{constructor(e,fig){this.e=e;this.def=DEMOS[e.id];this.cv=fig.querySelector('canvas');this.dc=this.cv.getContext('2d');this.hi=!!(this.def&&this.def.hi);if(!this.hi){this.buf=mk(W,H);this.bc=this.buf.getContext('2d')}this.t=this.def&&this.def.t0!=null?this.def.t0:0;this.dur=(this.def&&this.def.d)||4;this.static=!this.def||!!this.def.s;this.playing=!this.static&&!globalPause;this.dpr=0;this.wire(fig);this.ui()}
 wire(fig){this.fig=fig;this.btn=fig.querySelector('.pp');this.rng=fig.querySelector('input');if(this.rng)this.rng.oninput=()=>{this.t=+this.rng.value;this.playing=false;this.ui();this.render()};const rb=fig.querySelector('.rp');if(rb)rb.onclick=()=>{this.t=0;this.playing=true;this.ui();this.render()};if(this.btn)this.btn.onclick=()=>{this.playing=!this.playing;this.ui()}}
 ui(){if(this.btn)this.btn.textContent=this.playing?UI[lang].pause:UI[lang].play;const rb=this.fig.querySelector('.rp');if(rb)rb.textContent=UI[lang].replay;if(this.rng)this.rng.value=this.t}
-render(){this.drawn=true;const f=this.def&&this.def.f;if(!f)return;try{if(this.hi){const c=this.dc;c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.imageSmoothingEnabled=false;c.clearRect(0,0,480,270);f(c,this.t,480,270,this)}else{const c=this.bc;c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.imageSmoothingEnabled=false;c.clearRect(0,0,W,H);f(c,this.t,W,H,this);const d=this.dc;d.setTransform(1,0,0,1,0,0);d.imageSmoothingEnabled=false;d.clearRect(0,0,480,270);d.drawImage(this.buf,0,0,480,270)}}catch(err){console.error('demo '+this.e.id+': '+err.message);this.err=true;this.playing=false}}
+/* Keep an integer DPR backing store so 480×270 demo pixels map 1:1 (or N:1) onto device pixels. */
+fit(){const dpr=Math.max(1,Math.min(3,Math.round(window.devicePixelRatio||1)));if(dpr===this.dpr&&this.cv.width===480*dpr)return false;this.dpr=dpr;this.cv.width=480*dpr;this.cv.height=270*dpr;return true}
+render(){this.drawn=true;const f=this.def&&this.def.f;if(!f)return;try{this.fit();const s=this.dpr;if(this.hi){const c=this.dc;c.setTransform(s,0,0,s,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';pxSmooth(c,false);c.clearRect(0,0,480,270);f(c,this.t,480,270,this)}else{const c=this.bc;c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';pxSmooth(c,false);c.clearRect(0,0,W,H);f(c,this.t,W,H,this);const d=this.dc;d.setTransform(1,0,0,1,0,0);pxSmooth(d,false);d.clearRect(0,0,this.cv.width,this.cv.height);d.drawImage(this.buf,0,0,this.cv.width,this.cv.height)}}catch(err){console.error('demo '+this.e.id+': '+err.message);this.err=true;this.playing=false}}
 step(dt){if(!this.playing||this.static)return;this.t+=dt/this.dur;if(this.t>=1)this.t-=1;if(this.rng)this.rng.value=this.t;this.render()}}
 /* SVG player: original SMIL diagrams are paused and driven by the same timeline/scrubber as canvas demos */
 class SPlayer{constructor(e,fig){this.e=e;this.svg=fig.querySelector('svg');this.dur=e.dur||0;this.static=!this.dur;this.t=0;this.playing=!this.static&&!globalPause;try{if(this.svg.pauseAnimations)this.svg.pauseAnimations()}catch(x){}this.wire(fig);this.render();this.ui()}
@@ -4125,6 +4141,7 @@ document.addEventListener('keydown',ev=>{if(ev.key==='Escape')drawer(false);cons
 document.addEventListener('click',ev=>{const a=ev.target.closest('a[href^="#"]');if(!a)return;const id=a.getAttribute('href').slice(1);if(resolveId(id)){ev.preventDefault();history.replaceState(null,'','#'+id);goTo(id);drawer(false)}});
 addEventListener('hashchange',()=>{goTo(decodeURIComponent(location.hash.slice(1)))});
 addEventListener('scroll',()=>{if(spyQ)return;spyQ=true;requestAnimationFrame(()=>{spyQ=false;updSpy()})},{passive:true});
+addEventListener('resize',()=>{players.forEach(p=>{if(p.cv&&p.fit&&p.fit()&&(visible.has(p)||p.drawn))p.render()})});
 paint();filter();let last=performance.now();const loop=now=>{const dt=Math.min(.1,(now-last)/1000);last=now;visible.forEach(p=>p.step(dt));requestAnimationFrame(loop)};requestAnimationFrame(loop);if(location.hash){const id=decodeURIComponent(location.hash.slice(1));if(resolveId(id))setTimeout(()=>goTo(id),50)}window.__ready=true}
 init();
 </script></body></html>
