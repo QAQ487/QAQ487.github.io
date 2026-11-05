@@ -6,7 +6,8 @@ article{background:var(--panel);border:1px solid var(--line);border-radius:12px;
 h2.nm{margin:6px 0 0;font-size:20px}.std{color:var(--muted);font-size:13px;margin-bottom:8px}.std b{color:var(--text)}.al{color:var(--muted)}
 .visual{margin:0 0 10px;background:#0b1426;border:1px solid var(--line);border-radius:9px;overflow:hidden}.visual canvas{display:block;width:100%;max-width:100%;aspect-ratio:16/9;image-rendering:-moz-crisp-edges;image-rendering:pixelated;image-rendering:crisp-edges;-ms-interpolation-mode:nearest-neighbor;background:#152435}
 .ctl{display:flex;gap:6px;align-items:center;padding:6px 8px;background:var(--panel2)}.ctl input{flex:1;accent-color:var(--accent)}.ctl button{padding:3px 10px;min-width:64px}.stl{color:var(--muted);font-size:12px}
-dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}dt{color:var(--accent);font-size:12.5px;font-weight:600;white-space:nowrap;padding-top:1px}dd{margin:0;font-size:14px}.mono{font-family:ui-monospace,'Cascadia Mono',Consolas,monospace;font-size:12.5px;color:#cdd6e4}
+/* minmax(0,1fr) + wrapping dt labels: long UI strings (esp. ex) must not crush dd in gallery/mobile */
+dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;align-items:start}dt{color:var(--accent);font-size:12.5px;font-weight:600;max-width:9em;line-height:1.45;overflow-wrap:anywhere;padding-top:1px}dd{margin:0;font-size:14px;min-width:0;overflow-wrap:anywhere}.mono{font-family:ui-monospace,'Cascadia Mono',Consolas,monospace;font-size:12.5px;color:#cdd6e4}
 details{margin:6px 0 8px}summary{cursor:pointer;color:var(--accent);font-size:13px;font-weight:600}details p{margin:6px 0 0}
 .meta{margin-top:6px;padding-top:8px;border-top:1px solid #2a3a4e}.meta ul{margin:0;padding-left:18px}.meta li{font-size:13px}a{color:#9fd4ff}.ext{color:var(--muted);font-size:13px}.meta dd a{font-size:13px}.nosrc{color:#e0b8ff;font-size:12.5px;display:block}
 .chip{border-radius:99px;font-size:12px;padding:3px 10px;background:#1d2a2a;border:1px solid #3d5a55;color:#bfe3da}.chip.active{background:var(--tag);border-color:var(--tag);color:#1a1408}
@@ -62,12 +63,12 @@ body:not(.view-list) article{padding:12px 12px}
 body:not(.view-list) h2.nm{font-size:17px;line-height:1.35;overflow-wrap:anywhere}
 body:not(.view-list) .recog{font-size:13.5px;max-width:none}
 body:not(.view-list) .body{max-width:none}
-.body{max-width:72ch}
+.body{max-width:72ch;overflow-wrap:anywhere}
 .view-list .main .body{max-width:72ch}
 footer{margin-top:30px;padding:10px 0 20px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line)}
 /* card polish */
 .callout{margin:8px 0;padding:8px 12px;background:rgba(218,184,128,.08);border-left:3px solid var(--tag);border-radius:0 8px 8px 0}
-.callout .ct{color:var(--tag);font-weight:700;font-size:12.5px;margin-bottom:2px}.callout .cb{font-size:14px}
+.callout .ct{color:var(--tag);font-weight:700;font-size:12.5px;margin-bottom:2px;line-height:1.45;overflow-wrap:anywhere}.callout .cb{font-size:14px;overflow-wrap:anywhere}
 dd.params{display:flex;flex-wrap:wrap;gap:5px;padding-top:2px}
 .param-chip{background:#141c2a;border:1px solid var(--btnline);color:#cdd6e4;font-family:ui-monospace,'Cascadia Mono',Consolas,monospace;font-size:11.5px;line-height:1.5;padding:1px 8px;border-radius:4px}
 .prompt{margin:12px 0;background:#090d14;border:1px solid #233142;border-radius:8px;padding:10px 12px}
@@ -101,7 +102,7 @@ mark.kw-match{background:rgba(145,207,191,.32);color:#fff;padding:0 1px;border-r
 /* clean-up batch: reading order, list English names, filter status, redirects */
 .rstd{color:#c9d7ea;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:240px;font-style:italic}
 .rid{opacity:.8}
-.recog{margin:8px 0 10px;font-size:14.5px;line-height:1.7;max-width:75ch}.recog .rl{color:var(--accent);font-size:12.5px;margin-right:4px}
+.recog{margin:8px 0 10px;font-size:14.5px;line-height:1.7;max-width:75ch;overflow-wrap:anywhere}.recog .rl{color:var(--accent);font-size:12.5px;margin-right:4px}
 dd{line-height:1.7}.callout .cb{line-height:1.7}
 details.sec{margin:6px 0;border:1px solid #2a3a4e;border-radius:8px;padding:5px 10px;background:#141b27}details.sec[open]{padding-bottom:8px}details.sec>summary{list-style-position:inside}
 details.sec .prompt{margin:8px 0 0}details.sec .prompt .ph{display:flex;justify-content:flex-end}details.sec ul{margin:6px 0 0;padding-left:18px}details.sec li{font-size:13px}details.sec .params{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.srcv{font-size:13px;margin-top:6px}
