@@ -1,0 +1,3 @@
+{"id":"LGT","zh":"光照與陰影","en":"Lighting & shadows","ja":"ライティングと影",
+ "subs":{"光源":["Light sources","光源"],"間接光與陰影":["Indirect light & shadows","間接光と影"],"渲染管線":["Rendering pipeline","レンダリングパイプライン"],"大氣與體積":["Atmosphere & volume","大気とボリューム"]},
+ "integrator_changes":["build.py: add 'lgt' to mods","build.py: add CATS entry dict(id='LGT',zh='光照與陰影',en='Lighting & shadows',ja='ライティングと影')","build.py: add the 4 subs above to SUBS","data/refs.py: add 'refs_lgt' to the EXTRA merge loop ('refs_vfx','refs_pix','refs_lgt')"]}

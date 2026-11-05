@@ -1,0 +1,5 @@
+{"id":"MATX","zh":"材質與表面","en":"Materials & surfaces","ja":"マテリアルと表面",
+ "subs":{"著色模型與材質參數":["Shading models & material parameters","シェーディングモデルとマテリアルパラメータ"],"表面細節":["Surface detail","表面ディテール"],"透明與折射":["Transparency & refraction","透明と屈折"],"特殊材質":["Special materials","特殊マテリアル"]},
+ "ids":["MATX-01","MATX-02","MATX-03","MATX-04","MATX-05","MATX-06","MATX-07","MATX-08","MATX-09","MATX-10"],
+ "refs_module":"data/refs_mat.py (EXTRA, 31 keys prefixed mt_; also reuses existing cyan_force, w_ordered)",
+ "integrator_changes":["build.py: add 'mat' to mods","build.py: add CATS entry dict(id='MATX',zh='材質與表面',en='Materials & surfaces',ja='マテリアルと表面')","build.py: add the 4 subs above to SUBS","data/refs.py: add 'refs_mat' to the EXTRA merge loop tuple"]}

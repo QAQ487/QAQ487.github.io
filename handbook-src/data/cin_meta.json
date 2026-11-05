@@ -1,0 +1,15 @@
+{
+  "id": "CIN",
+  "zh": "演出與敘事",
+  "en": "Cinematics & narrative",
+  "ja": "演出と物語表現",
+  "subs": {
+    "鏡頭語言": ["Cinematic camera", "カメラ演出"],
+    "角色與對白": ["Characters & dialogue", "キャラクターと会話"],
+    "章節與身份": ["Chapters & introductions", "章立てと登場演出"],
+    "敘事手法": ["Narrative techniques", "物語の手法"]
+  },
+  "build_mod": "cin",
+  "refs_module": "refs_cin",
+  "entries": 16
+}

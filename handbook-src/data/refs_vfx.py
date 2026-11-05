@@ -1,0 +1,28 @@
+# VFX worker refs (all checked with curl on 2026-11-04, HTTP 200)
+EXTRA={
+'vx_gpup2d':('Godot docs — GPUParticles2D class','https://docs.godotengine.org/en/stable/classes/class_gpuparticles2d.html'),
+'vx_cpup2d':('Godot docs — CPUParticles2D class','https://docs.godotengine.org/en/stable/classes/class_cpuparticles2d.html'),
+'vx_vfxgraph':('Unity — Visual Effect Graph manual (GPU particles)','https://docs.unity3d.com/Packages/com.unity.visualeffectgraph@17.0/manual/index.html'),
+'vx_ms_buf':('Microsoft Learn — Introduction to buffers in Direct3D 11','https://learn.microsoft.com/en-us/windows/win32/direct3d11/overviews-direct3d-11-resources-buffers-intro'),
+'vx_curl':('Bridson et al. — Curl-noise for procedural fluid flow (SIGGRAPH 2007, PDF)','https://www.cs.ubc.ca/~rbridson/docs/bridson-siggraph2007-curlnoise.pdf'),
+'vx_tiling':('Unity Shader Graph — Tiling And Offset node','https://docs.unity3d.com/Packages/com.unity.shadergraph@17.0/manual/Tiling-And-Offset-Node.html'),
+'vx_g2dshader':('Godot docs — Your first 2D shader (UV / TIME)','https://docs.godotengine.org/en/stable/tutorials/shaders/your_first_shader/your_first_2d_shader.html'),
+'vx_w_shock':('Wikipedia — Shock wave (physical background)','https://en.wikipedia.org/wiki/Shock_wave'),
+'vx_trail':('Unity Manual — Trail Renderer','https://docs.unity3d.com/Manual/class-TrailRenderer.html'),
+'vx_trailmod':('Unity Manual — Particle System Trails module','https://docs.unity3d.com/Manual/PartSysTrailsModule.html'),
+'vx_line':('Unity Manual — Line Renderer','https://docs.unity3d.com/Manual/class-LineRenderer.html'),
+'vx_line2d':('Godot docs — Line2D class','https://docs.godotengine.org/en/stable/classes/class_line2d.html'),
+'vx_w_tracer':('Wikipedia — Tracer ammunition','https://en.wikipedia.org/wiki/Tracer_ammunition'),
+'vx_subemit':('Unity Manual — Particle System Sub Emitters module','https://docs.unity3d.com/Manual/PartSysSubEmitModule.html'),
+'vx_colife':('Unity Manual — Color over Lifetime module','https://docs.unity3d.com/Manual/PartSysColorOverLifeModule.html'),
+'vx_w_expl':('Wikipedia — Explosion (physical background)','https://en.wikipedia.org/wiki/Explosion'),
+'vx_w_light':('Wikipedia — Lightning (physical background)','https://en.wikipedia.org/wiki/Lightning'),
+'vx_gg_fire':('GPU Gems ch.6 — Fire in the "Vulcan" demo','https://developer.nvidia.com/gpugems/gpugems/part-i-natural-effects/chapter-6-fire-vulcan-demo'),
+'vx_w_magic':('Wikipedia — Magic circle (folklore background)','https://en.wikipedia.org/wiki/Magic_circle'),
+'vx_w_billboard':('Wikipedia — Billboard (computer graphics)','https://en.wikipedia.org/wiki/Billboard_(computer_graphics)'),
+'vx_w_gibs':('Wikipedia — Gibs','https://en.wikipedia.org/wiki/Gibs'),
+# round 2 (curl-checked 2026-11-04, HTTP 200)
+'vx_u_partshader':('Unity Manual — Standard Particle Shaders (Flip-Book Mode: Blended)','https://docs.unity3d.com/6000.0/Documentation/Manual/shader-StandardParticleShaders.html'),
+'vx_u_partshader_ja':('Unity マニュアル — スタンダードパーティクルシェーダー（Flip-Book Mode）','https://docs.unity3d.com/ja/current/Manual/shader-StandardParticleShaders.html'),
+'vx_u_texsheet':('Unity Manual — Texture Sheet Animation module','https://docs.unity3d.com/6000.0/Documentation/Manual/PartSysTexSheetAnimModule.html'),
+}

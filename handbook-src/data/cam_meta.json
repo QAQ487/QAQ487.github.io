@@ -1,0 +1,14 @@
+{
+  "id": "CAMX",
+  "zh": "鏡頭與構圖（補充）",
+  "en": "Camera & framing (supplement)",
+  "ja": "カメラと構図（補遺）",
+  "subs": {
+    "跟隨與構圖規則": ["Follow & framing rules", "追従と構図のルール"],
+    "投影與鏡頭": ["Projection & lens", "投影とレンズ"],
+    "運鏡與剪接": ["Camera moves & cuts", "カメラワークとカット"]
+  },
+  "build_mod": "cam",
+  "refs_module": "refs_cam",
+  "entries": 13
+}

@@ -1,0 +1,21 @@
+# NAV worker refs (all checked with curl on 2026-11-04, HTTP 200)
+EXTRA={
+'nv_vallentin':('Vallentin — Interactive hints (outline vs overlay highlight tests)','https://survival.vallentin.dev/blog/post/interactive-hints'),
+'nv_beyond':('Beyond the Norm — Pick Up That Can: The Problem With Interactive Objects','https://www.beyondthenorm.org/pick-up-that-can-the-problem-with-interactive-objects/'),
+'nv_hl2aff':('Game Developer — Affordance Design in Half-Life 2','https://www.gamedeveloper.com/design/affordance-design-in-half-life-2'),
+'nv_w_aff':('Wikipedia — Affordance','https://en.wikipedia.org/wiki/Affordance'),
+'nv_gr_yellow':('GamesRadar+ — Ignore the yellow paint detractors: visual cues are great for games','https://www.gamesradar.com/ignore-the-yellow-paint-detractors-visual-cues-are-great-for-games/'),
+'nv_kotaku_yellow':('Kotaku — Yellow Paint Is Once Again Breaking People’s Brains','https://kotaku.com/yellow-paint-debate-ff7-rebirth-demo-resident-evil-4-1851249608'),
+'nv_critpoints':('CritPoints — It’s Not the Yellow Paint, It’s What the Paint Represents','https://critpoints.net/2024/03/03/yellow-paint-is-fine-actually/'),
+'nv_frozen':('Frozenbyte Wiki — Level Art: Color and Lighting (guiding with values)','https://wiki.frozenbyte.com/index.php/Level_Art:_Color_and_Lighting'),
+'nv_w_fig':('Wikipedia — Figure–ground (perception)','https://en.wikipedia.org/wiki/Figure%E2%80%93ground_(perception)'),
+'nv_gd_confusion':('Game Developer — How to Reduce Visual Confusion in Your Game','https://www.gamedeveloper.com/design/how-to-reduce-visual-confusion-in-your-game'),
+'nv_w_aerial':('Wikipedia — Aerial perspective','https://en.wikipedia.org/wiki/Aerial_perspective'),
+'nv_gd_tele':('Game Developer — Enemy Attacks and Telegraphing','https://www.gamedeveloper.com/design/enemy-attacks-and-telegraphing'),
+'nv_wildstar':('GreenyNeko — WildStar’s Legacy: The Telegraph-based Combat System','https://www.greenyneko.com/2019/07/wildstars-legacy-telegraph-based-combat.html'),
+'nv_w_aoe':('Wikipedia — Area of effect','https://en.wikipedia.org/wiki/Area_of_effect'),
+'nv_roclicks':('RoClicks — Building UX: placing, picking and selecting (placement ghost)','https://roclicks.gg/resources/building/building-ux'),
+'nv_gdq_range':('GDQuest — Visualizing the weapon’s attack range (tower defense)','https://school.gdquest.com/courses/godot_2d_secrets_godot_3/tower_defense/visualizing_attack_range'),
+'nv_gdland_td':('GameDev.Land — Tower Defense with PIXI, step 6: tower coverage','https://gamedev.land/articles/tower-defense/preparation-for-shooting/'),
+'nv_w_td':('Wikipedia — Tower defense','https://en.wikipedia.org/wiki/Tower_defense'),
+}
