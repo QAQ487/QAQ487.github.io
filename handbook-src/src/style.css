@@ -49,9 +49,12 @@ html{scroll-padding-top:calc(var(--top) + 12px)}
 .guide details{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 14px;margin:6px 0}
 .guide details details{background:var(--panel2)}.guide summary{font-weight:600}.guide h3{font-size:14px;margin:12px 0 4px;color:var(--muted)}
 .typehelp{color:var(--muted);font-size:12.5px;margin:8px 0}#empty{text-align:center;color:var(--muted);grid-column:1/-1}
-/* gallery: ~2 cols on tablet/desktop, up to 3 on wide; list stays a single compact column */
-#cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:12px;margin-top:10px;align-items:start}
+/* gallery columns: explicit 1/2/3 via data-cols (vh-cols); list stays a single compact column */
+#cards{display:grid;grid-template-columns:repeat(var(--vh-cols,2),minmax(0,1fr));gap:12px;margin-top:10px;align-items:start}
+html[data-cols="1"]{--vh-cols:1}html[data-cols="2"]{--vh-cols:2}html[data-cols="3"]{--vh-cols:3}
 .view-list #cards{display:flex;flex-direction:column;gap:0}
+.view-list .cols{display:none}
+body:not(.view-list) #cards>article{cursor:pointer}
 h2.sect{display:flex;align-items:baseline;gap:10px;margin:18px 0 0;padding-bottom:6px;border-bottom:1px solid var(--line);font-size:18px;scroll-margin-top:calc(var(--top) + 8px);grid-column:1/-1}
 h2.sect .n{color:var(--muted);font-size:12px;font-weight:400}
 article{scroll-margin-top:calc(var(--top) + 12px)}
@@ -108,3 +111,17 @@ article:focus{outline:none}article:focus-visible{outline:2px solid var(--accent)
 #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;transition:.2s;background:#223147;border:1px solid var(--accent);color:var(--text);padding:8px 14px;border-radius:8px;font-size:13.5px;z-index:60;pointer-events:none;max-width:90vw}#toast.on{opacity:1;transform:translateX(-50%)}
 @media print{details.sec{border:none}details.sec>*{display:block}}
 [hidden]{display:none!important}
+/* gallery entry modal: reparents the live article so the same Player keeps running */
+body.modal-open{overflow:hidden}
+.modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:18px}
+.modal[hidden]{display:none!important}
+.msrim{position:absolute;inset:0;background:rgba(0,0,0,.62)}
+.mpanel{position:relative;z-index:1;width:min(920px,96vw);max-height:92vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px 18px;box-shadow:0 18px 48px rgba(0,0,0,.45)}
+.mclose{position:sticky;top:0;float:right;z-index:2;min-width:36px;padding:4px 10px;font-size:18px;line-height:1.2;background:var(--btn);border:1px solid var(--btnline)}
+.mbody{clear:both}
+article.in-modal{cursor:default;border:none;background:transparent;padding:0;box-shadow:none}
+article.in-modal .visual{margin:8px 0 14px;max-width:100%}
+article.in-modal .visual canvas,article.in-modal .svgfig svg{width:100%;max-height:min(56vh,520px);margin:0 auto}
+article.in-modal h2.nm{font-size:22px}
+article.in-modal .body{max-width:none}
+@media(max-width:560px){.mpanel{padding:10px 10px 14px;max-height:95vh}.modal{padding:8px}}

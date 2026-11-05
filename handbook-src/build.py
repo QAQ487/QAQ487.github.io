@@ -159,10 +159,11 @@ js=''.join(open('src/'+f).read()+'\n' for f in ['core.js']+[f'demos_{m}.js' for 
 app=open('src/app.js').read()
 css=open('src/style.css').read()
 html=f'''<!doctype html><html lang="zh-HK"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>遊戲畫面表現手冊 / Visual Presentation Handbook</title><style>{css}</style></head><body>
-<header class="topbar"><button id="menu" class="menu" aria-controls="side" aria-expanded="false"></button><h1 id="title"></h1><input id="q" type="search" autocomplete="off"><div class="seg views"><button data-view="gallery"></button><button data-view="list"></button></div><div class="seg langs"><button data-lang="zh">繁中</button><button data-lang="en">EN</button><button data-lang="ja">日本語</button></div><button id="motion"></button><span id="count"></span></header>
+<header class="topbar"><button id="menu" class="menu" aria-controls="side" aria-expanded="false"></button><h1 id="title"></h1><input id="q" type="search" autocomplete="off"><div class="seg views"><button data-view="gallery"></button><button data-view="list"></button></div><div class="seg cols" id="cols"><button type="button" data-cols="1">1</button><button type="button" data-cols="2">2</button><button type="button" data-cols="3">3</button></div><div class="seg langs"><button data-lang="zh">繁中</button><button data-lang="en">EN</button><button data-lang="ja">日本語</button></div><button id="motion"></button><span id="count"></span></header>
 <div class="layout"><aside id="side" class="side"><div id="tagbar" class="tagbar"></div><nav id="toc" class="toc"></nav><a id="guideLink" class="guidelink" href="#guide"></a></aside><div id="scrim" class="scrim"></div>
 <main class="main"><p id="subtitle" class="subtitle"></p><section id="guide" class="guide"></section><div id="fstat" class="fstat" hidden></div><p id="empty"></p>
 <div id="cards"></div><footer><p id="foot"></p></footer></main></div>
+<div id="modal" class="modal" hidden><div class="msrim" id="msrim"></div><div class="mpanel" role="dialog" aria-modal="true"><button type="button" class="mclose" id="mclose">✕</button><div class="mbody" id="mbody"></div></div></div>
 <script id="book-data" type="application/json">{json.dumps(data,ensure_ascii=False).replace("</","<\\/")}</script>
 <script>{js}
 {app}</script></body></html>'''
