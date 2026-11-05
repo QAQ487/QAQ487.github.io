@@ -1,0 +1,4 @@
+{"cat":{"id":"NAV","zh":"視覺引導與可讀性","en":"Visual guidance & readability","ja":"視覚誘導と視認性"},
+ "subs":{"互動提示":["Interaction cues","インタラクションの手がかり"],"可讀性":["Readability","視認性"],"放置與範圍":["Placement & range","配置と範囲"]},
+ "module":"nav","demos":"src/demos_nav.js","refs":"data/refs_nav.py",
+ "integrator_notes":["add 'nav' to mods list in build.py","add NAV to CATS and the 3 subs to SUBS","add 'refs_nav' to the merge tuple at the end of data/refs.py"]}

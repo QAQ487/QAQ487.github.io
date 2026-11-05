@@ -1,0 +1,5 @@
+{"cat":{"id":"PP","zh":"後處理與畫面濾鏡","en":"Post-processing & screen filters","ja":"ポストプロセスと画面フィルター"},
+ "subs":{"風格濾鏡":["Stylistic filters","スタイルフィルター"],"模糊與扭曲":["Blur & distortion","ブラーと歪み"],"鏡頭模擬":["Lens simulation","レンズシミュレーション"]},
+ "ids":["PP-01","PP-02","PP-03","PP-04","PP-05","PP-06","PP-07","PP-08","PP-09","PP-10","PP-11"],
+ "refs_module":"refs_pp (data/refs_pp.py, EXTRA dict) — add 'refs_pp' to the loader tuple in data/refs.py",
+ "note":"Related ids like 'REN-29 Bloom' refer to entries in Terry's original handbook; they contain a space so build.py treats them as plain text."}

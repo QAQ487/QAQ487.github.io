@@ -1,0 +1,8 @@
+node_modules/
+shots/
+*.log
+batch1.html
+handbook_complete.html
+package-lock.json
+__pycache__/
+*.pyc

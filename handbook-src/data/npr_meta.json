@@ -1,0 +1,52 @@
+{
+ "cat": {
+  "id": "NPR",
+  "zh": "風格化渲染",
+  "en": "Stylized rendering (NPR)",
+  "ja": "ノンフォトリアルレンダリング（NPR）"
+ },
+ "subs": {
+  "卡通明暗": [
+   "Toon shading",
+   "トゥーンシェーディング"
+  ],
+  "描邊": [
+   "Outlines & lines",
+   "輪郭線とライン"
+  ],
+  "筆觸與印刷": [
+   "Strokes & print",
+   "筆致と印刷表現"
+  ],
+  "復古與低保真": [
+   "Retro & lo-fi",
+   "レトロ・ローファイ"
+  ]
+ },
+ "ids": [
+  "NPR-01",
+  "NPR-02",
+  "NPR-03",
+  "NPR-04",
+  "NPR-05",
+  "NPR-06",
+  "NPR-07",
+  "NPR-08",
+  "NPR-09",
+  "NPR-10",
+  "NPR-11",
+  "NPR-12",
+  "NPR-13",
+  "NPR-14"
+ ],
+ "refs_module": "refs_npr",
+ "demos": "src/demos_npr.js",
+ "integrator_changes": [
+  "build.py: add 'npr' to mods list",
+  "build.py: add CATS entry {id:'NPR', zh:'風格化渲染', en:'Stylized rendering (NPR)', ja:'ノンフォトリアルレンダリング（NPR）'} (same dict shape as the others)",
+  "build.py: add the 4 SUBS entries above",
+  "data/refs.py: add 'refs_npr' to the loader tuple",
+  "include src/demos_npr.js wherever the other src/demos_*.js are concatenated (if not globbed)"
+ ],
+ "note": "Original handbook already has REN-03 toon, REN-04 outline, REN-05 rim, REN-10 specular; NPR entries cross-reference them as plain text."
+}
