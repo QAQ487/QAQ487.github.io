@@ -30,8 +30,9 @@ article.flash{border-color:var(--accent);box-shadow:0 0 0 2px rgba(145,207,191,.
 html{scroll-padding-top:calc(var(--top) + 12px)}
 /* Agent notice is its own block so the long URL wraps instead of squeezing toolbar controls. --bar is the toolbar row; --top is the whole sticky chrome (set from the measured sitehead). */
 .sitehead{position:sticky;top:0;z-index:20;max-width:100%}
-.agent-banner{margin:0;padding:4px 16px;font-size:12.5px;line-height:1.45;color:var(--muted);background:var(--panel2);border-bottom:1px solid var(--line);overflow-wrap:anywhere;word-break:break-word;min-width:0;max-width:100%}
-.agent-banner a{color:var(--accent);text-decoration:underline;overflow-wrap:anywhere;word-break:break-all}
+.agent-banner{margin:0;padding:14px 24px;font-size:17px;font-weight:600;line-height:1.5;text-align:center;color:#1a1408;background:#ffe14a;border-bottom:1px solid #d4b000;overflow-wrap:anywhere;word-break:break-word;min-width:0;max-width:100%}
+.agent-banner a,.agent-banner a:visited{color:#1a1408;font-weight:700;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere;word-break:break-all}
+.agent-banner a:hover,.agent-banner a:focus-visible{color:#5c3b00;text-decoration-thickness:2px}
 .topbar{position:relative;height:var(--bar);display:flex;align-items:center;gap:10px;padding:0 16px;background:rgba(17,21,29,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
 .topbar h1{margin:0;font-size:16px;white-space:nowrap;letter-spacing:.02em}
 #q{flex:1;min-width:120px;max-width:520px;background:#0e1420;border:1px solid var(--btnline);color:var(--text);border-radius:7px;padding:6px 10px;font:inherit;font-size:14px}
@@ -100,7 +101,7 @@ mark.kw-match{background:rgba(145,207,191,.32);color:#fff;padding:0 1px;border-r
 /* mobile drawer */
 .scrim{display:none}
 @media(max-width:900px){
-:root{--bar:84px}.menu{display:inline-block;white-space:nowrap}.topbar{flex-wrap:wrap;height:auto;min-height:var(--bar);gap:6px;padding:6px 10px}.agent-banner{padding:4px 10px}#q{flex:1 1 55%;max-width:none}.seg button{white-space:nowrap}.topbar h1{display:none}#count{display:none}
+:root{--bar:84px}.menu{display:inline-block;white-space:nowrap}.topbar{flex-wrap:wrap;height:auto;min-height:var(--bar);gap:6px;padding:6px 10px}.agent-banner{padding:12px 14px}#q{flex:1 1 55%;max-width:none}.seg button{white-space:nowrap}.topbar h1{display:none}#count{display:none}
 .layout{grid-template-columns:1fr;padding:0 12px}
 .side{position:fixed;left:0;top:0;bottom:0;height:100vh;height:100dvh;width:min(300px,86vw);z-index:40;background:var(--bg);border-right:1px solid var(--line);padding:16px 12px;transform:translateX(-102%);transition:transform .2s}
 .drawer .side{transform:none}.drawer .scrim{display:block;position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.5)}

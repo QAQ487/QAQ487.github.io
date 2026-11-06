@@ -32,6 +32,8 @@ function norm(s) {
       const topbar = document.querySelector('.topbar');
       const a = banner && banner.querySelector('a');
       const q = document.getElementById('q');
+      const bs = banner ? getComputedStyle(banner) : null;
+      const as = a ? getComputedStyle(a) : null;
       const side = document.querySelector('.side');
       window.scrollTo(0, 0);
       const br = banner ? banner.getBoundingClientRect() : null;
@@ -47,8 +49,15 @@ function norm(s) {
         text: banner ? banner.textContent : '',
         linkText: a ? a.textContent : '',
         href: a ? a.getAttribute('href') : '',
-        display: banner ? getComputedStyle(banner).display : '',
-        whiteSpace: a ? getComputedStyle(a).whiteSpace : '',
+        display: bs ? bs.display : '',
+        whiteSpace: as ? as.whiteSpace : '',
+        textAlign: bs ? bs.textAlign : '',
+        fontSize: bs ? bs.fontSize : '',
+        padTop: bs ? bs.paddingTop : '',
+        bg: bs ? bs.backgroundColor : '',
+        fg: bs ? bs.color : '',
+        linkColor: as ? as.color : '',
+        linkDeco: as ? as.textDecorationLine || as.textDecoration : '',
         bannerTop: br && br.top,
         bannerH: br && br.height,
         bannerBottom: br && br.bottom,
@@ -82,6 +91,13 @@ function norm(s) {
       if (!shown.includes(bit)) fails.push(label + ': missing phrase ' + bit);
     }
     if (m.whiteSpace === 'nowrap') fails.push(label + ': link is nowrap');
+    if (m.textAlign !== 'center') fails.push(label + ': banner not centered (' + m.textAlign + ')');
+    if (parseFloat(m.fontSize) < 16) fails.push(label + ': banner type too small (' + m.fontSize + ')');
+    if (parseFloat(m.padTop) < 10) fails.push(label + ': banner padding too small (' + m.padTop + ')');
+    if (m.bg !== 'rgb(255, 225, 74)') fails.push(label + ': banner background ' + m.bg);
+    if (m.fg !== 'rgb(26, 20, 8)') fails.push(label + ': banner text ' + m.fg);
+    if (m.linkColor !== 'rgb(26, 20, 8)') fails.push(label + ': link color ' + m.linkColor);
+    if (!String(m.linkDeco).includes('underline')) fails.push(label + ': link not underlined (' + m.linkDeco + ')');
     if (m.bannerTop > 2) fails.push(label + ': banner not at top (' + m.bannerTop + ')');
     if (m.bannerBottom > m.topbarTop + 1) fails.push(label + ': banner overlaps toolbar');
     if (m.stuck > 2) fails.push(label + ': banner not sticky (' + m.stuck + ')');
