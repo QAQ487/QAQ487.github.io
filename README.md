@@ -10,6 +10,7 @@ Static personal site served by GitHub Pages from the repository root (`main` bra
 | `handbook/index.html` | Self-contained, offline single-file page: 遊戲畫面表現手冊 / Game Visual Handbook / ゲーム画面表現ハンドブック. |
 | `handbook/llms.txt` | Agent catalog for the handbook (do not ingest the SPA HTML). |
 | `handbook/agent/en/*.md` | One English Markdown file per handbook entry for agents. |
+| `PURPOSE.md` | Purpose of the Game Visual Handbook (why it exists, what it covers, and what each card should answer). |
 | `llms.txt` | Root pointer to `/handbook/llms.txt`. |
 | `.nojekyll` | Empty marker so GitHub Pages publishes the files as-is and skips Jekyll. |
 
