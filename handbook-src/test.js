@@ -1,6 +1,6 @@
 const puppeteer=require('puppeteer-core');
 (async()=>{const b=await puppeteer.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox','--disable-gpu']});const p=await b.newPage();await p.setViewport({width:1280,height:900});const errs=[];p.on('console',m=>{if(m.type()==='error')errs.push(m.text())});p.on('pageerror',e=>errs.push('PAGEERR '+e.message));
-const file=process.env.HB||'batch1.html';await p.goto('file://'+__dirname+'/'+file);await p.waitForFunction('window.__ready');await p.addStyleTag({content:'.topbar{position:static!important}'});
+const file=process.env.HB||'batch1.html';await p.goto('file://'+__dirname+'/'+file);await p.waitForFunction('window.__ready');await p.addStyleTag({content:'.sitehead,.topbar{position:static!important}'});
 const ts=[0.1,0.3,0.5,0.7,0.9];
 const res=await p.evaluate(async(ts)=>{const out=[];for(const a of document.querySelectorAll('article')){const pl=a._p;if(!pl.cv)continue;pl.playing=false;const vals=[];for(const t of ts){pl.t=t;pl.render();const c=pl.cv,g=c.getContext('2d'),d=g.getImageData(0,0,c.width,c.height).data;let s=0,s2=0,n=0,h=0;for(let i=0;i<d.length;i+=4*37){const v=d[i]+d[i+1]*2+d[i+2];s+=v;s2+=v*v;n++;h=(h*31+v)%1000003}const m=s/n;vals.push({sd:Math.sqrt(s2/n-m*m),h})}out.push({id:a.id,kind:'canvas',err:!!pl.err,minsd:Math.min(...vals.map(v=>v.sd)),distinct:new Set(vals.map(v=>v.h)).size,static:pl.static})}return out},ts);
 /* SVG principle players: element screenshots, stats computed in-page */
