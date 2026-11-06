@@ -66,6 +66,7 @@ body:not(.view-list) .body{max-width:none}
 .body{max-width:72ch;overflow-wrap:anywhere}
 .view-list .main .body{max-width:72ch}
 footer{margin-top:30px;padding:10px 0 20px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line)}
+footer .agent-link{margin:.6em 0 0}footer .agent-link a{color:var(--accent);text-decoration:underline}
 /* card polish */
 .callout{margin:8px 0;padding:8px 12px;background:rgba(218,184,128,.08);border-left:3px solid var(--tag);border-radius:0 8px 8px 0}
 .callout .ct{color:var(--tag);font-weight:700;font-size:12.5px;margin-bottom:2px;line-height:1.45;overflow-wrap:anywhere}.callout .cb{font-size:14px;overflow-wrap:anywhere}

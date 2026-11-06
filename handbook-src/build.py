@@ -45,7 +45,7 @@ import re as _re
 from meta2 import POINTERS,SEEALSO,TAGLAB,tags,EXAMPLES
 import merge as MG
 sys.path.insert(0,'tools')
-from check_handbook import check,report
+from check_handbook import check,report,check_agent_layer
 ORIG=json.load(open('data/orig_entries.json'))
 from prin_unify import load_enrich,unify_entry
 PRIN_ENRICH=load_enrich()
@@ -174,18 +174,137 @@ print('PRIN canvas',len(PRIN_IDS),'unified former-p',sum(1 for d in out if d['id
 data=dict(redirects=MG.REDIRECTS,groups=GROUPS,cats=CATS,subs={k:dict(zh=k,en=v[0],ja=v[1]) for k,v in SUBS.items()},tags=TAGLAB,entries=out,intro=ORIG['intro'],notes=ORIG['extras'])
 cerrs,cwarns,cstats=check(data);report(cerrs,cwarns,cstats)
 if cerrs or errs: print('ERRS',errs+cerrs);sys.exit('handbook check failed')
+
+# ---- agent-facing static layer (English; paths reserved as agent/en/ for later locales) ----
+SITE='https://qaq487.github.io'
+PUB_HB=os.path.normpath(os.path.join('..','handbook'))
+PUB_ROOT=os.path.normpath(os.path.join('..'))
+AGENT_DIR=os.path.join(PUB_HB,'agent','en')
+live_ids=set(d['id'] for d in out)
+redir=MG.REDIRECTS
+g_en={g['id']:g['en'] for g in GROUPS}
+sub_en=data['subs']
+by_id={d['id']:d for d in out}
+def resolve_id(rid):
+  seen=set(); cur=rid
+  while cur in redir and cur not in seen:
+    seen.add(cur); cur=redir[cur]
+  return cur if cur in live_ids else None
+def md_escape(s):
+  return str(s or '').replace('\r\n','\n').replace('\r','\n').strip()
+def entry_md(e):
+  L=e['en']; std=e['std']; aliases=e.get('aliases') or []
+  grp=g_en.get(e['grp'],e['grp'])
+  sub=sub_en.get(e['sub'],{}).get('en') or e['sub']
+  lines=[f"# {e['id']} · {std}",'']
+  if aliases: lines+=[f"**Aliases:** {'; '.join(aliases)}",'']
+  lines+=[f"**Group:** {grp}",f"**Subcategory:** {sub}",'']
+  lines+=['## What you see','',md_escape(L.get('observe')),'']
+  lines+=['## Not to be confused with','',md_escape(L.get('notThis')),'']
+  lines+=['## Use it for','',md_escape(L.get('use')),'']
+  lines+=['## Tunable parameters','',md_escape(e.get('params')),'']
+  lines+=['## Request prompt','',md_escape(L.get('prompt')),'']
+  lines+=['## Implementation hint','',md_escape(e.get('impl')),'']
+  rels=[]
+  for r in e.get('related') or []:
+    raw=r.split(' ')[0]; rid=resolve_id(raw) or (raw if raw in live_ids else None)
+    if not rid: continue
+    label=by_id[rid]['std'] if rid in by_id else rid
+    if rid!=raw: rels.append(f'- [{raw} → {rid}]({rid}.md) — {label}')
+    else: rels.append(f'- [{rid}]({rid}.md) — {label}')
+  if rels: lines+=['## Related','']+rels+['']
+  refs=e.get('refs') or []
+  if refs:
+    lines+=['## References','']
+    for ref in refs:
+      t=md_escape(ref.get('t')); u=ref.get('u') or ''
+      lines.append(f'- [{t}]({u})' if u else f'- {t}')
+    lines.append('')
+  return '\n'.join(lines).rstrip()+'\n'
+os.makedirs(AGENT_DIR,exist_ok=True)
+# wipe previous generated md so retired IDs do not linger
+for name in os.listdir(AGENT_DIR):
+  if name.endswith('.md'): os.remove(os.path.join(AGENT_DIR,name))
+for e in out:
+  open(os.path.join(AGENT_DIR,e['id']+'.md'),'w',encoding='utf-8').write(entry_md(e))
+# readable index
+idx=['# Visual Presentation Handbook — agent index (English)','',
+     f'{len(out)} entries. Prefer individual files under this folder; do not ingest the human SPA HTML.','',
+     'Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).','']
+cur_grp=None
+for e in out:
+  if e['grp']!=cur_grp:
+    cur_grp=e['grp']; idx+=[f"## {g_en.get(cur_grp,cur_grp)}",'']
+  al=' · '.join(e.get('aliases') or []) or '—'
+  idx.append(f"- [{e['id']}]({e['id']}.md) — **{e['std']}** (aliases: {al})")
+idx.append('')
+open(os.path.join(AGENT_DIR,'index.md'),'w',encoding='utf-8').write('\n'.join(idx))
+# catalog llms.txt
+cat_lines=[
+  '# Visual Presentation Handbook — LLM index',
+  '',
+  'A vocabulary of visual-presentation terms for games (camera, rendering, lighting, materials,',
+  'post-processing, animation, game feel, VFX, audio, environment, UI, accessibility, and more).',
+  'Each entry names an effect, explains what you see, what not to confuse it with, when to use it,',
+  'tunable parameters, a paste-ready English prompt, and an engine-agnostic implementation hint.',
+  '',
+  '## How agents should use this',
+  '',
+  '- Do **not** ingest the human handbook SPA HTML at `/handbook/` or `/handbook/index.html`.',
+  '  That page is a large interactive single-page app (scripts, demos, embedded JSON) and is a poor',
+  '  source for retrieval.',
+  '- Read this file for the catalog, then fetch only the entries you need as Markdown:',
+  f'  `{SITE}/handbook/agent/en/{{ID}}.md` (example: `{SITE}/handbook/agent/en/NPR-14.md`).',
+  '- Readable index: `/handbook/agent/en/index.md`.',
+  '- Language: English only in this layer for now (`en`); other locales may appear later.',
+  '',
+  '## Catalog',
+  '',
+  'Columns: ID | standard English name | aliases | group | path',
+  '',
+]
+for e in out:
+  al=', '.join(e.get('aliases') or []) or '—'
+  grp=g_en.get(e['grp'],e['grp'])
+  path=f"agent/en/{e['id']}.md"
+  cat_lines.append(f"{e['id']} | {e['std']} | {al} | {grp} | {path}")
+cat_lines.append('')
+open(os.path.join(PUB_HB,'llms.txt'),'w',encoding='utf-8').write('\n'.join(cat_lines))
+root_llms='\n'.join([
+  '# QAQ487.github.io — LLM index',
+  '',
+  'Personal site of QAQ487, served by GitHub Pages.',
+  '',
+  'The main structured content for agents is the Visual Presentation Handbook:',
+  f'- Primary index: {SITE}/handbook/llms.txt',
+  f'- Entry files: {SITE}/handbook/agent/en/{{ID}}.md',
+  f'- Readable index: {SITE}/handbook/agent/en/index.md',
+  '',
+  'Do not ingest the human handbook SPA HTML; use the Markdown entries above.',
+  '',
+])+'\n'
+open(os.path.join(PUB_ROOT,'llms.txt'),'w',encoding='utf-8').write(root_llms)
+aerrs=check_agent_layer(PUB_HB,PUB_ROOT)
+if aerrs: print('ERRS',aerrs);sys.exit('agent layer check failed')
+print('agent layer',len(out),'md files →',AGENT_DIR)
+
 js=''.join(open('src/'+f).read()+'\n' for f in ['core.js']+[f'demos_{m}.js' for m in mods if os.path.exists(f'src/demos_{m}.js')]+[f for f in PRIN_FILES if os.path.exists('src/'+f)])
 app=open('src/app.js').read()
 css=open('src/style.css').read()
-html=f'''<!doctype html><html lang="zh-HK"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>遊戲畫面表現手冊 / Visual Presentation Handbook</title><style>{css}</style></head><body>
+AGENT_COMMENT='<!-- For AI agents: do not ingest this page. Read https://qaq487.github.io/handbook/llms.txt and fetch /handbook/agent/en/{id}.md -->\n'
+html=AGENT_COMMENT+f'''<!doctype html><html lang="zh-HK"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>遊戲畫面表現手冊 / Visual Presentation Handbook</title>
+<link rel="alternate" type="text/plain" href="/handbook/llms.txt" title="LLM-readable index">
+<link rel="alternate" type="text/markdown" href="/handbook/agent/en/index.md" title="Agent markdown index">
+<style>{css}</style></head><body>
 <header class="topbar"><button id="menu" class="menu" aria-controls="side" aria-expanded="false"></button><h1 id="title"></h1><input id="q" type="search" autocomplete="off"><div class="seg views"><button data-view="gallery"></button><button data-view="list"></button></div><div class="seg cols" id="cols"><button type="button" data-cols="1">1</button><button type="button" data-cols="2">2</button><button type="button" data-cols="3">3</button></div><div class="seg langs"><button data-lang="zh">繁中</button><button data-lang="en">EN</button><button data-lang="ja">日本語</button></div><button id="motion"></button><span id="count"></span></header>
 <div class="layout"><aside id="side" class="side"><div id="tagbar" class="tagbar"></div><nav id="toc" class="toc"></nav><a id="guideLink" class="guidelink" href="#guide"></a></aside><div id="scrim" class="scrim"></div>
 <main class="main"><p id="subtitle" class="subtitle"></p><section id="guide" class="guide"></section><div id="fstat" class="fstat" hidden></div><p id="empty"></p>
-<div id="cards"></div><footer><p id="foot"></p></footer></main></div>
+<div id="cards"></div><footer><p id="foot"></p><p class="agent-link"><a href="/handbook/llms.txt">Agent / llms.txt</a></p></footer></main></div>
 <div id="modal" class="modal" hidden><div class="msrim" id="msrim"></div><div class="mpanel" role="dialog" aria-modal="true"><button type="button" class="mclose" id="mclose">✕</button><div class="mbody" id="mbody"></div></div></div>
 <script id="book-data" type="application/json">{json.dumps(data,ensure_ascii=False).replace("</","<\\/")}</script>
 <script>{js}
 {app}</script></body></html>'''
 open('batch1.html','w').write(html)
+open(os.path.join(PUB_HB,'index.html'),'w').write(html)
 print('entries',len(out),{g['id']:sum(1 for e in out if e['grp']==g['id']) for g in GROUPS},'bytes',len(html.encode()))
 print('ERRS',errs)

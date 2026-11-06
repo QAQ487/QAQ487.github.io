@@ -6,15 +6,43 @@ Usage:
 
 Errors (fail): duplicate IDs, redirect keys that collide with live IDs, related/see/ptr/canon/variant
 targets that are unknown or point at a retired (redirected) ID, cyclic ptr/variant/redirect chains,
-duplicate aliases inside one entry.
+duplicate aliases inside one entry; missing/empty agent static layer files (llms.txt, NPR-14.md).
 Warnings (non-fatal): identical English primary name (`std`) across entries unless allowlisted,
 in-text ID mentions that resolve to nothing.
 """
-import json,re,sys,collections
+import json,re,sys,collections,os
 IDRE=re.compile(r'\b(?:CAMX|CAM|REN|ACT|FX|UX|FB|PIX|TRN|ENV|VFX|UI|NAV|LGT|CIN|PP|ANI|NPR|MATX|A11Y|DIAG|PHY)-\d{2}\b')
 # English names deliberately shared by several entries (reviewed; each entry differs by scope and links to the others)
 SHARED_STD={}
 norm=lambda s:re.sub(r'\s+',' ',str(s)).strip().lower()
+def _nonempty(path):
+  return os.path.isfile(path) and os.path.getsize(path)>0
+def check_agent_layer(handbook_dir,repo_root=None):
+  """Verify published agent files exist and are non-empty (sample entry NPR-14)."""
+  errs=[]
+  handbook_dir=os.path.abspath(handbook_dir)
+  paths=[
+    os.path.join(handbook_dir,'llms.txt'),
+    os.path.join(handbook_dir,'agent','en','index.md'),
+    os.path.join(handbook_dir,'agent','en','NPR-14.md'),
+  ]
+  if repo_root is None:
+    repo_root=os.path.dirname(handbook_dir)
+  paths.append(os.path.join(os.path.abspath(repo_root),'llms.txt'))
+  for p in paths:
+    if not _nonempty(p): errs.append(('agent-missing-or-empty',p))
+  sample=os.path.join(handbook_dir,'agent','en','NPR-14.md')
+  if _nonempty(sample):
+    text=open(sample,encoding='utf-8').read()
+    for needle in ('NPR-14','What you see','Request prompt','Implementation hint'):
+      if needle not in text: errs.append(('agent-sample-incomplete',sample,needle))
+  llms=os.path.join(handbook_dir,'llms.txt')
+  if _nonempty(llms):
+    text=open(llms,encoding='utf-8').read()
+    if 'Do **not** ingest' not in text and 'do not ingest' not in text.lower():
+      errs.append(('agent-llms-missing-ingest-warning',llms))
+    if 'NPR-14' not in text: errs.append(('agent-llms-missing-sample',llms,'NPR-14'))
+  return errs
 def check(data):
   E=data['entries'];R=data.get('redirects',{});errs=[];warns=[]
   cnt=collections.Counter(e['id'] for e in E)
@@ -66,4 +94,17 @@ if __name__=='__main__':
   h=open(f,encoding='utf-8').read()
   m=re.search(r'<script id="book-data" type="application/json">(.*?)</script>',h,re.S)
   data=json.loads(m.group(1).replace('<\\/','</'))
-  errs,warns,stats=check(data);report(errs,warns,stats);sys.exit(1 if errs else 0)
+  errs,warns,stats=check(data);report(errs,warns,stats)
+  # agent layer lives next to the published handbook HTML
+  html_abs=os.path.abspath(f)
+  if os.path.basename(html_abs)=='index.html' and os.path.basename(os.path.dirname(html_abs))=='handbook':
+    hb_dir=os.path.dirname(html_abs)
+  else:
+    # build artifact in handbook-src/ — published agent files are ../handbook
+    here=os.path.dirname(html_abs)
+    cand=os.path.normpath(os.path.join(here,'..','handbook'))
+    hb_dir=cand if os.path.isdir(cand) else os.path.dirname(html_abs)
+  aerrs=check_agent_layer(hb_dir)
+  for x in aerrs: print('CHECK ERROR',*x)
+  if aerrs: print(f'CHECK agent layer {len(aerrs)} errors')
+  sys.exit(1 if errs or aerrs else 0)

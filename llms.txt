@@ -1,0 +1,11 @@
+# QAQ487.github.io — LLM index
+
+Personal site of QAQ487, served by GitHub Pages.
+
+The main structured content for agents is the Visual Presentation Handbook:
+- Primary index: https://qaq487.github.io/handbook/llms.txt
+- Entry files: https://qaq487.github.io/handbook/agent/en/{ID}.md
+- Readable index: https://qaq487.github.io/handbook/agent/en/index.md
+
+Do not ingest the human handbook SPA HTML; use the Markdown entries above.
+
