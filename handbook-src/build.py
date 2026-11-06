@@ -45,7 +45,7 @@ import re as _re
 from meta2 import POINTERS,SEEALSO,TAGLAB,tags,EXAMPLES
 import merge as MG
 sys.path.insert(0,'tools')
-from check_handbook import check,report,check_agent_layer
+from check_handbook import check,report,check_agent_layer,check_human_banner
 ORIG=json.load(open('data/orig_entries.json'))
 from prin_unify import load_enrich,unify_entry
 PRIN_ENRICH=load_enrich()
@@ -296,7 +296,8 @@ html=AGENT_COMMENT+f'''<!doctype html><html lang="zh-HK"><head><meta charset="ut
 <link rel="alternate" type="text/plain" href="/handbook/llms.txt" title="LLM-readable index">
 <link rel="alternate" type="text/markdown" href="/handbook/agent/en/index.md" title="Agent markdown index">
 <style>{css}</style></head><body>
-<header class="topbar"><button id="menu" class="menu" aria-controls="side" aria-expanded="false"></button><h1 id="title"></h1><input id="q" type="search" autocomplete="off"><div class="seg views"><button data-view="gallery"></button><button data-view="list"></button></div><div class="seg cols" id="cols"><button type="button" data-cols="1">1</button><button type="button" data-cols="2">2</button><button type="button" data-cols="3">3</button></div><div class="seg langs"><button data-lang="zh">繁中</button><button data-lang="en">EN</button><button data-lang="ja">日本語</button></div><button id="motion"></button><span id="count"></span></header>
+<div class="sitehead"><p class="agent-banner" id="agentBanner"><span id="agentBannerLead"></span><a href="https://qaq487.github.io/handbook/llms.txt">https://qaq487.github.io/handbook/llms.txt</a><span id="agentBannerTail"></span></p>
+<header class="topbar"><button id="menu" class="menu" aria-controls="side" aria-expanded="false"></button><h1 id="title"></h1><input id="q" type="search" autocomplete="off"><div class="seg views"><button data-view="gallery"></button><button data-view="list"></button></div><div class="seg cols" id="cols"><button type="button" data-cols="1">1</button><button type="button" data-cols="2">2</button><button type="button" data-cols="3">3</button></div><div class="seg langs"><button data-lang="zh">繁中</button><button data-lang="en">EN</button><button data-lang="ja">日本語</button></div><button id="motion"></button><span id="count"></span></header></div>
 <div class="layout"><aside id="side" class="side"><div id="tagbar" class="tagbar"></div><nav id="toc" class="toc"></nav><a id="guideLink" class="guidelink" href="#guide"></a></aside><div id="scrim" class="scrim"></div>
 <main class="main"><p id="subtitle" class="subtitle"></p><section id="guide" class="guide"></section><div id="fstat" class="fstat" hidden></div><p id="empty"></p>
 <div id="cards"></div><footer><p id="foot"></p><p class="agent-link"><a href="/handbook/llms.txt">Agent / llms.txt</a></p></footer></main></div>
@@ -304,6 +305,8 @@ html=AGENT_COMMENT+f'''<!doctype html><html lang="zh-HK"><head><meta charset="ut
 <script id="book-data" type="application/json">{json.dumps(data,ensure_ascii=False).replace("</","<\\/")}</script>
 <script>{js}
 {app}</script></body></html>'''
+berrs=check_human_banner(html)
+if berrs: print('ERRS',berrs);sys.exit('human banner check failed')
 open('batch1.html','w').write(html)
 open(os.path.join(PUB_HB,'index.html'),'w').write(html)
 print('entries',len(out),{g['id']:sum(1 for e in out if e['grp']==g['id']) for g in GROUPS},'bytes',len(html.encode()))

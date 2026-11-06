@@ -6,7 +6,8 @@ Usage:
 
 Errors (fail): duplicate IDs, redirect keys that collide with live IDs, related/see/ptr/canon/variant
 targets that are unknown or point at a retired (redirected) ID, cyclic ptr/variant/redirect chains,
-duplicate aliases inside one entry; missing/empty agent static layer files (llms.txt, NPR-14.md).
+duplicate aliases inside one entry; missing/empty agent static layer files (llms.txt, NPR-14.md);
+human page missing the top agent banner whose visible link text is the full llms.txt URL.
 Warnings (non-fatal): identical English primary name (`std`) across entries unless allowlisted,
 in-text ID mentions that resolve to nothing.
 """
@@ -15,8 +16,28 @@ IDRE=re.compile(r'\b(?:CAMX|CAM|REN|ACT|FX|UX|FB|PIX|TRN|ENV|VFX|UI|NAV|LGT|CIN|
 # English names deliberately shared by several entries (reviewed; each entry differs by scope and links to the others)
 SHARED_STD={}
 norm=lambda s:re.sub(r'\s+',' ',str(s)).strip().lower()
+AGENT_LLMS_URL='https://qaq487.github.io/handbook/llms.txt'
 def _nonempty(path):
   return os.path.isfile(path) and os.path.getsize(path)>0
+def check_human_banner(html):
+  """Human handbook HTML must show a top banner linking to the absolute llms.txt URL.
+
+  The visible link text has to be the full URL (not a short label). The banner sits
+  above the toolbar. Existing discovery hints are not a substitute for this banner.
+  """
+  errs=[]
+  m=re.search(
+    r'<p[^>]*\bid="agentBanner"[^>]*>[\s\S]*?<a\s+href="(https://qaq487\.github\.io/handbook/llms\.txt)">(https://qaq487\.github\.io/handbook/llms\.txt)</a>',
+    html)
+  if not m:
+    errs.append(('agent-banner-missing-full-url',AGENT_LLMS_URL))
+  elif m.group(1)!=AGENT_LLMS_URL or m.group(2)!=AGENT_LLMS_URL:
+    errs.append(('agent-banner-url',m.group(1),m.group(2)))
+  b=html.find('id="agentBanner"')
+  t=html.find('class="topbar"')
+  if b<0 or t<0 or b>t:
+    errs.append(('agent-banner-not-above-topbar',))
+  return errs
 def check_agent_layer(handbook_dir,repo_root=None):
   """Verify published agent files exist and are non-empty (sample entry NPR-14)."""
   errs=[]
@@ -107,4 +128,7 @@ if __name__=='__main__':
   aerrs=check_agent_layer(hb_dir)
   for x in aerrs: print('CHECK ERROR',*x)
   if aerrs: print(f'CHECK agent layer {len(aerrs)} errors')
-  sys.exit(1 if errs or aerrs else 0)
+  berrs=check_human_banner(h)
+  for x in berrs: print('CHECK ERROR',*x)
+  if berrs: print(f'CHECK human banner {len(berrs)} errors')
+  sys.exit(1 if errs or aerrs or berrs else 0)
