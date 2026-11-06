@@ -6,7 +6,7 @@ const path = require('path');
 const URL = 'https://qaq487.github.io/handbook/llms.txt';
 const html = path.resolve(__dirname, '../../handbook/index.html');
 const PHRASE = {
-  zh: ['如果要貼俾 AI agent，請用'],
+  zh: ['如需將本手冊貼給 AI agent，請使用'],
   en: ['To paste this handbook into an AI agent, use'],
   ja: ['AIエージェントに貼り付ける場合は', 'を使ってください'],
 };
@@ -94,9 +94,9 @@ function norm(s) {
     if (m.textAlign !== 'center') fails.push(label + ': banner not centered (' + m.textAlign + ')');
     if (parseFloat(m.fontSize) < 16) fails.push(label + ': banner type too small (' + m.fontSize + ')');
     if (parseFloat(m.padTop) < 10) fails.push(label + ': banner padding too small (' + m.padTop + ')');
-    if (m.bg !== 'rgb(255, 225, 74)') fails.push(label + ': banner background ' + m.bg);
-    if (m.fg !== 'rgb(26, 20, 8)') fails.push(label + ': banner text ' + m.fg);
-    if (m.linkColor !== 'rgb(26, 20, 8)') fails.push(label + ': link color ' + m.linkColor);
+    if (m.bg !== 'rgb(246, 228, 160)') fails.push(label + ': banner background ' + m.bg);
+    if (m.fg !== 'rgb(44, 38, 24)') fails.push(label + ': banner text ' + m.fg);
+    if (m.linkColor !== 'rgb(44, 38, 24)') fails.push(label + ': link color ' + m.linkColor);
     if (!String(m.linkDeco).includes('underline')) fails.push(label + ': link not underlined (' + m.linkDeco + ')');
     if (m.bannerTop > 2) fails.push(label + ': banner not at top (' + m.bannerTop + ')');
     if (m.bannerBottom > m.topbarTop + 1) fails.push(label + ': banner overlaps toolbar');

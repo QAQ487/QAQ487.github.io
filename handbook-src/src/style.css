@@ -26,9 +26,9 @@ article.flash{border-color:var(--accent);box-shadow:0 0 0 2px rgba(145,207,191,.
 html{scroll-padding-top:calc(var(--top) + 12px)}
 /* Agent notice is its own block so the long URL wraps instead of squeezing toolbar controls. --bar is the toolbar row; --top is the whole sticky chrome (set from the measured sitehead). */
 .sitehead{position:sticky;top:0;z-index:20;max-width:100%}
-.agent-banner{margin:0;padding:14px 24px;font-size:17px;font-weight:600;line-height:1.5;text-align:center;color:#1a1408;background:#ffe14a;border-bottom:1px solid #d4b000;overflow-wrap:anywhere;word-break:break-word;min-width:0;max-width:100%}
-.agent-banner a,.agent-banner a:visited{color:#1a1408;font-weight:700;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere;word-break:break-all}
-.agent-banner a:hover,.agent-banner a:focus-visible{color:#5c3b00;text-decoration-thickness:2px}
+.agent-banner{margin:0;padding:14px 24px;font-size:17px;font-weight:600;line-height:1.5;text-align:center;color:#2c2618;background:#f6e4a0;border-bottom:1px solid #c9b67a;overflow-wrap:anywhere;word-break:break-word;min-width:0;max-width:100%}
+.agent-banner a,.agent-banner a:visited{color:#2c2618;font-weight:700;text-decoration:underline;text-underline-offset:2px;overflow-wrap:anywhere;word-break:break-all}
+.agent-banner a:hover,.agent-banner a:focus-visible{color:#5a4830;text-decoration-thickness:2px}
 .topbar{position:relative;height:var(--bar);display:flex;align-items:center;gap:10px;padding:0 16px;background:rgba(17,21,29,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
 .topbar h1{margin:0;font-size:16px;white-space:nowrap;letter-spacing:.02em}
 #q{flex:1;min-width:120px;max-width:520px;background:#0e1420;border:1px solid var(--btnline);color:var(--text);border-radius:7px;padding:6px 10px;font:inherit;font-size:14px}
