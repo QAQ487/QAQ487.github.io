@@ -37,6 +37,7 @@ After the animation pass, raycast per foot, solve a two-bone IK chain (hip–kne
 - [ANI-14](ANI-14.md) — Sync groups / Marker-based syncing
 - [ANI-16](ANI-16.md) — Stride warping
 - [ANI-17](ANI-17.md) — Orientation warping
+- [ANI-21](ANI-21.md) — Hand IK contact
 
 ## References
 

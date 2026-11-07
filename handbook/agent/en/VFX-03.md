@@ -35,6 +35,7 @@ PS: float2 f = flowTex.Sample(s, uv).rg*2-1; float p0 = frac(t/period), p1 = fra
 - [ENV-12](ENV-12.md) — Water surface
 - [ENV-13](ENV-13.md) — Ripples
 - [FX-07](FX-07.md) — Distortion / Refraction
+- [ENV-20](ENV-20.md) — Surface runoff and edge dripping
 
 ## References
 

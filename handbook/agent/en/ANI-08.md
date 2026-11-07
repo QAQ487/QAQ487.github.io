@@ -35,6 +35,7 @@ Per-limb state machines (planted / stepping) with targets found by raycasting th
 - [ANI-10](ANI-10.md) — Spring bones / Jiggle physics
 - [ANI-09](ANI-09.md) — Ragdoll
 - [ANI-11](ANI-11.md) — Look-at / Head tracking
+- [ANI-20](ANI-20.md) — Locomotion lean / Body banking
 
 ## References
 

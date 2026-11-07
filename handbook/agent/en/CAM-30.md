@@ -27,6 +27,11 @@ In your game, add camera shake for a nearby heavy hit: 0.22 s duration, up to ±
 
 Generate deterministic band-limited noise for positional and rotational offsets, multiply it by an attack-decay envelope, and add it after normal camera following. Combine simultaneous impulses through a bounded intensity value and attenuate them by event distance and direction.
 
+## Related
+
+- [CAM-33](CAM-33.md) — Handheld idle camera / Camera breathing
+- [FB-24](FB-24.md) — Damage vibration
+
 ## References
 
 - [Unity Cinemachine Impulse：遊戲事件與震動訊號](https://docs.unity3d.com/Packages/com.unity.cinemachine@3.1/manual/CinemachineImpulse.html)

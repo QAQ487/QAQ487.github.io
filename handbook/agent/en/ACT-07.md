@@ -27,6 +27,10 @@ Set ground movement to 7 m/s maximum speed, 24 m/s² acceleration, 36 m/s² rele
 
 Move horizontal speed toward a target at separate acceleration, braking, and reversal rates. Keep maximum speed independent from how quickly it is reached or shed.
 
+## Related
+
+- [ANI-20](ANI-20.md) — Locomotion lean / Body banking
+
 ## References
 
 - [Epic Games — UCharacterMovementComponent，Velocity、Acceleration、BrakingDecelerationWalking、BrakingFriction](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/Engine/UCharacterMovementComponent?lang=en-US)

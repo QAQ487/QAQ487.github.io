@@ -27,6 +27,10 @@ In your game, add camera collision: sphere-sweep from the character pivot to the
 
 Sweep a sphere or capsule from the target pivot toward the desired camera position and place the camera just before the nearest blocking surface. Move inward quickly when blocked and restore distance more slowly after clearance to avoid popping at wall edges.
 
+## Related
+
+- [CAM-35](CAM-35.md) — See-through occluder / Dithered fade
+
 ## References
 
 - [Unity Third Person Follow：Built-in Collision Resolution](https://docs.unity3d.com/Packages/com.unity.cinemachine@3.1/manual/CinemachineThirdPersonFollow.html)

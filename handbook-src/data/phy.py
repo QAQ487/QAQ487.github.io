@@ -1,24 +1,24 @@
 from common import E
 # PHY — 物理模擬。投射貼花（FX-06）、Voronoi 碎裂（VFX-19）、雪地／泥地變形（ENV-10、ENV-05）已有條目，這裏只補布料、繩索與軟體。數值均為起始值，需按專案調整。
-E("PHY-01","布料與繩索","Position-based cloth (PBD / XPBD)",["披風穿模","布料像紙板","旗幟飄動","Cloth simulation","PBD cloth","XPBD","Distance constraints","クロスシミュレーション"],"S",
+E("PHY-01","布料與繩索","Position-based cloth (PBD / XPBD)",["披風穿模","布料像紙板","旗幟飄動","Cloth simulation","PBD cloth","XPBD","Distance constraints","クロスシミュレーション","Relative wind","Reactive curtains","相對風","反応カーテン"],"S",
 ("位置式布料模擬（PBD／XPBD）",
 "披風、旗幟、裙擺由一格粒子網格組成：每一步先按速度與重力預測新位置，再反覆「拉回」相鄰粒子之間的距離（距離約束），部分頂點固定在肩膀或旗杆上。結果是布料會下垂、被風吹起、與角色身體保持接觸，停下後仍輕微擺動才靜止。",
 "不是骨骼上的彈簧擺動（ANI-10 彈簧骨骼，逐根骨骼以彈簧驅動，沒有布面網格約束）；也不是頂點著色器的風吹擺動（ENV-08，只做位移、沒有碰撞）。",
 "披風、旗幟、窗簾、裙擺、帳篷布；需要與角色或風場互動而非只播放預錄動畫的布料。預先錄好的頂點動畫只是資料載體，可以播出看起來像布料、倒塌（VFX-19）或群體的動作，但不會對碰撞作出反應，也不是另一種畫面。（舊條目 MATX-09「頂點動畫貼圖」已併入本條。沒有獨立的群體演出卡。）",
-"為角色披風加入位置式布料模擬：用 12×16 的粒子網格，頂端一排固定在肩部骨骼；每幀以 2–4 個子步更新，每個子步做 4–8 次距離約束迭代（起始值，按效能調整）；加入簡單的球體／膠囊碰撞避免穿過身體，並提供風向與風力參數。停下後披風應在約 1 秒內自然靜止。"),
+"為角色披風加入位置式布料模擬：用 12×16 的粒子網格，頂端一排固定在肩部骨骼；每幀以 2–4 個子步更新，每個子步做 4–8 次距離約束迭代（起始值，按效能調整）；加入簡單的球體／膠囊碰撞避免穿過身體，並提供風向與風力參數。停下後披風應在約 1 秒內自然靜止。另：把 −角色速度＋世界風餵入布料（相對風），衝刺時披風向後飄、停下垂落；穿過窗簾時分開下緣、角色離開後仍擺盪，持續接觸保持位移而非重播罐頭循環。"),
 ("Position-based cloth (PBD / XPBD)",
 "Capes, flags and skirts are built from a grid of particles: each step predicts new positions from velocity and gravity, then repeatedly pulls neighbouring particles back to their rest distance (distance constraints), with some vertices pinned to the shoulders or a pole. The cloth sags, lifts in the wind, stays against the body and keeps swaying slightly before it settles.",
 "Not spring bones (ANI-10, each bone driven by a spring, with no cloth-mesh constraints), and not vertex-shader wind sway (ENV-08, displacement only, no collision).",
 "Capes, flags, curtains, skirts, tents — cloth that must react to a character or a wind field rather than replay a baked animation. A pre-recorded vertex animation is only a data carrier: it can play something that looks like cloth, a collapse (VFX-19), or a crowd, but it does not react to collision and it is not a separate picture. (Former entry MATX-09, “Vertex animation texture”, is merged here. There is no separate crowd-presentation card.)",
-"Add position-based cloth to the character's cape: a 12×16 particle grid with the top row pinned to the shoulder bones; update with 2–4 substeps per frame and 4–8 distance-constraint iterations per substep (starting values, tune for performance); add simple sphere/capsule colliders so it does not pass through the body, and expose wind direction and strength. When the character stops, the cape should come to rest naturally within about one second."),
+"Add position-based cloth to the character's cape: a 12×16 particle grid with the top row pinned to the shoulder bones; update with 2–4 substeps per frame and 4–8 distance-constraint iterations per substep (starting values, tune for performance); add simple sphere/capsule colliders so it does not pass through the body, and expose wind direction and strength. When the character stops, the cape should come to rest naturally within about one second. Also: feed −character velocity plus world wind into the cloth (relative wind) so a sprinting cape streams backward and falls on stop; parting a curtain holds lower-edge displacement during contact and lets it sway after the character is gone instead of restarting a canned loop."),
 ("位置ベースの布シミュレーション（PBD / XPBD）",
 "マント・旗・スカートを粒子の格子で作る。各ステップで速度と重力から新しい位置を予測し、隣り合う粒子の距離を元の長さへ繰り返し戻す（距離拘束）。一部の頂点は肩や旗竿に固定する。布は垂れ下がり、風でなびき、体に沿い、止まった後も少し揺れてから落ち着く。",
 "スプリングボーン（ANI-10。骨ごとにばねで動かし、布メッシュの拘束はない）ではない。頂点シェーダーによる風の揺れ（ENV-08。変位だけで衝突はない）でもない。",
 "マント、旗、カーテン、スカート、テントなど、焼き込みアニメーションの再生ではなくキャラクターや風に反応させたい布。事前に記録した頂点アニメーションはデータの入れ物にすぎず、布、崩落（VFX-19）、群衆のように見える動きを再生できても、衝突には反応せず、別の画面でもない。（旧項目 MATX-09「頂点アニメーションテクスチャ」は本項目に統合済み。群衆演出の独立した項目はない。）",
-"キャラクターのマントに位置ベースの布シミュレーションを追加する。12×16 の粒子格子で上端の一列を肩の骨に固定し、1 フレームあたり 2〜4 サブステップ、各サブステップで距離拘束を 4〜8 回反復する（初期値。性能に応じて調整）。体を貫通しないよう球やカプセルの簡易コライダーを置き、風向きと風の強さを調整できるようにする。キャラクターが止まったら、マントは約 1 秒以内に自然に静止すること。"),
-"grid 12×16 · pinned top row · substeps 2–4 · iterations 4–8 · stretch compliance 0–1e-6 · bend compliance 1e-4 · damping 0.01–0.05 · wind dir/strength (all starting points)",
-"Per substep: v+=g*dt; xPred=x+v*dt; for k iterations: for each edge (i,j) move both toward rest length weighted by inverse mass (XPBD adds compliance α/dt²); pinned vertices have w=0; resolve sphere/capsule collisions by projecting out; v=(xPred-x)/dt; x=xPred. Build normals from the grid for shading.",
-['PHY-02','PHY-03','ENV-08','ANI-10','VFX-19'],['phy_pbd','phy_tmp','phy_cloth_wiki','phy_unity_cloth'])
+"キャラクターのマントに位置ベースの布シミュレーションを追加する。12×16 の粒子格子で上端の一列を肩の骨に固定し、1 フレームあたり 2〜4 サブステップ、各サブステップで距離拘束を 4〜8 回反復する（初期値。性能に応じて調整）。体を貫通しないよう球やカプセルの簡易コライダーを置き、風向きと風の強さを調整できるようにする。キャラクターが止まったら、マントは約 1 秒以内に自然に静止すること。さらに：−キャラ速度＋ワールド風を布へ（相対風）。スプリントでマントが後方へ流れ、停止で垂れる。カーテン通過は下縁を押し分け、接触中は変位を保持し、通過後に揺れる——缶詰ループを張り直さない。"),
+"grid 12×16 · pinned top row · substeps 2–4 · iterations 4–8 · stretch compliance 0–1e-6 · bend compliance 1e-4 · damping 0.01–0.05 · wind dir/strength · relative-wind (−velocity) scale · curtain contact hold (all starting points)",
+"Per substep: v+=g*dt; xPred=x+v*dt; for k iterations: for each edge (i,j) move both toward rest length weighted by inverse mass (XPBD adds compliance α/dt²); pinned vertices have w=0; resolve sphere/capsule collisions by projecting out; v=(xPred-x)/dt; x=xPred. Build normals from the grid for shading. Add windAccel = worldWind + (−characterVelocity)*kRel. For hanging curtains, push free particles with a capsule during overlap and keep displacement while overlapping.",
+['PHY-02','PHY-03','ENV-08','ANI-10','VFX-19','ANI-21'],['phy_pbd','phy_tmp','phy_cloth_wiki','phy_unity_cloth'])
 
 E("PHY-02","布料與繩索","Verlet rope and chain",["繩子像鐵棒","吊橋晃動","鎖鏈","Verlet rope","Chain physics","Rope constraint","Grappling rope","ロープ物理"],"S",
 ("Verlet 繩索與鎖鏈",

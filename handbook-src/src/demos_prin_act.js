@@ -18,13 +18,13 @@ function striker(c,x,gy,pose){const{cr=0,lean=0,dx=0,arm=0}=pose;c.save();c.tran
  const hx=x+dx+6+lean*10,hy=gy-10-lean*4+cr*3;c.save();c.translate(hx,hy);c.rotate(arm);R(c,0,-1,14,2,'#e9edf2');R(c,-2,-2,3,4,P.woodD);c.restore()}
 DEMOS['ACT-09']={d:5,f:(c,t)=>{const u=prWrap(t);
  prLane(c,0,'NO ANTICIPATION','#e9edf2',gy=>{const s=seg(u,.45,.52),r=seg(u,.6,.85);const arm=lerp(lerp(-1.2,.6,eo(s)),-1.2,ease(r));striker(c,80,gy,{dx:eo(s)*8*(1-ease(r)),arm});const hit=u>.5&&u<.75;prDummy(c,106,gy,hit?Math.sin((u-.5)*40)*.3*(1-seg(u,.5,.75)):0,u>.5&&u<.54);txt(c,u<.45?'idle':u<.6?'strike':'recover',80,gy-36,'#cfd8e3',5)});
- prLane(c,1,'ANTICIPATION',P.gold,gy=>{const a=ease(seg(u,.15,.45)),s=seg(u,.45,.52),r=seg(u,.6,.85),w=a*(1-s);const arm=lerp(lerp(lerp(-1.2,-2.6,a),.6,eo(s)),-1.2,ease(r));striker(c,80,gy,{cr:w,lean:-.22*w,dx:-4*w+eo(s)*8*(1-ease(r)),arm});const hit=u>.5&&u<.75;prDummy(c,106,gy,hit?Math.sin((u-.5)*40)*.3*(1-seg(u,.5,.75)):0,u>.5&&u<.54);txt(c,u<.15?'idle':u<.45?'wind-up':u<.6?'strike':'recover',80,gy-36,u>=.15&&u<.45?P.gold:'#cfd8e3',5)});
+ prLane(c,1,'STRONG START',P.gold,gy=>{const a=ease(seg(u,.12,.28)),s=seg(u,.28,.42),r=seg(u,.55,.85),w=a*(1-s);const arm=lerp(lerp(lerp(-1.2,-2.8,a),.7,eo(s)),-1.2,ease(r));striker(c,80,gy,{cr:w*.6,lean:-.28*w,dx:-3*w+eo(s)*10*(1-ease(r)),arm});const hit=u>.35&&u<.6;prDummy(c,106,gy,hit?Math.sin((u-.35)*40)*.3*(1-seg(u,.35,.6)):0,u>.35&&u<.4);txt(c,u<.12?'idle':u<.28?'extreme':u<.55?'strike':'recover',80,gy-36,u>=.12&&u<.28?P.gold:'#cfd8e3',5)});
  for(const y0 of[57,126]){R(c,150,y0,80,3,'#1d2533');R(c,150+.45*80,y0,.07*80,3,'#e9edf2');if(y0>100)R(c,150+.15*80,y0,.3*80,3,P.gold);R(c,150+u*80,y0-2,1,7,'#fff')}}};
 /* ACT-10 squash & stretch with a fixed collider */
 const ss=u=>{if(u<.15)return 0;if(u<.25)return-seg(u,.15,.25);if(u<.32)return lerp(-1,.9,seg(u,.25,.32));if(u<.6)return lerp(.9,0,seg(u,.32,.45));if(u<.66)return-ei(1-seg(u,.6,.66))*0-seg(u,.6,.63)+seg(u,.63,.75)*1;return u<.75?-(1-seg(u,.63,.75)):0};
 DEMOS['ACT-10']={d:4,f:(c,t)=>{const u=prWrap(t),k=seg(u,.25,.6),y=Math.sin(k*Math.PI)*30;let q=0;if(u>=.15&&u<.25)q=-ease(seg(u,.15,.25));else if(u>=.25&&u<.6)q=lerp(-1,.9,eo(seg(u,.25,.32)))*(1-seg(u,.32,.6))+(u>.45?0:0);else if(u>=.6&&u<.8)q=-(1-ease(seg(u,.6,.8)))*(u<.63?seg(u,.6,.63)*3:1);q=clamp(q,-1,1);
  for(const i of[0,1])prLane(c,i,i?'SQUASH & STRETCH':'RIGID',i?P.gold:'#e9edf2',gy=>{const x=120,yy=gy-y;shadow(c,x,gy,7,.35*(1-y/40));const sx=i?1+(q<0?-q*.35:-q*.2):1,sy=i?1+(q<0?q*.3:q*.35):1;spr(c,'hero',x,yy,{sx:2*sx,sy:2*sy});prDash(c,x-8,yy-20,16,20,'rgba(127,227,216,.9)');if(i)txt(c,q<-.05?'squash':q>.05?'stretch':'',x+28,yy-10,P.gold,5,'left')});
- prTag(c,'collider unchanged',W-4,4,P.cyan,'rgba(10,14,24,.75)',6,'right')}};
+ prTag(c,'collider unchanged · impact-scaled',W-4,4,P.cyan,'rgba(10,14,24,.75)',6,'right')}};
 /* ACT-12 easing: linear vs ease spacing */
 DEMOS['ACT-12']={d:4,f:(c,t)=>{const u=prWrap(t),k=seg(u,.15,.65);const A0=-2.4,A1=.5;for(const i of[0,1])prLane(c,i,i?'EASE IN-OUT':'LINEAR',i?P.gold:'#e9edf2',gy=>{const fn=i?(x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2):(x=>x),px=74,py=gy-12;shadow(c,64,gy,7);spr(c,'hero',64,gy,{sx:2,sy:2});
   for(let j=0;j<=12;j++){const kk=j/12;if(kk>k+1e-6)break;const a=lerp(A0,A1,fn(kk));R(c,px+Math.cos(a)*24-1,py+Math.sin(a)*24-1,2,2,i?P.gold:'#cfd8e3')}const a=lerp(A0,A1,fn(k));c.save();c.translate(px,py);c.rotate(a);R(c,0,-1,24,2,'#e9edf2');R(c,-2,-2,4,4,P.woodD);c.restore();
@@ -43,9 +43,10 @@ DEMOS['ACT-16']={d:4,f:(c,t,_w,_h,p)=>{const u=prWrap(t),x=lerp(30,210,u),fr=Mat
 /* ACT-21 hitstop: actors freeze on impact while the world keeps ticking */
 function scene21(c,gy,a,s,stop){const tr=Math.sin(s*3)*2;tree(c,200,gy,tr);const cx=218,cy=gy-44;circ(c,cx,cy,7,'#e9edf2');ring(c,cx,cy,7,1,P.ink);prLine(c,cx,cy,cx+Math.cos(s*4)*5,cy+Math.sin(s*4)*5,P.red,1);
  const sw=seg(a,.3,.4),rc=seg(a,.55,.8);const arm=lerp(lerp(-1.4,.7,eo(sw)),-1.4,ease(rc));striker(c,70,gy,{dx:eo(sw)*10*(1-ease(rc)),arm});const hit=a>=.4&&a<.7;prDummy(c,100,gy,hit?Math.sin((a-.4)*45)*.35*(1-seg(a,.4,.7)):0,stop)}
-DEMOS['ACT-21']={d:5,f:(c,t,_w,_h,p)=>{const u=prWrap(t),s=u*p.dur;prLane(c,0,'OFF',P.red,gy=>scene21(c,gy,u,s,u>=.4&&u<.43));
- prLane(c,1,'HITSTOP',P.gold,gy=>{const fz=u>=.4&&u<.5,a=u<.4?u:fz?.4:u-.1;scene21(c,gy,a,s,fz);if(fz){prTag(c,'FROZEN',96,gy-46,P.gold,'rgba(10,14,24,.75)',6,'center')}});
- prTag(c,'world keeps time',W-4,H-12,'#e9edf2','rgba(10,14,24,.75)',6,'right')}};
+DEMOS['ACT-21']={d:5,f:(c,t,_w,_h,p)=>{const u=prWrap(t),s=u*p.dur;prLane(c,0,'STATIC PAUSE',P.red,gy=>{const fz=u>=.4&&u<.52,a=u<.4?u:fz?.4:u-.12;scene21(c,gy,a,s,fz);if(fz)prTag(c,'FREEZE',96,gy-46,P.red)});
+ prLane(c,1,'CREEP+HURT',P.gold,gy=>{const fz=u>=.4&&u<.55;let a=u<.4?u:fz?(.4+seg(u,.4,.55)*.04):u-.15; // contact creep: tiny advance during pause
+  scene21(c,gy,a,s,fz);if(fz){prDummy(c,100,gy,seg(u,.4,.55)*.5,1);prTag(c,'CREEP',70,gy-46,P.gold);prTag(c,'HURT',118,gy-46,P.cyan)}});
+ prTag(c,'world keeps time · ≠ FB-24 buzz',W-4,H-12,'#e9edf2','rgba(10,14,24,.75)',6,'right')}};
 /* ACT-29 knockback distance vs stun duration */
 function kb(c,gy,u,dist,stun,col){const hit=.15,push=eo(seg(u,hit,hit+.12)),rec=seg(u,hit+.12+stun,hit+.12+stun+.15);const fx=lerp(104+dist*push,104,ease(rec)),hx=78;const sw=seg(u,.08,.15),r=seg(u,.2,.35);striker(c,hx,gy,{dx:eo(sw)*8*(1-ease(r)),arm:lerp(lerp(-1.3,.6,eo(sw)),-1.3,ease(r))});
  const stunned=u>hit+.05&&u<hit+.12+stun;shadow(c,fx,gy,6);spr(c,'foe',fx,gy,{sx:2,sy:2,flash:u>hit&&u<hit+.03?1:0,flip:true});
@@ -126,9 +127,10 @@ DEMOS['ACT-11']={d:5,f:(c,t)=>{const u=prWrap(t),k=seg(u,.1,.8);
  prLane(c,0,'EVEN SPACING',P.cyan,gy=>{const A0=1.2,A1=-1.6,fn=x=>x,a=lerp(A0,A1,fn(k));shadow(c,70,gy,7);spr(c,'hero',70,gy,{sx:2,sy:2});
   for(let j=0;j<spacings.length;j++){const kk=spacings[j];if(kk>k+1e-6)break;const aa=lerp(A0,A1,fn(kk));R(c,70+6+Math.cos(aa)*22-1,gy-12+Math.sin(aa)*22-1,2,2,P.cyan)}
   c.save();c.translate(76,gy-12);c.rotate(a);R(c,0,-1,22,2,'#e9edf2');R(c,-2,-2,4,4,P.woodD);c.restore();txt(c,'equal Δpose / Δt',150,gy-30,'#cfd8e3',5)});
- prLane(c,1,'EASED SPACING',P.gold,gy=>{const A0=1.2,A1=-1.6,fn=x=>x*x*(3-2*x),a=lerp(A0,A1,fn(k));shadow(c,70,gy,7);spr(c,'hero',70,gy,{sx:2,sy:2});
+ prLane(c,1,'OVERSHOOT+SETTLE',P.gold,gy=>{const A0=1.2,A1=-1.6,fn=x=>x*x*(3-2*x);let a=lerp(A0,A1,fn(k));if(k>.85){const o=seg(k,.85,1);a=lerp(A1,A1-.25,Math.sin(o*Math.PI))*(1-o)+A1*o} // overshoot past ready then settle
+  shadow(c,70,gy,7);spr(c,'hero',70,gy,{sx:2,sy:2});
   for(let j=0;j<easeSp.length;j++){const kk=j/(easeSp.length-1);if(kk>k+1e-6)break;const aa=lerp(A0,A1,easeSp[j]);R(c,70+6+Math.cos(aa)*22-1,gy-12+Math.sin(aa)*22-1,2,2,P.gold)}
-  c.save();c.translate(76,gy-12);c.rotate(a);R(c,0,-1,22,2,'#e9edf2');R(c,-2,-2,4,4,P.woodD);c.restore();txt(c,'same duration, crisp finish',150,gy-30,P.gold,5)})}};
+  c.save();c.translate(76,gy-12);c.rotate(a);R(c,0,-1,22,2,'#e9edf2');R(c,-2,-2,4,4,P.woodD);c.restore();txt(c,'overshoot → settle',150,gy-30,P.gold,5)})}};
 /* ACT-14 overlapping action / drag: torso leads, limbs lag */
 DEMOS['ACT-14']={d:5,f:(c,t)=>{const u=prWrap(t),turn=ease(seg(u,.15,.55)),back=ease(seg(u,.7,.95)),body=turn*(1-back);
  prLane(c,0,'ALL AT ONCE',P.red,gy=>{const a=body*1.1;c.save();c.translate(120,gy);c.rotate(a*.15);

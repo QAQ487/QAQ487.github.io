@@ -13,19 +13,25 @@ Visual anticipation does not necessarily match the entire startup period used by
 
 ## Use it for
 
-Make the next action easier to read and establish direction and force. An enemy's wind-up can also telegraph an attack.
+Make the next action easier to read and establish direction and force. An enemy's wind-up can also telegraph an attack. On the first presented update after an accepted attack, enter a readable directional extreme, then move rapidly toward contact. Do not delay gameplay acceptance for a decorative crouch. Optional short compressed anticipation is fine; acceptance must not wait for a full crouch.
 
 ## Tunable parameters
 
-anticipation duration · key pose · attack direction · startup timing · release cue
+anticipation duration · key pose · attack direction · startup timing · release cue · immediate strong start pose · compressed anticipation
 
 ## Request prompt
 
-Give the enemy's downward heavy strike a 180 ms anticipation: raise the weapon with a 40 ms hold, then release clearly toward the target; activate the hit only after release begins.
+On the first presented update after an accepted attack, enter a readable directional extreme, then move rapidly toward contact, with a slower weight-bearing tail after. Do not delay gameplay acceptance for a decorative crouch. Optional ~180 ms compressed anticipation is fine, but acceptance must not wait for a full crouch. See Wyatt Cheng GDC 2013 animation talks for the strong-start idea.
 
 ## Implementation hint
 
-Insert a clear preparatory pose before the main action, oriented to reveal direction and force. Keep its visual duration aligned with the intended startup while preserving responsive timing for player-controlled actions.
+On the first presented update after an accepted attack, enter a readable directional extreme, then move rapidly toward contact, with a slower weight-bearing tail after contact. Do not delay gameplay acceptance for a decorative crouch — a weak first visible change is often blamed on input latency. Pair with FX-13 for VFX charge-up.
+
+## Related
+
+- [ACT-18](ACT-18.md) — Startup / Start-up / Wind-up Frames
+- [ACT-11](ACT-11.md) — Timing / Spacing
+- [FX-13](FX-13.md) — VFX Anticipation / Attack Charge-up
 
 ## References
 

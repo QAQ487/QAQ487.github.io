@@ -35,6 +35,7 @@ Screen-space particle system: drops are instanced quads (or a single scrolling r
 - [ENV-06](ENV-06.md) — Lightning flash
 - [ENV-13](ENV-13.md) — Ripples
 - [ENV-08](ENV-08.md) — Foliage sway
+- [ENV-20](ENV-20.md) — Surface runoff and edge dripping
 
 ## References
 

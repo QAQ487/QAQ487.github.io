@@ -35,6 +35,7 @@ Animate light parameters on the CPU each frame (intensity, radius, small positio
 - [ENV-06](ENV-06.md) — Lightning flash
 - [VFX-12](VFX-12.md) — Fire and smoke
 - [LGT-01](LGT-01.md) — Directional, point and spot lights
+- [LGT-14](LGT-14.md) — Moving light pool from a swinging fixture
 
 ## References
 

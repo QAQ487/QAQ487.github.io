@@ -33,6 +33,7 @@ Pass up to N actor positions in a constant buffer; in the grass vertex shader be
 
 - [ENV-08](ENV-08.md) — Foliage sway
 - [ENV-10](ENV-10.md) — Footprints
+- [ENV-19](ENV-19.md) — Contact-driven leaf litter
 
 ## References
 

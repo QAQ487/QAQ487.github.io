@@ -2,7 +2,7 @@ import json,sys,os,importlib
 sys.path.insert(0,'data')
 from common import ENTRIES
 from refs import REFS
-mods=[m for m in ['fb','trn','env','vfx','pix','ui','nav','lgt','cin','pp','ani','cam','npr','mat','a11y','diag','phy','batch2','expand','uihud'] if os.path.exists(f'data/{m}.py')]
+mods=[m for m in ['fb','trn','env','vfx','pix','ui','nav','lgt','cin','pp','ani','cam','npr','mat','a11y','diag','phy','batch2','expand','uihud','motion'] if os.path.exists(f'data/{m}.py')]
 for m in mods: importlib.import_module(m)
 CATS=[dict(id='FB',zh='戰鬥回饋與手感',en='Combat feedback & game feel',ja='戦闘フィードバックと手触り'),
 dict(id='PIX',zh='2D／像素美術技巧',en='2D & pixel-art techniques',ja='2D・ドット絵技法'),
@@ -35,7 +35,7 @@ SUBS={'視覺模式與舒適度':('Visual modes & comfort','表示モードと�
 '時間與天空':('Time & sky','時間と空'),'天氣':('Weather','天候'),'地表與植被':('Ground & foliage','地面と植生'),'水':('Water','水'),'世界狀態':('World state','ワールドの状態'),
 '載體與技術':('Carriers & techniques','表現手段と技術'),'戰鬥特效':('Combat VFX','戦闘エフェクト'),'元素':('Elements','属性エフェクト'),'狀態與增益':('States & buffs','状態・バフ'),'破壞':('Destruction','破壊'),
 '顯示與縮放':('Display & scaling','表示とスケーリング'),'色彩':('Colour','色彩'),'線條與形體':('Line & form','線と形'),'動畫':('Animation','アニメーション'),'場景構成':('Scene construction','シーン構成'),'光照':('Lighting','ライティング'),
-'布料與繩索':('Cloth & ropes','布とロープ'),'軟體與變形':('Soft bodies & deformation','ソフトボディと変形'),
+'布料與繩索':('Cloth & ropes','布とロープ'),'軟體與變形':('Soft bodies & deformation','ソフトボディと変形'),'剛體與約束':('Rigid bodies & constraints','剛体と拘束'),
 '移動與容錯':('Movement & forgiveness','移動と操作の許容'),'戰鬥節奏':('Combat timing','戦闘のタイミング'),
 '資源與狀態':('Resources & status','リソースと状態'),'多人提示':('Multiplayer cues','マルチプレイの合図'),
 '潛行與感知':('Stealth & awareness','ステルスと知覚'),'細節層級':('Level of detail','細部レベル'),

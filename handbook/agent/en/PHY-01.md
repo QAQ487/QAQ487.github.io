@@ -1,6 +1,6 @@
 # PHY-01 · Position-based cloth (PBD / XPBD)
 
-**Aliases:** 披風穿模; 布料像紙板; 旗幟飄動; Cloth simulation; PBD cloth; XPBD; Distance constraints; クロスシミュレーション; VAT; Vertex animation texture; Baked vertex animation; 頂點動畫貼圖; 群眾動畫; 倒塌動畫
+**Aliases:** 披風穿模; 布料像紙板; 旗幟飄動; Cloth simulation; PBD cloth; XPBD; Distance constraints; クロスシミュレーション; Relative wind; Reactive curtains; 相對風; 反応カーテン; VAT; Vertex animation texture; Baked vertex animation; 頂點動畫貼圖; 群眾動畫; 倒塌動畫
 
 **Group:** Animation, movement & physics
 **Subcategory:** Cloth & ropes
@@ -19,15 +19,15 @@ Capes, flags, curtains, skirts, tents — cloth that must react to a character o
 
 ## Tunable parameters
 
-grid 12×16 · pinned top row · substeps 2–4 · iterations 4–8 · stretch compliance 0–1e-6 · bend compliance 1e-4 · damping 0.01–0.05 · wind dir/strength (all starting points)
+grid 12×16 · pinned top row · substeps 2–4 · iterations 4–8 · stretch compliance 0–1e-6 · bend compliance 1e-4 · damping 0.01–0.05 · wind dir/strength · relative-wind (−velocity) scale · curtain contact hold (all starting points)
 
 ## Request prompt
 
-Add position-based cloth to the character's cape: a 12×16 particle grid with the top row pinned to the shoulder bones; update with 2–4 substeps per frame and 4–8 distance-constraint iterations per substep (starting values, tune for performance); add simple sphere/capsule colliders so it does not pass through the body, and expose wind direction and strength. When the character stops, the cape should come to rest naturally within about one second.
+Add position-based cloth to the character's cape: a 12×16 particle grid with the top row pinned to the shoulder bones; update with 2–4 substeps per frame and 4–8 distance-constraint iterations per substep (starting values, tune for performance); add simple sphere/capsule colliders so it does not pass through the body, and expose wind direction and strength. When the character stops, the cape should come to rest naturally within about one second. Also: feed −character velocity plus world wind into the cloth (relative wind) so a sprinting cape streams backward and falls on stop; parting a curtain holds lower-edge displacement during contact and lets it sway after the character is gone instead of restarting a canned loop.
 
 ## Implementation hint
 
-Per substep: v+=g*dt; xPred=x+v*dt; for k iterations: for each edge (i,j) move both toward rest length weighted by inverse mass (XPBD adds compliance α/dt²); pinned vertices have w=0; resolve sphere/capsule collisions by projecting out; v=(xPred-x)/dt; x=xPred. Build normals from the grid for shading.
+Per substep: v+=g*dt; xPred=x+v*dt; for k iterations: for each edge (i,j) move both toward rest length weighted by inverse mass (XPBD adds compliance α/dt²); pinned vertices have w=0; resolve sphere/capsule collisions by projecting out; v=(xPred-x)/dt; x=xPred. Build normals from the grid for shading. Add windAccel = worldWind + (−characterVelocity)*kRel. For hanging curtains, push free particles with a capsule during overlap and keep displacement while overlapping.
 
 ## Related
 
@@ -36,6 +36,7 @@ Per substep: v+=g*dt; xPred=x+v*dt; for k iterations: for each edge (i,j) move b
 - [ENV-08](ENV-08.md) — Foliage sway
 - [ANI-10](ANI-10.md) — Spring bones / Jiggle physics
 - [VFX-19](VFX-19.md) — Shatter
+- [ANI-21](ANI-21.md) — Hand IK contact
 
 ## References
 

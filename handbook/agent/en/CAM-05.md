@@ -13,19 +13,24 @@ This is not vertical following every frame; “snapping” in this name does not
 
 ## Use it for
 
-Preserves a stable reference during jumps and reduces repeated up-and-down camera movement.
+Preserves a stable reference during jumps and reduces repeated up-and-down camera movement. Lock the vertical reference during normal jumps; only leave the ~+1.5 m / −0.5 m band or a grounded confirm should ease to the new platform. Cross-link CAM-34 for the short land impulse.
 
 ## Tunable parameters
 
-landing height threshold · grounded confirmation · realign delay · vertical smooth time · jump lock · drop-through rule
+landing height threshold · grounded confirmation · realign delay · vertical smooth time · jump lock · drop-through rule · airborne Y hold band (+1.5 m / −0.5 m) · platform-hold Y
 
 ## Request prompt
 
-In your game, realign camera height only on landing: lock the vertical camera reference during normal jumps. After the character has remained grounded for 0.08 s and the new platform differs by at least 24 px, ease to its height over 0.3 s; ignore brief contacts while dropping through one-way platforms.
+Realign on landing with an airborne Y-hold band: lock vertical reference during normal jumps; only leave the ~+1.5 m / −0.5 m band or a 0.08 s grounded confirm should ease to the new platform over 0.3 s. Do not bob every hop. Cross-link CAM-34 for the short land impulse.
 
 ## Implementation hint
 
-Hold the camera's vertical reference while the character is airborne, then update the reference from the confirmed landing surface. Ignore brief ground contacts, and smooth toward the new platform height unless the height change exceeds a deliberate snap threshold.
+Hold the camera vertical reference while airborne unless the character leaves an authored band (about +1.5 m / −0.5 m). Update the reference from the confirmed landing surface and smooth toward the new platform height. Ignore brief one-way contacts. Pair with CAM-34 landing dip as impulse, not as continuous Y follow.
+
+## Related
+
+- [CAM-34](CAM-34.md) — Landing camera dip
+- [CAM-04](CAM-04.md) — Camera damping／Follow smoothing／Camera lag
 
 ## References
 

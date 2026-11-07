@@ -30,4 +30,4 @@ Compute displacement from contact direction and apply it over its own duration, 
 ## References
 
 - [Celia Wagar — Stunning Detail，pushback](https://critpoints.net/2016/08/14/stunning-detail/)
-- [Shane Sicienski — Hitstop in Capcom Beat ’Em Ups，knockback state](https://shane-sicienski.com/blog/blog-post-title-one-55pmn)
+- [Source Gaming — Thoughts on Hitstop: Sakurai’s Famitsu Column Vol. 490](https://sourcegaming.info/2015/11/11/thoughts-on-hitstop-sakurais-famitsu-column-vol-490-1/)
