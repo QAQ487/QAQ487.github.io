@@ -50,6 +50,22 @@ let _tmp2=null;function TMP2(){if(!_tmp2)_tmp2=mk(W,H);const g=_tmp2.getContext(
 
 const _idc={};function imgData(name){if(_idc[name])return _idc[name];const k=scene(name);return _idc[name]=k.getContext('2d').getImageData(0,0,W,H)}
 let _out=null;function outData(c){if(!_out)_out=c.createImageData(W,H);return _out}
+/* putImageData ignores the destination transform and paints into the backing
+   store. Full-frame 240×135 buffers go onto an offscreen canvas first, then
+   drawImage, so a scaled caller still covers the logical frame. */
+let _blit=null;
+function blitData(c,img){
+  const w=img.width||W,h=img.height||H;
+  if(!_blit)_blit=mk(w,h);
+  if(_blit.width!==w||_blit.height!==h){_blit.width=w;_blit.height=h}
+  const g=_blit.getContext('2d');
+  g.setTransform(1,0,0,1,0,0);
+  g.putImageData(img,0,0);
+  const sm=c.imageSmoothingEnabled;
+  c.imageSmoothingEnabled=false;
+  c.drawImage(_blit,0,0,w,h,0,0,W,H);
+  c.imageSmoothingEnabled=sm;
+}
 const BAYER4=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5];
 /* timeline bar for transitions */
 function tl(c,t,marks){R(c,0,H-4,W,4,'rgba(0,0,0,.55)');R(c,0,H-3,W*t,2,P.cyan);for(const m of marks)R(c,W*m,H-4,1,4,P.gold)}

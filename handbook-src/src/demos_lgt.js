@@ -7,7 +7,7 @@ function lgLab(c,s,x,y,col='#e9edf2'){const ww=Math.ceil(s.length*4.3);R(c,x-ww/
 function lgSegBox(ax,ay,bx,by,b){let t0=0,t1=1;const dx=bx-ax,dy=by-ay;if(Math.abs(dx)<1e-9){if(ax<b[0]||ax>b[2])return false}else{let u=(b[0]-ax)/dx,v=(b[2]-ax)/dx;if(u>v){const s=u;u=v;v=s}if(u>t0)t0=u;if(v<t1)t1=v;if(t0>t1)return false}if(Math.abs(dy)<1e-9){if(ay<b[1]||ay>b[3])return false}else{let u=(b[1]-ay)/dy,v=(b[3]-ay)/dy;if(u>v){const s=u;u=v;v=s}if(u>t0)t0=u;if(v<t1)t1=v;if(t0>t1)return false}return true}
 /* periodic smooth 1D value noise: n cells per loop, t in [0,1) */
 function lgPN(t,n,seed){const f=((t%1)+1)%1*n,i=Math.floor(f),k=f-i,s=k*k*(3-2*k);return lerp(hash(seed+(i%n)*13.1),hash(seed+((i+1)%n)*13.1),s)}
-function lgPut(c,fn){const o=outData(c),d=o.data;for(let y=0;y<H;y++)for(let x=0;x<W;x++){const p=(y*W+x)*4,r=fn(x,y);d[p]=r[0];d[p+1]=r[1];d[p+2]=r[2];d[p+3]=255}c.putImageData(o,0,0)}
+function lgPut(c,fn){const o=outData(c),d=o.data;for(let y=0;y<H;y++)for(let x=0;x<W;x++){const p=(y*W+x)*4,r=fn(x,y);d[p]=r[0];d[p+1]=r[1];d[p+2]=r[2];d[p+3]=255}blitData(c,o)}
 const lgFloor=(x,y)=>(((x>>3)+(y>>3))&1)?[118,122,132]:[104,108,118];
 
 /* LGT-01 directional / point / spot */

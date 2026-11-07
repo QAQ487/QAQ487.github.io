@@ -8,7 +8,7 @@
 article{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;scroll-margin-top:70px;min-width:0}article:target{border-color:var(--accent);box-shadow:0 0 0 2px rgba(145,207,191,.3)}
 .hd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px}.eid{font-family:ui-monospace,monospace;color:var(--accent);font-weight:700}.badge{border-radius:5px;padding:1px 7px;font-weight:600}.t-S{background:#21433b;color:#9ff0d6}.t-C{background:#463a1f;color:#f3d48f}.t-D{background:#3d2a4a;color:#e0b8ff}.subn{color:var(--tag)}.entry-link{margin-left:auto;color:var(--muted);text-decoration:none;font-weight:700;font-size:15px}.entry-link:hover{color:var(--accent)}
 h2.nm{margin:6px 0 0;font-size:20px}.std{color:var(--muted);font-size:13px;margin-bottom:8px}.std b{color:var(--text)}.al{color:var(--muted)}
-.visual{margin:0 0 10px;background:#0b1426;border:1px solid var(--line);border-radius:9px;overflow:hidden}.visual canvas{display:block;width:100%;max-width:100%;aspect-ratio:16/9;image-rendering:-moz-crisp-edges;image-rendering:pixelated;image-rendering:crisp-edges;-ms-interpolation-mode:nearest-neighbor;background:#152435}
+.visual{margin:0 0 10px;background:#0b1426;border:1px solid var(--line);border-radius:9px;overflow:hidden}.visual canvas{display:block;width:auto;height:auto;max-width:100%;aspect-ratio:16/9;margin:0 auto;object-fit:contain;image-rendering:-moz-crisp-edges;image-rendering:pixelated;image-rendering:crisp-edges;-ms-interpolation-mode:nearest-neighbor;background:#152435}
 .ctl{display:flex;gap:6px;align-items:center;padding:6px 8px;background:var(--panel2)}.ctl input{flex:1;accent-color:var(--accent)}.ctl button{padding:3px 10px;min-width:64px}.stl{color:var(--muted);font-size:12px}
 /* minmax(0,1fr) + wrapping dt labels: long UI strings (esp. ex) must not crush dd in gallery/mobile */
 dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;align-items:start}dt{color:var(--accent);font-size:12.5px;font-weight:600;max-width:9em;line-height:1.45;overflow-wrap:anywhere;padding-top:1px}dd{margin:0;font-size:14px;min-width:0;overflow-wrap:anywhere}.mono{font-family:ui-monospace,'Cascadia Mono',Consolas,monospace;font-size:12.5px;color:#cdd6e4}
@@ -132,7 +132,8 @@ body.modal-open{overflow:hidden}
 .mbody{clear:both}
 article.in-modal{cursor:default;border:none;background:transparent;padding:0;box-shadow:none}
 article.in-modal .visual{margin:8px 0 14px;max-width:100%}
-article.in-modal .visual canvas,article.in-modal .svgfig svg{width:100%;max-height:min(56vh,520px);margin:0 auto}
+article.in-modal .visual canvas{max-width:100%;max-height:min(56vh,520px);width:auto;height:auto;aspect-ratio:16/9;object-fit:contain;margin:0 auto}
+article.in-modal .svgfig svg{max-width:100%;max-height:min(56vh,520px);width:auto;height:auto;aspect-ratio:640/300;object-fit:contain;margin:0 auto}
 article.in-modal h2.nm{font-size:22px}
 article.in-modal .body{max-width:none}
 @media(max-width:560px){.mpanel{padding:10px 10px 14px;max-height:95vh}.modal{padding:8px}}
@@ -196,6 +197,22 @@ let _tmp2=null;function TMP2(){if(!_tmp2)_tmp2=mk(W,H);const g=_tmp2.getContext(
 
 const _idc={};function imgData(name){if(_idc[name])return _idc[name];const k=scene(name);return _idc[name]=k.getContext('2d').getImageData(0,0,W,H)}
 let _out=null;function outData(c){if(!_out)_out=c.createImageData(W,H);return _out}
+/* putImageData ignores the destination transform and paints into the backing
+   store. Full-frame 240×135 buffers go onto an offscreen canvas first, then
+   drawImage, so a scaled caller still covers the logical frame. */
+let _blit=null;
+function blitData(c,img){
+  const w=img.width||W,h=img.height||H;
+  if(!_blit)_blit=mk(w,h);
+  if(_blit.width!==w||_blit.height!==h){_blit.width=w;_blit.height=h}
+  const g=_blit.getContext('2d');
+  g.setTransform(1,0,0,1,0,0);
+  g.putImageData(img,0,0);
+  const sm=c.imageSmoothingEnabled;
+  c.imageSmoothingEnabled=false;
+  c.drawImage(_blit,0,0,w,h,0,0,W,H);
+  c.imageSmoothingEnabled=sm;
+}
 const BAYER4=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5];
 /* timeline bar for transitions */
 function tl(c,t,marks){R(c,0,H-4,W,4,'rgba(0,0,0,.55)');R(c,0,H-3,W*t,2,P.cyan);for(const m of marks)R(c,W*m,H-4,1,4,P.gold)}
@@ -235,7 +252,7 @@ function foeHead(c,x,y,s){c.beginPath();const pts=[[-1,-.2],[-1.6,-1],[-.7,-.55]
 DEMOS['TRN-04']={d:3,f:(c,t)=>{const k=trnK(t,.1,.9),out=k<.45,sc=out?lerp(170,0,ei(k/.45)):k<.55?0:lerp(0,170,ei((k-.55)/.45));R(c,0,0,W,H,'#000');if(sc>0){c.save();foeHead(c,120,72,sc);c.clip();c.drawImage(scene(out?'day':'forest'),0,0);c.restore()}tl(c,t,[.1,.5,.9])}};
 DEMOS['TRN-05']={d:2.6,f:(c,t)=>{const k=ease(trnK(t));c.drawImage(scene('day'),0,0);if(k>0){const a0=-Math.PI/2,a1=a0+k*TAU;c.save();c.beginPath();c.moveTo(W/2,H/2);c.arc(W/2,H/2,300,a0,a1);c.closePath();c.clip();c.drawImage(scene('night'),0,0);c.restore();if(k<1){c.strokeStyle=P.gold;c.lineWidth=1;c.beginPath();c.moveTo(W/2,H/2);c.lineTo(W/2+Math.cos(a1)*300,H/2+Math.sin(a1)*300);c.stroke()}}tl(c,t,[.15,.85])}};
 let _swirl=null;function swirlMask(){if(_swirl)return _swirl;_swirl=new Float32Array(W*H);let mn=9,mx=-9;for(let y=0;y<H;y++)for(let x=0;x<W;x++){const dx=(x-W/2)/H,dy=(y-H/2)/H,r=Math.hypot(dx,dy),a=Math.atan2(dy,dx)/TAU+.5;let v=r*1.3+((a+r*2)%1)*.35+.08*Math.sin(x*.3)*Math.sin(y*.27);_swirl[y*W+x]=v;mn=Math.min(mn,v);mx=Math.max(mx,v)}for(let i=0;i<_swirl.length;i++)_swirl[i]=(_swirl[i]-mn)/(mx-mn);return _swirl}
-function maskComp(c,A,B,fn){const a=imgData(A).data,b=imgData(B).data,o=outData(c),d=o.data;for(let i=0,p=0;p<W*H;p++,i+=4){const w=fn(p%W,(p/W)|0,p);if(w<=0){d[i]=a[i];d[i+1]=a[i+1];d[i+2]=a[i+2]}else if(w>=1){d[i]=b[i];d[i+1]=b[i+1];d[i+2]=b[i+2]}else if(w>=2){}else{d[i]=a[i]+(b[i]-a[i])*w;d[i+1]=a[i+1]+(b[i+1]-a[i+1])*w;d[i+2]=a[i+2]+(b[i+2]-a[i+2])*w}d[i+3]=255}c.putImageData(o,0,0)}
+function maskComp(c,A,B,fn){const a=imgData(A).data,b=imgData(B).data,o=outData(c),d=o.data;for(let i=0,p=0;p<W*H;p++,i+=4){const w=fn(p%W,(p/W)|0,p);if(w<=0){d[i]=a[i];d[i+1]=a[i+1];d[i+2]=a[i+2]}else if(w>=1){d[i]=b[i];d[i+1]=b[i+1];d[i+2]=b[i+2]}else if(w>=2){}else{d[i]=a[i]+(b[i]-a[i])*w;d[i+1]=a[i+1]+(b[i+1]-a[i+1])*w;d[i+2]=a[i+2]+(b[i+2]-a[i+2])*w}d[i+3]=255}blitData(c,o)}
 DEMOS['TRN-06']={d:3,f:(c,t)=>{const k=trnK(t),m=swirlMask(),e=.06,kk=k*(1+e);maskComp(c,'day','forest',(x,y,p)=>clamp((kk-m[p])/e));if(k>0&&k<1){const o=c.getImageData(0,0,W,H),d=o.data;for(let p=0;p<W*H;p++){const v=(kk-m[p])/e;if(v>0&&v<1){const g=1-Math.abs(v-.5)*2;d[p*4]=Math.min(255,d[p*4]+g*120);d[p*4+1]=Math.min(255,d[p*4+1]+g*200);d[p*4+2]=Math.min(255,d[p*4+2]+g*180)}}c.putImageData(o,0,0)}R(c,W-46,4,42,26,'#000');const mk2=TMP2(),g=mk2.getContext('2d');/* mask thumbnail */const id=g.createImageData(40,24);for(let y=0;y<24;y++)for(let x=0;x<40;x++){const v=m[Math.floor(y*H/24)*W+Math.floor(x*W/40)]*255;const j=(y*40+x)*4;id.data[j]=id.data[j+1]=id.data[j+2]=v;id.data[j+3]=255}c.putImageData(id,W-45,5);tl(c,t,[.15,.85])}};
 DEMOS['TRN-07']={d:2.6,f:(c,t)=>{const k=trnK(t),N=12,sh=H/N,st=.4;c.drawImage(scene('day'),0,0);for(let i=0;i<N;i++){const lk=ease(clamp((k-i/N*st)/(1-st))),h=sh*lk;if(h<=0)continue;c.save();c.beginPath();c.rect(0,i*sh+(sh-h)/2,W,h);c.clip();c.drawImage(scene('night'),0,0);c.restore()}tl(c,t,[.15,.85])}};
 DEMOS['TRN-08']={d:2.6,f:(c,t)=>{const k=ease(trnK(t,.2,.8)),ox=Math.round(k*W);c.drawImage(scene('day'),-ox,0);c.drawImage(scene('forest'),W-ox,0);R(c,W-ox-1,0,1,H,'rgba(0,0,0,.4)');tl(c,t,[.2,.8])}};
@@ -977,7 +994,7 @@ function lgLab(c,s,x,y,col='#e9edf2'){const ww=Math.ceil(s.length*4.3);R(c,x-ww/
 function lgSegBox(ax,ay,bx,by,b){let t0=0,t1=1;const dx=bx-ax,dy=by-ay;if(Math.abs(dx)<1e-9){if(ax<b[0]||ax>b[2])return false}else{let u=(b[0]-ax)/dx,v=(b[2]-ax)/dx;if(u>v){const s=u;u=v;v=s}if(u>t0)t0=u;if(v<t1)t1=v;if(t0>t1)return false}if(Math.abs(dy)<1e-9){if(ay<b[1]||ay>b[3])return false}else{let u=(b[1]-ay)/dy,v=(b[3]-ay)/dy;if(u>v){const s=u;u=v;v=s}if(u>t0)t0=u;if(v<t1)t1=v;if(t0>t1)return false}return true}
 /* periodic smooth 1D value noise: n cells per loop, t in [0,1) */
 function lgPN(t,n,seed){const f=((t%1)+1)%1*n,i=Math.floor(f),k=f-i,s=k*k*(3-2*k);return lerp(hash(seed+(i%n)*13.1),hash(seed+((i+1)%n)*13.1),s)}
-function lgPut(c,fn){const o=outData(c),d=o.data;for(let y=0;y<H;y++)for(let x=0;x<W;x++){const p=(y*W+x)*4,r=fn(x,y);d[p]=r[0];d[p+1]=r[1];d[p+2]=r[2];d[p+3]=255}c.putImageData(o,0,0)}
+function lgPut(c,fn){const o=outData(c),d=o.data;for(let y=0;y<H;y++)for(let x=0;x<W;x++){const p=(y*W+x)*4,r=fn(x,y);d[p]=r[0];d[p+1]=r[1];d[p+2]=r[2];d[p+3]=255}blitData(c,o)}
 const lgFloor=(x,y)=>(((x>>3)+(y>>3))&1)?[118,122,132]:[104,108,118];
 
 /* LGT-01 directional / point / spot */
@@ -3666,7 +3683,7 @@ DEMOS['REN-03']={d:5,f:(c,t)=>{const o=outData(c),d=o.data,L=rnL(t);rnBg(d,[50,5
  prTag(c,'smooth',4,4);prTag(c,'TOON bands',124,4,P.cyan)}};
 
 /* REN-04 Outline: inverted-hull shell vs image-edge */
-DEMOS['REN-04']={d:5,f:(c,t)=>{const bob=Math.round(Math.sin(t*TAU)*3);for(const i of[0,1])prLane(c,i,i?'EDGE detect':'SHELL (hull)',i?P.gold:P.cyan,gy=>{house(c,50,gy);tree(c,170,gy);const hx=120,hy=gy+bob;if(!i){c.save();c.translate(hx,hy);c.scale(2.35,2.35);spr(c,'hero',0,0,{sx:1,sy:1});c.globalCompositeOperation='source-atop';R(c,-20,-24,40,40,P.ink);c.restore();spr(c,'hero',hx,hy,{sx:2,sy:2})}
+DEMOS['REN-04']={d:5,f:(c,t)=>{const bob=Math.round(Math.sin(t*TAU)*3);for(const i of[0,1])prLane(c,i,i?'EDGE detect':'SHELL (hull)',i?P.gold:P.cyan,gy=>{house(c,50,gy);tree(c,170,gy);const hx=120,hy=gy+bob;if(!i){const t=TMP(),g=t.getContext('2d');g.imageSmoothingEnabled=false;g.save();g.translate(hx,hy);g.scale(2.35,2.35);spr(g,'hero',0,0,{sx:1,sy:1});g.globalCompositeOperation='source-atop';R(g,-20,-24,40,40,P.ink);g.restore();c.drawImage(t,0,0);spr(c,'hero',hx,hy,{sx:2,sy:2})}
   else{spr(c,'hero',hx,hy,{sx:2,sy:2});c.save();c.strokeStyle=P.gold;c.lineWidth=1.5;c.strokeRect(hx-9,hy-20,18,22);c.restore()}},{bg:P.sky});
  prTag(c,'backface expand',W-4,4,P.cyan,'rgba(10,14,24,.75)',6,'right');prTag(c,'image edges',W-4,73,P.gold,'rgba(10,14,24,.75)',6,'right')}};
 
@@ -4441,17 +4458,42 @@ const strip=h=>String(h).replace(/<[^>]+>/g,' ').replace(/&[a-z#0-9]+;/g,' ');
 const players=[];const visible=new Set();
 /* Promote demos to hi:true (480×270) so monospace labels stay crisp under CSS scale.
    - Skip demos that already set hi / buf
-   - Skip demos that write raw 240×135 ImageData on the demo canvas (put/get/createImageData / outData)
+   - Skip demos that write raw 240×135 ImageData on the demo canvas, either directly
+     (put/get/createImageData / outData) or through a helper that putImageData's onto c
+     (maskComp, lgPut). Those stay on the 240×135 buf path: putImageData ignores transforms,
+     so hi + scale(2,2) would paint the buffer into the top-left of the backing store.
    - If the draw fn already starts from scale(2,2)/G(c), only flip hi (avoid double-scale)
    - Otherwise wrap with scale(2,2) so existing 240-space demos keep their coordinates */
-(()=>{const bad=/c\.(?:put|get|create)ImageData\s*\(|outData\s*\(\s*c\s*\)/;const scaled=/(?:^|[^\w.])(?:c\.scale\(\s*2\s*,\s*2\s*\)|G\(\s*c\s*\))/;for(const id of Object.keys(DEMOS)){const d=DEMOS[id];if(!d||d.hi||d.buf||typeof d.f!=='function')continue;let src='';try{src=Function.prototype.toString.call(d.f)}catch(e){continue}if(bad.test(src)){d.buf=true;continue}d.hi=true;if(scaled.test(src))continue;const f=d.f;d.f=(c,t,w,h,p)=>{c.scale(2,2);f(c,t,w,h,p)}}})();
+(()=>{const bad=/c\.(?:put|get|create)ImageData\s*\(|outData\s*\(\s*c\s*\)|(?:maskComp|lgPut)\s*\(\s*c\s*[,)]/;const scaled=/(?:^|[^\w.])(?:c\.scale\(\s*2\s*,\s*2\s*\)|G\(\s*c\s*\))/;for(const id of Object.keys(DEMOS)){const d=DEMOS[id];if(!d||d.hi||d.buf||typeof d.f!=='function')continue;let src='';try{src=Function.prototype.toString.call(d.f)}catch(e){continue}if(bad.test(src)){d.buf=true;continue}d.hi=true;if(scaled.test(src))continue;const f=d.f;d.f=(c,t,w,h,p)=>{c.scale(2,2);f(c,t,w,h,p)}}})();
 /* Display canvas is 480×270 logical; multiply by devicePixelRatio so CSS upscaling stays nearest-neighbour crisp. */
 const pxSmooth=(c,on)=>{c.imageSmoothingEnabled=!!on;if('mozImageSmoothingEnabled' in c)c.mozImageSmoothingEnabled=!!on;if('webkitImageSmoothingEnabled' in c)c.webkitImageSmoothingEnabled=!!on;if('msImageSmoothingEnabled' in c)c.msImageSmoothingEnabled=!!on};
+const pxNum=n=>{const r=Math.round(n);return Math.abs(n-r)<1e-4?r:Math.round(n*1000)/1000};
+const _nearN=(x,min)=>Math.abs(x-Math.round(x))<1e-3&&Math.round(x)>=min;
+/* Largest 16:9 CSS box that fits. Prefer an integer multiple of the logical frame
+   (or an integer divisor) whose bitmap→device scale is an integer or 1/integer.
+   Fractional devicePixelRatio falls back to an integer device-pixel multiple. */
+function canvasCssBox(availW,availH,logicalW,logicalH,raw,storeDpr){
+  const bw=480*storeDpr;let best=null,loose=null;
+  const crisp=w=>_nearN((w*raw)/bw,1)||_nearN(bw/(w*raw),2);
+  const logicalOk=w=>_nearN((w*raw)/logicalW,1)||_nearN(logicalW/w,2);
+  const consider=(w,h)=>{if(!(w>=8&&h>=8&&w<=availW+0.51&&h<=availH+0.51))return;const ok=crisp(w)&&logicalOk(w);if(ok){if(!best||w>best.w)best={w,h}}else if(!loose||w>loose.w)loose={w,h}};
+  const maxK=Math.floor(Math.min(availW/logicalW,availH/logicalH));
+  for(let k=maxK;k>=1;k--)consider(logicalW*k,logicalH*k);
+  for(let n=2;n<=logicalW;n++){if(logicalW%n||logicalH%n)continue;consider(logicalW/n,logicalH/n)}
+  if(raw>0){const maxM=Math.floor(Math.min(availW*raw/logicalW,availH*raw/logicalH));for(let m=maxM;m>=1;m--)consider(logicalW*m/raw,logicalH*m/raw)}
+  if(best||loose)return best||loose;
+  const s=Math.max(.01,Math.min(availW/logicalW,availH/logicalH)),w=Math.max(1,Math.round(logicalW*s));
+  return {w,h:Math.max(1,Math.round(w*logicalH/logicalW))};
+}
 class Player{constructor(e,fig){this.e=e;this.def=DEMOS[e.id];this.cv=fig.querySelector('canvas');this.dc=this.cv.getContext('2d');this.hi=!!(this.def&&this.def.hi);if(!this.hi){this.buf=mk(W,H);this.bc=this.buf.getContext('2d')}this.t=this.def&&this.def.t0!=null?this.def.t0:0;this.dur=(this.def&&this.def.d)||4;this.static=!this.def||!!this.def.s;this.playing=!this.static&&!globalPause;this.dpr=0;this.wire(fig);this.ui()}
 wire(fig){this.fig=fig;this.btn=fig.querySelector('.pp');this.rng=fig.querySelector('input');if(this.rng)this.rng.oninput=()=>{this.t=+this.rng.value;this.playing=false;this.ui();this.render()};const rb=fig.querySelector('.rp');if(rb)rb.onclick=()=>{this.t=0;this.playing=true;this.ui();this.render()};if(this.btn)this.btn.onclick=()=>{this.playing=!this.playing;this.ui()}}
 ui(){if(this.btn)this.btn.textContent=this.playing?UI[lang].pause:UI[lang].play;const rb=this.fig.querySelector('.rp');if(rb)rb.textContent=UI[lang].replay;if(this.rng)this.rng.value=this.t}
-/* Keep an integer DPR backing store so 480×270 demo pixels map 1:1 (or N:1) onto device pixels. */
-fit(){const dpr=Math.max(1,Math.min(3,Math.round(window.devicePixelRatio||1)));if(dpr===this.dpr&&this.cv.width===480*dpr)return false;this.dpr=dpr;this.cv.width=480*dpr;this.cv.height=270*dpr;return true}
+/* Keep an integer DPR backing store so 480×270 demo pixels map 1:1 (or N:1) onto device pixels.
+   CSS size is a separate integer scale of the logical frame (240, or 480 when hi) so
+   nearest-neighbour display pixels stay even. */
+fit(){const raw=window.devicePixelRatio||1;const dpr=Math.max(1,Math.min(3,Math.round(raw)));let store=false;if(dpr!==this.dpr||this.cv.width!==480*dpr){this.dpr=dpr;this.cv.width=480*dpr;this.cv.height=270*dpr;store=true}this.layoutCanvas(raw,dpr);return store}
+layoutCanvas(raw,dpr){const fig=this.cv.parentElement;if(!fig)return;const availW=fig.clientWidth;if(availW<16)return;const logicalW=this.hi?480:240,logicalH=this.hi?270:135;const modal=!!this.cv.closest('article.in-modal');const availH=modal?Math.min(window.innerHeight*.56,520):availW*logicalH/logicalW;/* Keep a size that still fits when a scrollbar toggles ~15px of width. */
+if(this._box&&this._box.w<=availW+.51&&this._box.h<=availH+.51&&this._modal===modal&&this._raw===raw&&this._sdpr===dpr&&this._lw===logicalW&&Math.abs(availW-this._aw)<20)return;this._aw=availW;this._modal=modal;this._raw=raw;this._sdpr=dpr;this._lw=logicalW;const box=canvasCssBox(availW,availH,logicalW,logicalH,raw,dpr);this._box=box;const ws=pxNum(box.w)+'px',hs=pxNum(box.h)+'px';if(this.cv.style.width!==ws)this.cv.style.width=ws;if(this.cv.style.height!==hs)this.cv.style.height=hs}
 render(){this.drawn=true;const f=this.def&&this.def.f;if(!f)return;try{this.fit();const s=this.dpr;if(this.hi){const c=this.dc;c.setTransform(s,0,0,s,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';pxSmooth(c,false);c.clearRect(0,0,480,270);f(c,this.t,480,270,this)}else{const c=this.bc;c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';pxSmooth(c,false);c.clearRect(0,0,W,H);f(c,this.t,W,H,this);const d=this.dc;d.setTransform(1,0,0,1,0,0);pxSmooth(d,false);d.clearRect(0,0,this.cv.width,this.cv.height);d.drawImage(this.buf,0,0,this.cv.width,this.cv.height)}}catch(err){console.error('demo '+this.e.id+': '+err.message);this.err=true;this.playing=false}}
 step(dt){if(!this.playing||this.static)return;this.t+=dt/this.dur;if(this.t>=1)this.t-=1;if(this.rng)this.rng.value=this.t;this.render()}}
 /* SVG player: original SMIL diagrams are paused and driven by the same timeline/scrubber as canvas demos */
@@ -4514,6 +4556,8 @@ function openRow(a,on){a.classList.toggle('open',on);a.querySelector('.row').set
 function init(){const cards=$('#cards');let cur='';E.forEach(e=>{const vt={};['zh','en','ja'].forEach(l=>{const L=e[l];vt[l]=[L.name,L.observe,L.use,L.notThis,L.prompt,e.params,L.caph||'',L.cap||''].concat(e.ex?[e.ex[l]]:[]).join(' ').toLowerCase()});e._v=vt;e._al=e.aliases.join(' ').toLowerCase();e._std=String(e.std).toLowerCase();e._impl=String(e.impl||'').toLowerCase();e._old=(e.olds||[]).join(' ').toLowerCase();e._s=[e.id.toLowerCase(),e._old,e._std,e._al,e._impl,vt.zh,vt.en,vt.ja].join(' ');
 if(e.grp!==cur){cur=e.grp;const h=document.createElement('h2');h.className='sect';h.id='sec-'+cur;h.dataset.g=cur;cards.appendChild(h);sect[cur]=h}const a=card(e);el[e.id]=a;cards.appendChild(a)});
 E.forEach(e=>{const a=el[e.id];const fig=a.querySelector('figure');const p=e.svg&&!DEMOS[e.id]?new SPlayer(e,fig):new Player(e,fig);players.push(p);a._p=p;a.querySelector('.row').onclick=()=>openRow(a,!a.classList.contains('open'))});
+/* Refit integer canvas CSS when the card, column count, or modal slot changes size. */
+if(window.ResizeObserver){const ro=new ResizeObserver(es=>{for(const en of es){const a=en.target.closest('article');const p=a&&a._p;if(!p||!p.layoutCanvas)continue;const store=p.fit();if(store&&(visible.has(p)||p.drawn||(modalArt&&modalArt._p===p)))p.render()}});E.forEach(e=>{const f=el[e.id]&&el[e.id].querySelector('figure.visual:not(.svgfig)');if(f)ro.observe(f)})}
 /* only on-screen demos are drawn/advanced; first canvas draw is deferred until the card scrolls into view */
 const io=new IntersectionObserver(es=>es.forEach(x=>{const p=x.target.closest('article')._p;if(x.isIntersecting){visible.add(p);if(!p.drawn)p.render()}else if(modalArt!==x.target.closest('article'))visible.delete(p)}),{rootMargin:'100px'});E.forEach(e=>io.observe(el[e.id].querySelector('figure')));
 addEventListener('beforeprint',()=>players.forEach(p=>{if(!p.drawn)p.render()}));

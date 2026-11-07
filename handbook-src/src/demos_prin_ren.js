@@ -60,7 +60,7 @@ DEMOS['REN-03']={d:5,f:(c,t)=>{const o=outData(c),d=o.data,L=rnL(t);rnBg(d,[50,5
  prTag(c,'smooth',4,4);prTag(c,'TOON bands',124,4,P.cyan)}};
 
 /* REN-04 Outline: inverted-hull shell vs image-edge */
-DEMOS['REN-04']={d:5,f:(c,t)=>{const bob=Math.round(Math.sin(t*TAU)*3);for(const i of[0,1])prLane(c,i,i?'EDGE detect':'SHELL (hull)',i?P.gold:P.cyan,gy=>{house(c,50,gy);tree(c,170,gy);const hx=120,hy=gy+bob;if(!i){c.save();c.translate(hx,hy);c.scale(2.35,2.35);spr(c,'hero',0,0,{sx:1,sy:1});c.globalCompositeOperation='source-atop';R(c,-20,-24,40,40,P.ink);c.restore();spr(c,'hero',hx,hy,{sx:2,sy:2})}
+DEMOS['REN-04']={d:5,f:(c,t)=>{const bob=Math.round(Math.sin(t*TAU)*3);for(const i of[0,1])prLane(c,i,i?'EDGE detect':'SHELL (hull)',i?P.gold:P.cyan,gy=>{house(c,50,gy);tree(c,170,gy);const hx=120,hy=gy+bob;if(!i){const t=TMP(),g=t.getContext('2d');g.imageSmoothingEnabled=false;g.save();g.translate(hx,hy);g.scale(2.35,2.35);spr(g,'hero',0,0,{sx:1,sy:1});g.globalCompositeOperation='source-atop';R(g,-20,-24,40,40,P.ink);g.restore();c.drawImage(t,0,0);spr(c,'hero',hx,hy,{sx:2,sy:2})}
   else{spr(c,'hero',hx,hy,{sx:2,sy:2});c.save();c.strokeStyle=P.gold;c.lineWidth=1.5;c.strokeRect(hx-9,hy-20,18,22);c.restore()}},{bg:P.sky});
  prTag(c,'backface expand',W-4,4,P.cyan,'rgba(10,14,24,.75)',6,'right');prTag(c,'image edges',W-4,73,P.gold,'rgba(10,14,24,.75)',6,'right')}};
 
