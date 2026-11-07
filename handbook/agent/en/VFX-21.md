@@ -27,14 +27,14 @@ Add a voxel-disintegration death: sample the character's shape into 4×4 px cube
 
 ## Implementation hint
 
-Pre-sample the sprite/mesh into cells with colour and position; per cell: start = sweep(dot(pos, dir)) * duration; age = t - start; if age>0: pos += (drift + up)*age; angle += spin*age; scale = 1 - smoothstep(0, life, age). Render the intact character masked by the sweep front (pixels behind the front hidden) so pieces replace it seamlessly. 3D: instanced cubes or a VAT bake (MATX-09).
+Pre-sample the sprite/mesh into cells with colour and position; per cell: start = sweep(dot(pos, dir)) * duration; age = t - start; if age>0: pos += (drift + up)*age; angle += spin*age; scale = 1 - smoothstep(0, life, age). Render the intact character masked by the sweep front (pixels behind the front hidden) so pieces replace it seamlessly. 3D: instanced cubes or a VAT bake (PHY-01).
 
 ## Related
 
 - [VFX-04](VFX-04.md) — Dissolve
 - [VFX-19](VFX-19.md) — Shatter
 - [FB-04](FB-04.md) — Death effect
-- [MATX-09](MATX-09.md) — Vertex animation texture (VAT)
+- [PHY-01](PHY-01.md) — Position-based cloth (PBD / XPBD)
 
 ## References
 

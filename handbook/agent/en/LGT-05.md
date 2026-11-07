@@ -27,13 +27,12 @@ Add a rectangular area light to the game's interiors as window light (2 m × 1.2
 
 ## Implementation hint
 
-Real-time: Linearly Transformed Cosines (LTC) with two small LUT textures for diffuse+specular from polygonal lights. Soft shadows: PCSS-style variable filter width from blocker distance, or many shadow samples. Offline/baked: area lights are integrated by the lightmapper (LGT-06).
+Real-time: Linearly Transformed Cosines (LTC) with two small LUT textures for diffuse+specular from polygonal lights. Soft shadows: PCSS-style variable filter width from blocker distance, or many shadow samples. Offline/baked: area lights are integrated by the lightmapper (REN-25).
 
 ## Related
 
 - [LGT-01](LGT-01.md) — Directional, point and spot lights
 - [REN-25](REN-25.md) — Cast shadows/Soft shadows/Penumbra
-- [LGT-06](LGT-06.md) — Baked lighting
 - [LGT-09](LGT-09.md) — Contact shadows
 
 ## References

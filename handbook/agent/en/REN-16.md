@@ -1,5 +1,7 @@
 # REN-16 · Alpha blending/Translucency
 
+**Aliases:** Premultiplied alpha; Dark fringe; 煙邊黑框; Alpha fringe; PMA
+
 **Group:** Materials & surfaces
 **Subcategory:** Material Color, Surface Detail, and Light Transmission
 
@@ -13,7 +15,7 @@ transparency is not refraction; a transparent surface need not distort the backg
 
 ## Use it for
 
-transparent materials, particles, and soft color layering.
+transparent materials, particles, and soft color layering. The soft edge of smoke, fire, or a glow should not pick up a black rim; the edge colour of a transparent texture has to be filtered together with its opacity. Fading a whole interface group must not darken the overlaps first. (Former entry DIAG-01, “Premultiplied alpha”, is merged here.)
 
 ## Tunable parameters
 

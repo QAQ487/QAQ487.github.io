@@ -11,7 +11,7 @@ A character stands in front of a mirror, polished marble floor or calm lake. Wit
 
 ## Not to be confused with
 
-Not screen-space reflections (REN-24, limited to pixels already on screen), not box-projected cubemaps (DIAG-08, static and approximate), and not ordinary reflection probes (REN-23). Planar reflections are accurate but cost an extra scene render per reflecting plane, so they suit only a few genuinely flat surfaces.
+Not screen-space reflections (REN-24, limited to pixels already on screen), not box-projected cubemaps (REN-23, static and approximate), and not ordinary reflection probes (REN-23). Planar reflections are accurate but cost an extra scene render per reflecting plane, so they suit only a few genuinely flat surfaces.
 
 ## Use it for
 
@@ -31,7 +31,6 @@ Reflection matrix for plane (n, d): M = I − 2·n·nᵀ (with translation −2�
 
 ## Related
 
-- [DIAG-08](DIAG-08.md) — Box-projected (parallax-corrected) cubemaps
 - [REN-24](REN-24.md) — Screen-Space Reflections/SSR
 - [REN-23](REN-23.md) — Reflections/Image-Based Lighting (IBL)/Reflection probes
 

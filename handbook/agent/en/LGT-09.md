@@ -31,10 +31,9 @@ Fullscreen or per-light pass: reconstruct view position from depth, ray-march to
 
 ## Related
 
-- [LGT-08](LGT-08.md) — Shadow mapping and cascaded shadow maps
+- [REN-25](REN-25.md) — Cast shadows/Soft shadows/Penumbra
 - [REN-21](REN-21.md) — Ambient occlusion/AO/Occlusion map
 - [LGT-10](LGT-10.md) — Blob shadow
-- [REN-25](REN-25.md) — Cast shadows/Soft shadows/Penumbra
 
 ## References
 

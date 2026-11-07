@@ -1,6 +1,6 @@
 # MATX-04 · Height-blend texture splatting
 
-**Aliases:** Height blending; Height-based blend; Texture splatting; Terrain layer blend; Splat map
+**Aliases:** Height blending; Height-based blend; Texture splatting; Terrain layer blend; Splat map; Triplanar mapping; Triplanar projection; 三向投影; 陡壁貼圖拉伸
 
 **Group:** Materials & surfaces
 **Subcategory:** Surface detail
@@ -11,11 +11,11 @@ The border between two ground layers (cobbles and grass, mud and sand) is not a 
 
 ## Not to be confused with
 
-Not a plain alpha blend (two textures cross-fading by weight, which looks dirty at the border); height blending uses each layer’s own height map to decide which is on top. Not triplanar mapping (MATX-03, projection direction) or a wet surface (MATX-05, changing roughness on one material).
+Not a plain alpha blend (two textures cross-fading by weight, which looks dirty at the border); height blending uses each layer’s own height map to decide which is on top. Not a wet surface (MATX-05, changing roughness on one material). Stretched streaks on a steep wall are the texture laid along the wrong axis, not the border between two ground layers.
 
 ## Use it for
 
-Terrain painting (borders of grass, mud, stone, snow), worn paths, moss and snow cover, grime and moss in wall corners.
+Terrain painting (borders of grass, mud, stone, snow), worn paths, moss and snow cover, grime and moss in wall corners. To keep the same pattern density on a cliff as on the top, sample along the three axes by surface facing and blend. (Former entry MATX-03, “Triplanar mapping”, is merged here.)
 
 ## Tunable parameters
 
@@ -31,11 +31,10 @@ For layers i: v_i = h_i + a_i; m = max(v_i) - depth; w_i = max(v_i - m, 0); col 
 
 ## Related
 
-- [MATX-03](MATX-03.md) — Triplanar mapping
 - [MATX-05](MATX-05.md) — Wet surface
 - [PIX-17](PIX-17.md) — Autotiling
 - [ENV-03](ENV-03.md) — Seasonal change
-- [DIAG-07](DIAG-07.md) — Detail normal blending (reoriented normal mapping)
+- [REN-13](REN-13.md) — Normal mapping/Bump mapping
 
 ## References
 

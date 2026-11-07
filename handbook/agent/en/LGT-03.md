@@ -11,7 +11,7 @@ As if a cut-out plate sits in front of the light, the light on the floor and wal
 
 ## Not to be confused with
 
-Not a shadow (REN-25 Cast shadows / LGT-08, made by real objects blocking light); a cookie is just a texture attached to the light, with no actual window or leaves needed in the scene. Not cloud shadows (ENV-07, usually a large layer scrolling over the whole ground).
+Not a shadow (REN-25 Cast shadows / REN-25, made by real objects blocking light); a cookie is just a texture attached to the light, with no actual window or leaves needed in the scene. Not cloud shadows (ENV-07, usually a large layer scrolling over the whole ground).
 
 ## Use it for
 
@@ -33,7 +33,6 @@ Project the shaded point into the light's space (spot: its view-projection; dire
 
 - [LGT-01](LGT-01.md) — Directional, point and spot lights
 - [ENV-07](ENV-07.md) — Cloud shadows
-- [LGT-08](LGT-08.md) — Shadow mapping and cascaded shadow maps
 - [REN-25](REN-25.md) — Cast shadows/Soft shadows/Penumbra
 
 ## References

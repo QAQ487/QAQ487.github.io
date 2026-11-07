@@ -1,6 +1,6 @@
 # PHY-01 · Position-based cloth (PBD / XPBD)
 
-**Aliases:** 披風穿模; 布料像紙板; 旗幟飄動; Cloth simulation; PBD cloth; XPBD; Distance constraints; クロスシミュレーション
+**Aliases:** 披風穿模; 布料像紙板; 旗幟飄動; Cloth simulation; PBD cloth; XPBD; Distance constraints; クロスシミュレーション; VAT; Vertex animation texture; Baked vertex animation; 頂點動畫貼圖; 群眾動畫; 倒塌動畫
 
 **Group:** Animation, movement & physics
 **Subcategory:** Cloth & ropes
@@ -15,7 +15,7 @@ Not spring bones (ANI-10, each bone driven by a spring, with no cloth-mesh const
 
 ## Use it for
 
-Capes, flags, curtains, skirts, tents — cloth that must react to a character or a wind field rather than replay a baked animation.
+Capes, flags, curtains, skirts, tents — cloth that must react to a character or a wind field rather than replay a baked animation. A pre-recorded vertex animation is only a data carrier: it can play something that looks like cloth, a collapse (VFX-19), or a crowd, but it does not react to collision and it is not a separate picture. (Former entry MATX-09, “Vertex animation texture”, is merged here. There is no separate crowd-presentation card.)
 
 ## Tunable parameters
 
@@ -35,6 +35,7 @@ Per substep: v+=g*dt; xPred=x+v*dt; for k iterations: for each edge (i,j) move b
 - [PHY-03](PHY-03.md) — Jelly soft body (shape matching / pressure)
 - [ENV-08](ENV-08.md) — Foliage sway
 - [ANI-10](ANI-10.md) — Spring bones / Jiggle physics
+- [VFX-19](VFX-19.md) — Shatter
 
 ## References
 

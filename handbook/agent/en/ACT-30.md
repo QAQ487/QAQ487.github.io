@@ -1,5 +1,7 @@
 # ACT-30 · Root Motion
 
+**Aliases:** In-place animation; Code-driven locomotion; 原地動畫; 原地踏步
+
 **Group:** Animation, movement & physics
 **Subcategory:** Skeletal Animation, Movement, and Pose Composition
 
@@ -13,7 +15,7 @@ A model drifting forward inside an animation does not mean its gameplay collisio
 
 ## Use it for
 
-Extract translation and rotation from the animation's root node and use them to help drive the character's movement through the world.
+Extract translation and rotation from the animation's root node and use them to help drive the character's movement through the world. A run cycle can play in place while movement rules carry the actor. On screen the stride still matches the travel, and a viewer cannot tell whether the asset itself contained root travel. (Former entry ACT-31, “In-place animation”, is merged here as the code-driven variant.)
 
 ## Tunable parameters
 

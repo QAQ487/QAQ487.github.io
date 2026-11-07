@@ -11,7 +11,7 @@ The game is still drawn on a low-res canvas at whole pixels (the pixel grid neve
 
 ## Not to be confused with
 
-Not pixel snapping (PIX-02, where everything rounds and the camera steps a pixel at a time), and not switching the whole game to high-resolution drawing (that lets sprites stop at half pixels and creates mixels, PIX-23). Only the finished frame is shifted by a sub-pixel amount; art pixels stay on whole-pixel offsets relative to each other.
+Not pixel snapping (PIX-02, where everything rounds and the camera steps a pixel at a time), and not switching the whole game to high-resolution drawing (that lets sprites stop at half pixels and creates mixels (see PIX-01)). Only the finished frame is shifted by a sub-pixel amount; art pixels stay on whole-pixel offsets relative to each other.
 
 ## Use it for
 

@@ -1,6 +1,6 @@
 # VFX-18 · Debris
 
-**Aliases:** Gibs; Chunks; Rubble; Splinters
+**Aliases:** Gibs; Chunks; Rubble; Splinters; One-way collapse; Backward gate; Point of no return; 身後塌方; 單向入口; 落石封路
 
 **Group:** VFX & particles
 **Subcategory:** Destruction
@@ -15,7 +15,7 @@ Not a shatter (VFX-19, cutting the object itself into geometric pieces); debris 
 
 ## Use it for
 
-Breaking fences, crates, walls and rocks; gives destruction tangible weight and, with permanence (FB-12), leaves marks on the battlefield.
+Breaking fences, crates, walls and rocks; gives destruction tangible weight and, with permanence (FB-12), leaves marks on the battlefield. After a landing, pieces can also fall behind the player and stay on the path so the way back is blocked. The confirmation before leaving a zone is UX-08. (The collapse from former entry UX-35, “One-way entrance”, is merged here.)
 
 ## Tunable parameters
 
@@ -35,6 +35,7 @@ CPU particles with a separate height (z) channel for top-down: screen y = ground
 - [FB-12](FB-12.md) — Permanence
 - [FB-04](FB-04.md) — Death effect
 - [VFX-09](VFX-09.md) — Explosion
+- [UX-08](UX-08.md) — Modal dialog
 
 ## References
 

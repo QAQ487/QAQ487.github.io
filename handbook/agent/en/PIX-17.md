@@ -1,6 +1,6 @@
 # PIX-17 · Autotiling
 
-**Aliases:** Tilemap; Bitmask autotiling; Wang tiles; Blob tileset; Terrain transitions
+**Aliases:** Tilemap; Bitmask autotiling; Wang tiles; Blob tileset; Terrain transitions; Tile seams; Atlas bleeding; Edge extrusion; 貼圖滲色; tile 接縫
 
 **Group:** 2D & pixel-art techniques
 **Subcategory:** Scene construction
@@ -15,7 +15,7 @@ Not hand-picking each tile (slow and error-prone) and not one big background ima
 
 ## Use it for
 
-Level editors and in-game terrain changes (digging paths, building walls, corruption spreading) with edges updating automatically.
+Level editors and in-game terrain changes (digging paths, building walls, corruption spreading) with edges updating automatically. A hairline that appears only while the camera moves is the sampler reading the next cell, not a wrong edge tile. (Former entry PIX-26, “Tile seams”, is merged here.)
 
 ## Tunable parameters
 
@@ -27,11 +27,10 @@ Add autotiling to the game's terrain: 16×16 tiles; the dirt/grass boundary uses
 
 ## Implementation hint
 
-Keep the tile map as a CPU array of terrain IDs and a derived array of tile indices; on change, recompute mask = N|E<<1|S<<2|W<<3 for the cell and its neighbours and update only those instances in a dynamic instance buffer (one instanced quad draw per chunk). Atlas tiles need padding/extrusion (PIX-26).
+Keep the tile map as a CPU array of terrain IDs and a derived array of tile indices; on change, recompute mask = N|E<<1|S<<2|W<<3 for the cell and its neighbours and update only those instances in a dynamic instance buffer (one instanced quad draw per chunk). Atlas tiles need about 1 px of edge extrusion and nearest sampling, so a moving camera does not read the neighbouring cell as a seam.
 
 ## Related
 
-- [PIX-26](PIX-26.md) — Texture bleeding and atlas padding
 - [ENV-16](ENV-16.md) — Corruption spread
 - [PIX-16](PIX-16.md) — Y-sorting
 

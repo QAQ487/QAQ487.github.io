@@ -1,6 +1,6 @@
 # VFX-19 · Shatter
 
-**Aliases:** Fracture; Voronoi fracture; Glass break; Destruction
+**Aliases:** Fracture; Voronoi fracture; Glass break; Destruction; Baked collapse; 建築倒塌; Collapse bake
 
 **Group:** VFX & particles
 **Subcategory:** Destruction
@@ -15,7 +15,7 @@ Not debris (VFX-18, extra small pieces thrown out); with a shatter the object it
 
 ## Use it for
 
-Smashing frozen enemies, breaking crystal shields, statues or chests — a dramatic moment of total destruction.
+Smashing frozen enemies, breaking crystal shields, statues or chests — a dramatic moment of total destruction. A pre-recorded collapse can play as the same break-apart; the data carrier is noted on PHY-01.
 
 ## Tunable parameters
 

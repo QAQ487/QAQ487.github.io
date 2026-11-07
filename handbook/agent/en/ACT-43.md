@@ -33,7 +33,7 @@ dodgeAge in [perfectStart, perfectEnd] and Overlaps(attack): flag Perfect. Prese
 
 - [FB-10](FB-10.md) — Slow motion
 - [ACT-42](ACT-42.md) — Guard counter
-- [ACT-26](ACT-26.md) — Frame Advantage / Plus and Minus
+- [ACT-25](ACT-25.md) — Cancel Window / Action Window
 - [ACT-27](ACT-27.md) — Invulnerability / Invincibility Frames / I-frames
 
 ## References

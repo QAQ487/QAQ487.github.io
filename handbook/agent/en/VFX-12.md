@@ -32,10 +32,9 @@ Two emitters: flames additive (BLEND_ONE/ONE) with colour-over-life in a 1D grad
 ## Related
 
 - [VFX-09](VFX-09.md) — Explosion
-- [VFX-01](VFX-01.md) — Soft particles
-- [VFX-02](VFX-02.md) — GPU particles
+- [FX-01](FX-01.md) — Sprite / Billboard Particles
 - [FB-05](FB-05.md) — Status effect tint
-- [VFX-20](VFX-20.md) — Flipbook frame blending / motion-vector flipbook
+- [FX-04](FX-04.md) — Flipbook / Sprite-sheet Animation
 
 ## References
 

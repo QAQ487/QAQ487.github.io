@@ -11,7 +11,7 @@ A soft dark ellipse sits under characters and props, the same whatever the light
 
 ## Not to be confused with
 
-Not a real cast shadow (LGT-08 / REN-25 Cast shadows, which follow the light's shape and direction) and not a contact shadow (LGT-09, a thin line along the light direction). Versus fake height (PIX-18): fake height is the spatial trick of drawing the object higher while the shadow stays down; the blob shadow is how that shadow itself is drawn, and is common in 3D too.
+Not a real cast shadow (REN-25 Cast shadows, which follow the light's shape and direction) and not a contact shadow (LGT-09, a thin line along the light direction). Versus fake height (PIX-18): fake height is the spatial trick of drawing the object higher while the shadow stays down; the blob shadow is how that shadow itself is drawn, and is common in 3D too.
 
 ## Use it for
 
@@ -33,7 +33,6 @@ Add blob shadows to the game's characters and enemies: draw a soft ellipse at gr
 
 - [PIX-18](PIX-18.md) — Fake height with ground shadow
 - [LGT-09](LGT-09.md) — Contact shadows
-- [LGT-08](LGT-08.md) — Shadow mapping and cascaded shadow maps
 - [REN-25](REN-25.md) — Cast shadows/Soft shadows/Penumbra
 
 ## References

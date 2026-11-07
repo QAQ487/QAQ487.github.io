@@ -1,6 +1,6 @@
 # PIX-01 · Integer scaling
 
-**Aliases:** Pixel-perfect rendering; Nearest-neighbour upscaling; Point filtering; Low-res render target
+**Aliases:** Pixel-perfect rendering; Nearest-neighbour upscaling; Point filtering; Low-res render target; Mixels; Mixed pixel sizes; Inconsistent pixel density; 混合像素; 像素大小不一致
 
 **Group:** 2D & pixel-art techniques
 **Subcategory:** Display & scaling
@@ -11,11 +11,11 @@ The whole game is drawn into a tiny low-resolution canvas (e.g. 320×180) and th
 
 ## Not to be confused with
 
-Not an upscaling filter (PIX-04, which invents smooth edges), and not merely switching texture filtering to point: at a non-integer factor like 2.5× even nearest-neighbour gives alternating wide and narrow pixel columns (see PIX-23 mixels). Bilinear filtering makes the whole image soft.
+Not an upscaling filter (PIX-04, which invents smooth edges), and not merely switching texture filtering to point: at a non-integer factor like 2.5× even nearest-neighbour gives alternating wide and narrow pixel columns, so squares in one frame disagree in size. Bilinear filtering makes the whole image soft.
 
 ## Use it for
 
-The foundation of pixel art: it decides how big a character reads, whether lines stay stable, and whether things shimmer when they move. Every other pixel effect sits on top of this display pipeline.
+The foundation of pixel art: it decides how big a character reads, whether lines stay stable, and whether things shimmer when they move. Every other pixel effect sits on top of this display pipeline. Do not mix art-pixel sizes in one frame; redraw a larger character instead of scaling a small sprite. (Former entry PIX-23, “Mixels”, is merged here.)
 
 ## Tunable parameters
 
@@ -34,8 +34,7 @@ Render the world into a base-res render target (RGBA8, e.g. 320×180). Every spr
 - [PIX-02](PIX-02.md) — Pixel snapping
 - [PIX-03](PIX-03.md) — Sub-pixel camera smoothing
 - [PIX-04](PIX-04.md) — Pixel-art upscaling filters
-- [PIX-23](PIX-23.md) — Mixels
-- [PIX-26](PIX-26.md) — Texture bleeding and atlas padding
+- [PIX-17](PIX-17.md) — Autotiling
 
 ## References
 

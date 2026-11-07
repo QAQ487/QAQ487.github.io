@@ -1,5 +1,7 @@
 # REN-34 · Depth of Field/DoF/Bokeh
 
+**Aliases:** Depth of field; DOF; 景深; 敘事對焦; 焦點在眼睛
+
 **Group:** Post-processing & screen filters
 **Subcategory:** Cameras, Color, and Post-Processing
 
@@ -13,7 +15,7 @@ DoF is the depth-of-field effect; bokeh emphasizes the character of out-of-focus
 
 ## Use it for
 
-directing attention, cinematic shots, and miniature looks.
+directing attention, cinematic shots, and miniature looks. In dialogue, place the focus on the character’s eyes and let near and far scenery soften with distance. Screen-space HUD must stay fully sharp. (Former entry CAM-28, “Depth of field”, is merged here.)
 
 ## Tunable parameters
 

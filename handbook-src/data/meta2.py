@@ -1,19 +1,16 @@
 # Merge metadata: dedup pointers, cross-layer see-also, style tags, optional examples.
 # POINTERS: pointer_id -> canonical_id. Both entries keep their full content; the pointer shows a banner.
 POINTERS={
- 'CAM-28':'REN-34',  # depth of field: camera-side view of the rendering entry
  'FX-07':'REN-18',   # distortion/refraction
- 'FX-35':'UX-18',    # multisensory redundancy = multimodal feedback
- 'FX-37':'UX-20',    # reduced motion
  'FX-08':'NAV-04',   # telegraph
 }
-SEEALSO=[('FX-04','VFX-20'),('ACT-12','UI-01'),('ACT-10','FB-13'),('ACT-27','FB-03'),('REN-04','NPR-03'),('FX-15','VFX-04'),
- ('CAM-20','FB-09'),('CAM-19','FB-09'),('REN-26','LGT-12'),('REN-25','LGT-08'),('REN-23','LGT-07'),('FX-01','VFX-01'),('FX-02','VFX-08'),
- ('UX-04','UI-09'),('REN-13','PIX-21'),('REN-37','DIAG-03'),('ACT-21','FB-11'),('ACT-22','ANI-05'),('ACT-36','ANI-12'),('ACT-37','ANI-16'),
- ('ACT-32','ANI-18'),('REN-16','DIAG-01'),('REN-17','DIAG-06'),('REN-28','DIAG-04'),('FX-38','A11Y-01'),('UX-10','A11Y-02'),
+SEEALSO=[('ACT-12','UI-01'),('ACT-10','FB-13'),('ACT-27','FB-03'),('REN-04','NPR-03'),('FX-15','VFX-04'),
+ ('CAM-20','FB-09'),('CAM-19','FB-09'),('REN-26','LGT-12'),('REN-23','LGT-07'),('FX-02','VFX-08'),
+ ('UX-04','UI-09'),('REN-13','PIX-21'),('ACT-21','FB-11'),('ACT-22','ANI-05'),('ACT-36','ANI-12'),('ACT-37','ANI-16'),
+ ('ACT-32','ANI-18'),('A11Y-04','A11Y-01'),('UX-10','A11Y-02'),
  ('FX-03','VFX-08'),('UX-11','UI-10'),('UX-29','NAV-02'),('FX-06','FB-12'),('REN-29','PP-11'),('REN-36','PP-12'),('REN-33','PP-13'),
- ('REN-18','MATX-11'),('FX-09','VFX-21'),('UX-03','FB-19'),('UX-29','NAV-07'),('UX-30','NAV-08'),('UX-20','A11Y-05'),('FX-38','A11Y-04'),
- ('FX-36','A11Y-06'),('FX-35','A11Y-03'),('ANI-10','PHY-01'),('ANI-09','PHY-03'),('ACT-29','FB-21'),('UX-10','FX-36'),('FX-13','ACT-09'),
+ ('REN-18','MATX-11'),('FX-09','VFX-21'),('UX-03','FB-19'),('UX-29','NAV-07'),('UX-30','NAV-08'),('UX-20','A11Y-05'),
+ ('FX-36','A11Y-06'),('UX-18','A11Y-03'),('ANI-10','PHY-01'),('ANI-09','PHY-03'),('ACT-29','FB-21'),('UX-10','FX-36'),('FX-13','ACT-09'),
  ('UX-01','UI-24'),('UX-11','UI-19'),('UI-11','UI-21'),('NAV-05','UI-22'),('A11Y-02','UI-25'),
  ('UX-06','UI-03'),('UX-07','UX-16'),('UI-04','UI-12')]
 TAGLAB={'px':dict(zh='#2D像素',en='#2D pixel',ja='#2Dドット'),'real':dict(zh='#3D寫實',en='#3D realistic',ja='#3Dリアル'),
@@ -21,9 +18,9 @@ TAGLAB={'px':dict(zh='#2D像素',en='#2D pixel',ja='#2Dドット'),'real':dict(z
 PX_EXTRA={'PP-05','NPR-10','NPR-13','NPR-14','ANI-07','FX-04','ANI-02','CAMX-05','PP-03'}
 NPR_EXTRA={'REN-02','REN-03','REN-04','PP-04','NPR-14','PP-13'}
 REAL_EXCL={'REN-02','REN-03','REN-04'}
-A11Y_EXTRA={'FX-34','FX-35','FX-36','FX-37','FX-38','UX-06','UX-07','UX-08','UX-10','UX-18','FX-32','UX-20','FB-16'}
-PERF={'REN-14','REN-18','REN-19','REN-20','REN-22','REN-24','REN-27','REN-33','REN-34','REN-38','REN-40','REN-42','LGT-08','LGT-11','LGT-13',
- 'VFX-01','VFX-02','PP-08','UI-07','NPR-06','ENV-09','ENV-14','FX-16','FX-17','PHY-01','PHY-03','MATX-11','DIAG-09','VFX-21'}
+A11Y_EXTRA={'FX-34','FX-36','UX-06','UX-07','UX-08','UX-10','UX-18','FX-32','UX-20','FB-16'}
+PERF={'REN-14','REN-18','REN-19','REN-20','REN-22','REN-24','REN-27','REN-33','REN-34','LGT-13',
+ 'PP-08','UI-07','NPR-06','ENV-09','ENV-14','FX-16','FX-17','PHY-01','PHY-03','MATX-11','DIAG-09','VFX-21'}
 def tags(id,cat):
   t=[]
   if cat=='PIX' or id in PX_EXTRA: t.append('px')

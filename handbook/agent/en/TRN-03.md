@@ -35,7 +35,7 @@ Two render targets A/B; fullscreen pixel shader out = lerp(A, B, k). Requires re
 - [TRN-09](TRN-09.md) — Dither transition
 - [VFX-04](VFX-04.md) — Dissolve
 - [ENV-01](ENV-01.md) — Day-night cycle
-- [DIAG-02](DIAG-02.md) — Linear workflow / sRGB
+- [REN-32](REN-32.md) — Color grading/LUT/White balance
 
 ## References
 

@@ -37,7 +37,7 @@ Unlit, additive (or premultiplied alpha), ZWrite off. a = base + fresnel(pow(1 -
 - [PP-03](PP-03.md) — CRT filter
 - [REN-06](REN-06.md) — Fresnel effect/Fresnel reflectance
 - [NAV-05](NAV-05.md) — Placement ghost
-- [DIAG-01](DIAG-01.md) — Premultiplied alpha
+- [REN-16](REN-16.md) — Alpha blending/Translucency
 
 ## References
 

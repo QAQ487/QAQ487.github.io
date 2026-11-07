@@ -1,5 +1,7 @@
 # REN-23 · Reflections/Image-Based Lighting (IBL)/Reflection probes
 
+**Aliases:** Box projection; Parallax-corrected cubemap; Local cubemap; 反射位置不對; 盒體投影
+
 **Group:** Lighting & shadows
 **Subcategory:** Lighting, Occlusion, Reflections, and Atmosphere
 
@@ -13,7 +15,7 @@ reflection is the effect; environment maps/probes, planar reflections, SSR, and 
 
 ## Use it for
 
-conveying materials, space, and environmental color; IBL can also provide environmental illumination, not just specular reflections.
+conveying materials, space, and environmental color; IBL can also provide environmental illumination, not just specular reflections. Environmental reflections on indoor floors and metal should keep windows and doors in place as the camera moves, rather than sliding with the view. (Former entry DIAG-08, “Box-projected reflections”, is merged here.)
 
 ## Tunable parameters
 

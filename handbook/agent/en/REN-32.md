@@ -1,5 +1,7 @@
 # REN-32 · Color grading/LUT/White balance
 
+**Aliases:** Linear workflow; sRGB; Gamma correction; 光暈疊加變髒; 漸層中間發暗
+
 **Group:** Post-processing & screen filters
 **Subcategory:** Cameras, Color, and Post-Processing
 
@@ -13,7 +15,7 @@ color grading is the adjustment process; a LUT (lookup table) is one mapping too
 
 ## Use it for
 
-unifying art direction and differentiating regions, seasons, and moods.
+unifying art direction and differentiating regions, seasons, and moods. Two lights that overlap into grey, or a gradient whose middle is too dark, come from mixing colour in the wrong brightness space. They are not a look a grade should request. Grading arranges warmth and contrast on a picture that is already correct. (Former entry DIAG-02, “Linear workflow”, is merged here only as that contrast.)
 
 ## Tunable parameters
 

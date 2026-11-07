@@ -15381,7 +15381,7 @@
     "fields": [
      [
       "現象／用途",
-      "長條縮短、格數減少、數字倒數，讓你估算「還能撐多久／還能出多少招」。搜尋 <code>HUD resource meter health stamina</code>。耐力條亦常驅動攀爬／滑翔（見 ACT-40）；本條聚焦顯示與讀懂。"
+      "長條縮短、格數減少、數字倒數，讓你估算「還能撐多久／還能出多少招」。搜尋 <code>HUD resource meter health stamina</code>。耐力條也可顯示攀爬與滑翔還能撐多久；本條聚焦顯示與讀懂。"
      ],
      [
       "常見誤解",
@@ -15404,7 +15404,7 @@
     "fields": [
      [
       "What you see / purpose",
-      "A shrinking bar, fewer segments, or a counting-down number helps you estimate how much longer you can last or how many more actions you can perform. Search <code>HUD resource meter health stamina</code>.  Stamina meters often drive climb/glide (ACT-40); this entry focuses on how the meter is shown and read."
+      "A shrinking bar, fewer segments, or a counting-down number helps you estimate how much longer you can last or how many more actions you can perform. Search <code>HUD resource meter health stamina</code>.  A stamina meter can also show how much longer a climb or glide lasts; this entry focuses on how the meter is shown and read."
      ],
      [
       "Common misconceptions",
@@ -15425,7 +15425,7 @@
     "fields": [
      [
       "現象／用途",
-      "バーが短くなる、目盛りが減る、数値がカウントダウンすることで、「あとどのくらい耐えられるか」「あと何回行動できるか」を見積もれます。検索語は <code>HUD resource meter health stamina</code>。スタミナは登攀／滑空にも使われる（ACT-40）。本項目は表示と読み取りに絞る。"
+      "バーが短くなる、目盛りが減る、数値がカウントダウンすることで、「あとどのくらい耐えられるか」「あと何回行動できるか」を見積もれます。検索語は <code>HUD resource meter health stamina</code>。スタミナゲージは、登攀や滑空があとどれだけ持つかを示すことにも使える。本項目は表示と読み取りに絞る。"
      ],
      [
       "よくある誤解",

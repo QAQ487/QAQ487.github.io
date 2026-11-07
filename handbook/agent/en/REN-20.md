@@ -1,5 +1,7 @@
 # REN-20 · Global illumination/GI/Indirect lighting/Color bleeding
 
+**Aliases:** Color bleeding; 反彈染色; Bounced light colour
+
 **Group:** Lighting & shadows
 **Subcategory:** Lighting, Occlusion, Reflections, and Atmosphere
 
@@ -13,7 +15,7 @@ GI describes light-transport effects/a computational domain. Lightmaps, probes, 
 
 ## Use it for
 
-coherent lighting in interiors and shadows; stylized scenes can exaggerate or reduce bounce lighting.
+coherent lighting in interiors and shadows; stylized scenes can exaggerate or reduce bounce lighting. Fixed indoor light can tint a white object slightly red beside a red wall. That is the indirect-light picture; precomputing it is only one method. (The colour-bleed example from former entry LGT-06 is merged here; soft shadows are REN-25.)
 
 ## Tunable parameters
 

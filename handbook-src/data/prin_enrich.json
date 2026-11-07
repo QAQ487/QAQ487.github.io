@@ -1009,7 +1009,7 @@
   },
   "FX-01": {
     "params": "spawn rate · sprite size · facing mode · velocity alignment · lifetime · opacity curve",
-    "impl": "Emit textured planes and choose camera-facing, axis-locked, or velocity-aligned orientation per effect. Vary size, rotation, and opacity over lifetime so the group creates volume without implying physical geometry.",
+    "impl": "Emit textured planes and choose camera-facing, axis-locked, or velocity-aligned orientation per effect. Vary size, rotation, and opacity over lifetime so the group creates volume without implying physical geometry. Fade a sprite as it approaches a surface so smoke meets the ground or a wall without a hard edge.",
     "prompt": {
       "zh": "製作一團持續 2.5 秒的魔法煙霧：每秒生成 40 張半透明貼片，七成面向鏡頭、三成沿速度方向對齊，尺寸由 0.15 米放大至 0.6 米並逐步淡出。",
       "en": "Create a 2.5-second magical smoke puff that emits 40 translucent planes per second; face 70% toward the camera, align 30% to velocity, and grow each from 0.15 m to 0.6 m while fading out.",

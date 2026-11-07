@@ -35,7 +35,6 @@ Two layers: 3D world (tile-textured meshes, point-sampled) and camera-facing or 
 - [REN-29](REN-29.md) — Bloom/Glow
 - [NPR-13](NPR-13.md) — 3D pixel art (pixelated 3D)
 - [PIX-01](PIX-01.md) — Integer scaling
-- [CAM-28](CAM-28.md) — Depth of field／DOF
 
 ## References
 
