@@ -13,19 +13,25 @@ This is not motion blur, nor necessarily input delay. Smooth-looking movement do
 
 ## Use it for
 
-Softens abrupt changes in speed and direction and gives movement a greater sense of weight.
+Softens abrupt changes in speed and direction and gives movement a greater sense of weight. While airborne, hold camera Y unless the player leaves a band (~+1.5 m / −0.5 m); retarget Y to the new ground height on landing. Ordinary hops must not bob the camera. Landing dip (CAM-34) is a short impulse — keep it separate from this follow policy.
 
 ## Tunable parameters
 
-position smooth time · rotation smooth time · max speed · damping model · per-axis damping · teleport threshold
+position smooth time · rotation smooth time · max speed · damping model · per-axis damping · teleport threshold · vertical follow hysteresis band (+1.5 m / −0.5 m authoring) · airborne Y hold · landing retarget
 
 ## Request prompt
 
-In your game, add smooth following with a critically damped spring: use a 0.18 s horizontal smooth time, 0.28 s vertical smooth time, and a 900 px/s speed cap. Let the camera continue settling after the character stops, but reset directly when displacement suddenly exceeds 128 px.
+Add vertical follow hysteresis on top of smooth following: while airborne hold camera Y unless the player leaves a band (authoring start about +1.5 m / −0.5 m); retarget Y to the new ground height on landing. Ordinary hops must not bob the camera every jump. Landing camera dip (CAM-34) is a short impulse — keep it separate from this follow policy. Use 0.18 s horizontal and 0.28 s vertical smooth times.
 
 ## Implementation hint
 
-Filter the desired position and orientation with a critically damped spring or another frame-rate-independent smoothing function. Store velocity as part of the camera state, cap extreme speeds, and bypass the filter for teleports or scene resets.
+Filter desired position/orientation with a critically damped spring. While airborne, hold camera Y unless the follow target leaves a vertical band (authoring start about +1.5 m / −0.5 m); on landing retarget Y to the new ground height. Jumping must not bob the camera every hop. Landing dip (CAM-34) is a separate short impulse — do not fold it into this follow policy.
+
+## Related
+
+- [CAM-34](CAM-34.md) — Landing camera dip
+- [CAM-05](CAM-05.md) — Platform-snapping
+- [CAM-33](CAM-33.md) — Handheld idle camera / Camera breathing
 
 ## References
 

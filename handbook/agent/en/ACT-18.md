@@ -27,6 +27,11 @@ Give the heavy attack 240 ms of startup and enable attack detection from 241 ms 
 
 Represent startup as the interval from accepted input until attack detection first becomes active. Document whether the first active update is included in reported startup counts to avoid off-by-one ambiguity.
 
+## Related
+
+- [ACT-09](ACT-09.md) — Anticipation / Wind-up
+- [ACT-11](ACT-11.md) — Timing / Spacing
+
 ## References
 
 - [Capcom — Street Fighter 6 A.K.I. Frame Data，表頭說明](https://www.streetfighter.com/6/en-us/character/aki/frame)

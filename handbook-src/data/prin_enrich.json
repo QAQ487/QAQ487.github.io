@@ -27,21 +27,21 @@
     }
   },
   "CAM-04": {
-    "params": "position smooth time · rotation smooth time · max speed · damping model · per-axis damping · teleport threshold",
-    "impl": "Filter the desired position and orientation with a critically damped spring or another frame-rate-independent smoothing function. Store velocity as part of the camera state, cap extreme speeds, and bypass the filter for teleports or scene resets.",
+    "params": "position smooth time · rotation smooth time · max speed · damping model · per-axis damping · teleport threshold · vertical follow hysteresis band (+1.5 m / −0.5 m authoring) · airborne Y hold · landing retarget",
+    "impl": "Filter desired position/orientation with a critically damped spring. While airborne, hold camera Y unless the follow target leaves a vertical band (authoring start about +1.5 m / −0.5 m); on landing retarget Y to the new ground height. Jumping must not bob the camera every hop. Landing dip (CAM-34) is a separate short impulse — do not fold it into this follow policy.",
     "prompt": {
-      "zh": "在遊戲中加入柔順跟隨：鏡頭位置以臨界阻尼彈簧追向角色，水平平滑時間 0.18 秒、垂直 0.28 秒，最高速度 900 px/秒；角色停下後容許鏡頭繼續收斂，但位移突然超過 128 px 時直接重設，避免長距離飛過畫面。",
-      "en": "In your game, add smooth following with a critically damped spring: use a 0.18 s horizontal smooth time, 0.28 s vertical smooth time, and a 900 px/s speed cap. Let the camera continue settling after the character stops, but reset directly when displacement suddenly exceeds 128 px.",
-      "ja": "ゲームに滑らかな追従を追加して。カメラ位置を臨界減衰ばねでキャラクターへ追従させ、平滑化時間は横 0.18 秒、縦 0.28 秒、最高速度は 900 px/秒。キャラクター停止後も収束を続けるが、差が急に 128 px を超えた場合は直接リセットして長距離を飛ばさない。"
+      "zh": "柔順跟隨之外加入垂直跟隨滯後：跳躍離地期間鎖住鏡頭 Y，除非角色超出約 +1.5 m／−0.5 m 帶寬；着地後再對齊新地面高度。普通連跳不得讓鏡頭每下上下晃。落地鏡頭下沉（CAM-34）是短衝量，與本跟隨策略分開。水平平滑時間 0.18 秒、垂直 0.28 秒。",
+      "en": "Add vertical follow hysteresis on top of smooth following: while airborne hold camera Y unless the player leaves a band (authoring start about +1.5 m / −0.5 m); retarget Y to the new ground height on landing. Ordinary hops must not bob the camera every jump. Landing camera dip (CAM-34) is a short impulse — keep it separate from this follow policy. Use 0.18 s horizontal and 0.28 s vertical smooth times.",
+      "ja": "滑らか追従に縦追従ヒステリシスを追加。空中はカメラ Y を保持し、約 +1.5 m／−0.5 m の帯を出たときだけ動かす。着地で新しい地面高へ合わせる。普通の連ジャンプで毎回上下させない。着地ディップ（CAM-34）は短いインパルスで、この追従とは分ける。平滑化は横 0.18 秒・縦 0.28 秒。"
     }
   },
   "CAM-05": {
-    "params": "landing height threshold · grounded confirmation · realign delay · vertical smooth time · jump lock · drop-through rule",
-    "impl": "Hold the camera's vertical reference while the character is airborne, then update the reference from the confirmed landing surface. Ignore brief ground contacts, and smooth toward the new platform height unless the height change exceeds a deliberate snap threshold.",
+    "params": "landing height threshold · grounded confirmation · realign delay · vertical smooth time · jump lock · drop-through rule · airborne Y hold band (+1.5 m / −0.5 m) · platform-hold Y",
+    "impl": "Hold the camera vertical reference while airborne unless the character leaves an authored band (about +1.5 m / −0.5 m). Update the reference from the confirmed landing surface and smooth toward the new platform height. Ignore brief one-way contacts. Pair with CAM-34 landing dip as impulse, not as continuous Y follow.",
     "prompt": {
-      "zh": "在遊戲中加入落地才重新對齊：普通跳躍期間鎖住鏡頭高度；角色連續着地 0.08 秒，而且新平台與舊參考高度相差至少 24 px 時，才用 0.3 秒 ease-in-out 對齊新高度。從單向平台向下穿越時不要把短暫接觸當成落地。",
-      "en": "In your game, realign camera height only on landing: lock the vertical camera reference during normal jumps. After the character has remained grounded for 0.08 s and the new platform differs by at least 24 px, ease to its height over 0.3 s; ignore brief contacts while dropping through one-way platforms.",
-      "ja": "ゲームで、着地時だけカメラの高さを合わせ直して。通常ジャンプ中は縦の基準を固定し、キャラクターが 0.08 秒連続で接地し、新しい足場が以前の基準から 24 px 以上違う時だけ、0.3 秒のイーズイン・アウトで新しい高さへ移す。一方向床を下へ抜ける時の短い接触は着地扱いにしない。"
+      "zh": "落地才重新對齊並加入空中 Y 保持帶：普通跳躍鎖鏡頭高度；只有離開約 +1.5 m／−0.5 m 帶或確認着地 0.08 秒後，才用 0.3 秒對齊新平台。連跳不得每下拉鏡。對照 CAM-34 落地短衝量。",
+      "en": "Realign on landing with an airborne Y-hold band: lock vertical reference during normal jumps; only leave the ~+1.5 m / −0.5 m band or a 0.08 s grounded confirm should ease to the new platform over 0.3 s. Do not bob every hop. Cross-link CAM-34 for the short land impulse.",
+      "ja": "着地揃えに空中 Y 保持帯を追加。通常ジャンプ中は縦基準を固定し、約 +1.5 m／−0.5 m を出るか 0.08 秒接地確認後だけ 0.3 秒で新足場へ。連ジャンプで毎回揺らさない。短い着地インパルスは CAM-34。"
     }
   },
   "CAM-06": {
@@ -738,30 +738,30 @@
     }
   },
   "ACT-09": {
-    "params": "anticipation duration · key pose · attack direction · startup timing · release cue",
-    "impl": "Insert a clear preparatory pose before the main action, oriented to reveal direction and force. Keep its visual duration aligned with the intended startup while preserving responsive timing for player-controlled actions.",
+    "params": "anticipation duration · key pose · attack direction · startup timing · release cue · immediate strong start pose · compressed anticipation",
+    "impl": "On the first presented update after an accepted attack, enter a readable directional extreme, then move rapidly toward contact, with a slower weight-bearing tail after contact. Do not delay gameplay acceptance for a decorative crouch — a weak first visible change is often blamed on input latency. Pair with FX-13 for VFX charge-up.",
     "prompt": {
-      "zh": "為敵人向下重擊加入 180 ms 預備動作：先把武器拉高並停留 40 ms，再清楚朝目標方向釋放；攻擊判定只可在釋放後開始。",
-      "en": "Give the enemy's downward heavy strike a 180 ms anticipation: raise the weapon with a 40 ms hold, then release clearly toward the target; activate the hit only after release begins.",
-      "ja": "敵の振り下ろし強攻撃に180 msの予備動作を付け、武器を持ち上げて40 ms止めてから目標方向へ振ってください。攻撃判定は振り始めた後だけ有効にしてください。"
+      "zh": "接受攻擊輸入後的第一個呈現更新就要進入可讀的方向極端姿勢，再快速衝向接觸，接觸後用較慢的承重收尾。不要為裝飾性蹲伏延遲玩法接受。可選 180 ms 壓縮預備，但判定接受不得等完整蹲姿。對照 Wyatt Cheng GDC 2013 動畫演講的「強起手」。",
+      "en": "On the first presented update after an accepted attack, enter a readable directional extreme, then move rapidly toward contact, with a slower weight-bearing tail after. Do not delay gameplay acceptance for a decorative crouch. Optional ~180 ms compressed anticipation is fine, but acceptance must not wait for a full crouch. See Wyatt Cheng GDC 2013 animation talks for the strong-start idea.",
+      "ja": "攻撃入力が受理された直後の最初の提示更新で、読める方向の極端姿勢に入り、素早く接触へ、接触後は遅い重心の尾。装飾のしゃがみで受理を遅らせない。約 180 ms の圧縮予備は可だが、受理はフルしゃがみ待ちにしない。Wyatt Cheng GDC 2013 の強い出だしを参照。"
     }
   },
   "ACT-10": {
-    "params": "squash scale · stretch scale · apparent volume · recovery duration · collider policy",
-    "impl": "Apply brief nonuniform visual scaling around impacts and launches, compensating other axes to preserve apparent volume. Keep gameplay collision unchanged unless the design explicitly calls for a separate rule.",
+    "params": "squash scale · stretch scale · apparent volume · recovery duration · collider policy · impact-scaled landing compression · recovery tiers (hop / deep crouch / roll-stun presentation)",
+    "impl": "Scale landing compression depth and settle duration from pre-contact downward speed: a short hop barely dips the knees; a long fall is a deep crouch; a very high fall may present a roll or brief stun as recovery presentation (not a design-rule article). Foot pivot stays at contact. An accepted jump can blend out of current compression. Do not force a movement lock unless the variant says so. Cross-link CAM-34 landing dip and FB-13 squash-on-hit.",
     "prompt": {
-      "zh": "着地時把角色外觀壓至高度 85%、闊度 108%，用 120 ms 回復；起跳首 80 ms 拉至高度 112%、闊度 94%，碰撞體保持不變。",
-      "en": "On landing, squash the visual to 85% height and 108% width, recovering over 120 ms; for the first 80 ms of takeoff, stretch to 112% height and 94% width, without changing the collider.",
-      "ja": "着地時に見た目を高さ85%・幅108%へつぶして120 msで戻し、跳び始めの80 msは高さ112%・幅94%へ伸ばしてください。コライダーは変更しないでください。"
+      "zh": "着地壓縮深度與回復時間依接觸前下落速度分檔：短跳幾乎只屈膝；長落深蹲；極高落可播翻滾或短暫暈眩作為回復演出（不是關卡規則文）。腳樞軸留在接觸點。已接受的跳躍可從當前壓縮混出。不要預設鎖移動。對照 CAM-34 與 FB-13。",
+      "en": "Scale landing compression depth and settle duration from pre-contact downward speed: short hop barely dips the knees; long fall deep crouch; very high fall may roll or briefly stun as recovery presentation. Foot pivot stays at contact. An accepted jump can blend out of compression. Do not force a movement lock unless the variant says so. Cross-link CAM-34 and FB-13.",
+      "ja": "着地のつぶれ深さと収束時間を接触前の落下速度で段階化。短いホップは膝を少し、長い落下は深いしゃがみ、非常に高い落下は回復演出としてロールや短い気絶を見せてよい。足のピボットは接触点。受理されたジャンプは現在のつぶれからブレンドアウト可。変種が言わない限り移動ロックしない。CAM-34 と FB-13 を対照。"
     }
   },
   "ACT-11": {
-    "params": "total duration · pose timestamps · sample spacing · acceleration impression · key poses",
-    "impl": "Choose when important poses occur, then shape the distances traveled between equal-time samples. Timing establishes rhythm, while spacing establishes the perceived speed between those poses.",
+    "params": "total duration · pose timestamps · sample spacing · acceleration impression · key poses · primary-action overshoot/settle · attack-speed retiming with preserved contact accents",
+    "impl": "Choose when important poses occur and shape spacing between equal-time samples. Also: (1) Overshoot and settle of the primary action — the main hand/weapon passes its ready pose by a small authored amount, reverses once, and damps to rest; new gameplay retargets from current output (not cape/hair follow-through). (2) Attack-speed retiming — when speed changes, remap preparation, travel, and recovery separately; preserve a minimum readable contact accent and event order. Uniform fast-forward erases weight.",
     "prompt": {
-      "zh": "製作 600 ms 抬手動作，以每 100 ms 取樣：首三段位移 2、4、8 cm，後三段 8、4、2 cm，總時長不變但呈現先加速後減速。",
-      "en": "Create a 600 ms arm raise sampled every 100 ms, with successive travel distances of 2, 4, 8, 8, 4, and 2 cm, preserving duration while showing acceleration then deceleration.",
-      "ja": "600 msの腕上げを100 msごとに取り、移動距離を順に2、4、8、8、4、2 cmとして、総時間を変えずに加速から減速へ見せてください。"
+      "zh": "600 ms 抬手以外，讓主手／武器越過就緒姿勢一小段再回彈阻尼；新輸入從當前輸出重定向。調攻速時分開重映射預備／前進／收招，保留最短可讀接觸強調與事件順序，禁止整段均勻快轉。",
+      "en": "Besides a 600 ms arm raise, let the primary hand/weapon overshoot its ready pose by a small authored amount, reverse once, and damp to rest; new gameplay retargets from current output. When retiming attack speed, remap preparation, travel, and recovery separately and keep a minimum readable contact accent and event order — no uniform fast-forward.",
+      "ja": "600 ms の腕上げに加え、主手／武器が構えを少しオーバーシュートしてから一回戻し減衰。新しい操作は現在の出力からリターゲット。攻撃速度変更時は予備・移動・硬直を別リマップし、読める接触アクセントとイベント順を残す。均一な早回しは禁止。"
     }
   },
   "ACT-12": {
@@ -846,12 +846,12 @@
     }
   },
   "ACT-21": {
-    "params": "pause duration · affected actors · timer domains · input policy · effect policy",
-    "impl": "On a confirmed hit, pause the selected attacker and target simulation clocks for a short interval while deciding independently whether input, effects, camera, and environment continue. Resume from the held contact poses without converting the pause into hitstun.",
+    "params": "pause duration · affected actors · timer domains · input policy · effect policy · contact creep (opt-in) · hurt-pose acquisition during hitstop · link to FB-24 vibration",
+    "impl": "On a confirmed hit, pause selected attacker/target simulation clocks. Optional variants (not separate IDs): (1) Moving inside hitstop / contact creep — advance a tightly capped fraction of the attacker's visual swing so the blade seems to push through resistance, then reconcile without a backward pose pop; opt in per move. (2) Hurt-pose acquisition — freeze selected clocks but blend the victim into a directional hurt extreme over a short visual interval, then hold; a new hit recomputes from current output. Distinguish FB-24 damage vibration (offset buzz) from pose change and from the clock pause. Sakurai discusses both; do not treat Smash's ~4 frames as a universal constant.",
     "prompt": {
-      "zh": "重擊命中時讓攻擊者停 55 ms、受擊者停 75 ms；背景與輸入採樣繼續，火花照常播放，停頓結束後才開始計 260 ms 受擊硬直。",
-      "en": "On a heavy hit, pause the attacker for 55 ms and the target for 75 ms while background motion, input sampling, and sparks continue; begin the 260 ms hitstun only after the pause.",
-      "ja": "強攻撃の命中時、攻撃側を55 ms、被弾側を75 ms停止し、背景・入力取得・火花は継続してください。260 msの被弾硬直は停止終了後から数えてください。"
+      "zh": "重擊命中時攻擊者停 55 ms、受擊者停 75 ms；可選開啟接觸蠕動（hitstop 內攻擊者視覺揮擊前進極小比例）或受擊姿勢擷取（時鐘停但受擊者混入方向極端後凍結）。背景與火花可繼續。另可疊 FB-24 局部顫動，與姿勢變化、時鐘暫停分開調。",
+      "en": "On a heavy hit pause the attacker 55 ms and target 75 ms. Optionally enable contact creep (a capped fraction of the attacker visual swing advances during hitstop) or hurt-pose acquisition (clocks frozen while the victim blends into a directional extreme, then holds). Background and sparks may continue. FB-24 local vibration is a separate knob from pose change and clock pause.",
+      "ja": "強攻撃命中で攻撃側 55 ms・被弾側 75 ms 停止。任意でコンタクトクリープ（ヒットストップ中に攻撃側の見た目の振りをごく一部進める）や被弾ポーズ取得（時計は止めつつ被弾側を方向の極端へ混ぜてから保持）。背景と火花は継続可。FB-24 の局所バイブはポーズ変化・時計停止とは別ノブ。"
     }
   },
   "ACT-22": {
@@ -1512,12 +1512,12 @@
     }
   },
   "UX-20": {
-    "params": "camera shake · head bob · menu motion · auto-scroll · flashing · intensity preset",
-    "impl": "Expose independent controls for nonessential camera, interface, scrolling, and flashing effects, plus a convenient reduced-motion preset. Replace large movement with stable state changes while retaining all information and actions.",
+    "params": "camera shake · head bob · comfort sway (tiny roll ~±0.3° or viewmodel-only) · bob preset off/subtle/full · menu motion · auto-scroll · flashing · intensity preset",
+    "impl": "Expose independent controls for nonessential camera, interface, scrolling, and flashing effects, plus a reduced-motion preset. Prefer comfort sway — tiny roll (~±0.3°) or viewmodel-only bob scaled with speed and eased out on stop — over vertical eye-height oscillation, which commonly causes motion sickness. Idle camera breathing (CAM-33) is a separate idle effect.",
     "prompt": {
-      "zh": "加入減少動態設定：鏡頭震動 0–100%、頭部晃動開關、選單背景動畫開關、自動滾動開關；啟用預設後將震動降至 10%、停用晃動及滑入，但保留相同 6 個功能及清楚焦點。",
-      "en": "Add reduced-motion settings for 0–100% camera shake, head bob, animated menu backgrounds, and auto-scroll; the preset should set shake to 10%, disable bob and sliding, and preserve the same 6 functions and clear focus.",
-      "ja": "モーション低減設定を追加し、カメラ揺れ0～100%、頭部の上下動、メニュー背景アニメ、自動スクロールを個別設定できるようにしてください。プリセットでは揺れを10%にし、上下動とスライドを止めても同じ6機能と明確なフォーカスを保ってください。"
+      "zh": "減少動態設定加入鏡頭晃動 off／subtle／full：預設用極小滾轉（約 ±0.3°）或僅槍模上下替代垂直眼高晃動，並隨速度縮放、停下緩出。垂直眼高晃動列為易致暈選項。待機鏡頭呼吸見 CAM-33，與此移動舒適搖晃分開。",
+      "en": "Add camera bob: off / subtle / full. Prefer a tiny roll (~±0.3°) or viewmodel-only bob over vertical eye-height oscillation; scale with speed and ease out on stop. Naive vertical bob is a common motion-sickness cause. Idle camera breathing is CAM-33 — keep it separate from this locomotion comfort sway.",
+      "ja": "カメラボブを off／subtle／full で用意。垂直の目線上下より、約 ±0.3° の微小ロールかビューモデルのみのボブを優先し、速度でスケール、停止でイーズアウト。素の縦ボブは酔いの定番。待機の呼吸は CAM-33 で、移動の快適スウェイと分ける。"
     }
   },
   "UX-21": {

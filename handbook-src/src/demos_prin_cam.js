@@ -28,7 +28,7 @@ const s4=prSeries('c4',()=>({cx:0,v:0}),(s,u,dt)=>{const k=260,dmp=2*Math.sqrt(k
 DEMOS['CAM-04']={d:6,f:(c,t)=>{const hx=p4(t),cx=prAt(s4,t).cx,mv=stepOf(p4,t);c.save();c.beginPath();c.rect(0,0,W,106);c.clip();prSide(c,cx+300,72);const sx=120+hx-cx;shadow(c,sx,105,6);prWalker(c,sx,105,hx/14,{s:2,flip:mv<0,still:Math.abs(mv)<.01});
  R(c,sx-1,60,2,6,P.cyan);R(c,sx-3,62,6,2,P.cyan);R(c,119,58,2,10,P.gold);R(c,115,62,10,2,P.gold);c.restore();
  R(c,0,106,W,29,'#141a24');for(let i=0;i<W;i++){const u=i/W;R(c,i,131-p4(u)/140*20,1,1,P.cyan);R(c,i,131-prAt(s4,u).cx/140*20,1,1,P.gold)}R(c,Math.floor(t*W),107,1,28,'#e9edf2');
- txt(c,'target',4,110,P.cyan,6,'left');txt(c,'camera',40,110,P.gold,6,'left');hdr(c,'Camera damping')}};
+ txt(c,'target',4,110,P.cyan,6,'left');txt(c,'camera',40,110,P.gold,6,'left');hdr(c,'Damping · +Y hold band')}};
 /* CAM-05 platform snapping: camera Y only realigns after landing */
 const SEG5=[['w',20,70,100,.1],['j',70,100,140,80,.09],['w',140,170,80,.08],['j',170,80,250,60,.09],['w',250,295,60,.12],['w',295,250,60,.06],['j',250,60,170,80,.09],['w',170,140,80,.05],['j',140,80,70,100,.09],['w',70,20,100,.13]];
 const tot5=SEG5.reduce((a,s)=>a+s[s.length-1],0);
@@ -37,7 +37,7 @@ const s5=prSeries('c5',()=>({gy:100,cy:67,v:0}),(s,u,dt)=>{const h=h5(u);if(!h.a
 DEMOS['CAM-05']={d:6,f:(c,t)=>{const h=h5(prWrap(t)),st=prAt(s5,t),cx=h.x+40;prSide(c,cx,st.cy,{plats:[[-500,100,600],[120,80,60],[230,60,1000]],props:false});
  const ox=Math.round(W/2-cx),oy=Math.round(H/2-st.cy);const sy=h.y+oy;shadow(c,h.x+ox,(h.air?null:sy)||sy,5,h.air?0:.35);prWalker(c,h.x+ox,sy,h.x/14,{s:2,flip:h.dir<0,still:!!h.air});
  const ry=st.gy+oy;prLine(c,0,ry+.5,W,ry+.5,'rgba(242,201,76,.9)',1,[4,3]);prTag(c,'cam Y ref',W-4,ry-11,P.gold,'rgba(10,14,24,.75)',6,'right');
- const re=Math.abs(st.v)>4;prTag(c,h.air?'airborne: Y held':re?'landed: realign':'grounded',120,122,h.air?'#e9edf2':re?P.gold:P.cyan,'rgba(10,14,24,.75)',6,'center');hdr(c,'Platform snap')}};
+ const re=Math.abs(st.v)>4;prTag(c,h.air?'airborne: Y held (±band)':re?'landed: realign':'grounded',120,122,h.air?'#e9edf2':re?P.gold:P.cyan,'rgba(10,14,24,.75)',6,'center');hdr(c,'Platform snap + hysteresis')}};
 /* CAM-07 region-based anchors */
 const RG=[[0,300,'FIELD',.75,-10],[300,540,'ROOM',1.6,0],[540,1e9,'POND VIEW',1,-55]];
 const rgOf=x=>RG.find(r=>x>=r[0]&&x<r[1]);

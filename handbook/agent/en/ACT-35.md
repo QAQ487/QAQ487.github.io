@@ -27,6 +27,10 @@ Relative to the weapon-idle reference pose, add 6° of recoil rotation and 3 cm 
 
 Compute the animation's change relative to a declared reference pose in a consistent pose space, then compose that delta over the base action. Limit bones and weight so the overlay does not replace the underlying gait.
 
+## Related
+
+- [ANI-20](ANI-20.md) — Locomotion lean / Body banking
+
 ## References
 
 - [Unity — Animation Layers，Additive](https://docs.unity3d.com/6000.1/Documentation/Manual/AnimationLayers.html)

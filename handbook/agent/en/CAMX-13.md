@@ -35,6 +35,7 @@ Compute target roll from yaw rate (or lateral acceleration), damp it with its ow
 - [FB-07](FB-07.md) — Trauma-based screen shake
 - [CAM-04](CAM-04.md) — Camera damping／Follow smoothing／Camera lag
 - [PIX-20](PIX-20.md) — Mode 7 and raster effects
+- [ANI-20](ANI-20.md) — Locomotion lean / Body banking
 
 ## References
 

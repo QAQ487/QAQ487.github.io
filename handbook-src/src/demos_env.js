@@ -38,14 +38,28 @@ let CLD=null;function cloudCanvas(){if(CLD)return CLD;CLD=mk(W,H);const g=CLD.ge
 DEMOS['ENV-07']={d:8,f:(c,t)=>{c.drawImage(scene('eday'),0,0);const cl=cloudCanvas(),ox=Math.round(t*W),oy=Math.round(-t*H);for(const dx of[-W,0])for(const dy of[0,H])c.drawImage(cl,ox+dx,oy+dy);txt(c,'wind →↗',W-26,8,'#fff',7)}};
 
 /* ENV-08 foliage sway */
-DEMOS['ENV-08']={d:5,f:(c,t)=>{ground(c);path(c);for(const[x,y]of HOUSES)house(c,x,y,0);tower(c,120,30);fence(c,20,92,6);const gx=-40+t*(W+80);const gust=x=>Math.exp(-Math.pow((x-gx)/30,2));const sw=x=>Math.round(Math.sin(t*TAU*3+x*.05)*1.5+gust(x)*3.5);for(let i=0;i<40;i++){const x=hash(i+11)*W,y=hash(i+12)*H;if(Math.abs(y-x*.3-40)<12)continue;const s=sw(x);c.strokeStyle=P.grassD;c.lineWidth=1;c.beginPath();for(const b of[-2,0,2]){c.moveTo(x+b,y);c.lineTo(x+b*1.2+s*.8,y-4)}c.stroke()}const tr=[...TREES,[150,70],[60,120],[100,60]].sort((a,b)=>a[1]-b[1]);for(const[x,y]of tr)tree(c,x,y,sw(x));c.globalAlpha=.5;for(let i=0;i<5;i++){const y=20+i*24,x=gx-10+hash(i)*20;R(c,x,y,14,1,'#fff');R(c,x+4,y+1,10,1,'#fff')}c.globalAlpha=1;label(c,'gust →',30,8,'#fff')}};
+DEMOS['ENV-08']={d:5,f:(c,t)=>{ground(c);path(c);for(const[x,y]of HOUSES)house(c,x,y,0);tower(c,120,30);fence(c,20,92,6);const gx=-40+t*(W+80);const gust=x=>Math.exp(-Math.pow((x-gx)/30,2));
+ const main=x=>Math.sin(t*TAU*1.2+x*.04)*1.2+gust(x)*3.2;const detail=(x,i)=>Math.sin(t*TAU*5.5+x*.2+i)*0.9;
+ for(let i=0;i<40;i++){const x=hash(i+11)*W,y=hash(i+12)*H;if(Math.abs(y-x*.3-40)<12)continue;const s=main(x)+detail(x,i);c.strokeStyle=P.grassD;c.lineWidth=1;c.beginPath();for(const b of[-2,0,2]){c.moveTo(x+b,y);c.lineTo(x+b*1.2+s*.8,y-4)}c.stroke()}
+ const tr=[...TREES,[150,70],[60,120],[100,60]].sort((a,b)=>a[1]-b[1]);for(const[x,y]of tr)tree(c,x,y,main(x));
+ const blag=main(gx-20)*.6+gust(gx-25)*2;R(c,200,40,3,28,P.woodD);c.save();c.translate(203,42);c.rotate(blag*.08);R(c,0,0,22,14,P.red);c.restore();
+ c.globalAlpha=.5;for(let i=0;i<5;i++){const y=20+i*24,x=gx-10+hash(i)*20;R(c,x,y,14,1,'#fff');R(c,x+4,y+1,10,1,'#fff')}c.globalAlpha=1;
+ label(c,'gust → main+detail',30,8,'#fff');label(c,'banner lag',210,30,P.gold)}};
 
 /* ENV-09 interactive grass */
 const TUF=[];for(let y=36;y<110;y+=7)for(let x=6;x<W;x+=7)TUF.push([x+(hash(x*3+y)-.5)*4,y+(hash(x+y*5)-.5)*3]);
 DEMOS['ENV-09']={d:5,f:(c,t)=>{ground(c,0,0,P.grass,P.grass2);const hx=lerp(-10,W+10,t),hy=74+Math.sin(t*TAU)*10,D=5;const vx=(W+20)/D;for(const[x,y]of TUF){let bx=0,by=0;const dx=x-hx,dy=y-hy,dd=Math.hypot(dx,dy);if(dd<12){const f=(1-dd/12)*4;bx=dx/(dd||1)*f;by=dy/(dd||1)*f*.5}else if(dx<0&&Math.abs(dy)<12){const since=(-dx-12)/vx;if(since>0){const amp=(1-Math.abs(dy)/12)*3*Math.exp(-since*5)*Math.cos(since*16);bx=-amp}}const dark=Math.abs(bx)>1.5;c.strokeStyle=dark?P.grassD:'#7cc05a';c.lineWidth=1;c.beginPath();for(const b of[-1.5,0,1.5]){c.moveTo(x+b,y);c.lineTo(Math.round(x+b*1.3+bx),Math.round(y-5+Math.abs(bx)*.4+by))}c.stroke()}shadow(c,hx,hy,6);spr(c,'hero',hx,hy+(Math.floor(t*40)%2?-1:0));const cut=t>.55&&t<.75?(t-.55)/.2:-1;if(cut>=0)burst(c,140,66,cut*0.8,5,77,{speed:30,grav:30,life:.8,col:()=>'#7cc05a',size:()=>1})}};
 
 /* ENV-10 footprints */
-DEMOS['ENV-10']={d:6,f:(c,t)=>{R(c,0,0,W,H,'#dfe7ee');c.fillStyle='#cfd9e2';for(let i=0;i<60;i++)c.fillRect(hash(i)*W,hash(i+60)*H,3,1);const D=6,fade=3,pos=u=>[lerp(10,230,u),70+Math.sin(u*TAU*1.5)*30];const L=260,step=6,n=Math.floor(t*L/step);for(let s=1;s<=n;s++){const u=s*step/L,age=(t-u)*D;const a=clamp(1-age/fade);if(a<=0)continue;const[x,y]=pos(u),[x2,y2]=pos(u+.01),ang=Math.atan2(y2-y,x2-x),side=s%2?1:-1;const px=x+Math.cos(ang+Math.PI/2)*2*side,py=y+Math.sin(ang+Math.PI/2)*2*side;c.fillStyle='rgba(80,100,135,'+a+')';c.fillRect(Math.round(px),Math.round(py),2,1)}const[hx,hy]=pos(t);shadow(c,hx,hy,5);spr(c,'foe',hx,hy+(Math.floor(t*40)%2?-1:0),{flip:false});R(c,4,4,94,11,'rgba(0,0,0,.55)');txt(c,'fade 20s (sped up)',8,10,'#fff',7,'left')}};
+DEMOS['ENV-10']={d:6,f:(c,t)=>{const u=((t%1)+1)%1;
+ R(c,0,0,120,H,'#dfe7ee');R(c,120,0,120,H,P.stone);R(c,118,0,4,H,P.ink);
+ circ(c,150,70,16,P.water);circ(c,150,70,12,P.waterL);
+ const pos=k=>[lerp(10,110,k),70+Math.sin(k*TAU*1.5)*20];
+ const n=Math.floor(u*40);for(let s=1;s<=n;s++){const k=s/40,age=(u-k)*4;const a=clamp(1-age);if(a<=0)continue;const[x,y]=pos(k);c.fillStyle='rgba(80,100,135,'+a+')';c.fillRect(Math.round(x),Math.round(y),2,1)}
+ const[hx,hy]=pos(Math.min(u,.95));shadow(c,hx,hy,5);spr(c,'foe',hx,hy,{sx:1.2,sy:1.2});
+ let wet=1;const hx2=lerp(150,220,ease(seg(u,.35,1)));for(let s=0;s<8;s++){const k=.35+s*.07;if(u<k)break;wet*=.7;const a=wet*clamp(1-(u-k)*2);if(a<=0)continue;const x=lerp(150,220,ease(seg(k,.35,1)));c.fillStyle='rgba(40,60,90,'+a+')';c.fillRect(Math.round(x+(s%2?2:-2)),72,3,2)}
+ if(u>.35){shadow(c,hx2,78,5);spr(c,'hero',hx2,78,{sx:1.2,sy:1.2})}
+ txt(c,'SNOW FADE',30,12,'#334',7);txt(c,'WET TRANSFER',175,12,P.gold,7);label(c,u<.35?'in puddle':'wetness decays',180,110,P.cyan)}};
 
 /* ENV-11 fireflies */
 DEMOS['ENV-11']={d:6,f:(c,t)=>{c.drawImage(scene('eforest'),0,0);c.fillStyle='rgba(6,10,30,.62)';c.fillRect(0,0,W,H);c.globalCompositeOperation='lighter';for(let i=0;i<24;i++){const bx=hash(i)*W,by=hash(i+30)*H*.9+6,x=bx+Math.sin(t*TAU*(1+i%2)+i)*12+Math.sin(t*TAU*3+i*2)*4,y=by+Math.cos(t*TAU*(1+(i>>1)%2)+i*1.7)*8;const pulse=.5+.5*Math.sin(t*TAU*(2+i%3)+hash(i+9)*TAU);if(pulse<.15)continue;const g=c.createRadialGradient(x,y,0,x,y,4);g.addColorStop(0,'rgba(216,255,138,'+(pulse*.7)+')');g.addColorStop(1,'rgba(216,255,138,0)');c.fillStyle=g;c.fillRect(x-4,y-4,8,8);R(c,Math.round(x),Math.round(y),1,1,'rgba(240,255,200,'+pulse+')')}c.globalCompositeOperation='source-over'}};
@@ -55,7 +69,16 @@ const shoreX=y=>100+Math.sin(y*.07)*14+Math.sin(y*.19)*4;
 DEMOS['ENV-12']={d:4,f:(c,t)=>{const o=outData(c),d=o.data,sand=hex('#d8c08a'),gr=hex(P.grass),deep=hex('#1f4f8f'),sh=hex('#4f9ad8'),hi=[190,225,250],foam=[245,250,255],ph=t*TAU;const fo=1.5+1.5*Math.sin(ph);for(let y=0;y<H;y++){const sx=shoreX(y);for(let x=0;x<W;x++){const dist=x-sx;let col;if(dist<-6)col=gr;else if(dist<0)col=sand;else{col=lerpCol(sh,deep,clamp(dist/50));const v1=Math.sin(x*.21+y*.55+ph),v2=Math.sin(x*.33-y*.4-ph*1)+Math.sin(y*.9+x*.05+ph*2)*.5;if(v1+v2>1.75&&dist>3)col=hi;if(Math.abs(dist-fo)<1)col=foam;else if(dist<fo&&dist>=0)col=lerpCol(sand,sh,.5)}const i=(y*W+x)*4;d[i]=col[0];d[i+1]=col[1];d[i+2]=col[2];d[i+3]=255}}c.putImageData(o,0,0);tree(c,40,50);tree(c,20,110);house(c,60,90,0);label(c,'foam ↔',W-30,8,'#fff')}};
 
 /* ENV-13 ripples */
-DEMOS['ENV-13']={d:4,f:(c,t)=>{R(c,0,0,W,H,'#2f6fae');c.fillStyle='#3b7cbc';for(let i=0;i<50;i++)c.fillRect(hash(i)*W,hash(i+50)*H,6,1);const D=4,hx=lerp(30,210,t),hy=80;const ring=(x,y,age,life,rmax,a0)=>{const k=age/life;if(k<0||k>1)return;const r=lerp(2,rmax,eo(k));c.strokeStyle='rgba(200,230,255,'+(a0*(1-k))+')';c.lineWidth=1;c.beginPath();c.ellipse(Math.round(x)+.5,Math.round(y)+.5,r,r/2,0,0,TAU);c.stroke()};const now=t*D;for(let s=0;s*0.25<=now;s++){const st=s*.25,u=st/D;ring(lerp(30,210,u),hy,now-st,.8,14,.9)}c.strokeStyle='rgba(200,230,255,.5)';c.beginPath();c.moveTo(hx-4,hy);c.lineTo(hx-30,hy-10);c.moveTo(hx-4,hy);c.lineTo(hx-30,hy+10);c.stroke();spr(c,'hero',hx,hy+3);R(c,hx-6,hy,12,4,'rgba(47,111,174,.85)');const m=4;for(let i=0;i<10;i++){const ph=hash(i+40),cyc=Math.floor(t*m+ph),cid=((cyc%m)+m)%m,lk=(t*m+ph-cyc)*D/m;ring(hash(i*7+cid*3)*W,hash(i*11+cid*5)*H*.5+5,lk,.6,6,.7)}}};
+DEMOS['ENV-13']={d:5,f:(c,t)=>{const u=((t%1)+1)%1;R(c,0,0,W,H,'#2f6fae');c.fillStyle='#3b7cbc';for(let i=0;i<50;i++)c.fillRect(hash(i)*W,hash(i+50)*H,6,1);
+ const ring=(x,y,age,life,rmax,a0)=>{const k=age/life;if(k<0||k>1)return;const r=lerp(2,rmax,eo(k));c.strokeStyle='rgba(200,230,255,'+(a0*(1-k))+')';c.lineWidth=1;c.beginPath();c.ellipse(Math.round(x)+.5,Math.round(y)+.5,r,r/2,0,0,TAU);c.stroke()};
+ const phase=u<.35?'wade':u<.7?'run':'land';let hx,hy=80;
+ if(phase==='wade'){hx=lerp(30,90,u/.35);ring(hx,hy,(u%.12)*4,.8,8,.7)}
+ else if(phase==='run'){hx=lerp(90,160,seg(u,.35,.7));ring(hx,hy,(u%.08)*5,.7,12,.9);
+  c.strokeStyle='rgba(200,230,255,.55)';c.beginPath();c.moveTo(hx-4,hy);c.lineTo(hx-28,hy-12);c.moveTo(hx-4,hy);c.lineTo(hx-28,hy+8);c.stroke();
+  for(let i=0;i<5;i++){const e=(u-.35-.02*i);if(e>0&&e<.2)R(c,hx-10-e*40,hy-4+hash(i)*6,3,1,'rgba(220,240,255,'+(1-e/.2)+')')}}
+ else{hx=180;const k=seg(u,.7,.9);hy=lerp(50,80,eo(k));if(k>.85){const e=(k-.85)/.15;ring(hx,hy,e,.6,18,1);for(let i=0;i<8;i++){const a=i/8*TAU;R(c,hx+Math.cos(a)*e*16,hy+Math.sin(a)*e*8-e*10,2,1,'rgba(220,240,255,'+(1-e)+')')}}}
+ spr(c,'hero',hx,hy+3);R(c,hx-6,hy,12,4,'rgba(47,111,174,.85)');
+ label(c,phase==='wade'?'WADE: wrinkle':phase==='run'?'RUN: sheets':'LAND: crown',4,8,P.gold)}};
 
 /* ENV-14 caustics */
 let CT=null;const CS=120;function caustTex(){if(CT)return CT;CT=new Float32Array(CS*CS);const pts=[];for(let i=0;i<14;i++)pts.push([hash(i+900)*CS,hash(i+950)*CS]);for(let y=0;y<CS;y++)for(let x=0;x<CS;x++){let f1=1e9,f2=1e9;for(const[px,py]of pts)for(const ox of[-CS,0,CS])for(const oy of[-CS,0,CS]){const dd=Math.hypot(x-px-ox,y-py-oy);if(dd<f1){f2=f1;f1=dd}else if(dd<f2)f2=dd}CT[y*CS+x]=1-clamp((f2-f1)/7)}return CT}

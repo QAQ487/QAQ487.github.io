@@ -33,6 +33,8 @@ x_new = x + (x - x_prev)*damping + g*dt²; x_prev = x; x = x_new; then for k ite
 
 - [PHY-01](PHY-01.md) — Position-based cloth (PBD / XPBD)
 - [ACT-29](ACT-29.md) — Knockback / Pushback
+- [PHY-04](PHY-04.md) — Damped rigid-prop settling
+- [LGT-14](LGT-14.md) — Moving light pool from a swinging fixture
 
 ## References
 

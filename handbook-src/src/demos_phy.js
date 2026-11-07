@@ -7,14 +7,14 @@ const bgSky=c=>{const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#5b8fb
 const CW=12,CH=8,SP=8;let CL=null;
 const clothBake=()=>{const n=CW*CH,D=6*30;const idx=(i,j)=>j*CW+i;const E=[];for(let j=0;j<CH;j++)for(let i=0;i<CW;i++){if(i<CW-1)E.push([idx(i,j),idx(i+1,j),SP]);if(j<CH-1)E.push([idx(i,j),idx(i,j+1),SP]);if(i<CW-2)E.push([idx(i,j),idx(i+2,j),SP*2])}
 const X=[],V=[];for(let j=0;j<CH;j++)for(let i=0;i<CW;i++){X.push([70+i*SP,28+j*SP]);V.push([0,0])}const fr=[];const dt=1/30,sub=3,h=dt/sub;
-for(let f=0;f<D;f++){fr.push(X.map(p=>[p[0],p[1]]));const tt=f/30,wind=150+110*Math.sin(tt*TAU/3)+45*Math.sin(tt*TAU*1.3);
+for(let f=0;f<D;f++){fr.push(X.map(p=>[p[0],p[1]]));const tt=f/30,sprint=(Math.sin(tt*TAU/2)>0.6?220:0),wind=150+110*Math.sin(tt*TAU/3)+45*Math.sin(tt*TAU*1.3)+sprint;
 for(let s=0;s<sub;s++){const Pp=X.map((p,k)=>{const i=k%CW,j=(k/CW)|0;if(i===0)return [p[0],p[1]];const w=wind*(0.6+0.4*Math.sin(j*.7+tt*4+i*.5));V[k][0]+=w*h;V[k][1]+=(90+70*Math.sin(i*.9+tt*5+j*.4))*h;V[k][0]*=.985;V[k][1]*=.985;return [p[0]+V[k][0]*h,p[1]+V[k][1]*h]});
 for(let it=0;it<6;it++)for(const [a,b,L] of E){const wa=a%CW===0?0:1,wb=b%CW===0?0:1;if(!wa&&!wb)continue;const dx=Pp[b][0]-Pp[a][0],dy=Pp[b][1]-Pp[a][1],d=Math.hypot(dx,dy)||1e-6,k=(d-L)/d/(wa+wb);Pp[a][0]+=wa*k*dx;Pp[a][1]+=wa*k*dy;Pp[b][0]-=wb*k*dx;Pp[b][1]-=wb*k*dy}
 Pp.forEach((p,k)=>{if(k%CW===0)return;p[1]=Math.min(p[1],110);V[k]=[(p[0]-X[k][0])/h,(p[1]-X[k][1])/h];X[k]=p})}}return fr};
 DEMOS['PHY-01']={d:6,f:(c,t)=>{bgSky(c);if(!CL)CL=clothBake();const X=at(CL,t);R(c,66,22,4,92,P.woodD);R(c,64,20,8,3,P.wood);
 for(let j=0;j<CH-1;j++)for(let i=0;i<CW-1;i++){const a=X[j*CW+i],b=X[j*CW+i+1],d=X[(j+1)*CW+i+1],e=X[(j+1)*CW+i];const sx=(b[0]-a[0])/SP,sh=clamp(.55+.45*sx);const red=(j<3)?[200,70,58]:[236,226,206];c.fillStyle=`rgb(${red.map(v=>Math.round(v*sh)).join(',')})`;c.beginPath();c.moveTo(a[0],a[1]);c.lineTo(b[0],b[1]);c.lineTo(d[0],d[1]);c.lineTo(e[0],e[1]);c.closePath();c.fill()}
 c.fillStyle='rgba(20,26,36,.5)';for(let k=0;k<X.length;k+=1){const p=X[k];if((k%CW)%3===0&&((k/CW)|0)%2===0)R(c,p[0],p[1],1,1)}
-label(c,'pinned column → pole',58,12);label(c,'distance constraints × 6 iter · 3 substeps',150,126);}};
+label(c,'pinned column → pole',58,12);label(c,'relative wind (−vel) · curtains hold',150,126,P.gold);}};
 /* PHY-02 Verlet rope: anchored at top, end held by a hand that drags right, then released at t=.45 */
 const RN=18,RL=5;let RP=null;
 const ropeBake=()=>{const D=7*30;let X=[],O=[];for(let i=0;i<RN;i++){X.push([60,16+i*RL]);O.push([60,16+i*RL])}const fr=[];const hand=tt=>{const u=ease(tt/3);return [60+u*95,16+RN*RL*.85-u*40]};

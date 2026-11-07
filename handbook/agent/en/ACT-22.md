@@ -34,5 +34,5 @@ Apply a timed action restriction after a valid hit while allowing explicitly lis
 
 ## References
 
-- [Shane Sicienski — Hitstop in Capcom Beat ’Em Ups，Important Distinctions](https://shane-sicienski.com/blog/blog-post-title-one-55pmn)
+- [Source Gaming — Thoughts on Hitstop: Sakurai’s Famitsu Column Vol. 490](https://sourcegaming.info/2015/11/11/thoughts-on-hitstop-sakurais-famitsu-column-vol-490-1/)
 - [戰鬥設計作者 Celia Wagar — Stunning Detail](https://critpoints.net/2016/08/14/stunning-detail/)

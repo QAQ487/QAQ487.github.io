@@ -13,19 +13,24 @@ Changing hurtboxes. Preserving apparent volume is a common artistic principle, n
 
 ## Use it for
 
-Emphasize contact, elasticity, and motion, making small actions more visible.
+Emphasize contact, elasticity, and motion, making small actions more visible. Scale compression depth and settle duration from pre-contact downward speed: short hop barely dips; long fall deep crouch; very high fall may roll or briefly stun as recovery presentation. Foot pivot stays at contact; an accepted jump can blend out of compression. Cross-link CAM-34.
 
 ## Tunable parameters
 
-squash scale · stretch scale · apparent volume · recovery duration · collider policy
+squash scale · stretch scale · apparent volume · recovery duration · collider policy · impact-scaled landing compression · recovery tiers (hop / deep crouch / roll-stun presentation)
 
 ## Request prompt
 
-On landing, squash the visual to 85% height and 108% width, recovering over 120 ms; for the first 80 ms of takeoff, stretch to 112% height and 94% width, without changing the collider.
+Scale landing compression depth and settle duration from pre-contact downward speed: short hop barely dips the knees; long fall deep crouch; very high fall may roll or briefly stun as recovery presentation. Foot pivot stays at contact. An accepted jump can blend out of compression. Do not force a movement lock unless the variant says so. Cross-link CAM-34 and FB-13.
 
 ## Implementation hint
 
-Apply brief nonuniform visual scaling around impacts and launches, compensating other axes to preserve apparent volume. Keep gameplay collision unchanged unless the design explicitly calls for a separate rule.
+Scale landing compression depth and settle duration from pre-contact downward speed: a short hop barely dips the knees; a long fall is a deep crouch; a very high fall may present a roll or brief stun as recovery presentation (not a design-rule article). Foot pivot stays at contact. An accepted jump can blend out of current compression. Do not force a movement lock unless the variant says so. Cross-link CAM-34 landing dip and FB-13 squash-on-hit.
+
+## Related
+
+- [CAM-34](CAM-34.md) — Landing camera dip
+- [FB-13](FB-13.md) — Squash on hit
 
 ## References
 

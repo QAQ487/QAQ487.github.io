@@ -27,6 +27,11 @@ For a 180° turn, start the torso first, delay the shoulders by 35 ms, hands by 
 
 Offset the start and stop times of connected body regions so motion propagates through the hierarchy. Use small delays for drag during the main action, distinct from the settling motion that follows it.
 
+## Related
+
+- [ANI-19](ANI-19.md) — Turn-in-place / Pivot step
+- [ANI-11](ANI-11.md) — Look-at / Head tracking
+
 ## References
 
 - [Wikipedia — Twelve basic principles of animation，Follow Through and Overlapping Action](https://en.wikipedia.org/wiki/Twelve_basic_principles_of_animation)

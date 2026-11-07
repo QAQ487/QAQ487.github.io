@@ -36,6 +36,8 @@ Pick a clip from the angle between the character’s forward vector and the hit 
 - [ANI-03](ANI-03.md) — Hold frame / Impact frame
 - [ANI-06](ANI-06.md) — Death animation
 - [ANI-09](ANI-09.md) — Ragdoll
+- [FB-24](FB-24.md) — Damage vibration
+- [ACT-21](ACT-21.md) — Hitstop / Hit Pause / Hitfreeze
 
 ## References
 

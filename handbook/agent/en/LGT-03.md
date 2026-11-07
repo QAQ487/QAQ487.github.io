@@ -34,6 +34,7 @@ Project the shaded point into the light's space (spot: its view-projection; dire
 - [LGT-01](LGT-01.md) — Directional, point and spot lights
 - [ENV-07](ENV-07.md) — Cloud shadows
 - [REN-25](REN-25.md) — Cast shadows/Soft shadows/Penumbra
+- [LGT-14](LGT-14.md) — Moving light pool from a swinging fixture
 
 ## References
 

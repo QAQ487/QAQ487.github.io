@@ -38,6 +38,7 @@ Engine-agnostic post-process: angle = signed angle(facing, velocity); choose car
 - [CAMX-03](CAMX-03.md) — Lock-on camera
 - [CAMX-14](CAMX-14.md) — Third-person aim camera
 - [ACT-33](ACT-33.md) — Blend Space / Blend Tree
+- [ANI-19](ANI-19.md) — Turn-in-place / Pivot step
 
 ## References
 

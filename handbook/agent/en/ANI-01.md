@@ -11,7 +11,7 @@ During a fast swing or turn, one or two frames deliberately stretch and distort 
 
 ## Not to be confused with
 
-Not slash VFX (VFX-07, an extra glowing arc layered on top); a smear is the character drawing itself being stretched. Not afterimages (several separate complete poses), and not post-process motion blur (PP-07, blurring the whole image).
+Not slash VFX (VFX-07, an extra glowing arc layered on top); a smear is the character drawing itself being stretched. Not afterimages (several separate complete poses), and not post-process motion blur (REN-33, blur along velocity; PP-07 is radial zoom blur).
 
 ## Use it for
 
@@ -32,7 +32,7 @@ Authored as ordinary frames in the sprite sheet or as a deformed mesh/blend shap
 ## Related
 
 - [VFX-07](VFX-07.md) — Slash VFX
-- [PP-07](PP-07.md) — Radial blur
+- [REN-33](REN-33.md) — Motion blur/Velocity blur
 - [ANI-02](ANI-02.md) — Animating on twos
 - [ANI-03](ANI-03.md) — Hold frame / Impact frame
 - [PIX-14](PIX-14.md) — Sub-pixel animation

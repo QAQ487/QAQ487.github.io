@@ -34,6 +34,7 @@ Small CPU emitter around the camera bounds; render in the additive particle batc
 - [ENV-04](ENV-04.md) — Rain
 - [ENV-05](ENV-05.md) — Snow
 - [VFX-16](VFX-16.md) — Pickup sparkle
+- [ENV-19](ENV-19.md) — Contact-driven leaf litter
 
 ## References
 

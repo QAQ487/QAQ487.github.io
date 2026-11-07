@@ -1,6 +1,6 @@
 # Visual Presentation Handbook — agent index (English)
 
-420 entries. Prefer individual files under this folder; do not ingest the human SPA HTML.
+434 entries. Prefer individual files under this folder; do not ingest the human SPA HTML.
 
 Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 
@@ -21,6 +21,7 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [CAM-13](CAM-13.md) — **Group framing／Multi-target framing** (aliases: —)
 - [CAM-14](CAM-14.md) — **Camera collision／Collision resolution** (aliases: —)
 - [CAM-15](CAM-15.md) — **Occlusion avoidance／Deocclusion** (aliases: —)
+- [CAM-35](CAM-35.md) — **See-through occluder / Dithered fade** (aliases: X-ray occluder · Cutout silhouette · Wall fade · Occlusion dither · 遮擋漸隱 · 壁抜けディザ)
 - [CAM-16](CAM-16.md) — **Perspective projection** (aliases: —)
 - [CAM-17](CAM-17.md) — **Orthographic projection** (aliases: —)
 - [CAM-18](CAM-18.md) — **Field of view／FOV** (aliases: —)
@@ -37,6 +38,8 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [CAM-30](CAM-30.md) — **Camera shake／Screen shake** (aliases: —)
 - [CAM-31](CAM-31.md) — **Camera cut／Hard cut** (aliases: —)
 - [CAM-32](CAM-32.md) — **Camera blend／Interpolated camera transition** (aliases: —)
+- [CAM-33](CAM-33.md) — **Handheld idle camera / Camera breathing** (aliases: Idle camera noise · Procedural handheld · Perlin camera drift · Camera breathing · 待機鏡頭呼吸 · 手持微顫 · 手持ちカメラの呼吸)
+- [CAM-34](CAM-34.md) — **Landing camera dip** (aliases: Landing bob · Camera land squash · Fall impact camera · Landing impulse · 落地鏡頭下沉 · 着地ディップ)
 - [CAMX-01](CAMX-01.md) — **Cue-focus** (aliases: Attention point · Point of interest framing · Camera attractor)
 - [CAMX-02](CAMX-02.md) — **Zoom-to-fit** (aliases: Auto-zoom to fit targets · Dynamic zoom · Framing zoom)
 - [CAMX-03](CAMX-03.md) — **Lock-on camera** (aliases: Target lock · Z-targeting · Lock-on targeting · Soft lock)
@@ -70,6 +73,7 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [LGT-03](LGT-03.md) — **Light cookie** (aliases: Gobo · Projector texture · Light mask · Projected light texture)
 - [LGT-04](LGT-04.md) — **Flickering light** (aliases: Light flicker · Torch flicker · Candle flicker · Light styles · Animated light)
 - [LGT-05](LGT-05.md) — **Area light** (aliases: Rect light · Area lights · Soft light source · Light with size)
+- [LGT-14](LGT-14.md) — **Moving light pool from a swinging fixture** (aliases: Swinging lamp lighting · Pendulum light · Moving lantern shadows · Animated light footprint · 搖燈光斑 · 揺れる灯りの光だまり)
 - [LGT-07](LGT-07.md) — **Light probes** (aliases: Irradiance probes · Probe grid · Light probe group · Spherical harmonics lighting)
 - [LGT-09](LGT-09.md) — **Contact shadows** (aliases: Screen-space shadows · Micro shadows · Contact hardening)
 - [LGT-10](LGT-10.md) — **Blob shadow** (aliases: Drop shadow · Fake shadow · Circle shadow · Shadow decal)
@@ -201,14 +205,14 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [ANI-01](ANI-01.md) — **Smear frame** (aliases: Smears · Smear drawing · Multiples)
 - [ANI-02](ANI-02.md) — **Animating on twos** (aliases: Stepped animation · On twos / on threes · Limited animation · Stepped interpolation)
 - [ANI-03](ANI-03.md) — **Hold frame / Impact frame** (aliases: Held pose · Impact hold · Impact frames · ショックコマ)
-- [ANI-04](ANI-04.md) — **Idle animation** (aliases: Breathing idle · Idle loop · Fidget animation · Idle break)
+- [ANI-04](ANI-04.md) — **Idle animation** (aliases: Breathing idle · Idle loop · Fidget animation · Idle break · Exertion idle · State-driven idle · 疲勞待機 · 疲労アイドル)
 - [ANI-05](ANI-05.md) — **Hit reaction** (aliases: Flinch · Hit react · Stagger · Hurt animation)
 - [ANI-06](ANI-06.md) — **Death animation** (aliases: Defeat animation · Death pose · KO animation)
 - [ANI-07](ANI-07.md) — **4-way / 8-way directional sprites** (aliases: Directional sprites · 8-direction sprite sheet · Facing directions)
 - [ANI-08](ANI-08.md) — **Procedural animation** (aliases: Runtime animation · Code-driven animation · Procedural locomotion)
 - [ANI-09](ANI-09.md) — **Ragdoll** (aliases: Ragdoll physics · Physical animation · Active ragdoll · Powered ragdoll)
 - [ANI-10](ANI-10.md) — **Spring bones / Jiggle physics** (aliases: Secondary motion · Dynamic bones · Jiggle bones · Hair & cloth physics)
-- [ANI-11](ANI-11.md) — **Look-at / Head tracking** (aliases: Head look · Aim offset · Look-at IK · Eye tracking)
+- [ANI-11](ANI-11.md) — **Look-at / Head tracking** (aliases: Head look · Aim offset · Look-at IK · Eye tracking · Gaze-led turn · 視線先行轉向 · 視線リードターン)
 - [ANI-12](ANI-12.md) — **Foot IK / Foot placement** (aliases: Foot locking · Ground alignment · Leg IK)
 - [ANI-13](ANI-13.md) — **Morph targets / Blend shapes** (aliases: Shape keys · Blend shapes · Vertex morphing · Facial blend shapes)
 - [ANI-14](ANI-14.md) — **Sync groups / Marker-based syncing** (aliases: Animation sync · Phase matching · Sync markers · Foot sync · 走路變跑步時腳步錯亂 · 滑步 · Foot skating during blends · Leader / follower clips · 同期グループ · 同期マーカー)
@@ -216,9 +220,13 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [ANI-16](ANI-16.md) — **Stride warping** (aliases: 步幅扭曲 · 腳步滑行 · 跑步滑步 · Foot skating · Ice-skating feet · Moonwalking · Stride scaling · Speed–animation mismatch · Pose warping · ポーズ ワープ · 歩幅)
 - [ANI-17](ANI-17.md) — **Orientation warping** (aliases: 方向扭曲 · 斜向移動腳步交叉 · 側移時腳打交叉 · Strafing feet cross · Diagonal moonwalk · Locomotion angle warp · 8-way blend artefacts · Pose warping · ポーズ ワープ)
 - [ANI-18](ANI-18.md) — **Inertialization** (aliases: 慣性混合 · 切換動作時突然一跳 · 動作切換生硬 · 交叉淡化太軟 · Pose pop on transition · Snappy transitions · Crossfade feels floaty · Dead blending · Offset blending · 慣性ブレンド)
-- [PHY-01](PHY-01.md) — **Position-based cloth (PBD / XPBD)** (aliases: 披風穿模 · 布料像紙板 · 旗幟飄動 · Cloth simulation · PBD cloth · XPBD · Distance constraints · クロスシミュレーション · VAT · Vertex animation texture · Baked vertex animation · 頂點動畫貼圖 · 群眾動畫 · 倒塌動畫)
+- [ANI-19](ANI-19.md) — **Turn-in-place / Pivot step** (aliases: Idle turn · Rotate-in-place threshold · Foot-planted turn · 180 turn · Pivot step · 原地轉向 · その場ターン)
+- [ANI-20](ANI-20.md) — **Locomotion lean / Body banking** (aliases: Lean into turns · Acceleration lean · Procedural lean · Run tilt · 移動側傾 · 走行リーン)
+- [ANI-21](ANI-21.md) — **Hand IK contact** (aliases: Hand placement IK · Wall brace · Environmental hand contact · Cover hand · Rail hand · 手部接觸 IK · 手の接触 IK)
+- [PHY-01](PHY-01.md) — **Position-based cloth (PBD / XPBD)** (aliases: 披風穿模 · 布料像紙板 · 旗幟飄動 · Cloth simulation · PBD cloth · XPBD · Distance constraints · クロスシミュレーション · Relative wind · Reactive curtains · 相對風 · 反応カーテン · VAT · Vertex animation texture · Baked vertex animation · 頂點動畫貼圖 · 群眾動畫 · 倒塌動畫)
 - [PHY-02](PHY-02.md) — **Verlet rope and chain** (aliases: 繩子像鐵棒 · 吊橋晃動 · 鎖鏈 · Verlet rope · Chain physics · Rope constraint · Grappling rope · ロープ物理)
 - [PHY-03](PHY-03.md) — **Jelly soft body (shape matching / pressure)** (aliases: 史萊姆彈彈的 · 果凍感 · 落地壓扁 · Soft body · Jelly physics · Shape matching · Pressure soft body · ソフトボディ)
+- [PHY-04](PHY-04.md) — **Damped rigid-prop settling** (aliases: Prop wobble and settle · Damped oscillation · Hinged prop secondary motion · Physical follow-through · 道具回擺 · 剛体の収束)
 ## Combat feedback & game feel
 
 - [ACT-18](ACT-18.md) — **Startup / Start-up / Wind-up Frames** (aliases: —)
@@ -240,6 +248,7 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [FB-04](FB-04.md) — **Death effect** (aliases: Death burst · Death poof · Defeat effect)
 - [FB-05](FB-05.md) — **Status effect tint** (aliases: Status colour overlay · Debuff tint · Elemental tint)
 - [FB-06](FB-06.md) — **Critical hit emphasis** (aliases: Crit feedback · Critical hit effect · Crit pop)
+- [FB-24](FB-24.md) — **Damage vibration** (aliases: Hitstop shake · Hitlag vibration · Victim shake · Damage shake · 受擊顫動 · ダメージバイブ)
 - [FB-02](FB-02.md) — **Damage numbers** (aliases: Floating combat text · Damage popups · Pop-up numbers)
 - [FB-16](FB-16.md) — **Low-health vignette** (aliases: Damage vignette · Danger vignette · Red screen edges)
 - [FB-17](FB-17.md) — **Delayed health bar** (aliases: Ghost bar · Damage delay bar · Chip-damage trail · Catch-up bar)
@@ -256,6 +265,8 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [FB-19](FB-19.md) — **Reticle bloom and spread recovery** (aliases: 準星會擴大 · 連射越來越不準 · 準心收縮 · Reticle bloom · Crosshair spread · Spread recovery · Dynamic crosshair · レティクル)
 - [FB-20](FB-20.md) — **Aim-assist friction and magnetism** (aliases: 手把瞄準輔助 · 準星黏住敵人 · 瞄準變慢 · Aim assist · Aim friction / slowdown · Aim magnetism · Sticky aim · エイムアシスト)
 - [FB-22](FB-22.md) — **Weapon weight: sway and inertia lag** (aliases: 武器太輕 · 槍像貼在畫面上 · 武器晃動 · Weapon sway · Weapon inertia · View-model lag · Weapon bob · ウェポンスウェイ)
+- [FB-23](FB-23.md) — **Weapon pull-back near obstacles** (aliases: Weapon wall collision · Gun tuck · Weapon lowering near wall · Barrel retract · 槍枝收槍 · 壁際の銃退避)
+- [FB-25](FB-25.md) — **Weapon-model recoil and return** (aliases: Viewmodel recoil · Animated recoil · Gun kickback · Recoil recovery · 槍模後座 · ビューモデル反動)
 - [FB-21](FB-21.md) — **Audio-visual beat quantization** (aliases: 打擊跟著節拍 · 特效對拍 · 音樂同步回饋 · Beat quantization · Beat-synced feedback · Music-synced VFX · Rhythm sync · ビート同期)
 ## VFX & particles
 
@@ -275,6 +286,7 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [FX-14](FX-14.md) — **Timing / Rhythm / Contrast** (aliases: —)
 - [FX-15](FX-15.md) — **Dissipation / Erosion** (aliases: —)
 - [FX-16](FX-16.md) — **Gameplay Clarity / Visual Noise Budget** (aliases: —)
+- [FX-40](FX-40.md) — **Material-dependent footfall dust** (aliases: Surface interaction FX · Footstep dust · Ground contact particles · Material-based footstep VFX · 材質腳步塵 · 足音の砂塵)
 - [VFX-03](VFX-03.md) — **Flowmap** (aliases: Flow map · Vector-field distortion · Flow field texture)
 - [VFX-04](VFX-04.md) — **Dissolve** (aliases: Burn-away · Noise dissolve · Disintegration · Dissolve shader)
 - [VFX-05](VFX-05.md) — **UV scrolling** (aliases: Panning texture · UV panning · Texture scrolling · Scrolling UVs)
@@ -328,11 +340,13 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [ENV-07](ENV-07.md) — **Cloud shadows** (aliases: Moving cloud shadows · Cloud shadow overlay)
 - [ENV-11](ENV-11.md) — **Ambient particles** (aliases: Floating motes · Dust motes · Fireflies · Pollen)
 - [ENV-17](ENV-17.md) — **Heat haze** (aliases: Heat shimmer · Heat distortion · Mirage shimmer)
-- [ENV-08](ENV-08.md) — **Foliage sway** (aliases: Wind sway · Vertex wind · Swaying trees)
+- [ENV-20](ENV-20.md) — **Surface runoff and edge dripping** (aliases: Rain runoff · Roof edge drips · Water rivulets · Foliage water shedding · 屋簷滴水 · 雨垂れ)
+- [ENV-08](ENV-08.md) — **Foliage sway** (aliases: Wind sway · Vertex wind · Swaying trees · Hierarchical foliage · Coherent wind · 層級枝葉 · 階層フォリッジ)
 - [ENV-09](ENV-09.md) — **Interactive grass** (aliases: Grass displacement · Player-reactive grass · Bending grass)
-- [ENV-10](ENV-10.md) — **Footprints** (aliases: Trail deformation · Snow trails · Ground deformation)
+- [ENV-10](ENV-10.md) — **Footprints** (aliases: Trail deformation · Snow trails · Ground deformation · Wet transfer trail · 濕足跡轉移 · 濡れ移り跡)
+- [ENV-19](ENV-19.md) — **Contact-driven leaf litter** (aliases: Interactive leaf litter · Footstep debris scattering · Ground interaction FX · 落葉掀動 · 落葉のかき分け)
 - [ENV-12](ENV-12.md) — **Water surface** (aliases: Shoreline foam · Animated water · Water tiles)
-- [ENV-13](ENV-13.md) — **Ripples** (aliases: Interactive water · Water ripples · Wake)
+- [ENV-13](ENV-13.md) — **Ripples** (aliases: Interactive water · Water ripples · Wake · Contact-scaled splash · 接觸縮放水花 · 接触スケール飛沫)
 - [ENV-14](ENV-14.md) — **Caustics** (aliases: Water caustics · Light caustics · Pool-floor light pattern)
 ## Transitions
 

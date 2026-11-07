@@ -27,6 +27,10 @@ In your game, preserve line of sight with rays to the character's head, chest, a
 
 Test line of sight from several camera samples to important target points, then score collision-free candidate positions around the target by visibility and deviation from the desired view. Hold a chosen solution briefly and add hysteresis so thin pillars do not make the camera alternate sides every frame.
 
+## Related
+
+- [CAM-35](CAM-35.md) — See-through occluder / Dithered fade
+
 ## References
 
 - [Unity Deoccluder：preserve the line of sight](https://docs.unity3d.com/Packages/com.unity.cinemachine@3.0/manual/CinemachineDeoccluder.html)

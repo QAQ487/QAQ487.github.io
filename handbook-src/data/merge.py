@@ -92,7 +92,7 @@ ALIAS_ADD={'FX-13':['Anticipation / Wind-up','Charge-up VFX','Attack wind-up VFX
            'VFX-19':['Baked collapse','建築倒塌','Collapse bake']}
 ALIAS_DROP={'MATX-01':['MatCap']}  # case-only duplicate of std
 RELATED_ADD={
- 'FB-07':['CAM-30'],
+ 'FB-07':['CAM-30','CAM-33','FB-24'],
  # platform-feel family + new jump height
  'ACT-01':['ACT-02','ACT-04','ACT-06','ACT-39'],
  'ACT-02':['ACT-01','ACT-04','ACT-06','ACT-39'],
@@ -124,6 +124,44 @@ RELATED_ADD={
  'UI-11':['UI-21','UI-22','UI-23'],
  'UI-12':['UI-04','UI-23','UI-22'],
  'A11Y-02':['UI-25','UI-26','UI-23'],
+ # motion / immersion batch reverse links
+ 'CAM-04':['CAM-34','CAM-05','CAM-33'],
+ 'CAM-05':['CAM-34','CAM-04'],
+ 'CAM-14':['CAM-35'],
+ 'CAM-15':['CAM-35'],
+ 'CAM-30':['CAM-33','FB-24'],
+ 'UX-20':['CAM-33','FB-24'],
+ 'ACT-09':['ACT-18','ACT-11','FX-13'],
+ 'ACT-10':['CAM-34','FB-13'],
+ 'ACT-11':['ACT-12','ACT-13','ACT-18','ACT-20','ACT-38','ACT-09'],
+ 'ACT-21':['FB-24','ANI-05'],
+ 'ACT-14':['ANI-19','ANI-11'],
+ 'ACT-18':['ACT-09','ACT-11'],
+ 'ACT-35':['ANI-20'],
+ 'ACT-07':['ANI-20'],
+ 'ANI-05':['FB-24','ACT-21'],
+ 'ANI-08':['ANI-20'],
+ 'ANI-11':['ANI-19'],
+ 'ANI-12':['ANI-21'],
+ 'ANI-17':['ANI-19'],
+ 'FB-08':['FB-23','FB-25','CAM-34'],
+ 'FB-13':['FB-24','ACT-10'],
+ 'FB-22':['FB-23','FB-25'],
+ 'ENV-04':['ENV-20'],
+ 'ENV-08':['ENV-19','PHY-04'],
+ 'ENV-09':['ENV-19'],
+ 'ENV-10':['FX-40'],
+ 'ENV-11':['ENV-19'],
+ 'ENV-13':['ENV-20'],
+ 'PHY-01':['ANI-21'],
+ 'PHY-02':['PHY-04','LGT-14'],
+ 'LGT-03':['LGT-14'],
+ 'LGT-04':['LGT-14'],
+ 'FX-01':['FX-40','ENV-19'],
+ 'CAMX-13':['ANI-20'],
+ 'MATX-05':['ENV-20','ENV-10'],
+ 'VFX-18':['ENV-19'],
+ 'VFX-03':['ENV-20'],
 }
 # merged content from UX-19 into FX-32 (inserted before the sources field)
 FIELDS_ADD={'FX-32':{
@@ -191,9 +229,9 @@ FIELDS_ADD={'FX-32':{
   'en':('One event, several channels','A hazard’s graphic, sound, and optional vibration should start together. Turning any one channel off still leaves the event understandable. (Former entry FX-35, “Multisensory redundancy”, is merged here.)'),
   'ja':('一つの出来事を複数の経路で','同じ危険の図、音、任意の振動はほぼ同時に始まります。どれか一つの経路を切っても、何が起きたか分かります。（旧項目 FX-35「多感覚の冗長性」は本項目に統合済み。）')},
  'UX-20':{
-  'zh':('關掉動態之後','鏡頭震動或動態模糊關掉之後，命中仍要用穩定的短輪廓和短音確認，瞄準與危險位置保持可見。（舊條目 FX-37「減少動態」已併入本條。）'),
-  'en':('After motion is reduced','With camera shake or motion blur off, a hit still needs a stable short outline and a short sound, and aiming and hazard positions stay visible. (Former entry FX-37, “Reduced motion”, is merged here.)'),
-  'ja':('動きを減らしたあと','カメラ振動やモーションブラーを切ったあとも、命中は安定した短い輪郭と短い音で確認でき、照準と危険位置は見えたままにします。（旧項目 FX-37「モーション低減」は本項目に統合済み。）')},
+  'zh':('關掉動態與舒適搖晃','鏡頭震動或動態模糊關掉之後，命中仍要用穩定的短輪廓和短音確認，瞄準與危險位置保持可見。（舊條目 FX-37「減少動態」已併入本條。）步行舒適搖晃優先用極小滾轉（約 ±0.3°）或僅槍模晃動，避免垂直眼高彈跳；提供 bob：off／subtle／full。待機鏡頭呼吸見 CAM-33。'),
+  'en':('Reduced motion and comfort sway','With camera shake or motion blur off, a hit still needs a stable short outline and a short sound, and aiming and hazard positions stay visible. (Former entry FX-37, “Reduced motion”, is merged here.) Prefer a tiny roll (~±0.3°) or viewmodel-only bob over vertical eye-height oscillation; expose bob: off / subtle / full. Idle camera breathing is CAM-33.'),
+  'ja':('モーション低減と快適スウェイ','カメラ振動やモーションブラーを切ったあとも、命中は安定した短い輪郭と短い音で確認でき、照準と危険位置は見えたままにします。（旧項目 FX-37「モーション低減」は本項目に統合済み。）歩行の快適スウェイは垂直の目線上下より約 ±0.3° の微小ロールかビューモデルのみを優先し、bob：off／subtle／full を用意。待機の呼吸は CAM-33。')},
  'UX-22':{
   'zh':('提示必須對得上','外觀上的可互動提示必須和真正能做的事一致：不能爬的牆，不應使用可爬標記的同一醒目外觀。踩到旗點時，旗本身亮起或變色，是狀態提示，不是重試規則。（舊條目 UX-21「可供性」已併入本條；旗點亮起來自舊條目 UX-38。）'),
   'en':('The cue must match the action','An interaction cue must match what can actually be done: a wall that cannot be climbed must not use the same prominent mark as a climbable one. When a checkpoint flag is reached, the flag itself lighting or changing colour is a state cue, not the retry rule. (Former entry UX-21, “Affordance”, is merged here; the flag lighting comes from former entry UX-38.)'),
@@ -226,6 +264,32 @@ FIELDS_ADD={'FX-32':{
   'zh':('跨區確認','進入無法返回的區域之前，可以用同一個模態視窗列出未完成的支線並等待確認或取消。確認視窗是提示；哪些區域從此去不了，屬通行規則，不在本條。（舊條目 UX-35 的跨區確認已併入本條；身後塌方的演出見 VFX-18。）'),
   'en':('Zone confirmation','Before entering an area the player cannot return from, the same modal can list unfinished side goals and wait for confirm or cancel. The dialog is the prompt; which areas become unreachable is a traversal rule and is not this entry. (The zone-confirm fragment of former entry UX-35 is merged here; the collapse behind the player is VFX-18.)'),
   'ja':('区域確認','戻れない区域に入る前に、同じモーダルで未完了の脇道を列挙し、確認か取消かを待てます。ダイアログが手がかりであり、どの区域へ戻れなくなるかは通行規則なので、この項目の対象ではありません。（旧項目 UX-35 の区域確認は本項目に統合済み。背後の崩落演出は VFX-18。）')},
+
+ 'CAM-04':{
+  'zh':('垂直跟隨滯後','跳躍離地期間鎖住鏡頭 Y，除非角色離開約 +1.5 m／−0.5 m 帶；着地後再對齊新地面。連跳不得每下晃鏡。落地短衝量見 CAM-34，與此跟隨策略分開。'),
+  'en':('Vertical follow hysteresis','While airborne, hold camera Y unless the player leaves a band (~+1.5 m / −0.5 m); retarget Y to the new ground height on landing. Ordinary hops must not bob the camera. Landing dip (CAM-34) is a short impulse — keep it separate from this follow policy.'),
+  'ja':('縦追従ヒステリシス','空中はカメラ Y を保持し、約 +1.5 m／−0.5 m の帯を出たときだけ動かす。着地で新しい地面高へ合わせる。連ジャンプで毎回揺らさない。着地ディップ（CAM-34）はこの追従とは別の短いインパルス。')},
+ 'CAM-05':{
+  'zh':('空中 Y 保持帶','普通跳躍鎖垂直基準；只有離開約 +1.5 m／−0.5 m 帶或確認着地後，才對齊新平台。對照 CAM-34 落地短衝量。'),
+  'en':('Airborne Y-hold band','Lock the vertical reference during normal jumps; only leave the ~+1.5 m / −0.5 m band or a grounded confirm should ease to the new platform. Cross-link CAM-34 for the short land impulse.'),
+  'ja':('空中 Y 保持帯','通常ジャンプ中は縦基準を固定し、約 +1.5 m／−0.5 m を出るか接地確認後だけ新足場へ。短い着地インパルスは CAM-34。')},
+ 'ACT-09':{
+  'zh':('強起手／壓縮預備','接受攻擊後的第一個呈現更新就要進入可讀方向極端，再快速衝向接觸；不要為裝飾性蹲伏延遲玩法接受。可選短壓縮預備，但判定接受不得等完整蹲姿。'),
+  'en':('Strong start / compressed anticipation','On the first presented update after an accepted attack, enter a readable directional extreme, then move rapidly toward contact. Do not delay gameplay acceptance for a decorative crouch. Optional short compressed anticipation is fine; acceptance must not wait for a full crouch.'),
+  'ja':('強い出だし／圧縮予備','攻撃入力が受理された直後の最初の提示更新で、読める方向の極端姿勢に入り、素早く接触へ。装飾のしゃがみで受理を遅らせない。短い圧縮予備は可だが、受理はフルしゃがみ待ちにしない。')},
+ 'ACT-10':{
+  'zh':('着地壓縮分檔','壓縮深度與回復時間依接觸前下落速度：短跳幾乎只屈膝；長落深蹲；極高落可播翻滾或短暫暈眩作為回復演出。腳樞軸留在接觸點；已接受的跳躍可從壓縮混出。對照 CAM-34。'),
+  'en':('Impact-scaled landing compression','Scale compression depth and settle duration from pre-contact downward speed: short hop barely dips; long fall deep crouch; very high fall may roll or briefly stun as recovery presentation. Foot pivot stays at contact; an accepted jump can blend out of compression. Cross-link CAM-34.'),
+  'ja':('着地つぶれの段階化','接触前の落下速度でつぶれ深さと収束時間を段階化。短いホップは膝を少し、長い落下は深いしゃがみ、非常に高い落下は回復演出としてロールや短い気絶を見せてよい。足のピボットは接触点。受理されたジャンプはつぶれからブレンドアウト可。CAM-34 を対照。')},
+ 'ACT-11':{
+  'zh':('主動作過衝與攻速重映射','主手／武器越過就緒姿勢一小段再回彈阻尼；新輸入從當前輸出重定向。調攻速時分開重映射預備／前進／收招，保留最短可讀接觸強調與事件順序，禁止整段均勻快轉。'),
+  'en':('Primary overshoot and attack-speed retiming','Let the primary hand/weapon overshoot its ready pose by a small authored amount, reverse once, and damp to rest; new gameplay retargets from current output. When retiming attack speed, remap preparation, travel, and recovery separately and keep a minimum readable contact accent and event order — no uniform fast-forward.'),
+  'ja':('主動作のオーバーシュートと攻撃速度リマップ','主手／武器が構えを少しオーバーシュートしてから一回戻し減衰。新しい操作は現在の出力からリターゲット。攻撃速度変更時は予備・移動・硬直を別リマップし、読める接触アクセントとイベント順を残す。均一な早回しは禁止。')},
+ 'ACT-21':{
+  'zh':('Hitstop 變體','可選接觸蠕動（時鐘暫停期間攻擊者視覺揮擊前進極小比例）或受擊姿勢擷取（時鐘停但受擊者混入方向極端後凍結）。與 FB-24 局部位移顫動分開調；不要把某作「約四幀」當通用常數。'),
+  'en':('Hitstop variants','Optional contact creep (a capped fraction of the attacker visual swing advances during paused clocks) or hurt-pose acquisition (clocks frozen while the victim blends into a directional extreme, then holds). Tune separately from FB-24 local vibration; do not treat one title’s “about four frames” as a universal constant.'),
+  'ja':('ヒットストップ変種','任意でコンタクトクリープ（停止中に攻撃側の見た目の振りをごく一部進める）や被弾ポーズ取得（時計は止めつつ被弾側を方向の極端へ混ぜてから保持）。FB-24 の局所バイブとは別ノブ。特定作品の「約4フレーム」を万能定数にしない。')},
+
 }
 TAKE_SVG={'FX-32':'UX-19'}   # canonical adopts the retired entry's animated settings diagram
 # short notes shown in the banner: what this entry covers vs its counterpart
@@ -242,4 +306,16 @@ NOTES={
  'ACT-09':dict(zh='本條是角色身體的預備動作；特效的聚光、蓄力見 FX-13。',
               en='This entry is the character’s body anticipation. The VFX charge-up (gathering light, contraction) is FX-13.',
               ja='この項目はキャラクターの体の予備動作です。エフェクトの溜め（集光・収縮）は FX-13 を参照。'),
+ 'ACT-21':dict(zh='本條是命中時鐘暫停；局部顫動見 FB-24；受擊姿勢見 ANI-05。',
+              en='This entry is the hitstop clock pause. Local vibration is FB-24; hurt reaction pose is ANI-05.',
+              ja='この項目はヒットストップの時計停止です。局所バイブは FB-24、被弾ポーズは ANI-05。'),
+ 'FB-24':dict(zh='本條是渲染層局部位移顫動；時鐘暫停見 ACT-21；鏡頭震動見 CAM-30／FB-07。',
+              en='This entry is render-only local vibration. Clock pause is ACT-21; camera shake is CAM-30 / FB-07.',
+              ja='この項目は描画のみの局所バイブです。時計停止は ACT-21、カメラ揺れは CAM-30／FB-07。'),
+ 'CAM-33':dict(zh='本條是待機手持微顫；步行舒適搖晃見 UX-20；事件震動見 CAM-30。',
+              en='This entry is idle handheld breathing. Locomotion comfort sway is UX-20; event shake is CAM-30.',
+              ja='この項目は待機の手持ち呼吸です。歩行の快適スウェイは UX-20、イベント揺れは CAM-30。'),
+ 'CAM-34':dict(zh='本條是落地短衝量；垂直跟隨滯後見 CAM-04／CAM-05；落地壓縮動畫見 ACT-10。',
+              en='This entry is the landing camera impulse. Vertical-follow hysteresis is CAM-04 / CAM-05; landing compression animation is ACT-10.',
+              ja='この項目は着地の短いカメラインパルスです。縦追従ヒステリシスは CAM-04／CAM-05、着地つぶれアニメは ACT-10。'),
 }

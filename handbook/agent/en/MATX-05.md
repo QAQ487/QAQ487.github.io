@@ -38,6 +38,8 @@ In the surface shader: albedo *= lerp(1, darken, wetness*porosity); roughness = 
 - [MATX-04](MATX-04.md) — Height-blend texture splatting
 - [REN-23](REN-23.md) — Reflections/Image-Based Lighting (IBL)/Reflection probes
 - [REN-10](REN-10.md) — Specular highlight
+- [ENV-20](ENV-20.md) — Surface runoff and edge dripping
+- [ENV-10](ENV-10.md) — Footprints
 
 ## References
 

@@ -14,10 +14,11 @@ DEMOS['UX-16']={d:6,hi:true,f:(c,t,_w,_h,p)=>{c.scale(2,2);const u=prWrap(t),s=t
 /* UX-20 reduced motion: same states, no travel */
 DEMOS['UX-20']={d:6,hi:true,f:(c,t,_w,_h,p)=>{c.scale(2,2);const u=prWrap(t),s=tl16(u);for(const i of[0,1]){const x0=i*121;c.save();c.beginPath();c.rect(x0,0,119,H);c.clip();c.translate(x0,0);
  R(c,0,0,119,H,P.sky);const drift=i?0:u*60;for(let k=0;k<4;k++){const x=((k*40+hash(k+3)*20-drift)%160+160)%160-30;R(c,x,10+k*7,22,4,'#d8eef7')}c.fillStyle='#8cc79a';for(let k=-1;k<4;k++){const hx=k*45-(i?0:(u*30)%45);c.beginPath();c.arc(hx+22,H,30,Math.PI,0);c.fill()}R(c,0,H-18,119,18,P.grass);
- const bob=i?0:Math.round(Math.sin(u*TAU*4)*2);spr(c,'hero',12,H-14+bob,{sx:2,sy:2});
+ const walk=u>.05&&u<.55;const roll=i?0:(walk?Math.sin(u*TAU*3)*.08:0);const bob=0; // comfort: prefer tiny roll over vertical bob
+ c.save();c.translate(12,H-14);c.rotate(roll);spr(c,'hero',0,0,{sx:2,sy:2});c.restore();
  const op=i?(s.open>0?1:0)*(s.close<1?1:0):1,px=i?28:lerp(124,28,eo(s.open))+lerp(0,96,ei(s.close)),fe=(u-s.tf)*p.dur,fs=i?1:1+.08*Math.exp(-fe*10)*Math.cos(fe*30);
  if(op>0){c.save();c.translate(px,0);c.scale(.8,.8);panel(c,0,30,112,84,s.tab,i?s.tab:s.tabX,s.focus,fs);c.restore()}c.restore()}R(c,119,0,2,H,P.ink);
- prTag(c,'DEFAULT',4,4,'#e9edf2');prTag(c,'REDUCED MOTION',125,4,P.cyan);txt(c,'bg moves, slide, bob',70,H-7,'#ffffff',5);txt(c,'static, states snap',191,H-7,'#ffffff',5)}};
+ prTag(c,'COMFORT SWAY',4,4,P.gold);prTag(c,'REDUCED MOTION',125,4,P.cyan);txt(c,'tiny roll · bob off',70,H-7,'#ffffff',5);txt(c,'static, states snap',191,H-7,'#ffffff',5)}};
 
 /* ---- remaining UX principle demos ---- */
 const G=c=>c.scale(2,2);
