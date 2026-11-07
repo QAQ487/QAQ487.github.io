@@ -24,17 +24,42 @@ const strip=h=>String(h).replace(/<[^>]+>/g,' ').replace(/&[a-z#0-9]+;/g,' ');
 const players=[];const visible=new Set();
 /* Promote demos to hi:true (480×270) so monospace labels stay crisp under CSS scale.
    - Skip demos that already set hi / buf
-   - Skip demos that write raw 240×135 ImageData on the demo canvas (put/get/createImageData / outData)
+   - Skip demos that write raw 240×135 ImageData on the demo canvas, either directly
+     (put/get/createImageData / outData) or through a helper that putImageData's onto c
+     (maskComp, lgPut). Those stay on the 240×135 buf path: putImageData ignores transforms,
+     so hi + scale(2,2) would paint the buffer into the top-left of the backing store.
    - If the draw fn already starts from scale(2,2)/G(c), only flip hi (avoid double-scale)
    - Otherwise wrap with scale(2,2) so existing 240-space demos keep their coordinates */
-(()=>{const bad=/c\.(?:put|get|create)ImageData\s*\(|outData\s*\(\s*c\s*\)/;const scaled=/(?:^|[^\w.])(?:c\.scale\(\s*2\s*,\s*2\s*\)|G\(\s*c\s*\))/;for(const id of Object.keys(DEMOS)){const d=DEMOS[id];if(!d||d.hi||d.buf||typeof d.f!=='function')continue;let src='';try{src=Function.prototype.toString.call(d.f)}catch(e){continue}if(bad.test(src)){d.buf=true;continue}d.hi=true;if(scaled.test(src))continue;const f=d.f;d.f=(c,t,w,h,p)=>{c.scale(2,2);f(c,t,w,h,p)}}})();
+(()=>{const bad=/c\.(?:put|get|create)ImageData\s*\(|outData\s*\(\s*c\s*\)|(?:maskComp|lgPut)\s*\(\s*c\s*[,)]/;const scaled=/(?:^|[^\w.])(?:c\.scale\(\s*2\s*,\s*2\s*\)|G\(\s*c\s*\))/;for(const id of Object.keys(DEMOS)){const d=DEMOS[id];if(!d||d.hi||d.buf||typeof d.f!=='function')continue;let src='';try{src=Function.prototype.toString.call(d.f)}catch(e){continue}if(bad.test(src)){d.buf=true;continue}d.hi=true;if(scaled.test(src))continue;const f=d.f;d.f=(c,t,w,h,p)=>{c.scale(2,2);f(c,t,w,h,p)}}})();
 /* Display canvas is 480×270 logical; multiply by devicePixelRatio so CSS upscaling stays nearest-neighbour crisp. */
 const pxSmooth=(c,on)=>{c.imageSmoothingEnabled=!!on;if('mozImageSmoothingEnabled' in c)c.mozImageSmoothingEnabled=!!on;if('webkitImageSmoothingEnabled' in c)c.webkitImageSmoothingEnabled=!!on;if('msImageSmoothingEnabled' in c)c.msImageSmoothingEnabled=!!on};
+const pxNum=n=>{const r=Math.round(n);return Math.abs(n-r)<1e-4?r:Math.round(n*1000)/1000};
+const _nearN=(x,min)=>Math.abs(x-Math.round(x))<1e-3&&Math.round(x)>=min;
+/* Largest 16:9 CSS box that fits. Prefer an integer multiple of the logical frame
+   (or an integer divisor) whose bitmap→device scale is an integer or 1/integer.
+   Fractional devicePixelRatio falls back to an integer device-pixel multiple. */
+function canvasCssBox(availW,availH,logicalW,logicalH,raw,storeDpr){
+  const bw=480*storeDpr;let best=null,loose=null;
+  const crisp=w=>_nearN((w*raw)/bw,1)||_nearN(bw/(w*raw),2);
+  const logicalOk=w=>_nearN((w*raw)/logicalW,1)||_nearN(logicalW/w,2);
+  const consider=(w,h)=>{if(!(w>=8&&h>=8&&w<=availW+0.51&&h<=availH+0.51))return;const ok=crisp(w)&&logicalOk(w);if(ok){if(!best||w>best.w)best={w,h}}else if(!loose||w>loose.w)loose={w,h}};
+  const maxK=Math.floor(Math.min(availW/logicalW,availH/logicalH));
+  for(let k=maxK;k>=1;k--)consider(logicalW*k,logicalH*k);
+  for(let n=2;n<=logicalW;n++){if(logicalW%n||logicalH%n)continue;consider(logicalW/n,logicalH/n)}
+  if(raw>0){const maxM=Math.floor(Math.min(availW*raw/logicalW,availH*raw/logicalH));for(let m=maxM;m>=1;m--)consider(logicalW*m/raw,logicalH*m/raw)}
+  if(best||loose)return best||loose;
+  const s=Math.max(.01,Math.min(availW/logicalW,availH/logicalH)),w=Math.max(1,Math.round(logicalW*s));
+  return {w,h:Math.max(1,Math.round(w*logicalH/logicalW))};
+}
 class Player{constructor(e,fig){this.e=e;this.def=DEMOS[e.id];this.cv=fig.querySelector('canvas');this.dc=this.cv.getContext('2d');this.hi=!!(this.def&&this.def.hi);if(!this.hi){this.buf=mk(W,H);this.bc=this.buf.getContext('2d')}this.t=this.def&&this.def.t0!=null?this.def.t0:0;this.dur=(this.def&&this.def.d)||4;this.static=!this.def||!!this.def.s;this.playing=!this.static&&!globalPause;this.dpr=0;this.wire(fig);this.ui()}
 wire(fig){this.fig=fig;this.btn=fig.querySelector('.pp');this.rng=fig.querySelector('input');if(this.rng)this.rng.oninput=()=>{this.t=+this.rng.value;this.playing=false;this.ui();this.render()};const rb=fig.querySelector('.rp');if(rb)rb.onclick=()=>{this.t=0;this.playing=true;this.ui();this.render()};if(this.btn)this.btn.onclick=()=>{this.playing=!this.playing;this.ui()}}
 ui(){if(this.btn)this.btn.textContent=this.playing?UI[lang].pause:UI[lang].play;const rb=this.fig.querySelector('.rp');if(rb)rb.textContent=UI[lang].replay;if(this.rng)this.rng.value=this.t}
-/* Keep an integer DPR backing store so 480×270 demo pixels map 1:1 (or N:1) onto device pixels. */
-fit(){const dpr=Math.max(1,Math.min(3,Math.round(window.devicePixelRatio||1)));if(dpr===this.dpr&&this.cv.width===480*dpr)return false;this.dpr=dpr;this.cv.width=480*dpr;this.cv.height=270*dpr;return true}
+/* Keep an integer DPR backing store so 480×270 demo pixels map 1:1 (or N:1) onto device pixels.
+   CSS size is a separate integer scale of the logical frame (240, or 480 when hi) so
+   nearest-neighbour display pixels stay even. */
+fit(){const raw=window.devicePixelRatio||1;const dpr=Math.max(1,Math.min(3,Math.round(raw)));let store=false;if(dpr!==this.dpr||this.cv.width!==480*dpr){this.dpr=dpr;this.cv.width=480*dpr;this.cv.height=270*dpr;store=true}this.layoutCanvas(raw,dpr);return store}
+layoutCanvas(raw,dpr){const fig=this.cv.parentElement;if(!fig)return;const availW=fig.clientWidth;if(availW<16)return;const logicalW=this.hi?480:240,logicalH=this.hi?270:135;const modal=!!this.cv.closest('article.in-modal');const availH=modal?Math.min(window.innerHeight*.56,520):availW*logicalH/logicalW;/* Keep a size that still fits when a scrollbar toggles ~15px of width. */
+if(this._box&&this._box.w<=availW+.51&&this._box.h<=availH+.51&&this._modal===modal&&this._raw===raw&&this._sdpr===dpr&&this._lw===logicalW&&Math.abs(availW-this._aw)<20)return;this._aw=availW;this._modal=modal;this._raw=raw;this._sdpr=dpr;this._lw=logicalW;const box=canvasCssBox(availW,availH,logicalW,logicalH,raw,dpr);this._box=box;const ws=pxNum(box.w)+'px',hs=pxNum(box.h)+'px';if(this.cv.style.width!==ws)this.cv.style.width=ws;if(this.cv.style.height!==hs)this.cv.style.height=hs}
 render(){this.drawn=true;const f=this.def&&this.def.f;if(!f)return;try{this.fit();const s=this.dpr;if(this.hi){const c=this.dc;c.setTransform(s,0,0,s,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';pxSmooth(c,false);c.clearRect(0,0,480,270);f(c,this.t,480,270,this)}else{const c=this.bc;c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';pxSmooth(c,false);c.clearRect(0,0,W,H);f(c,this.t,W,H,this);const d=this.dc;d.setTransform(1,0,0,1,0,0);pxSmooth(d,false);d.clearRect(0,0,this.cv.width,this.cv.height);d.drawImage(this.buf,0,0,this.cv.width,this.cv.height)}}catch(err){console.error('demo '+this.e.id+': '+err.message);this.err=true;this.playing=false}}
 step(dt){if(!this.playing||this.static)return;this.t+=dt/this.dur;if(this.t>=1)this.t-=1;if(this.rng)this.rng.value=this.t;this.render()}}
 /* SVG player: original SMIL diagrams are paused and driven by the same timeline/scrubber as canvas demos */
@@ -97,6 +122,8 @@ function openRow(a,on){a.classList.toggle('open',on);a.querySelector('.row').set
 function init(){const cards=$('#cards');let cur='';E.forEach(e=>{const vt={};['zh','en','ja'].forEach(l=>{const L=e[l];vt[l]=[L.name,L.observe,L.use,L.notThis,L.prompt,e.params,L.caph||'',L.cap||''].concat(e.ex?[e.ex[l]]:[]).join(' ').toLowerCase()});e._v=vt;e._al=e.aliases.join(' ').toLowerCase();e._std=String(e.std).toLowerCase();e._impl=String(e.impl||'').toLowerCase();e._old=(e.olds||[]).join(' ').toLowerCase();e._s=[e.id.toLowerCase(),e._old,e._std,e._al,e._impl,vt.zh,vt.en,vt.ja].join(' ');
 if(e.grp!==cur){cur=e.grp;const h=document.createElement('h2');h.className='sect';h.id='sec-'+cur;h.dataset.g=cur;cards.appendChild(h);sect[cur]=h}const a=card(e);el[e.id]=a;cards.appendChild(a)});
 E.forEach(e=>{const a=el[e.id];const fig=a.querySelector('figure');const p=e.svg&&!DEMOS[e.id]?new SPlayer(e,fig):new Player(e,fig);players.push(p);a._p=p;a.querySelector('.row').onclick=()=>openRow(a,!a.classList.contains('open'))});
+/* Refit integer canvas CSS when the card, column count, or modal slot changes size. */
+if(window.ResizeObserver){const ro=new ResizeObserver(es=>{for(const en of es){const a=en.target.closest('article');const p=a&&a._p;if(!p||!p.layoutCanvas)continue;const store=p.fit();if(store&&(visible.has(p)||p.drawn||(modalArt&&modalArt._p===p)))p.render()}});E.forEach(e=>{const f=el[e.id]&&el[e.id].querySelector('figure.visual:not(.svgfig)');if(f)ro.observe(f)})}
 /* only on-screen demos are drawn/advanced; first canvas draw is deferred until the card scrolls into view */
 const io=new IntersectionObserver(es=>es.forEach(x=>{const p=x.target.closest('article')._p;if(x.isIntersecting){visible.add(p);if(!p.drawn)p.render()}else if(modalArt!==x.target.closest('article'))visible.delete(p)}),{rootMargin:'100px'});E.forEach(e=>io.observe(el[e.id].querySelector('figure')));
 addEventListener('beforeprint',()=>players.forEach(p=>{if(!p.drawn)p.render()}));
