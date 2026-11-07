@@ -1,5 +1,7 @@
 # REN-25 · Cast shadows/Soft shadows/Penumbra
 
+**Aliases:** Lightmapping; Baked lighting; Cascaded shadow maps; CSM; 烘焙光照; 級聯陰影; 窗光柔影
+
 **Group:** Lighting & shadows
 **Subcategory:** Lighting, Occlusion, Reflections, and Atmosphere
 
@@ -13,7 +15,7 @@ shadows are the effect; shadow mapping, PCF, and ray-traced shadows are methods.
 
 ## Use it for
 
-conveying space, contact positions, and light direction and apparent size.
+conveying space, contact positions, and light direction and apparent size. With a fixed light, window light can leave a soft shadow on walls and floors: crisper nearby, coarser far away, without a second shadow at the join. Precomputing that lighting into a texture is only a method; moving objects still need a live shadow. (Former entries LGT-06, “Baked lighting”, and LGT-08, “Cascaded shadow maps”, are merged here.)
 
 ## Tunable parameters
 

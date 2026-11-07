@@ -36,8 +36,8 @@ In the surface shader: albedo *= lerp(1, darken, wetness*porosity); roughness = 
 - [ENV-13](ENV-13.md) — Ripples
 - [REN-08](REN-08.md) — Roughness/Smoothness/Glossiness
 - [MATX-04](MATX-04.md) — Height-blend texture splatting
-- [DIAG-08](DIAG-08.md) — Box-projected (parallax-corrected) cubemaps
-- [DIAG-10](DIAG-10.md) — Specular anti-aliasing (Toksvig / geometric roughness)
+- [REN-23](REN-23.md) — Reflections/Image-Based Lighting (IBL)/Reflection probes
+- [REN-10](REN-10.md) — Specular highlight
 
 ## References
 

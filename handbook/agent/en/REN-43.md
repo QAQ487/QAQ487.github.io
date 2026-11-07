@@ -33,7 +33,6 @@ if dist in [d-h,d+h]: draw LOD_n and LOD_n+1 with complementary weights. Prefer 
 
 - [MATX-06](MATX-06.md) — Dithered transparency
 - [REN-16](REN-16.md) — Alpha blending/Translucency
-- [DIAG-01](DIAG-01.md) — Premultiplied alpha
 
 ## References
 

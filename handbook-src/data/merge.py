@@ -1,6 +1,52 @@
 # Clean-up batch: merges, redirects, implementation variants and relation notes.
 # Entry IDs never change. A retired ID stays reachable through REDIRECTS (hash links, in-text links, search).
-REDIRECTS={'UX-19':'FX-32'}   # old ID -> canonical ID (old card removed, unique content merged into the canonical)
+# old ID -> still-live catalog ID. The old E() body is removed; hash links resolve here.
+# UX-19 was already retired. The other 40 are the Task 3 out-of-scope set.
+REDIRECTS={
+    'UX-19':'FX-32',
+    'CAM-28':'REN-34',
+    'REN-41':'FX-03',   # accidental history smear is out of scope; intentional dash ghosts live on FX-03
+    'DIAG-08':'REN-23',
+    'DIAG-07':'REN-13',
+    'DIAG-06':'REN-17',
+    'DIAG-04':'REN-31',
+    'REN-28':'REN-31',
+    'LGT-06':'REN-25',
+    'LGT-08':'REN-25',
+    'LGT-11':'LGT-01',
+    'ACT-31':'ACT-30',
+    'ACT-40':'UX-02',
+    'ACT-26':'ACT-25',
+    'VFX-01':'FX-01',
+    'VFX-02':'FX-01',
+    'VFX-20':'FX-04',
+    'FX-39':'FX-28',
+    'FX-35':'UX-18',
+    'FX-37':'UX-20',
+    'FX-38':'A11Y-04',
+    'UI-18':'UI-11',
+    'UX-21':'UX-22',
+    'UX-31':'UX-23',
+    'UX-33':'UX-23',
+    'PIX-26':'PIX-17',
+    # Decision A: no hidden troubleshooting appendix exists in build.py, so these land on the nearest live presentation.
+    'REN-37':'PP-10',
+    'REN-38':'PP-10',
+    'REN-39':'PP-10',
+    'REN-40':'PP-10',
+    'REN-42':'PP-10',
+    'DIAG-01':'REN-16',
+    'DIAG-02':'REN-32',
+    'DIAG-03':'REN-07',
+    'DIAG-05':'FX-06',
+    'DIAG-10':'REN-10',
+    'MATX-03':'MATX-04',
+    'MATX-09':'PHY-01',
+    'PIX-23':'PIX-01',
+    # Decision B: keep the on-screen fragment, not the progression rule.
+    'UX-35':'VFX-18',
+    'UX-38':'UI-13',
+}
 VARIANTS={'FB-07':'CAM-30'}   # implementation variant -> general entry; both cards stay
 # English primary-name fixes (old names stay searchable as aliases)
 STD={'FX-13':'VFX Anticipation / Attack Charge-up',
@@ -8,8 +54,43 @@ STD={'FX-13':'VFX Anticipation / Attack Charge-up',
      'FX-36':'Visualized Sound Cues / Sound Indicators'}
 ALIAS_ADD={'FX-13':['Anticipation / Wind-up','Charge-up VFX','Attack wind-up VFX'],
            'FX-36':['Captions (non-speech sounds)','Sound visualization','Directional sound indicator'],
-           'FX-32':['Controller vibration','Tactile feedback','手把震動','コントローラー振動']}
-ALIAS_DROP={'DIAG-06':['Alpha-To-Coverage'],'MATX-01':['MatCap']}  # case-only duplicates of std
+           'FX-32':['Controller vibration','Tactile feedback','手把震動','コントローラー振動'],
+           'REN-34':['Depth of field','DOF','景深','敘事對焦','焦點在眼睛'],
+           'FX-03':['Temporal ghosting','History smearing','Disocclusion artifacts','衝刺殘像','Dash afterimage','殘影','時間性殘影'],
+           'REN-23':['Box projection','Parallax-corrected cubemap','Local cubemap','反射位置不對','盒體投影'],
+           'REN-13':['Detail normal','Reoriented normal mapping','RNM','細節法線','法線疊加'],
+           'REN-17':['Alpha-to-coverage','A2C','AlphaToMask','樹葉邊緣鋸齒','Cutout shimmer'],
+           'REN-31':['HDR','High dynamic range','Tone mapping order','高光爆白','Blown-out highlights','HDR 渲染'],
+           'REN-25':['Lightmapping','Baked lighting','Cascaded shadow maps','CSM','烘焙光照','級聯陰影','窗光柔影'],
+           'REN-20':['Color bleeding','反彈染色','Bounced light colour'],
+           'LGT-01':['Forward+','Clustered shading','Deferred rendering','Tiled forward','多光源管線'],
+           'ACT-30':['In-place animation','Code-driven locomotion','原地動畫','原地踏步'],
+           'UX-02':['Stamina climb','Stamina glide','耐力條','攀爬耗耐力','滑翔耗耐力','Low stamina warning'],
+           'ACT-25':['Frame advantage','Plus on hit','Minus on block','幀有利','幀不利'],
+           'FX-01':['Soft particles','Depth fade','GPU particles','柔和粒子','煙邊硬邊'],
+           'FX-04':['Flipbook blending','Choppy flipbook','序列幀跳格','Motion-vector flipbook'],
+           'FX-28':['Voice stealing','Sound concurrency','Polyphony limit','聲音搶佔','語音上限'],
+           'UX-18':['Multisensory redundancy','多感官冗餘','Redundant cues'],
+           'UX-20':['Reduced motion','減少動態','Motion settings','Hit outline without shake'],
+           'A11Y-04':['Photosensitivity review','光敏驗證','Flash review','Photosensitive check'],
+           'UI-11':['Quick chat wheel','Communication wheel','快捷聊天輪盤','通訊輪盤'],
+           'UX-22':['Affordance','可供性','Signifier matches action','旗點亮起','Checkpoint flag'],
+           'UX-23':['Critical path','Main path','Side path','Soft gate','主路','支路','危險區提示'],
+           'PIX-17':['Tile seams','Atlas bleeding','Edge extrusion','貼圖滲色','tile 接縫'],
+           'PP-10':['Aliasing','Jaggies','Shimmering','Specular aliasing','MSAA','FXAA','SMAA','TAA','Temporal anti-aliasing','Upscaling','Temporal upscaling','Super resolution','鋸齒','幼線閃爍','升頻'],
+           'REN-16':['Premultiplied alpha','Dark fringe','煙邊黑框','Alpha fringe','PMA'],
+           'REN-32':['Linear workflow','sRGB','Gamma correction','光暈疊加變髒','漸層中間發暗'],
+           'REN-07':['Texture shimmer','Moiré','Mipmap','Anisotropic filtering','遠處貼圖閃爍','地板摩爾紋'],
+           'FX-06':['Z-fighting','Decal flicker','Depth fighting','閃面','貼花閃爍'],
+           'REN-10':['Specular shimmer','Sparkling highlights','高光閃點','Toksvig'],
+           'MATX-04':['Triplanar mapping','Triplanar projection','三向投影','陡壁貼圖拉伸'],
+           'PHY-01':['VAT','Vertex animation texture','Baked vertex animation','頂點動畫貼圖','群眾動畫','倒塌動畫'],
+           'PIX-01':['Mixels','Mixed pixel sizes','Inconsistent pixel density','混合像素','像素大小不一致'],
+           'VFX-18':['One-way collapse','Backward gate','Point of no return','身後塌方','單向入口','落石封路'],
+           'UX-08':['Zone confirm','Point of no return prompt','跨區確認','離開確認'],
+           'UI-13':['Save icon','Autosave toast','存檔圖示','存檔完成提示','Checkpoint saved'],
+           'VFX-19':['Baked collapse','建築倒塌','Collapse bake']}
+ALIAS_DROP={'MATX-01':['MatCap']}  # case-only duplicate of std
 RELATED_ADD={
  'FB-07':['CAM-30'],
  # platform-feel family + new jump height
@@ -24,7 +105,7 @@ RELATED_ADD={
  'ACT-28':['ACT-41','ACT-22'],
  'FB-10':['ACT-43'],
  # pins / markers
- 'UX-02':['ACT-40','UX-39'],
+ 'UX-02':['UX-39'],
  'UX-04':['UI-08','NAV-14','UX-41'],
  # attack direction / telegraph
  'NAV-04':['UI-09','ACT-43'],
@@ -48,7 +129,104 @@ RELATED_ADD={
 FIELDS_ADD={'FX-32':{
  'zh':('設定與替代','提供強度調整與完全關閉的選項；不是人人開著震動，亦不是所有裝置有馬達，所以關鍵資訊不能只靠震動，要同時有畫面或聲音提示。（舊條目 UX-19「手把震動／觸覺回饋」已併入本條。）'),
  'en':('Settings & alternatives','Offer intensity control and a full off switch. Not everyone enables vibration and not every device has motors, so essential information must never rely on vibration alone — pair it with a visual or audio cue. (Former entry UX-19, “Controller vibration and tactile feedback”, is merged here.)'),
- 'ja':('設定と代替手段','強さの調整と完全オフの選択肢を用意します。全員が振動を有効にしているわけでも、すべての機器にモーターがあるわけでもないため、重要な情報を振動だけに頼らず、映像や音の手がかりも併用します。（旧項目 UX-19「コントローラー振動／触覚フィードバック」は本項目に統合済み。）')}}
+ 'ja':('設定と代替手段','強さの調整と完全オフの選択肢を用意します。全員が振動を有効にしているわけでも、すべての機器にモーターがあるわけでもないため、重要な情報を振動だけに頼らず、映像や音の手がかりも併用します。（旧項目 UX-19「コントローラー振動／触覚フィードバック」は本項目に統合済み。）')},
+ 'REN-34':{
+  'zh':('敘事焦點與介面','對話時可把焦點放在角色眼睛，近景與遠景按距離變軟；畫面介面必須保持完全清晰。（舊條目 CAM-28「景深」已併入本條。）'),
+  'en':('Narrative focus and HUD','In dialogue, place the focus on the character’s eyes and let near and far scenery soften with distance. Screen-space HUD must stay fully sharp. (Former entry CAM-28, “Depth of field”, is merged here.)'),
+  'ja':('物語上の焦点と HUD','会話中は焦点をキャラクターの目に置き、近景と遠景は距離に応じてぼかします。画面上の HUD は完全にくっきり保ちます。（旧項目 CAM-28「被写界深度」は本項目に統合済み。）')},
+ 'FX-03':{
+  'zh':('與意外拖影的分別','衝刺時留下數個逐漸淡出、彼此分開的半透明姿勢，是刻意的殘影。時間累積造成的半透明尾巴，或新露出背景上的短暫糊影，是意外瑕疵，不是本條要做的效果。（舊條目 REN-41「時間性殘影」已併入本條，只保留這項對照。）'),
+  'en':('Not accidental smearing','A dash that leaves several fading, clearly separated translucent poses is an intentional afterimage. A translucent tail from stale history, or a brief smear on newly revealed background, is an accident and not this effect. (Former entry REN-41, “Temporal ghosting”, is merged here only as that contrast.)'),
+  'ja':('偶発的な尾引きとの区別','ダッシュのあとに、間隔の空いた半透明の姿勢がいくつか残って消えるのが、意図した残像です。履歴の残りによる半透明の尾や、新たに見えた背景の一瞬のぼけは事故であり、この効果ではありません。（旧項目 REN-41「時間的ゴースト」は、この対比のためだけに本項目へ統合済み。）')},
+ 'REN-23':{
+  'zh':('室內反射對位','室內地板與金屬上的環境反射，應在走動時讓窗戶和門留在正確位置，而不是跟着鏡頭滑動。（舊條目 DIAG-08「盒體投影反射」已併入本條。）'),
+  'en':('Indoor reflection alignment','Environmental reflections on indoor floors and metal should keep windows and doors in place as the camera moves, rather than sliding with the view. (Former entry DIAG-08, “Box-projected reflections”, is merged here.)'),
+  'ja':('室内反射の位置合わせ','室内の床や金属に映る窓と扉は、カメラが動いても正しい位置に留まり、視点と一緒に滑らないようにします。（旧項目 DIAG-08「ボックス投影反射」は本項目に統合済み。）')},
+ 'REN-13':{
+  'zh':('細節法線','在大形狀上再疊布紋或毛孔時，斜面上的凹凸應保持清楚，而不是被壓平或改向。（舊條目 DIAG-07「細節法線混合」已併入本條。）'),
+  'en':('Detail normals','A weave or pore normal layered over a larger shape should stay readable on slopes instead of flattening or pointing the wrong way. (Former entry DIAG-07, “Detail normal blending”, is merged here.)'),
+  'ja':('ディテール法線','大きな形状の上に布目や毛穴の法線を重ねても、斜面の凹凸は潰れたまま、向きが変わったままにせず、はっきり残します。（旧項目 DIAG-07「ディテール法線の混合」は本項目に統合済み。）')},
+ 'REN-17':{
+  'zh':('剪洞邊緣','樹葉、鐵網這類硬邊剪洞，在鏡頭移動時不應整段閃爍。需要多採樣時，用貼圖透明度決定邊緣覆蓋，而不是另做一種透明。（舊條目 DIAG-06「alpha-to-coverage」已併入本條。）'),
+  'en':('Cutout edges','Hard cutouts such as leaves and chain-link should not shimmer along their whole outline as the camera moves. When multisampling is on, let the texture’s opacity set edge coverage instead of inventing a second transparency. (Former entry DIAG-06, “Alpha-to-coverage”, is merged here.)'),
+  'ja':('切り抜き縁','葉や金網のような硬い切り抜きは、カメラ移動で輪郭全体がちらつかないようにします。マルチサンプリング時は、別種の透明を増やさず、テクスチャの不透明度で縁の被覆を決めます。（旧項目 DIAG-06「alpha-to-coverage」は本項目に統合済み。）')},
+ 'REN-31':{
+  'zh':('高光與介面','強光應留下由亮到色的層次，而不是整塊死白；曝光與色調映射只作用在場景，介面與字幕的亮度不跟着變。高動態範圍是場景亮度的資料範圍，不是一種畫面風格。（舊條目 DIAG-04「高光爆白診斷」與 REN-28「HDR」已併入本條。）'),
+  'en':('Highlights and HUD','Strong lights should keep a gradient from white into colour instead of a flat clipped patch. Exposure and tone mapping affect the scene only, so HUD and subtitles do not dim with them. High dynamic range is a range of scene brightness, not a look. (Former entries DIAG-04, “Blown-highlight diagnosis”, and REN-28, “HDR”, are merged here.)'),
+  'ja':('ハイライトと HUD','強い光は真っ白な面で切れず、白から色への階調を残します。露出とトーンマッピングはシーンだけに作用し、HUD と字幕の明るさは追従しません。HDR はシーン輝度の範囲であり、見た目の様式ではありません。（旧項目 DIAG-04「白飛び診断」と REN-28「HDR」は本項目に統合済み。）')},
+ 'REN-25':{
+  'zh':('柔影備註','固定光源下，窗光可以在牆和地面留下柔邊影子，近處較清楚、遠處較粗，段與段之間不應再出現第二道影子。光影預先算進貼圖只是做法；移動物件仍要另有即時投影。（舊條目 LGT-06「烘焙光照」與 LGT-08「級聯陰影」已併入本條。）'),
+  'en':('Soft-shadow note','With a fixed light, window light can leave a soft shadow on walls and floors: crisper nearby, coarser far away, without a second shadow at the join. Precomputing that lighting into a texture is only a method; moving objects still need a live shadow. (Former entries LGT-06, “Baked lighting”, and LGT-08, “Cascaded shadow maps”, are merged here.)'),
+  'ja':('柔らかい影の注記','固定光源では、窓の光が壁と床に柔らかい影を残し、近くははっきり、遠くは粗く、区間の境に二本目の影を出さないようにします。光をテクスチャへ事前計算するのは手段であり、動く物体には別のリアルタイム影が要ります。（旧項目 LGT-06「ベイクドライティング」と LGT-08「カスケードシャドウ」は本項目に統合済み。）')},
+ 'REN-20':{
+  'zh':('反彈染色','固定的室內光可以讓紅牆把旁邊的白物件輕微染紅。這是間接光的畫面；預先烘焙只是做法之一。（舊條目 LGT-06 的染色例子併入本條；柔影見 REN-25。）'),
+  'en':('Bounce colour','Fixed indoor light can tint a white object slightly red beside a red wall. That is the indirect-light picture; precomputing it is only one method. (The colour-bleed example from former entry LGT-06 is merged here; soft shadows are REN-25.)'),
+  'ja':('反射光の色移り','固定された室内光は、赤い壁のそばの白い物体をわずかに赤く染められます。これは間接光の見え方であり、事前計算はその手段の一つです。（旧項目 LGT-06 の色移り例は本項目に統合済み。柔らかい影は REN-25。）')},
+ 'ACT-30':{
+  'zh':('原地循環','跑步循環也可以在原地播放，再由移動規則推動角色。畫面上仍是步幅與位移合拍，玩家無法單憑畫面分辨資產裡有沒有前進量。（舊條目 ACT-31「原地動畫」已併入本條，作為程式推動位移的變體備註。）'),
+  'en':('In-place cycle','A run cycle can play in place while movement rules carry the actor. On screen the stride still matches the travel, and a viewer cannot tell whether the asset itself contained root travel. (Former entry ACT-31, “In-place animation”, is merged here as the code-driven variant.)'),
+  'ja':('その場アニメーション','走行ループはその場で再生し、移動規則がキャラクターを運ぶこともできます。画面上は歩幅と移動が合い、素材自体に前進量が入っているかは見た目では分かりません。（旧項目 ACT-31「インプレースアニメーション」は、コード駆動の変種として本項目に統合済み。）')},
+ 'UX-02':{
+  'zh':('耐力顯示','攀爬或滑翔時，同一條計量會縮短，讓人讀出還能撐多久；偏低時用條紋或文字標出，耗盡時條停在空。耗盡之後鬆手或收翼是移動結果，規則本身不在本條。（舊條目 ACT-40「耐力驅動的攀爬／滑翔」已併入本條。）'),
+  'en':('Stamina readout','While climbing or gliding, the same meter shrinks so the player can read how much longer it lasts. Mark a low value with stripes or text, and leave the meter empty at zero. Letting go or folding the glider is the movement result; the resource rule is not this entry. (Former entry ACT-40, “Stamina-based traversal”, is merged here.)'),
+  'ja':('スタミナ表示','登攀や滑空中は同じメーターが減り、あとどれだけ持つかが読めます。低いときは縞や文字で示し、尽きたら空のままにします。手を離す、翼を畳むのは移動の結果であり、資源規則自体はこの項目の対象ではありません。（旧項目 ACT-40「スタミナ移動」は本項目に統合済み。）')},
+ 'ACT-25':{
+  'zh':('技術備註','接觸之後誰先恢復行動，是對戰數據上的時間差，不是另一種動作演出。要連同本條的取消窗口一起看，不能只看正負號。（舊條目 ACT-26「幀有利」已併入本條。）'),
+  'en':('Technical note','Who may act again first after contact is a timing difference in matchup data, not a separate animation. Read it together with this cancel window; the sign alone does not decide the next move. (Former entry ACT-26, “Frame advantage”, is merged here.)'),
+  'ja':('技術注記','接触のあと、どちらが先に動けるかは対戦データの時間差であり、別の動作演出ではありません。本項目のキャンセル窓と一緒に読み、符号だけでは次の手を決めません。（旧項目 ACT-26「フレーム有利」は本項目に統合済み。）')},
+ 'FX-01':{
+  'zh':('邊緣與數量','煙霧貼片貼近地面或牆身時應逐漸變淡，交界不要留下筆直硬邊。畫面上同時有大量火花或塵粒，看起來仍是這些貼片；模擬放在哪一個處理器，並不能從畫面分辨。（舊條目 VFX-01「柔和粒子」與 VFX-02「GPU 粒子」已併入本條。）'),
+  'en':('Edges and count','Smoke sprites should fade as they meet the ground or a wall, with no straight hard seam. A large field of sparks or dust is still these sprites; which processor runs the simulation is not visible. (Former entries VFX-01, “Soft particles”, and VFX-02, “GPU particles”, are merged here.)'),
+  'ja':('縁と数','煙の板が地面や壁に近づくときは徐々に透け、境目にまっすぐな硬い縁を残しません。火花や塵が大量に見えても、見た目は同じ板です。シミュレーションをどの処理装置で回しているかは画面からは分かりません。（旧項目 VFX-01「ソフトパーティクル」と VFX-02「GPU パーティクル」は本項目に統合済み。）')},
+ 'FX-04':{
+  'zh':('格數不足時','序列格太少、放慢播放時，不應一格一格地跳。可與下一格混合；若混合出雙重殘影，再沿運動方向錯開兩格之後才混合。（舊條目 VFX-20「序列幀混合」已併入本條。）'),
+  'en':('Too few frames','A short flipbook should not step visibly when played slowly. Blend toward the next frame; if that stacks two ghosts, offset the samples along the motion before blending. (Former entry VFX-20, “Flipbook frame blending”, is merged here.)'),
+  'ja':('コマ数が少ないとき','コマ数が少なく、再生を遅くしても、一コマずつ跳んで見えてはいけません。次のコマと混ぜ、二重の残像になる場合は、動きの方向にずらしてから混ぜます。（旧項目 VFX-20「フリップブックのフレーム混合」は本項目に統合済み。）')},
+ 'FX-28':{
+  'zh':('聲部上限','混戰裡同時響起的聲音有上限時，較遠、較不重要或已經播放較久的聲音應讓位，警告與對白仍然聽得清。這是混音資源的驗收，不是另一種音效。（舊條目 FX-39「聲音併發／語音搶佔」已併入本條。）'),
+  'en':('Voice limit','When a busy fight can play only so many sounds, farther, less important, or older ones yield so warnings and dialogue stay intelligible. That is a mix-budget check, not a separate effect. (Former entry FX-39, “Voice stealing”, is merged here.)'),
+  'ja':('同時発音の上限','混戦で同時に鳴らせる音に上限があるとき、遠い音、重要でない音、すでに長く鳴っている音が譲り、警告と会話は聞き取れるままにします。これはミックス資源の確認であり、別の効果ではありません。（旧項目 FX-39「ボイススティール」は本項目に統合済み。）')},
+ 'UX-18':{
+  'zh':('同一事件的多通道','同一個危險的圖形、聲音與可選震動應幾乎同時開始；關掉其中任一通道，仍然知道發生了甚麼。（舊條目 FX-35「多感官冗餘」已併入本條。）'),
+  'en':('One event, several channels','A hazard’s graphic, sound, and optional vibration should start together. Turning any one channel off still leaves the event understandable. (Former entry FX-35, “Multisensory redundancy”, is merged here.)'),
+  'ja':('一つの出来事を複数の経路で','同じ危険の図、音、任意の振動はほぼ同時に始まります。どれか一つの経路を切っても、何が起きたか分かります。（旧項目 FX-35「多感覚の冗長性」は本項目に統合済み。）')},
+ 'UX-20':{
+  'zh':('關掉動態之後','鏡頭震動或動態模糊關掉之後，命中仍要用穩定的短輪廓和短音確認，瞄準與危險位置保持可見。（舊條目 FX-37「減少動態」已併入本條。）'),
+  'en':('After motion is reduced','With camera shake or motion blur off, a hit still needs a stable short outline and a short sound, and aiming and hazard positions stay visible. (Former entry FX-37, “Reduced motion”, is merged here.)'),
+  'ja':('動きを減らしたあと','カメラ振動やモーションブラーを切ったあとも、命中は安定した短い輪郭と短い音で確認でき、照準と危険位置は見えたままにします。（旧項目 FX-37「モーション低減」は本項目に統合済み。）')},
+ 'UX-22':{
+  'zh':('提示必須對得上','外觀上的可互動提示必須和真正能做的事一致：不能爬的牆，不應使用可爬標記的同一醒目外觀。踩到旗點時，旗本身亮起或變色，是狀態提示，不是重試規則。（舊條目 UX-21「可供性」已併入本條；旗點亮起來自舊條目 UX-38。）'),
+  'en':('The cue must match the action','An interaction cue must match what can actually be done: a wall that cannot be climbed must not use the same prominent mark as a climbable one. When a checkpoint flag is reached, the flag itself lighting or changing colour is a state cue, not the retry rule. (Former entry UX-21, “Affordance”, is merged here; the flag lighting comes from former entry UX-38.)'),
+  'ja':('手がかりは実際の操作と一致','見た目の操作手がかりは、本当にできることと一致させます。登れない壁に、登れる印と同じ目立つ見た目を使ってはいけません。旗ポイントを踏んだとき、旗自体が光る、または色が変わるのは状態の手がかりであり、再試行の規則ではありません。（旧項目 UX-21「アフォーダンス」は本項目に統合済み。旗の点灯は旧項目 UX-38 から。）')},
+ 'UX-23':{
+  'zh':('主路、支路與風險','玩家應能從地標、路牌或光線分辨哪一條通往目標、哪一條是可以離開再回來的支路。較危險的路可以用標記表示風險，但標記不是把路鎖死。（舊條目 UX-31「主路與支路」與 UX-33「軟性門檻」已併入本條。）'),
+  'en':('Main route, branch, and risk','Landmarks, signs, or light should show which way continues toward the goal and which way is a branch the player can leave and rejoin. A riskier way can be marked without sealing it. (Former entries UX-31, “Main and side paths”, and UX-33, “Soft gate”, are merged here.)'),
+  'ja':('本道、脇道、危険','ランドマーク、標識、光で、目標へ続く道と、離れて戻れる脇道を見分けられるようにします。危険な道は印でリスクを示せますが、印は道を閉ざしません。（旧項目 UX-31「本道と脇道」と UX-33「ソフトゲート」は本項目に統合済み。）')},
+ 'REN-16':{
+  'zh':('煙霧邊緣','煙、火與光暈的半透明邊緣不應出現一圈黑框；透明貼圖的邊緣顏色要和透明度一起過濾。把一組介面整組淡出時，重疊部分不應先變暗。（舊條目 DIAG-01「預乘透明度」已併入本條。）'),
+  'en':('Smoke edges','The soft edge of smoke, fire, or a glow should not pick up a black rim; the edge colour of a transparent texture has to be filtered together with its opacity. Fading a whole interface group must not darken the overlaps first. (Former entry DIAG-01, “Premultiplied alpha”, is merged here.)'),
+  'ja':('煙の縁','煙、炎、グローの半透明な縁に黒い枠を出さないようにします。透明テクスチャの縁の色は、透明度と一緒にフィルタします。UI の一群をまとめてフェードするとき、重なりが先に暗くなってはいけません。（旧項目 DIAG-01「事前乗算アルファ」は本項目に統合済み。）')},
+ 'REN-32':{
+  'zh':('混合發灰不是調色','兩盞光重疊卻發灰、漸層中段偏暗，是顏色在錯誤的明度空間裡混合，不是調色能指定的畫面。調色是在已經正確的畫面之上，再安排冷暖與對比。（舊條目 DIAG-02「線性工作流程」已併入本條，只保留這項對照。）'),
+  'en':('Muddy blends are not a grade','Two lights that overlap into grey, or a gradient whose middle is too dark, come from mixing colour in the wrong brightness space. They are not a look a grade should request. Grading arranges warmth and contrast on a picture that is already correct. (Former entry DIAG-02, “Linear workflow”, is merged here only as that contrast.)'),
+  'ja':('混色が濁るのはグレーディングではない','二つの光が重なると灰色になる、グラデーションの中間が暗すぎる、というのは、誤った明るさの空間で色を混ぜた結果であり、グレーディングで指定する見た目ではありません。グレーディングは、すでに正しい絵の上で寒暖とコントラストを整えます。（旧項目 DIAG-02「リニアワークフロー」は、この対比のためだけに本項目へ統合済み。）')},
+ 'REN-07':{
+  'zh':('遠處貼圖','地面與牆面的花紋在鏡頭移動時應保持穩定，不應出現波紋狀閃爍；斜看時也不應整片糊掉。這是表面顏色的取樣問題，不是另一種材質。（舊條目 DIAG-03「遠處貼圖閃爍」已併入本條。）'),
+  'en':('Distant texture','Ground and wall patterns should stay stable as the camera moves, without rippling shimmer, and a grazing view should not turn the whole surface to mush. That is sampling of the surface colour, not a different material. (Former entry DIAG-03, “Distant texture shimmer”, is merged here.)'),
+  'ja':('遠景のテクスチャ','地面と壁の模様は、カメラが動いても安定し、波のようなちらつきを出さず、斜めから見ても一面がぼけて消えないようにします。これは表面色のサンプリングの問題であり、別のマテリアルではありません。（旧項目 DIAG-03「遠景テクスチャのちらつき」は本項目に統合済み。）')},
+ 'FX-06':{
+  'zh':('重疊表面','彈孔、海報與地面記號應穩定貼在表面上。兩個幾乎重疊的面在鏡頭移動時互相閃出條紋，是深度精度問題，不是這個記號效果；記號要離表面少許，避免和接收面搶同一個深度。（舊條目 DIAG-05「Z-fighting」已併入本條。）'),
+  'en':('Overlapping surfaces','Bullet holes, posters, and ground marks should sit still on the surface. Stripes that flicker between two nearly coincident faces as the camera moves are a depth-precision fault, not this mark; keep the mark a little off the receiver so they do not fight for the same depth. (Former entry DIAG-05, “Z-fighting”, is merged here.)'),
+  'ja':('重なった面','弾痕、ポスター、地面の印は表面に安定して貼り付きます。ほぼ同じ位置の二つの面が、カメラ移動で縞になって入れ替わるのは深度精度の不具合であり、この印ではありません。受け面と同じ深度を奪わないよう、印は表面から少し離します。（旧項目 DIAG-05「Z ファイティング」は本項目に統合済み。）')},
+ 'REN-10':{
+  'zh':('穩定的高光','濕地面與金屬上的亮斑應隨燈光和鏡頭移動，保持一小塊可讀的高光。鏡頭一動就跳出白色閃點，是高光取樣不穩，不是要做的亮斑。（舊條目 DIAG-10「高光閃爍」已併入本條。）'),
+  'en':('Stable highlights','Highlights on wet ground and metal should move with the light and the camera and stay one readable lobe. White sparkles that dance as soon as the camera moves are unstable highlight sampling, not the highlight to request. (Former entry DIAG-10, “Specular shimmer”, is merged here.)'),
+  'ja':('安定したハイライト','濡れた地面や金属の光点は、ライトとカメラに合わせて動き、読める一塊のハイライトのままにします。カメラを動かしただけで白い点が跳ねるのはハイライトのサンプリング不安定であり、作りたい光点ではありません。（旧項目 DIAG-10「スペキュラのちらつき」は本項目に統合済み。）')},
+ 'UX-08':{
+  'zh':('跨區確認','進入無法返回的區域之前，可以用同一個模態視窗列出未完成的支線並等待確認或取消。確認視窗是提示；哪些區域從此去不了，屬通行規則，不在本條。（舊條目 UX-35 的跨區確認已併入本條；身後塌方的演出見 VFX-18。）'),
+  'en':('Zone confirmation','Before entering an area the player cannot return from, the same modal can list unfinished side goals and wait for confirm or cancel. The dialog is the prompt; which areas become unreachable is a traversal rule and is not this entry. (The zone-confirm fragment of former entry UX-35 is merged here; the collapse behind the player is VFX-18.)'),
+  'ja':('区域確認','戻れない区域に入る前に、同じモーダルで未完了の脇道を列挙し、確認か取消かを待てます。ダイアログが手がかりであり、どの区域へ戻れなくなるかは通行規則なので、この項目の対象ではありません。（旧項目 UX-35 の区域確認は本項目に統合済み。背後の崩落演出は VFX-18。）')},
+}
 TAKE_SVG={'FX-32':'UX-19'}   # canonical adopts the retired entry's animated settings diagram
 # short notes shown in the banner: what this entry covers vs its counterpart
 NOTES={

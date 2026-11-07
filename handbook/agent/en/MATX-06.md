@@ -36,7 +36,6 @@ Opaque pass, no blending: float th = (bayer4[(int)pos.x & 3][(int)pos.y & 3] + 1
 - [PIX-08](PIX-08.md) — Dithering
 - [TRN-09](TRN-09.md) — Dither transition
 - [MATX-10](MATX-10.md) — X-ray silhouette
-- [DIAG-06](DIAG-06.md) — Alpha-to-coverage
 - [REN-43](REN-43.md) — LOD cross-fade
 
 ## References

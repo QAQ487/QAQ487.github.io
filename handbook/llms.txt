@@ -46,7 +46,6 @@ CAM-24 | Establishing shot | — | Camera & composition | agent/en/CAM-24.md
 CAM-25 | Close-up／CU | — | Camera & composition | agent/en/CAM-25.md
 CAM-26 | Dutch angle／Canted angle | — | Camera & composition | agent/en/CAM-26.md
 CAM-27 | Rail camera／Spline dolly／Camera path | — | Camera & composition | agent/en/CAM-27.md
-CAM-28 | Depth of field／DOF | — | Camera & composition | agent/en/CAM-28.md
 CAM-29 | Rack focus／Focus pull | — | Camera & composition | agent/en/CAM-29.md
 CAM-30 | Camera shake／Screen shake | — | Camera & composition | agent/en/CAM-30.md
 CAM-31 | Camera cut／Hard cut | — | Camera & composition | agent/en/CAM-31.md
@@ -65,75 +64,54 @@ CAMX-10 | Oblique projection | Cabinet projection, Cavalier projection, Oblique 
 CAMX-11 | Fixed camera angles | Fixed camera system, Static camera angles, Pre-set camera shots, Cinematic fixed cameras | Camera & composition | agent/en/CAMX-11.md
 CAMX-12 | Split screen / Dynamic split screen | Voronoi split screen, Splitscreen, Dynamic split | Camera & composition | agent/en/CAMX-12.md
 CAMX-13 | Camera banking | Roll on turn, Camera lean, Bank into turns, Camera roll | Camera & composition | agent/en/CAMX-13.md
-REN-37 | Aliasing/Jaggies/Shimmering/Specular aliasing | — | Image quality & render diagnostics | agent/en/REN-37.md
-REN-38 | Multisample Anti-Aliasing/MSAA | — | Image quality & render diagnostics | agent/en/REN-38.md
-REN-39 | FXAA/SMAA 1x/Spatial post-process AA | — | Image quality & render diagnostics | agent/en/REN-39.md
-REN-40 | Temporal Anti-Aliasing/TAA | — | Image quality & render diagnostics | agent/en/REN-40.md
-REN-41 | Temporal ghosting/History smearing/Disocclusion artifacts | — | Image quality & render diagnostics | agent/en/REN-41.md
-REN-42 | Upscaling/Temporal upscaling/Super resolution | — | Image quality & render diagnostics | agent/en/REN-42.md
 REN-43 | LOD cross-fade | LOD 交叉淡化, 細節層切換淡化, LOD transition blend, Geomorph LOD, LODクロスフェード | Image quality & render diagnostics | agent/en/REN-43.md
-DIAG-01 | Premultiplied alpha | 煙邊黑框, 煙霧黑邊, 透明邊緣黑邊, Dark fringe, Dark halo around sprites, Alpha fringe, PMA, Straight vs premultiplied alpha, 乗算済みアルファ | Image quality & render diagnostics | agent/en/DIAG-01.md
-DIAG-06 | Alpha-to-coverage | 樹葉邊緣鋸齒, 鐵絲網邊緣閃爍, 頭髮邊緣很硬, Jagged foliage edges, Cutout shimmer, Alpha-test aliasing under MSAA, A2C, AlphaToMask | Image quality & render diagnostics | agent/en/DIAG-06.md
-DIAG-02 | Linear workflow / sRGB | Gamma-correct rendering, Linear vs gamma blending, sRGB render target, 光暈疊加變髒, 漸層中間發暗, Muddy light falloff, Dark midtones in blends, Double gamma, Washed-out colours, リニアワークフロー, ガンマ補正 | Image quality & render diagnostics | agent/en/DIAG-02.md
-DIAG-04 | HDR scene buffer and tone-mapping order | 高光一片死白, 高光爆白, Blown-out highlights, Clipped highlights, Bloom looks flat, UI dims with exposure, Banding after tone mapping, HDRレンダリング, トーンマッピング | Image quality & render diagnostics | agent/en/DIAG-04.md
-DIAG-03 | Mipmapping and anisotropic filtering | 遠地閃格, 遠處地面閃爍, 地板摩爾紋, Texture shimmering, Moiré on distant floors, Sparkling textures, Blurry floors at grazing angles, Trilinear filtering, ミップマップ, トリリニアフィルタリング, 異方性フィルタリング | Image quality & render diagnostics | agent/en/DIAG-03.md
-DIAG-05 | Z-fighting / depth precision / reversed-Z | 閃面, 兩層貼圖互相閃, 遠處模型互相穿插閃爍, 貼花閃爍, Flickering overlapping surfaces, Stitching, Shimmering coplanar faces, Decal flicker, Depth fighting, Reversed-Z, Infinite far plane, 深度バイアス | Image quality & render diagnostics | agent/en/DIAG-05.md
-DIAG-07 | Detail normal blending (reoriented normal mapping) | 細節法線變平, 疊加法線後凹凸消失, 法線圖疊起來變扁, Detail normals look flat, Bumps vanish after blending normals, Wrong normal blend, Linear normal blend, RNM, UDN blend, Whiteout blend, ディテールマップ, セカンドノーマルマップ | Image quality & render diagnostics | agent/en/DIAG-07.md
-DIAG-10 | Specular anti-aliasing (Toksvig / geometric roughness) | 高光閃點, 金屬表面閃爍, 光滑表面跳星星, 遠處反光雪花, Sparkling highlights, Specular shimmer, Fireflies on shiny surfaces, Normal-map aliasing, Toksvig, Geometric specular AA, Roughness limiter | Image quality & render diagnostics | agent/en/DIAG-10.md
-DIAG-08 | Box-projected (parallax-corrected) cubemaps | 反射位置不對, 室內反射跟着鏡頭走, 地板反射漂浮, Reflections slide with the camera, Reflections don't line up with the room, Floating reflections, Parallax-corrected cubemap, Box projection, Local cubemap, ボックス投影, キューブマップ | Image quality & render diagnostics | agent/en/DIAG-08.md
 DIAG-09 | Planar reflections | 鏡子沒有倒影, 水面反射在畫面邊緣消失, 倒影缺一塊, Mirror shows nothing, Reflections vanish at screen edges, Missing reflection of off-screen objects, Mirror reflection, Reflection camera, 平面反射 | Image quality & render diagnostics | agent/en/DIAG-09.md
-REN-20 | Global illumination/GI/Indirect lighting/Color bleeding | — | Lighting & shadows | agent/en/REN-20.md
+REN-20 | Global illumination/GI/Indirect lighting/Color bleeding | Color bleeding, 反彈染色, Bounced light colour | Lighting & shadows | agent/en/REN-20.md
 REN-21 | Ambient occlusion/AO/Occlusion map | — | Lighting & shadows | agent/en/REN-21.md
 REN-22 | Screen-Space Ambient Occlusion/SSAO | — | Lighting & shadows | agent/en/REN-22.md
-REN-23 | Reflections/Image-Based Lighting (IBL)/Reflection probes | — | Lighting & shadows | agent/en/REN-23.md
+REN-23 | Reflections/Image-Based Lighting (IBL)/Reflection probes | Box projection, Parallax-corrected cubemap, Local cubemap, 反射位置不對, 盒體投影 | Lighting & shadows | agent/en/REN-23.md
 REN-24 | Screen-Space Reflections/SSR | — | Lighting & shadows | agent/en/REN-24.md
-REN-25 | Cast shadows/Soft shadows/Penumbra | — | Lighting & shadows | agent/en/REN-25.md
+REN-25 | Cast shadows/Soft shadows/Penumbra | Lightmapping, Baked lighting, Cascaded shadow maps, CSM, 烘焙光照, 級聯陰影, 窗光柔影 | Lighting & shadows | agent/en/REN-25.md
 REN-26 | Fog/Distance fog/Depth fog | — | Lighting & shadows | agent/en/REN-26.md
 REN-27 | Volumetric lighting/Volumetric fog/Light shafts/God rays | — | Lighting & shadows | agent/en/REN-27.md
-LGT-01 | Directional, point and spot lights | Light types, Sun light, Omni light, Spotlight, Punctual lights | Lighting & shadows | agent/en/LGT-01.md
+LGT-01 | Directional, point and spot lights | Light types, Sun light, Omni light, Spotlight, Punctual lights, Forward+, Clustered shading, Deferred rendering, Tiled forward, 多光源管線 | Lighting & shadows | agent/en/LGT-01.md
 LGT-02 | Light attenuation | Falloff, Distance falloff, Inverse-square falloff, Light range | Lighting & shadows | agent/en/LGT-02.md
 LGT-03 | Light cookie | Gobo, Projector texture, Light mask, Projected light texture | Lighting & shadows | agent/en/LGT-03.md
 LGT-04 | Flickering light | Light flicker, Torch flicker, Candle flicker, Light styles, Animated light | Lighting & shadows | agent/en/LGT-04.md
 LGT-05 | Area light | Rect light, Area lights, Soft light source, Light with size | Lighting & shadows | agent/en/LGT-05.md
-LGT-06 | Baked lighting | Lightmapping, Lightmaps, Precomputed lighting, Static lighting | Lighting & shadows | agent/en/LGT-06.md
 LGT-07 | Light probes | Irradiance probes, Probe grid, Light probe group, Spherical harmonics lighting | Lighting & shadows | agent/en/LGT-07.md
-LGT-08 | Shadow mapping and cascaded shadow maps | Shadow maps, CSM, PSSM, Cascades, Parallel-split shadow maps | Lighting & shadows | agent/en/LGT-08.md
 LGT-09 | Contact shadows | Screen-space shadows, Micro shadows, Contact hardening | Lighting & shadows | agent/en/LGT-09.md
 LGT-10 | Blob shadow | Drop shadow, Fake shadow, Circle shadow, Shadow decal | Lighting & shadows | agent/en/LGT-10.md
-LGT-11 | Forward+, clustered and deferred shading | Tiled forward, Forward+, Clustered shading, Deferred rendering, Light culling | Lighting & shadows | agent/en/LGT-11.md
 LGT-12 | Height fog | Exponential height fog, Ground fog, Altitude fog, Valley fog | Lighting & shadows | agent/en/LGT-12.md
 LGT-13 | Atmospheric scattering | Sky model, Physically based sky, Rayleigh and Mie scattering, Aerial perspective | Lighting & shadows | agent/en/LGT-13.md
-REN-07 | Base color/Albedo/Diffuse color | — | Materials & surfaces | agent/en/REN-07.md
+REN-07 | Base color/Albedo/Diffuse color | Texture shimmer, Moiré, Mipmap, Anisotropic filtering, 遠處貼圖閃爍, 地板摩爾紋 | Materials & surfaces | agent/en/REN-07.md
 REN-08 | Roughness/Smoothness/Glossiness | — | Materials & surfaces | agent/en/REN-08.md
 REN-09 | Metallic/Metalness | — | Materials & surfaces | agent/en/REN-09.md
-REN-10 | Specular highlight | — | Materials & surfaces | agent/en/REN-10.md
+REN-10 | Specular highlight | Specular shimmer, Sparkling highlights, 高光閃點, Toksvig | Materials & surfaces | agent/en/REN-10.md
 REN-11 | Anisotropy/Anisotropic reflection | — | Materials & surfaces | agent/en/REN-11.md
 REN-12 | Emission/Emissive/Self-illumination | — | Materials & surfaces | agent/en/REN-12.md
-REN-13 | Normal mapping/Bump mapping | — | Materials & surfaces | agent/en/REN-13.md
+REN-13 | Normal mapping/Bump mapping | Detail normal, Reoriented normal mapping, RNM, 細節法線, 法線疊加 | Materials & surfaces | agent/en/REN-13.md
 REN-14 | Parallax mapping/Parallax Occlusion Mapping (POM) | — | Materials & surfaces | agent/en/REN-14.md
 REN-15 | Displacement/Vertex displacement | — | Materials & surfaces | agent/en/REN-15.md
-REN-16 | Alpha blending/Translucency | — | Materials & surfaces | agent/en/REN-16.md
-REN-17 | Alpha clipping/Alpha test/Cutout/Alpha scissor | — | Materials & surfaces | agent/en/REN-17.md
+REN-16 | Alpha blending/Translucency | Premultiplied alpha, Dark fringe, 煙邊黑框, Alpha fringe, PMA | Materials & surfaces | agent/en/REN-16.md
+REN-17 | Alpha clipping/Alpha test/Cutout/Alpha scissor | Alpha-to-coverage, A2C, AlphaToMask, 樹葉邊緣鋸齒, Cutout shimmer | Materials & surfaces | agent/en/REN-17.md
 REN-18 | Refraction/Screen-space refraction | — | Materials & surfaces | agent/en/REN-18.md
 REN-19 | Subsurface scattering/SSS | — | Materials & surfaces | agent/en/REN-19.md
 MATX-01 | Matcap | Material capture, Lit sphere, Sphere-mapped shading | Materials & surfaces | agent/en/MATX-01.md
 MATX-02 | Clear coat, sheen and iridescence | Clearcoat, Coat layer, Cloth sheen, Velvet, Thin-film interference, Iridescent | Materials & surfaces | agent/en/MATX-02.md
-MATX-03 | Triplanar mapping | Triplanar projection, World-space texturing, Box mapping, Tri-planar | Materials & surfaces | agent/en/MATX-03.md
-MATX-04 | Height-blend texture splatting | Height blending, Height-based blend, Texture splatting, Terrain layer blend, Splat map | Materials & surfaces | agent/en/MATX-04.md
+MATX-04 | Height-blend texture splatting | Height blending, Height-based blend, Texture splatting, Terrain layer blend, Splat map, Triplanar mapping, Triplanar projection, 三向投影, 陡壁貼圖拉伸 | Materials & surfaces | agent/en/MATX-04.md
 MATX-05 | Wet surface | Wetness, Rain-soaked surface, Puddles, Wet shader | Materials & surfaces | agent/en/MATX-05.md
 MATX-06 | Dithered transparency | Screen-door transparency, Stipple transparency, Dither fade, Opacity mask dithering | Materials & surfaces | agent/en/MATX-06.md
 MATX-11 | Frosted refractive glass | 毛玻璃, 磨砂玻璃, 玻璃後面模糊, Frosted glass, Refractive blur, Rough refraction, Screen-space refraction blur, すりガラス | Materials & surfaces | agent/en/MATX-11.md
 MATX-07 | Hologram shader | Hologram effect, Holographic material, Holo shader | Materials & surfaces | agent/en/MATX-07.md
 MATX-08 | Force field / Shield | Energy shield, Bubble shield, Intersection highlight, Depth-fade edge, Shield impact ripple | Materials & surfaces | agent/en/MATX-08.md
-MATX-09 | Vertex animation texture (VAT) | VAT, Vertex animation, Baked vertex animation, Morph texture | Materials & surfaces | agent/en/MATX-09.md
 MATX-10 | X-ray silhouette | See-through walls, Occluded silhouette, Behind-wall outline, Character occlusion silhouette | Materials & surfaces | agent/en/MATX-10.md
-REN-28 | High Dynamic Range/HDR rendering | — | Post-processing & screen filters | agent/en/REN-28.md
 REN-29 | Bloom/Glow | — | Post-processing & screen filters | agent/en/REN-29.md
 REN-30 | Exposure/Auto exposure/Eye adaptation | — | Post-processing & screen filters | agent/en/REN-30.md
-REN-31 | Tone mapping/Tonemapper/Filmic curve | — | Post-processing & screen filters | agent/en/REN-31.md
-REN-32 | Color grading/LUT/White balance | — | Post-processing & screen filters | agent/en/REN-32.md
+REN-31 | Tone mapping/Tonemapper/Filmic curve | HDR, High dynamic range, Tone mapping order, 高光爆白, Blown-out highlights, HDR 渲染 | Post-processing & screen filters | agent/en/REN-31.md
+REN-32 | Color grading/LUT/White balance | Linear workflow, sRGB, Gamma correction, 光暈疊加變髒, 漸層中間發暗 | Post-processing & screen filters | agent/en/REN-32.md
 REN-33 | Motion blur/Velocity blur | — | Post-processing & screen filters | agent/en/REN-33.md
-REN-34 | Depth of Field/DoF/Bokeh | — | Post-processing & screen filters | agent/en/REN-34.md
+REN-34 | Depth of Field/DoF/Bokeh | Depth of field, DOF, 景深, 敘事對焦, 焦點在眼睛 | Post-processing & screen filters | agent/en/REN-34.md
 REN-35 | Lens flare/Lens ghost | — | Post-processing & screen filters | agent/en/REN-35.md
 REN-36 | Chromatic aberration/Color fringing | — | Post-processing & screen filters | agent/en/REN-36.md
 PP-01 | Vignette | Vignetting, Edge darkening, Lens vignette | Post-processing & screen filters | agent/en/PP-01.md
@@ -147,7 +125,7 @@ PP-13 | Manga speed lines (focus lines) | 漫畫速度線, 集中線, 衝刺線,
 PP-07 | Radial blur | Zoom blur, Zoom burst, Radial motion blur, Speed blur | Post-processing & screen filters | agent/en/PP-07.md
 PP-08 | Gaussian blur | Kawase blur, Dual Kawase blur, Box blur, Background blur, Screen blur | Post-processing & screen filters | agent/en/PP-08.md
 PP-09 | Screen-space distortion | Refraction distortion, Heat distortion, Displacement post-process, Screen warp | Post-processing & screen filters | agent/en/PP-09.md
-PP-10 | Sharpening | CAS, Contrast adaptive sharpening, Unsharp mask, Sharpen filter | Post-processing & screen filters | agent/en/PP-10.md
+PP-10 | Sharpening | CAS, Contrast adaptive sharpening, Unsharp mask, Sharpen filter, Aliasing, Jaggies, Shimmering, Specular aliasing, MSAA, FXAA, SMAA, TAA, Temporal anti-aliasing, Upscaling, Temporal upscaling, Super resolution, 鋸齒, 幼線閃爍, 升頻 | Post-processing & screen filters | agent/en/PP-10.md
 PP-11 | Lens dirt | Lens dirt mask, Dirt mask, Bloom dirt, Dirty lens | Post-processing & screen filters | agent/en/PP-11.md
 REN-01 | Physically Based Rendering/PBR/PBS | — | Stylized rendering (NPR) | agent/en/REN-01.md
 REN-02 | Unlit/Unshaded | — | Stylized rendering (NPR) | agent/en/REN-02.md
@@ -169,13 +147,11 @@ NPR-11 | PS1-style rendering | PS1 style, PSX look, Vertex snapping / jitter, Af
 NPR-12 | Low-poly flat shading | Flat shading, Faceted shading, Low poly style, Facet shading | Stylized rendering (NPR) | agent/en/NPR-12.md
 NPR-13 | 3D pixel art (pixelated 3D) | Pixelated 3D, 3D-to-pixel pipeline, Low-res 3D render, Pixel-perfect 3D | Stylized rendering (NPR) | agent/en/NPR-13.md
 NPR-14 | HD-2D | 2D-HD, Pixel sprites in 3D, Diorama look, Octopath-style | Stylized rendering (NPR) | agent/en/NPR-14.md
-PIX-01 | Integer scaling | Pixel-perfect rendering, Nearest-neighbour upscaling, Point filtering, Low-res render target | 2D & pixel-art techniques | agent/en/PIX-01.md
+PIX-01 | Integer scaling | Pixel-perfect rendering, Nearest-neighbour upscaling, Point filtering, Low-res render target, Mixels, Mixed pixel sizes, Inconsistent pixel density, 混合像素, 像素大小不一致 | 2D & pixel-art techniques | agent/en/PIX-01.md
 PIX-02 | Pixel snapping | Pixel jitter, Sprite jitter, Position rounding, Snap to pixel grid | 2D & pixel-art techniques | agent/en/PIX-02.md
 PIX-03 | Sub-pixel camera smoothing | Smooth pixel camera, High-res camera offset, Render-target margin scrolling | 2D & pixel-art techniques | agent/en/PIX-03.md
 PIX-04 | Pixel-art upscaling filters | Scale2x / EPX, hqx, xBR, Smoothing filters for pixel art | 2D & pixel-art techniques | agent/en/PIX-04.md
 PIX-05 | RotSprite | Pixel-art rotation, Rotating sprites without breaking lines | 2D & pixel-art techniques | agent/en/PIX-05.md
-PIX-23 | Mixels | Mixed pixel sizes, Inconsistent pixel density, Pixel scale mismatch | 2D & pixel-art techniques | agent/en/PIX-23.md
-PIX-26 | Texture bleeding and atlas padding | Tile seams, Atlas bleeding, Edge extrusion, Half-texel seams | 2D & pixel-art techniques | agent/en/PIX-26.md
 PIX-06 | Palette swap | Palette shift, Recolour variant, Colour LUT swap, Indexed sprite recolour | 2D & pixel-art techniques | agent/en/PIX-06.md
 PIX-07 | Color cycling | Palette cycling, Palette rotation, Palette animation | 2D & pixel-art techniques | agent/en/PIX-07.md
 PIX-08 | Dithering | Ordered dithering, Bayer dithering, Checkerboard dither, Dither pattern | 2D & pixel-art techniques | agent/en/PIX-08.md
@@ -188,7 +164,7 @@ PIX-14 | Sub-pixel animation | Subpixel animation, Sub-pixel movement (art), Ant
 PIX-25 | Sprite flipping for facing | Horizontal flip, Mirrored facing, flip_h, Left/right facing | 2D & pixel-art techniques | agent/en/PIX-25.md
 PIX-15 | Parallax scrolling | Multi-layer parallax, Parallax layers, Depth scrolling | 2D & pixel-art techniques | agent/en/PIX-15.md
 PIX-16 | Y-sorting | Depth sorting, Y-sort, Painter's algorithm (by Y), Sort by foot position | 2D & pixel-art techniques | agent/en/PIX-16.md
-PIX-17 | Autotiling | Tilemap, Bitmask autotiling, Wang tiles, Blob tileset, Terrain transitions | 2D & pixel-art techniques | agent/en/PIX-17.md
+PIX-17 | Autotiling | Tilemap, Bitmask autotiling, Wang tiles, Blob tileset, Terrain transitions, Tile seams, Atlas bleeding, Edge extrusion, 貼圖滲色, tile 接縫 | 2D & pixel-art techniques | agent/en/PIX-17.md
 PIX-18 | Fake height with ground shadow | Z-offset, Jump arc with shadow, Height axis in 2D, Drop shadow anchor | 2D & pixel-art techniques | agent/en/PIX-18.md
 PIX-19 | Sprite stacking | Stacked sprites, Slice stacking, Pseudo-3D voxel sprites | 2D & pixel-art techniques | agent/en/PIX-19.md
 PIX-20 | Mode 7 and raster effects | Mode 7, Per-scanline effects, Line scroll, Raster scroll, HDMA effects | 2D & pixel-art techniques | agent/en/PIX-20.md
@@ -212,8 +188,7 @@ ACT-14 | Overlapping Action / Drag | — | Animation, movement & physics | agent
 ACT-15 | Arcs / Motion Arcs | — | Animation, movement & physics | agent/en/ACT-15.md
 ACT-16 | Secondary Action | — | Animation, movement & physics | agent/en/ACT-16.md
 ACT-17 | Staging / Pose Readability | — | Animation, movement & physics | agent/en/ACT-17.md
-ACT-30 | Root Motion | — | Animation, movement & physics | agent/en/ACT-30.md
-ACT-31 | In-place Animation / Code-driven Locomotion | — | Animation, movement & physics | agent/en/ACT-31.md
+ACT-30 | Root Motion | In-place animation, Code-driven locomotion, 原地動畫, 原地踏步 | Animation, movement & physics | agent/en/ACT-30.md
 ACT-32 | Animation Blending / Crossfade | — | Animation, movement & physics | agent/en/ACT-32.md
 ACT-33 | Blend Space / Blend Tree | — | Animation, movement & physics | agent/en/ACT-33.md
 ACT-34 | Animation Layers / Bone Mask / Partial-body Animation | — | Animation, movement & physics | agent/en/ACT-34.md
@@ -222,7 +197,6 @@ ACT-36 | Inverse Kinematics / IK; Forward Kinematics / FK | — | Animation, mov
 ACT-37 | Motion Warping / Root Motion Warping | — | Animation, movement & physics | agent/en/ACT-37.md
 ACT-38 | Animation Event / Anim Notify / Notify State | — | Animation, movement & physics | agent/en/ACT-38.md
 ACT-39 | Variable jump height / Jump cut | 可變跳躍高度, 短按矮跳, 長按高跳, Jump cut, Variable-height jump, Hold-to-jump, 可変ジャンプ | Animation, movement & physics | agent/en/ACT-39.md
-ACT-40 | Stamina-based traversal (climb / glide) | 耐力移動, 攀爬耗耐力, 滑翔耗耐力, Stamina climb, Stamina glide, Shared stamina pool, スタミナ移動 | Animation, movement & physics | agent/en/ACT-40.md
 ANI-01 | Smear frame | Smears, Smear drawing, Multiples | Animation, movement & physics | agent/en/ANI-01.md
 ANI-02 | Animating on twos | Stepped animation, On twos / on threes, Limited animation, Stepped interpolation | Animation, movement & physics | agent/en/ANI-02.md
 ANI-03 | Hold frame / Impact frame | Held pose, Impact hold, Impact frames, ショックコマ | Animation, movement & physics | agent/en/ANI-03.md
@@ -241,7 +215,7 @@ ANI-15 | Distance matching | 起步停步滑行, 煞停時滑步, 停下來腳�
 ANI-16 | Stride warping | 步幅扭曲, 腳步滑行, 跑步滑步, Foot skating, Ice-skating feet, Moonwalking, Stride scaling, Speed–animation mismatch, Pose warping, ポーズ ワープ, 歩幅 | Animation, movement & physics | agent/en/ANI-16.md
 ANI-17 | Orientation warping | 方向扭曲, 斜向移動腳步交叉, 側移時腳打交叉, Strafing feet cross, Diagonal moonwalk, Locomotion angle warp, 8-way blend artefacts, Pose warping, ポーズ ワープ | Animation, movement & physics | agent/en/ANI-17.md
 ANI-18 | Inertialization | 慣性混合, 切換動作時突然一跳, 動作切換生硬, 交叉淡化太軟, Pose pop on transition, Snappy transitions, Crossfade feels floaty, Dead blending, Offset blending, 慣性ブレンド | Animation, movement & physics | agent/en/ANI-18.md
-PHY-01 | Position-based cloth (PBD / XPBD) | 披風穿模, 布料像紙板, 旗幟飄動, Cloth simulation, PBD cloth, XPBD, Distance constraints, クロスシミュレーション | Animation, movement & physics | agent/en/PHY-01.md
+PHY-01 | Position-based cloth (PBD / XPBD) | 披風穿模, 布料像紙板, 旗幟飄動, Cloth simulation, PBD cloth, XPBD, Distance constraints, クロスシミュレーション, VAT, Vertex animation texture, Baked vertex animation, 頂點動畫貼圖, 群眾動畫, 倒塌動畫 | Animation, movement & physics | agent/en/PHY-01.md
 PHY-02 | Verlet rope and chain | 繩子像鐵棒, 吊橋晃動, 鎖鏈, Verlet rope, Chain physics, Rope constraint, Grappling rope, ロープ物理 | Animation, movement & physics | agent/en/PHY-02.md
 PHY-03 | Jelly soft body (shape matching / pressure) | 史萊姆彈彈的, 果凍感, 落地壓扁, Soft body, Jelly physics, Shape matching, Pressure soft body, ソフトボディ | Animation, movement & physics | agent/en/PHY-03.md
 ACT-18 | Startup / Start-up / Wind-up Frames | — | Combat feedback & game feel | agent/en/ACT-18.md
@@ -251,8 +225,7 @@ ACT-21 | Hitstop / Hit Pause / Hitfreeze | — | Combat feedback & game feel | a
 ACT-22 | Hitstun / Hit Reaction Stun | — | Combat feedback & game feel | agent/en/ACT-22.md
 ACT-23 | Blockstun / Guard Stun | — | Combat feedback & game feel | agent/en/ACT-23.md
 ACT-24 | Cancel / Animation Cancel / Move Cancel | — | Combat feedback & game feel | agent/en/ACT-24.md
-ACT-25 | Cancel Window / Action Window | — | Combat feedback & game feel | agent/en/ACT-25.md
-ACT-26 | Frame Advantage / Plus and Minus | — | Combat feedback & game feel | agent/en/ACT-26.md
+ACT-25 | Cancel Window / Action Window | Frame advantage, Plus on hit, Minus on block, 幀有利, 幀不利 | Combat feedback & game feel | agent/en/ACT-25.md
 ACT-27 | Invulnerability / Invincibility Frames / I-frames | — | Combat feedback & game feel | agent/en/ACT-27.md
 ACT-28 | Super Armor / Armor / Hyper Armor | — | Combat feedback & game feel | agent/en/ACT-28.md
 ACT-29 | Knockback / Pushback | — | Combat feedback & game feel | agent/en/ACT-29.md
@@ -281,12 +254,12 @@ FB-19 | Reticle bloom and spread recovery | 準星會擴大, 連射越來越不�
 FB-20 | Aim-assist friction and magnetism | 手把瞄準輔助, 準星黏住敵人, 瞄準變慢, Aim assist, Aim friction / slowdown, Aim magnetism, Sticky aim, エイムアシスト | Combat feedback & game feel | agent/en/FB-20.md
 FB-22 | Weapon weight: sway and inertia lag | 武器太輕, 槍像貼在畫面上, 武器晃動, Weapon sway, Weapon inertia, View-model lag, Weapon bob, ウェポンスウェイ | Combat feedback & game feel | agent/en/FB-22.md
 FB-21 | Audio-visual beat quantization | 打擊跟著節拍, 特效對拍, 音樂同步回饋, Beat quantization, Beat-synced feedback, Music-synced VFX, Rhythm sync, ビート同期 | Combat feedback & game feel | agent/en/FB-21.md
-FX-01 | Sprite / Billboard Particles | — | VFX & particles | agent/en/FX-01.md
+FX-01 | Sprite / Billboard Particles | Soft particles, Depth fade, GPU particles, 柔和粒子, 煙邊硬邊 | VFX & particles | agent/en/FX-01.md
 FX-02 | Trails / Ribbons | — | VFX & particles | agent/en/FX-02.md
-FX-03 | Afterimages / Ghost Trails | — | VFX & particles | agent/en/FX-03.md
-FX-04 | Flipbook / Sprite-sheet Animation | — | VFX & particles | agent/en/FX-04.md
+FX-03 | Afterimages / Ghost Trails | Temporal ghosting, History smearing, Disocclusion artifacts, 衝刺殘像, Dash afterimage, 殘影, 時間性殘影 | VFX & particles | agent/en/FX-03.md
+FX-04 | Flipbook / Sprite-sheet Animation | Flipbook blending, Choppy flipbook, 序列幀跳格, Motion-vector flipbook | VFX & particles | agent/en/FX-04.md
 FX-05 | Mesh Particles | — | VFX & particles | agent/en/FX-05.md
-FX-06 | Decals / Surface Marks | — | VFX & particles | agent/en/FX-06.md
+FX-06 | Decals / Surface Marks | Z-fighting, Decal flicker, Depth fighting, 閃面, 貼花閃爍 | VFX & particles | agent/en/FX-06.md
 FX-07 | Distortion / Refraction | — | VFX & particles | agent/en/FX-07.md
 FX-08 | Telegraph; Area-of-effect Indicator (Related Concepts, Not Synonyms) | — | VFX & particles | agent/en/FX-08.md
 FX-09 | Impact Burst / Hit Spark | — | VFX & particles | agent/en/FX-09.md
@@ -297,12 +270,9 @@ FX-13 | VFX Anticipation / Attack Charge-up | Anticipation / Wind-up, Charge-up 
 FX-14 | Timing / Rhythm / Contrast | — | VFX & particles | agent/en/FX-14.md
 FX-15 | Dissipation / Erosion | — | VFX & particles | agent/en/FX-15.md
 FX-16 | Gameplay Clarity / Visual Noise Budget | — | VFX & particles | agent/en/FX-16.md
-VFX-01 | Soft particles | Depth-faded particles, Depth fade, Soft intersection | VFX & particles | agent/en/VFX-01.md
-VFX-02 | GPU particles | Compute-shader particles, GPU particle simulation, Massive particles | VFX & particles | agent/en/VFX-02.md
 VFX-03 | Flowmap | Flow map, Vector-field distortion, Flow field texture | VFX & particles | agent/en/VFX-03.md
 VFX-04 | Dissolve | Burn-away, Noise dissolve, Disintegration, Dissolve shader | VFX & particles | agent/en/VFX-04.md
 VFX-05 | UV scrolling | Panning texture, UV panning, Texture scrolling, Scrolling UVs | VFX & particles | agent/en/VFX-05.md
-VFX-20 | Flipbook frame blending / motion-vector flipbook | 序列幀跳格, 爆炸動畫一格格跳, 煙霧播放卡頓, Choppy flipbook, Stepping sprite-sheet animation, Flipbook stutter, Blended flipbook, Motion vectors flipbook, Sub-UV blending, Flip-Book Mode: Blended, フリップブック | VFX & particles | agent/en/VFX-20.md
 VFX-06 | Shockwave | Ring wave, Shock ring, Distortion ring, Impact ring | VFX & particles | agent/en/VFX-06.md
 VFX-07 | Slash VFX | Sword arc, Swoosh, Slash trail, Weapon trail | VFX & particles | agent/en/VFX-07.md
 VFX-08 | Projectile trail | Tracer, Bullet trail, Arrow trail, Missile trail | VFX & particles | agent/en/VFX-08.md
@@ -315,8 +285,8 @@ VFX-15 | Spawn / teleport effect | Warp-in, Materialise, Summon effect, Blink, B
 VFX-16 | Pickup sparkle | Collect effect, Item glint, Twinkle, Shine | VFX & particles | agent/en/VFX-16.md
 VFX-14 | Aura | Buff glow, Power-up aura, Outline glow, Rim aura | VFX & particles | agent/en/VFX-14.md
 VFX-17 | Healing effect | Heal VFX, Regen effect, Restore effect | VFX & particles | agent/en/VFX-17.md
-VFX-18 | Debris | Gibs, Chunks, Rubble, Splinters | VFX & particles | agent/en/VFX-18.md
-VFX-19 | Shatter | Fracture, Voronoi fracture, Glass break, Destruction | VFX & particles | agent/en/VFX-19.md
+VFX-18 | Debris | Gibs, Chunks, Rubble, Splinters, One-way collapse, Backward gate, Point of no return, 身後塌方, 單向入口, 落石封路 | VFX & particles | agent/en/VFX-18.md
+VFX-19 | Shatter | Fracture, Voronoi fracture, Glass break, Destruction, Baked collapse, 建築倒塌, Collapse bake | VFX & particles | agent/en/VFX-19.md
 VFX-21 | Voxel / geometric death disintegration | 死亡時碎成方塊, 消散成小立方體, 數碼分解, Voxel disintegration, Cube burst death, Geometric dissolve, Digital disintegration, ボクセル分解 | VFX & particles | agent/en/VFX-21.md
 FX-17 | Layering | — | Audio & haptics | agent/en/FX-17.md
 FX-18 | One-shot | — | Audio & haptics | agent/en/FX-18.md
@@ -329,18 +299,14 @@ FX-24 | Directivity / Attenuation Shape | — | Audio & haptics | agent/en/FX-24
 FX-25 | Air Absorption / Distance Filtering | — | Audio & haptics | agent/en/FX-25.md
 FX-26 | Obstruction / Occlusion | — | Audio & haptics | agent/en/FX-26.md
 FX-27 | Reverb / Dry–Wet Balance | — | Audio & haptics | agent/en/FX-27.md
-FX-28 | Audio Hierarchy / Mix Separation | — | Audio & haptics | agent/en/FX-28.md
+FX-28 | Audio Hierarchy / Mix Separation | Voice stealing, Sound concurrency, Polyphony limit, 聲音搶佔, 語音上限 | Audio & haptics | agent/en/FX-28.md
 FX-29 | Adaptive Music: Vertical Layering | Adaptive Music | Audio & haptics | agent/en/FX-29.md
 FX-30 | Adaptive Music: Horizontal Resequencing | Adaptive Music | Audio & haptics | agent/en/FX-30.md
 FX-31 | Stinger | — | Audio & haptics | agent/en/FX-31.md
-FX-39 | Sound concurrency / voice stealing | 聲音併發上限, 語音搶佔, Voice stealing, Audio voice limit, Polyphony limit, ボイススティール | Audio & haptics | agent/en/FX-39.md
 FX-32 | Haptic Feedback / Rumble | Controller vibration, Tactile feedback, 手把震動, コントローラー振動 | Audio & haptics | agent/en/FX-32.md
 FX-33 | Haptic Pattern / Event Identity | — | Audio & haptics | agent/en/FX-33.md
 FX-34 | Haptic Customization / Opt-out | — | Audio & haptics | agent/en/FX-34.md
-FX-35 | Multisensory Redundancy | — | Audio & haptics | agent/en/FX-35.md
 FX-36 | Visualized Sound Cues / Sound Indicators | Captions / Visualized Sound Cues, Captions (non-speech sounds), Sound visualization, Directional sound indicator | Audio & haptics | agent/en/FX-36.md
-FX-37 | Reduced Motion / Visual Effects Options | — | Audio & haptics | agent/en/FX-37.md
-FX-38 | Photosensitivity Review | — | Audio & haptics | agent/en/FX-38.md
 ENV-01 | Day-night cycle | Time-of-day cycle, Diurnal cycle, Dynamic time of day | Environment, weather & time | agent/en/ENV-01.md
 ENV-02 | Sky gradient | Skybox, Sky dome, Gradient sky | Environment, weather & time | agent/en/ENV-02.md
 ENV-03 | Seasonal change | Seasons, Seasonal palette swap, Season cycle | Environment, weather & time | agent/en/ENV-03.md
@@ -377,13 +343,13 @@ TRN-10 | Pixelate transition | Mosaic transition, Pixelation fade, Blocky dissol
 TRN-11 | Battle transition | Encounter transition, Battle swirl, Encounter wipe | Transitions | agent/en/TRN-11.md
 TRN-12 | Shatter transition | Glass-break transition, Screen shatter, Broken-glass wipe | Transitions | agent/en/TRN-12.md
 UX-01 | HUD | Heads-up display | UI & HUD | agent/en/UX-01.md
-UX-02 | Resource meter / Status bar | — | UI & HUD | agent/en/UX-02.md
+UX-02 | Resource meter / Status bar | Stamina climb, Stamina glide, 耐力條, 攀爬耗耐力, 滑翔耗耐力, Low stamina warning | UI & HUD | agent/en/UX-02.md
 UX-03 | Reticle / Crosshair | — | UI & HUD | agent/en/UX-03.md
 UX-04 | Objective marker / Waypoint；Objective tracker | — | UI & HUD | agent/en/UX-04.md
 UX-05 | Contextual prompt / Context-sensitive help | Dynamic input glyphs, Device-aware prompts, 即時按鍵圖示, 入力図柄の切替 | UI & HUD | agent/en/UX-05.md
 UX-06 | Focus indicator / Focus highlight | Focus vs selected, Equipment slot states, 焦點與已選, フォーカスと選択 | UI & HUD | agent/en/UX-06.md
 UX-07 | Menu navigation / Focus order；Tabs | Menu hierarchy, Focus order, 選單位置, メニュー階層 | UI & HUD | agent/en/UX-07.md
-UX-08 | Modal dialog | Focus containment, Modal focus trap, 模態焦點, フォーカストラップ | UI & HUD | agent/en/UX-08.md
+UX-08 | Modal dialog | Focus containment, Modal focus trap, 模態焦點, フォーカストラップ, Zone confirm, Point of no return prompt, 跨區確認, 離開確認 | UI & HUD | agent/en/UX-08.md
 UX-09 | Progressive disclosure | — | UI & HUD | agent/en/UX-09.md
 UX-10 | Subtitles / Closed captions（CC） | — | UI & HUD | agent/en/UX-10.md
 UX-11 | Diegetic UI / In-world interface | — | UI & HUD | agent/en/UX-11.md
@@ -393,8 +359,8 @@ UX-14 | Meta UI | — | UI & HUD | agent/en/UX-14.md
 UX-15 | World-space UI / Screen-space UI | — | UI & HUD | agent/en/UX-15.md
 UX-16 | UI motion / UI transition / Animated focus | Push-pop transition, Menu hierarchy motion, 換頁過渡, プッシュポップ遷移 | UI & HUD | agent/en/UX-16.md
 UX-17 | Damage indicator / Directional damage indicator | — | UI & HUD | agent/en/UX-17.md
-UX-18 | Multimodal feedback / Redundant cues | — | UI & HUD | agent/en/UX-18.md
-UX-20 | Reduced motion / Motion settings | — | UI & HUD | agent/en/UX-20.md
+UX-18 | Multimodal feedback / Redundant cues | Multisensory redundancy, 多感官冗餘, Redundant cues | UI & HUD | agent/en/UX-18.md
+UX-20 | Reduced motion / Motion settings | Reduced motion, 減少動態, Motion settings, Hit outline without shake | UI & HUD | agent/en/UX-20.md
 UX-39 | Low-durability warning | 耐久度警告, 裝備快壞, Break warning, Low durability flash | UI & HUD | agent/en/UX-39.md
 UX-40 | Revive prompt | 復活提示, 救助互動, Help up prompt, Revive hold, 蘇生プロンプト | UI & HUD | agent/en/UX-40.md
 UX-41 | Objective voting | 目標投票, 小隊投票, Mission vote, Squad vote, 投票UI | UI & HUD | agent/en/UX-41.md
@@ -408,9 +374,9 @@ UI-07 | Background blur on pause | Pause blur, Backdrop blur, Frosted-glass back
 UI-08 | Minimap | Mini-map, Radar, Overview map | UI & HUD | agent/en/UI-08.md
 UI-09 | Off-screen indicator / Edge arrow | Off-screen pointer, Screen-edge marker, Offscreen target indicator, Edge arrow | UI & HUD | agent/en/UI-09.md
 UI-10 | Floating nameplate / Overhead bar | Nameplate, Overhead health bar, Unit frame above head, World-space health bar | UI & HUD | agent/en/UI-10.md
-UI-11 | Radial menu | Pie menu, Weapon wheel, Ring menu, Radial selector | UI & HUD | agent/en/UI-11.md
+UI-11 | Radial menu | Pie menu, Weapon wheel, Ring menu, Radial selector, Quick chat wheel, Communication wheel, 快捷聊天輪盤, 通訊輪盤 | UI & HUD | agent/en/UI-11.md
 UI-12 | Tooltip | Hover info, Info popup, Item tooltip, Mouse-over text, Item comparison, 裝備比較 | UI & HUD | agent/en/UI-12.md
-UI-13 | Toast / Notification popup | Toast, Notification toast, Snackbar, Feed message, Pop-up notification | UI & HUD | agent/en/UI-13.md
+UI-13 | Toast / Notification popup | Toast, Notification toast, Snackbar, Feed message, Pop-up notification, Save icon, Autosave toast, 存檔圖示, 存檔完成提示, Checkpoint saved | UI & HUD | agent/en/UI-13.md
 UI-14 | Nine-slice / 9-patch | 9-slice scaling, Nine-patch, Scale-9 grid, Border image | UI & HUD | agent/en/UI-14.md
 UI-19 | Retro-futuristic terminal / CRT UI | 青綠色飛船電腦, 舊式單色屏幕, 掃描線終端, CRT terminal, Monochrome HUD, Sci-fi CRT UI, レトロ未来端末, CRT風UI, モノクロ端末 | UI & HUD | agent/en/UI-19.md
 UI-20 | Iconography / UI icon family | 介面圖示語言, 圓角圖案一套, 背包圖示家族, UI icon set, Icon family, Consistent glyphs, アイコン体系, UIアイコンセット | UI & HUD | agent/en/UI-20.md
@@ -423,10 +389,8 @@ UI-26 | HUD edit mode | 可編輯 HUD, 自己拖技能列同小地圖, Edit Mode
 UI-15 | Typewriter effect | Text crawl, Letter-by-letter reveal, Character reveal, Scrolling text | UI & HUD | agent/en/UI-15.md
 UI-16 | Dialogue box / Text box | Text box, Message window, Speech box, Dialogue window | UI & HUD | agent/en/UI-16.md
 UI-17 | Animated text (wave, shake, rainbow) | Text effects, Rich-text effects, Wavy text, Shaky text, Rainbow text | UI & HUD | agent/en/UI-17.md
-UI-18 | Quick-chat wheel (multiplayer) | 快捷聊天輪盤, 通訊輪盤, Quick chat wheel, Communication wheel, クイックチャット | UI & HUD | agent/en/UI-18.md
-UX-21 | Affordance / Action possibility | — | Visual guidance & wayfinding | agent/en/UX-21.md
-UX-22 | Signifier / Interaction cue | — | Visual guidance & wayfinding | agent/en/UX-22.md
-UX-23 | Wayfinding / Orientation / Navigation | — | Visual guidance & wayfinding | agent/en/UX-23.md
+UX-22 | Signifier / Interaction cue | Affordance, 可供性, Signifier matches action, 旗點亮起, Checkpoint flag | Visual guidance & wayfinding | agent/en/UX-22.md
+UX-23 | Wayfinding / Orientation / Navigation | Critical path, Main path, Side path, Soft gate, 主路, 支路, 危險區提示 | Visual guidance & wayfinding | agent/en/UX-23.md
 UX-24 | Signposting / In-world signage | — | Visual guidance & wayfinding | agent/en/UX-24.md
 UX-25 | Landmark / Navigational landmark；POI | — | Visual guidance & wayfinding | agent/en/UX-25.md
 UX-26 | Leading lines / Directional composition | — | Visual guidance & wayfinding | agent/en/UX-26.md
@@ -434,14 +398,10 @@ UX-27 | Sightline / Line of sight（LOS） | — | Visual guidance & wayfinding 
 UX-28 | Vista / Overlook；Approach | — | Visual guidance & wayfinding | agent/en/UX-28.md
 UX-29 | Breadcrumbing / Breadcrumb trail | — | Visual guidance & wayfinding | agent/en/UX-29.md
 UX-30 | Lighting cues / Color coding | — | Visual guidance & wayfinding | agent/en/UX-30.md
-UX-31 | Critical path / Main path；Optional path / Side path | — | Visual guidance & wayfinding | agent/en/UX-31.md
 UX-32 | Gating / Hard gate | — | Visual guidance & wayfinding | agent/en/UX-32.md
-UX-33 | Soft gate / Soft gating | — | Visual guidance & wayfinding | agent/en/UX-33.md
 UX-34 | Lock-and-key gate / Ability gating | — | Visual guidance & wayfinding | agent/en/UX-34.md
-UX-35 | Backward gate / One-way entrance / Point of no return | — | Visual guidance & wayfinding | agent/en/UX-35.md
 UX-36 | Unlockable shortcut / Loopback | — | Visual guidance & wayfinding | agent/en/UX-36.md
 UX-37 | Onboarding / Interactive tutorial / Contextual teaching | — | Visual guidance & wayfinding | agent/en/UX-37.md
-UX-38 | Checkpoint / Respawn point；Autosave | — | Visual guidance & wayfinding | agent/en/UX-38.md
 NAV-01 | Interactable highlight | Outline on hover, Proximity highlight, Interaction outline | Visual guidance & wayfinding | agent/en/NAV-01.md
 NAV-02 | Yellow paint | Climbable markers, Ledge paint, Traversal markers | Visual guidance & wayfinding | agent/en/NAV-02.md
 NAV-14 | Contextual ping (multiplayer) | 情境標記, Ping 系統, Look ping, Context ping, ピン留め | Visual guidance & wayfinding | agent/en/NAV-14.md
@@ -459,7 +419,7 @@ NAV-08 | Detective-vision trail (investigation highlight mode) | 偵探模式, �
 A11Y-01 | Text contrast, backplate and dual outline | 字幕看不清, 白字在雪地看不見, 字幕被爆炸蓋過, Subtitle backplate, Text background plate, Text outline / stroke, Contrast ratio, Legibility on busy backgrounds, コントラスト比 | Readability & accessibility | agent/en/A11Y-01.md
 A11Y-02 | Text scaling and reflow | 字太細, 放大字體後文字被裁掉, 字幕放大後超出框, Text size option, Resize text, UI text overflow, Truncated text, Font scaling, テキストのサイズ変更, リフロー | Readability & accessibility | agent/en/A11Y-02.md
 A11Y-03 | Colour-blind modes with shape redundancy | 色盲模式, 紅綠分不清, 敵我顏色難分, Colour-blind mode, Daltonization, Shape redundancy, Colour vision deficiency, 色覚サポート | Readability & accessibility | agent/en/A11Y-03.md
-A11Y-04 | Photosensitive flash suppression | 閃光太刺眼, 爆炸白閃, 光敏模式, Photosensitivity mode, Flash reduction, Flash limiter, Epilepsy-safe mode, 光過敏対策 | Readability & accessibility | agent/en/A11Y-04.md
+A11Y-04 | Photosensitive flash suppression | 閃光太刺眼, 爆炸白閃, 光敏模式, Photosensitivity mode, Flash reduction, Flash limiter, Epilepsy-safe mode, 光過敏対策, Photosensitivity review, 光敏驗證, Flash review, Photosensitive check | Readability & accessibility | agent/en/A11Y-04.md
 A11Y-05 | Motion-sickness comfort anchors | 玩了會暈, 3D 暈, 暈動症, Comfort mode, Motion sickness reduction, Fixed reference frame, Comfort vignette, 画面酔い対策 | Readability & accessibility | agent/en/A11Y-05.md
 A11Y-06 | High-contrast solid silhouette mode | 看不清敵人, 高對比模式, 把重要物件塗成純色, High-contrast mode, Solid silhouette mode, Simplified visuals, Contrast mode, ハイコントラストモード | Readability & accessibility | agent/en/A11Y-06.md
 A11Y-07 | Hold / Toggle input mode | 按住或切換, 長按改開關, Hold versus toggle, Sticky interaction mode, ホールド／トグル | Readability & accessibility | agent/en/A11Y-07.md

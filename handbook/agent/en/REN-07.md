@@ -1,5 +1,7 @@
 # REN-07 · Base color/Albedo/Diffuse color
 
+**Aliases:** Texture shimmer; Moiré; Mipmap; Anisotropic filtering; 遠處貼圖閃爍; 地板摩爾紋
+
 **Group:** Materials & surfaces
 **Subcategory:** Material Color, Surface Detail, and Light Transmission
 
@@ -13,7 +15,7 @@ these names are not fully synonymous across workflows; in a metallic workflow, b
 
 ## Use it for
 
-defining surface patterns and basic color.
+defining surface patterns and basic color. Ground and wall patterns should stay stable as the camera moves, without rippling shimmer, and a grazing view should not turn the whole surface to mush. That is sampling of the surface colour, not a different material. (Former entry DIAG-03, “Distant texture shimmer”, is merged here.)
 
 ## Tunable parameters
 

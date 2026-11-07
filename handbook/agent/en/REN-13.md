@@ -1,5 +1,7 @@
 # REN-13 · Normal mapping/Bump mapping
 
+**Aliases:** Detail normal; Reoriented normal mapping; RNM; 細節法線; 法線疊加
+
 **Group:** Materials & surfaces
 **Subcategory:** Material Color, Surface Detail, and Light Transmission
 
@@ -13,7 +15,7 @@ bump is a broader term; normal maps are a common method that stores normals dire
 
 ## Use it for
 
-wrinkles, scratches, and mortar joints without adding large amounts of geometry.
+wrinkles, scratches, and mortar joints without adding large amounts of geometry. A weave or pore normal layered over a larger shape should stay readable on slopes instead of flattening or pointing the wrong way. (Former entry DIAG-07, “Detail normal blending”, is merged here.)
 
 ## Tunable parameters
 

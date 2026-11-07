@@ -1,5 +1,7 @@
 # ACT-25 · Cancel Window / Action Window
 
+**Aliases:** Frame advantage; Plus on hit; Minus on block; 幀有利; 幀不利
+
 **Group:** Combat feedback & game feel
 **Subcategory:** Combat Timing, Hit Reactions, and Protection
 
@@ -13,7 +15,7 @@ An input-buffer window determines when a button press can be remembered; a cance
 
 ## Use it for
 
-Balance immediate response against attack risk. Conditions can differ by destination action, whether the attack hit, and other factors.
+Balance immediate response against attack risk. Conditions can differ by destination action, whether the attack hit, and other factors. Who may act again first after contact is a timing difference in matchup data, not a separate animation. Read it together with this cancel window; the sign alone does not decide the next move. (Former entry ACT-26, “Frame advantage”, is merged here.)
 
 ## Tunable parameters
 

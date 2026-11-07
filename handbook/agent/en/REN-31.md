@@ -1,5 +1,7 @@
 # REN-31 · Tone mapping/Tonemapper/Filmic curve
 
+**Aliases:** HDR; High dynamic range; Tone mapping order; 高光爆白; Blown-out highlights; HDR 渲染
+
 **Group:** Post-processing & screen filters
 **Subcategory:** Cameras, Color, and Post-Processing
 
@@ -13,7 +15,7 @@ this is not simply brightening, nor is it color grading. Real-time curves labele
 
 ## Use it for
 
-converting scene brightness into a displayable image and establishing its tonal character.
+converting scene brightness into a displayable image and establishing its tonal character. Strong lights should keep a gradient from white into colour instead of a flat clipped patch. Exposure and tone mapping affect the scene only, so HUD and subtitles do not dim with them. High dynamic range is a range of scene brightness, not a look. (Former entries DIAG-04, “Blown-highlight diagnosis”, and REN-28, “HDR”, are merged here.)
 
 ## Tunable parameters
 

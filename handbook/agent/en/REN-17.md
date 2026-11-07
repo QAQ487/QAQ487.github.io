@@ -1,5 +1,7 @@
 # REN-17 · Alpha clipping/Alpha test/Cutout/Alpha scissor
 
+**Aliases:** Alpha-to-coverage; A2C; AlphaToMask; 樹葉邊緣鋸齒; Cutout shimmer
+
 **Group:** Materials & surfaces
 **Subcategory:** Material Color, Surface Detail, and Light Transmission
 
@@ -13,7 +15,7 @@ this differs from gradual alpha blending. Hard edges can alias or shimmer; alpha
 
 ## Use it for
 
-foliage, fences, and hard-edged holes; a noise mask with a moving threshold can create a dissolve disappearance.
+foliage, fences, and hard-edged holes; a noise mask with a moving threshold can create a dissolve disappearance. Hard cutouts such as leaves and chain-link should not shimmer along their whole outline as the camera moves. When multisampling is on, let the texture’s opacity set edge coverage instead of inventing a second transparency. (Former entry DIAG-06, “Alpha-to-coverage”, is merged here.)
 
 ## Tunable parameters
 

@@ -1,6 +1,6 @@
 # LGT-01 · Directional, point and spot lights
 
-**Aliases:** Light types; Sun light; Omni light; Spotlight; Punctual lights
+**Aliases:** Light types; Sun light; Omni light; Spotlight; Punctual lights; Forward+; Clustered shading; Deferred rendering; Tiled forward; 多光源管線
 
 **Group:** Lighting & shadows
 **Subcategory:** Light sources
@@ -15,7 +15,7 @@ Not light attenuation (LGT-02, how brightness falls off with distance) and not a
 
 ## Use it for
 
-Setting the key light and mood: directional for daytime exteriors, point lights for interiors and night, spot lights for searchlights, flashlights, stages and guard vision cones.
+Setting the key light and mood: directional for daytime exteriors, point lights for interiors and night, spot lights for searchlights, flashlights, stages and guard vision cones. How many dynamic lights the frame can hold is a pipeline limit; it does not change how one light looks. (Former entry LGT-11, “Many-light pipelines”, is merged here.)
 
 ## Tunable parameters
 

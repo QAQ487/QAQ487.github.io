@@ -1,5 +1,7 @@
 # REN-10 · Specular highlight
 
+**Aliases:** Specular shimmer; Sparkling highlights; 高光閃點; Toksvig
+
 **Group:** Materials & surfaces
 **Subcategory:** Material Color, Surface Detail, and Light Transmission
 
@@ -13,7 +15,7 @@ a highlight is not emission. It is related to reflection, but “some specular�
 
 ## Use it for
 
-conveying curvature, wetness, and material character; highlights can also be stylized into stars or hard-edged patches.
+conveying curvature, wetness, and material character; highlights can also be stylized into stars or hard-edged patches. Highlights on wet ground and metal should move with the light and the camera and stay one readable lobe. White sparkles that dance as soon as the camera moves are unstable highlight sampling, not the highlight to request. (Former entry DIAG-10, “Specular shimmer”, is merged here.)
 
 ## Tunable parameters
 

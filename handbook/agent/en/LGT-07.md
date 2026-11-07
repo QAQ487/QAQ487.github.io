@@ -11,7 +11,7 @@ Many invisible sample points (probes) are placed in the scene ahead of time, eac
 
 ## Not to be confused with
 
-Not reflection probes (REN-23 Reflections / IBL, which capture a sharp environment image for reflections); light probes store only low-frequency diffuse light. Not lightmaps (LGT-06, applied to static surfaces); probes are for dynamic objects.
+Not reflection probes (REN-23 Reflections / IBL, which capture a sharp environment image for reflections); light probes store only low-frequency diffuse light. Not lightmaps (REN-25, applied to static surfaces); probes are for dynamic objects.
 
 ## Use it for
 
@@ -31,11 +31,10 @@ Bake irradiance per probe as L2 spherical harmonics (9 RGB coefficients). At run
 
 ## Related
 
-- [LGT-06](LGT-06.md) — Baked lighting
+- [REN-25](REN-25.md) — Cast shadows/Soft shadows/Penumbra
 - [REN-23](REN-23.md) — Reflections/Image-Based Lighting (IBL)/Reflection probes
 - [REN-20](REN-20.md) — Global illumination/GI/Indirect lighting/Color bleeding
 - [LGT-01](LGT-01.md) — Directional, point and spot lights
-- [DIAG-08](DIAG-08.md) — Box-projected (parallax-corrected) cubemaps
 
 ## References
 

@@ -27,12 +27,11 @@ Switch the game's point lights to inverse-square with a radius window: intensity
 
 ## Implementation hint
 
-Evaluate per pixel from the distance to the light. Common windowed form: falloff = saturate(1 − (d/r)^4)^2 / (d² + 1). The radius also bounds the light for culling (LGT-11). For stylised 2D, sample a 1D falloff texture/LUT instead of a formula.
+Evaluate per pixel from the distance to the light. Common windowed form: falloff = saturate(1 − (d/r)^4)^2 / (d² + 1). The radius also bounds the light for culling (LGT-01). For stylised 2D, sample a 1D falloff texture/LUT instead of a formula.
 
 ## Related
 
 - [LGT-01](LGT-01.md) — Directional, point and spot lights
-- [LGT-11](LGT-11.md) — Forward+, clustered and deferred shading
 - [PIX-21](PIX-21.md) — Normal-mapped sprites
 - [REN-26](REN-26.md) — Fog/Distance fog/Depth fog
 

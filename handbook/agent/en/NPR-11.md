@@ -35,8 +35,8 @@ Vertex shader: clip = MVP*pos; ndc = clip.xy/clip.w; ndc = round(ndc*grid/2)/(gr
 - [NPR-13](NPR-13.md) — 3D pixel art (pixelated 3D)
 - [PIX-02](PIX-02.md) — Pixel snapping
 - [PP-03](PP-03.md) — CRT filter
-- [REN-37](REN-37.md) — Aliasing/Jaggies/Shimmering/Specular aliasing
-- [DIAG-03](DIAG-03.md) — Mipmapping and anisotropic filtering
+- [PP-10](PP-10.md) — Sharpening
+- [REN-07](REN-07.md) — Base color/Albedo/Diffuse color
 
 ## References
 
