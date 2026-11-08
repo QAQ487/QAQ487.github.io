@@ -1,6 +1,6 @@
 # REN-34 · Depth of Field/DoF/Bokeh
 
-**Aliases:** Depth of field; DOF; 景深; 敘事對焦; 焦點在眼睛
+**Aliases:** Depth of field; DOF; 景深; 敘事對焦; 焦點在眼睛; Miniature; Tilt-shift; Tilt shift; Split-field diopter; Split diopter; 雙焦點濾鏡; スプリット・ディオプター; 微型景深; 移軸
 
 **Group:** Post-processing & screen filters
 **Subcategory:** Cameras, Color, and Post-Processing
@@ -28,6 +28,11 @@ In your game, add depth of field: use a 50 mm lens at f/2.0 focused at 4 meters,
 ## Implementation hint
 
 Derive a circle of confusion from camera focus and aperture, then gather or scatter color while respecting foreground/background depth boundaries. Treat transparent and hair-like geometry with an explicit compositing strategy.
+
+## Related
+
+- [PP-16](PP-16.md) — Prism filter / Split-prism image
+- [REN-35](REN-35.md) — Lens flare/Lens ghost
 
 ## References
 

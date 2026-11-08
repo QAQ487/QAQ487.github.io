@@ -1,5 +1,7 @@
 # REN-35 · Lens flare/Lens ghost
 
+**Aliases:** Anamorphic flare; Streak filter; Anamorphic streaks; 變形鏡頭橫向光斑; 拉絲濾鏡; アナモフィックフレア; ストリークフィルター
+
 **Group:** Post-processing & screen filters
 **Subcategory:** Cameras, Color, and Post-Processing
 
@@ -26,6 +28,12 @@ In your game, add lens flare: when the sun exceeds brightness 6, create five gho
 ## Implementation hint
 
 Generate lens ghosts and streaks from bright, visible light sources or bright image regions using a controlled optical-style layout. Test source occlusion and suppress the effect when the light is behind solid geometry.
+
+## Related
+
+- [REN-34](REN-34.md) — Depth of Field/DoF/Bokeh
+- [CIN-01](CIN-01.md) — Letterbox
+- [PP-16](PP-16.md) — Prism filter / Split-prism image
 
 ## References
 

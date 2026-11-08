@@ -35,6 +35,7 @@ Two screen-space black quads drawn after the scene and before (or instead of) th
 - [CIN-03](CIN-03.md) — Scripted camera
 - [TRN-01](TRN-01.md) — Fade to black
 - [FB-09](FB-09.md) — Camera punch-in
+- [REN-35](REN-35.md) — Lens flare/Lens ghost
 
 ## References
 

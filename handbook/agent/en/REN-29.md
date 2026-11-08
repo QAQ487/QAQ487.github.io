@@ -1,5 +1,7 @@
 # REN-29 · Bloom/Glow
 
+**Aliases:** Film halation; Red halation; Halation; Optical diffusion; Black mist; Black-mist filter; 菲林紅暈; 黑柔濾鏡; フィルム・ハレーション; ブラックミスト
+
 **Group:** Post-processing & screen filters
 **Subcategory:** Cameras, Color, and Post-Processing
 
@@ -26,6 +28,11 @@ In your game, add bloom: use threshold 1.2, soft knee 0.5, intensity 0.35, and a
 ## Implementation hint
 
 Extract or weight bright image regions, blur them across several scales, and add the result back conservatively. Keep the source image intact and expose controls that prevent halos from swallowing nearby detail.
+
+## Related
+
+- [LGT-15](LGT-15.md) — Komorebi / dappled canopy light
+- [CIN-14](CIN-14.md) — Flashback filter
 
 ## References
 

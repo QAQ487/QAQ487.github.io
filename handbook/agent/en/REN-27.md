@@ -1,5 +1,7 @@
 # REN-27 · Volumetric lighting/Volumetric fog/Light shafts/God rays
 
+**Aliases:** Dust motes in shafts; God-ray dust; 光柱塵埃; 光束中的浮塵; 光線の中の塵
+
 **Group:** Lighting & shadows
 **Subcategory:** Lighting, Occlusion, Reflections, and Atmosphere
 
@@ -26,6 +28,11 @@ In your game, add volumetric lighting: send sunlight through church windows into
 ## Implementation hint
 
 Integrate light scattering and extinction through a participating medium, including shadowed regions along each view path. Use jittered low-resolution sampling and guarded temporal accumulation to balance cost and stability.
+
+## Related
+
+- [ENV-11](ENV-11.md) — Ambient particles
+- [LGT-15](LGT-15.md) — Komorebi / dappled canopy light
 
 ## References
 

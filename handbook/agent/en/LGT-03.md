@@ -7,11 +7,11 @@
 
 ## What you see
 
-As if a cut-out plate sits in front of the light, the light on the floor and walls carries a pattern: window-frame bars, dappled light through leaves, coloured stained glass; the pattern moves or rotates with the light.
+As if a cut-out plate sits in front of the light, the light on the floor and walls carries a pattern: window-frame bars, dappled light through leaves, coloured stained glass; the pattern moves or rotates with the light. A cookie/gobo is a cheap projector-mask method for imitating komorebi (LGT-15) or cloud shadows (ENV-07), but this entry names the mask — not those phenomena.
 
 ## Not to be confused with
 
-Not a shadow (REN-25 Cast shadows / REN-25, made by real objects blocking light); a cookie is just a texture attached to the light, with no actual window or leaves needed in the scene. Not cloud shadows (ENV-07, usually a large layer scrolling over the whole ground).
+Not a shadow (REN-25 Cast shadows / REN-25, made by real objects blocking light); a cookie is just a texture attached to the light, with no actual window or leaves needed in the scene. Not the cloud-shadow phenomenon itself (ENV-07, large terrain-scale moving shade) nor komorebi itself (LGT-15, small rounded leaf spots) — those are the looks being imitated; the cookie is the projector mask.
 
 ## Use it for
 
@@ -33,6 +33,7 @@ Project the shaded point into the light's space (spot: its view-projection; dire
 
 - [LGT-01](LGT-01.md) — Directional, point and spot lights
 - [ENV-07](ENV-07.md) — Cloud shadows
+- [LGT-15](LGT-15.md) — Komorebi / dappled canopy light
 - [REN-25](REN-25.md) — Cast shadows/Soft shadows/Penumbra
 - [LGT-14](LGT-14.md) — Moving light pool from a swinging fixture
 

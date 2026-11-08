@@ -52,12 +52,16 @@ DEMOS['REN-02']={d:5,f:(c,t)=>{const o=outData(c),d=o.data,L=rnL(t);rnBg(d,[28,3
  for(const[cx,unlit]of[[60,1],[180,0]])rnBall(d,cx,70,32,(nx,ny,nz)=>{if(unlit)return[210,150,70];const nd=Math.max(0,nx*L[0]+ny*L[1]+nz*L[2]),k=.15+.85*nd,sp=Math.pow(Math.max(0,nx*L[0]+ny*L[1]+nz*(L[2]+1))/Math.hypot(L[0],L[1],L[2]+1),60)*200;return[210*k+sp,150*k+sp*.9,70*k+sp*.6]});
  c.putImageData(o,0,0);rnDiv(c,120);rnSun(c,L,180,70,52);prTag(c,'UNLIT',4,4,P.gold);prTag(c,'LIT',124,4,P.cyan);prTag(c,'light moves — unlit stays flat',120,126,'#e9edf2','rgba(10,14,24,.75)',6,'center')}};
 
-/* REN-03 Toon bands vs continuous Lambert */
-DEMOS['REN-03']={d:5,f:(c,t)=>{const o=outData(c),d=o.data,L=rnL(t);rnBg(d,[50,58,72],[22,26,36]);
- for(const[cx,toon]of[[60,0],[180,1]])rnBall(d,cx,68,34,(nx,ny,nz)=>{const nd=Math.max(0,nx*L[0]+ny*L[1]+nz*L[2]);let k;if(!toon)k=.12+.88*nd;else k=nd>.72?.95:nd>.38?.62:.28;const B=[220,96,78];return[B[0]*k,B[1]*k,B[2]*k]});
+/* REN-03 Toon bands vs continuous Lambert (+ wrap / Half-Lambert phase) */
+DEMOS['REN-03']={d:6,f:(c,t)=>{const o=outData(c),d=o.data,L=rnL(t),ph=Math.min(2,Math.floor(t*3));rnBg(d,[50,58,72],[22,26,36]);
+ /* 0: Lambert | toon 3-tone · 1: wrap · 2: Half-Lambert */
+ for(const[cx,right]of[[60,0],[180,1]])rnBall(d,cx,68,34,(nx,ny,nz)=>{const nd=nx*L[0]+ny*L[1]+nz*L[2];let k;if(!right){if(ph===0)k=.12+.88*Math.max(0,nd);else if(ph===1){const w=.35;k=.12+.88*clamp((nd+w)/(1+w))}else k=.12+.88*(nd*.5+.5)}
+  else{if(ph===0)k=nd>.72?.95:nd>.38?.62:.28;else if(ph===1){const w=.35,nw=clamp((nd+w)/(1+w));k=nw>.72?.95:nw>.38?.62:.28}else{const hl=nd*.5+.5;k=hl>.72?.95:hl>.38?.62:.28}}
+  const B=[220,96,78];return[B[0]*k,B[1]*k,B[2]*k]});
  c.putImageData(o,0,0);rnDiv(c,120);rnSun(c,L,180,68,55);
  for(let i=0;i<3;i++)R(c,188+i*14,118,12,6,['rgb(62,27,22)','rgb(136,59,48)','rgb(209,91,74)'][i]);
- prTag(c,'smooth',4,4);prTag(c,'TOON bands',124,4,P.cyan)}};
+ const labs=[['LAMBERT','TOON 3-tone'],['WRAP','TOON + wrap'],['HALF-LAMBERT','TOON + H-L']];
+ prTag(c,labs[ph][0],4,4,P.gold);prTag(c,labs[ph][1],124,4,P.cyan);tl(c,t,[1/3,2/3])}};
 
 /* REN-04 Outline: inverted-hull shell vs image-edge */
 DEMOS['REN-04']={d:5,f:(c,t)=>{const bob=Math.round(Math.sin(t*TAU)*3);for(const i of[0,1])prLane(c,i,i?'EDGE detect':'SHELL (hull)',i?P.gold:P.cyan,gy=>{house(c,50,gy);tree(c,170,gy);const hx=120,hy=gy+bob;if(!i){const t=TMP(),g=t.getContext('2d');g.imageSmoothingEnabled=false;g.save();g.translate(hx,hy);g.scale(2.35,2.35);spr(g,'hero',0,0,{sx:1,sy:1});g.globalCompositeOperation='source-atop';R(g,-20,-24,40,40,P.ink);g.restore();c.drawImage(t,0,0);spr(c,'hero',hx,hy,{sx:2,sy:2})}
@@ -202,24 +206,29 @@ DEMOS['REN-26']={d:5,f:(c,t)=>{const dens=.1+.85*prTri(t),hx=50+Math.sin(t*TAU)*
  tree(c,40,100);house(c,100,100);tree(c,180,100);spr(c,'hero',hx,100,{sx:2,sy:2,flip:Math.cos(t*TAU)<0});
  prTag(c,'fog dens '+dens.toFixed(2),4,4,P.cyan);prTag(c,'far washes out',W-4,4,'#e9edf2','rgba(10,14,24,.75)',6,'right')}};
 
-/* REN-27 God rays / light shafts */
+/* REN-27 God rays / light shafts + dust motes */
 DEMOS['REN-27']={d:5,f:(c,t)=>{c.drawImage(scene('enight'),0,0);R(c,0,0,W,H,'rgba(5,8,20,.45)');
  const lx=40+Math.sin(t*TAU)*20,ly=10;circ(c,lx,ly,4,'#fff6c8');
  c.save();c.globalCompositeOperation='lighter';for(let i=0;i<7;i++){const a=-.2+i*.12+Math.sin(t*TAU+i)*.03,len=130;const gr=c.createLinearGradient(lx,ly,lx+Math.cos(a)*len,ly+Math.sin(a)*len+80);gr.addColorStop(0,'rgba(255,220,150,.35)');gr.addColorStop(.5,'rgba(255,180,100,.12)');gr.addColorStop(1,'rgba(255,160,80,0)');c.fillStyle=gr;c.beginPath();c.moveTo(lx,ly);c.lineTo(lx+Math.cos(a-0.04)*len,ly+Math.sin(a-.04)*len+80);c.lineTo(lx+Math.cos(a+.04)*len,ly+Math.sin(a+.04)*len+80);c.closePath();c.fill()}
- /* occluder cuts shaft */
+ /* dust motes drifting; brighten inside beams */
+ for(let i=0;i<28;i++){const a0=-.2+(i%7)*.12,len=20+hash(i)*100;const px=lx+Math.cos(a0)*len+Math.sin(t*TAU*1.3+i)*6,py=ly+Math.sin(a0)*len+80*(len/130)+Math.cos(t*TAU*.9+i*1.7)*4;const inBeam=1;const a=.25+.55*hash(i+3);R(c,px,py,1+hash(i+5)>.7?2:1,'rgba(255,240,200,'+(a*inBeam)+')')}
  house(c,90,100);c.restore();R(c,90,55,36,45,'#1a2030');R(c,88,50,40,8,P.roofD);
- prTag(c,'godrays',4,4,P.gold);prTag(c,'occluder blocks beam',W-4,4,'#e9edf2','rgba(10,14,24,.75)',6,'right')}};
+ prTag(c,'godrays + dust',4,4,P.gold);prTag(c,'occluder blocks beam',W-4,4,'#e9edf2','rgba(10,14,24,.75)',6,'right')}};
 
 /* REN-28 HDR values > 1 (stored), SDR can't show */
 DEMOS['REN-28']={d:5,f:(c,t)=>{const peak=.4+6*t,hi=Math.min(5,Math.floor(t*6));R(c,0,0,W,H,'#141a24');
  const sw=[.2,.5,1,2,4,8];for(let i=0;i<6;i++){const v=sw[i]*peak/4,x=16+i*36,disp=Math.min(1,v);R(c,x,40,30,50,'rgb('+Math.round(disp*255)+','+Math.round(disp*220)+','+Math.round(disp*160)+')');txt(c,sw[i]+'×',x+15,100,sw[i]>1?P.gold:'#e9edf2',6);if(v>1){prDash(c,x,40,30,50,P.red);txt(c,'CLIP',x+15,55,P.red,5)}if(i===hi)prDash(c,x-1,39,32,52,P.cyan)}
  R(c,8,112,224,6,'#5e636e');R(c,8+t*220,110,4,10,P.gold);spr(c,'hero',20+t*200,128,{sx:1.5,sy:1.5});prTag(c,'HDR peak '+peak.toFixed(1),4,4,P.gold);prTag(c,'SDR display clips >1',W-4,4,P.red,'rgba(10,14,24,.75)',6,'right')}};
 
-/* REN-29 Bloom: extract bright → blur → add */
-DEMOS['REN-29']={d:5,f:(c,t)=>{const on=t>.5;c.drawImage(scene('enight'),0,0);R(c,0,0,W,H,'rgba(0,0,10,.35)');
+/* REN-29 Bloom / HALATION / BLACK-MIST cycle */
+DEMOS['REN-29']={d:6,f:(c,t)=>{const ph=Math.min(2,Math.floor(t*3));c.drawImage(scene('enight'),0,0);R(c,0,0,W,H,'rgba(0,0,10,.35)');
  const lx=120+Math.sin(t*TAU)*40,ly=40;circ(c,lx,ly,5,'#fff8e0');circ(c,lx,ly,2,'#fff');
- if(on){c.save();c.globalCompositeOperation='lighter';for(const r of[10,18,28,40]){const gr=c.createRadialGradient(lx,ly,0,lx,ly,r);gr.addColorStop(0,'rgba(255,230,180,'+(r===10?.7:.25*10/r)+')');gr.addColorStop(1,'rgba(255,180,80,0)');c.fillStyle=gr;c.fillRect(lx-r,ly-r,2*r,2*r)}c.restore()}
- prTag(c,on?'BLOOM extract+blur':'threshold only',4,4,on?P.cyan:P.gold);prTag(c,'bright pixels spill',W-4,4,'#e9edf2','rgba(10,14,24,.75)',6,'right')}};
+ c.save();c.globalCompositeOperation='lighter';
+ if(ph===0){for(const r of[10,18,28,40]){const gr=c.createRadialGradient(lx,ly,0,lx,ly,r);gr.addColorStop(0,'rgba(255,230,180,'+(r===10?.7:.25*10/r)+')');gr.addColorStop(1,'rgba(255,180,80,0)');c.fillStyle=gr;c.fillRect(lx-r,ly-r,2*r,2*r)}}
+ else if(ph===1){/* HALATION: red fringe beyond bloom */for(const r of[12,22,34]){const gr=c.createRadialGradient(lx,ly,0,lx,ly,r);gr.addColorStop(0,'rgba(255,230,180,.55)');gr.addColorStop(1,'rgba(255,180,80,0)');c.fillStyle=gr;c.fillRect(lx-r,ly-r,2*r,2*r)}for(const r of[28,42,56]){const gr=c.createRadialGradient(lx,ly,r*.4,lx,ly,r);gr.addColorStop(0,'rgba(220,40,50,0)');gr.addColorStop(.5,'rgba(220,40,50,.35)');gr.addColorStop(1,'rgba(180,20,40,0)');c.fillStyle=gr;c.fillRect(lx-r,ly-r,2*r,2*r)}}
+ else{/* BLACK-MIST: soft diffusion veil */for(const r of[16,30,48,70]){const gr=c.createRadialGradient(lx,ly,0,lx,ly,r);gr.addColorStop(0,'rgba(255,240,220,'+(r===16?.4:.12*16/r)+')');gr.addColorStop(1,'rgba(200,210,220,0)');c.fillStyle=gr;c.fillRect(lx-r,ly-r,2*r,2*r)}c.globalCompositeOperation='source-over';c.fillStyle='rgba(180,190,200,.12)';c.fillRect(0,0,W,H)}
+ c.restore();
+ const lab=['BLOOM','HALATION (red fringe)','BLACK-MIST'][ph];prTag(c,lab,4,4,ph===1?P.red:P.cyan);prTag(c,'cycle variants',W-4,4,'#e9edf2','rgba(10,14,24,.75)',6,'right');tl(c,t,[1/3,2/3])}};
 
 /* REN-31 Tonemap compresses HDR into display range */
 DEMOS['REN-31']={d:5,f:(c,t)=>{const o=outData(c),d=o.data,L=rnL(t),on=t>.5;rnBg(d,[20,24,36],[8,10,16]);
@@ -228,26 +237,29 @@ DEMOS['REN-31']={d:5,f:(c,t)=>{const o=outData(c),d=o.data,L=rnL(t),on=t>.5;rnBg
  /* curve plot */R(c,8,100,50,28,'rgba(10,14,24,.75)');for(let i=0;i<48;i++){const x=i/47,y=on?x/(1+x):Math.min(1,x*1.8);R(c,10+i,126-y*24,1,1,on?P.cyan:P.red)}
  prTag(c,on?'TONEMAP reinhard':'CLIP hard',4,4,on?P.cyan:P.red);prTag(c,'highlights kept',W-4,4,'#e9edf2','rgba(10,14,24,.75)',6,'right')}};
 
-/* REN-32 Color grade / LUT palette shift */
-DEMOS['REN-32']={d:5,f:(c,t)=>{const w=prTri(t),s=imgData('eday').data,o=outData(c),d=o.data;
- const A=[1,1,1,0,0,0],B=w<.5?[1.15,.92,.7,14,-8,-24]:[.8,.95,1.2,-12,6,28],k=w<.5?w*2:(w-.5)*2;
+/* REN-32 Color grade / LUT palette shift (+ day-for-night) */
+DEMOS['REN-32']={d:6,f:(c,t)=>{const ph=Math.min(2,Math.floor(t*3)),k=ease((t*3)%1),s=imgData('eday').data,o=outData(c),d=o.data;
+ const A=[1,1,1,0,0,0],B=[[1.15,.92,.7,14,-8,-24],[.8,.95,1.2,-12,6,28],[.45,.55,.95,-20,-10,40]][ph];
  const grade=A.map((v,i)=>lerp(v,B[i],k));
  for(let i=0;i<d.length;i+=4){d[i]=clamp(s[i]*grade[0]+grade[3],0,255);d[i+1]=clamp(s[i+1]*grade[1]+grade[4],0,255);d[i+2]=clamp(s[i+2]*grade[2]+grade[5],0,255);d[i+3]=255}
- c.putImageData(o,0,0);spr(c,'hero',40+Math.sin(t*TAU)*30,100,{sx:2,sy:2});prTag(c,w<.5?'→ warm LUT':'→ cool LUT',4,4,P.gold);R(c,W-50,8,42,4,'#5e636e');R(c,W-50+w*38,6,4,8,P.gold)}};
+ c.putImageData(o,0,0);spr(c,'hero',40+Math.sin(t*TAU)*30,100,{sx:2,sy:2});prTag(c,['→ warm LUT','→ cool LUT','→ day-for-night'][ph],4,4,ph===2?P.cyan:P.gold);R(c,W-50,8,42,4,'#5e636e');R(c,W-50+k*38,6,4,8,P.gold);tl(c,t,[1/3,2/3])}};
 
-/* REN-34 Depth of field */
-DEMOS['REN-34']={d:6,f:(c,t)=>{const f=prKeys([[0,0],[.3,0],[.5,1],[.8,1],[1,0]],prWrap(t));const k=TMP(),g=k.getContext('2d');g.drawImage(scene('eday'),0,0);const nx=170+Math.sin(t*TAU)*8;shadow(g,nx,74,5);prWalker(g,nx,74,t*8,{name:'npc',s:1.5,flip:Math.cos(t*TAU)<0});
+/* REN-34 Depth of field + SPLIT-DIOPTER lane */
+DEMOS['REN-34']={d:7,f:(c,t)=>{const split=t>=.5;if(!split){const f=prKeys([[0,0],[.3,0],[.5,1],[.8,1],[1,0]],prWrap(t*2));const k=TMP(),g=k.getContext('2d');g.drawImage(scene('eday'),0,0);const nx=170+Math.sin(t*TAU)*8;shadow(g,nx,74,5);prWalker(g,nx,74,t*8,{name:'npc',s:1.5,flip:Math.cos(t*TAU)<0});
  c.save();c.filter='blur('+((1-f)*2.2).toFixed(2)+'px)';c.drawImage(k,0,0);c.restore();
  const k2=TMP2(),g2=k2.getContext('2d');fence(g2,-4,140,14);spr(g2,'hero',62,142,{sx:5,sy:5});c.save();c.filter='blur('+(f*2.8).toFixed(2)+'px)';c.drawImage(k2,0,0);c.restore();
- R(c,70,4,100,12,'rgba(10,14,24,.75)');txt(c,'near',76,10,f<.5?P.cyan:'#9aa6b8',6,'left');txt(c,'far',164,10,f>.5?P.cyan:'#9aa6b8',6,'right');R(c,96,9,46,1,'#5e636e');R(c,96+f*44,7,3,5,P.gold);prTag(c,'DoF focus',4,122,P.gold)}};
+ R(c,70,4,100,12,'rgba(10,14,24,.75)');txt(c,'near',76,10,f<.5?P.cyan:'#9aa6b8',6,'left');txt(c,'far',164,10,f>.5?P.cyan:'#9aa6b8',6,'right');R(c,96,9,46,1,'#5e636e');R(c,96+f*44,7,3,5,P.gold);prTag(c,'DoF focus',4,122,P.gold)}
+ else{/* SPLIT-DIOPTER: near+far sharp, middle soft */const base=TMP(),g=base.getContext('2d');g.drawImage(scene('eday'),0,0);shadow(g,50,100,5);spr(g,'hero',50,100,{sx:2,sy:2});shadow(g,200,70,4);spr(g,'npc',200,70,{sx:1.3,sy:1.3});
+ c.drawImage(base,0,0);/* soft middle band */const soft=TMP2(),sg=soft.getContext('2d');sg.drawImage(base,0,0);c.save();c.beginPath();c.rect(90,0,60,H);c.clip();c.filter='blur(2.4px)';c.drawImage(soft,0,0);c.restore();
+ c.strokeStyle=P.gold;c.setLineDash([3,2]);c.strokeRect(90.5,1,59,H-2);c.setLineDash([]);prTag(c,'SPLIT-DIOPTER',4,4,P.gold);prTag(c,'near+far sharp · mid soft',4,122,P.cyan)}
+ tl(c,t,[.5])}};
 
-/* REN-35 Lens flare ghosts */
+/* REN-35 Lens flare ghosts + long directional streaks */
 DEMOS['REN-35']={d:5,f:(c,t)=>{c.drawImage(scene('eday'),0,0);const lx=30+Math.sin(t*TAU)*20,ly=24,cx=W/2,cy=H/2;
  circ(c,lx,ly,4,'#fff8e0');c.save();c.globalCompositeOperation='lighter';const gr=c.createRadialGradient(lx,ly,0,lx,ly,30);gr.addColorStop(0,'rgba(255,240,200,.8)');gr.addColorStop(1,'rgba(255,200,100,0)');c.fillStyle=gr;c.fillRect(0,0,W,H);
- /* ghosts along light→center axis */
  for(let i=1;i<=5;i++){const u=.3+i*.15,gx=lerp(lx,2*cx-lx,u),gy=lerp(ly,2*cy-ly,u),r=3+i*2,a=.35-i*.04;circ(c,gx,gy,r,'rgba(180,220,255,'+a+')');circ(c,gx,gy,r*.5,'rgba(255,200,220,'+(a*.7)+')')}
- /* streak */c.strokeStyle='rgba(255,240,200,.25)';c.lineWidth=1;c.beginPath();c.moveTo(lx-20,ly);c.lineTo(lx+40,ly);c.stroke();c.restore();
- prTag(c,'lens ghosts',4,4,P.gold);prTag(c,'along sun axis',W-4,4,'#e9edf2','rgba(10,14,24,.75)',6,'right')}};
+ /* long directional streaks from point light */const ang=Math.atan2(cy-ly,cx-lx);for(const da of[0,.15,-.15,.32,-.32]){const a=ang+da,len=90+Math.abs(da)*40;const sg=c.createLinearGradient(lx,ly,lx+Math.cos(a)*len,ly+Math.sin(a)*len);sg.addColorStop(0,'rgba(255,245,210,.55)');sg.addColorStop(.4,'rgba(255,220,160,.2)');sg.addColorStop(1,'rgba(255,200,120,0)');c.strokeStyle=sg;c.lineWidth=1.2+(.32-Math.abs(da))*2;c.beginPath();c.moveTo(lx,ly);c.lineTo(lx+Math.cos(a)*len,ly+Math.sin(a)*len);c.stroke()}
+ c.restore();prTag(c,'lens ghosts + streaks',4,4,P.gold);prTag(c,'along sun axis',W-4,4,'#e9edf2','rgba(10,14,24,.75)',6,'right')}};
 
 /* REN-36 Chromatic aberration */
 DEMOS['REN-36']={d:5,f:(c,t)=>{const amt=.5+7*prTri(t),s=imgData('eday').data,o=outData(c),d=o.data,cx=W/2+Math.sin(t*TAU)*20,cy=H/2;

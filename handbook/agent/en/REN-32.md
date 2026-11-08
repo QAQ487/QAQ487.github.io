@@ -1,6 +1,6 @@
 # REN-32 · Color grading/LUT/White balance
 
-**Aliases:** Linear workflow; sRGB; Gamma correction; 光暈疊加變髒; 漸層中間發暗
+**Aliases:** Linear workflow; sRGB; Gamma correction; 光暈疊加變髒; 漸層中間發暗; Split toning; Teal and orange; Teal & orange; 分離色調; 青橙調色; スプリットトーニング; ティール＆オレンジ; Day-for-night; American night; 日拍夜; デイ・フォー・ナイト
 
 **Group:** Post-processing & screen filters
 **Subcategory:** Cameras, Color, and Post-Processing
@@ -28,6 +28,14 @@ In your game, add whole-image color grading: set the snow scene white balance to
 ## Implementation hint
 
 Apply white balance and creative grading in a known color space at a fixed point in the display pipeline. Blend grades by scene state and verify that neutral references and skin tones remain controllable.
+
+## Related
+
+- [CIN-14](CIN-14.md) — Flashback filter
+- [PP-14](PP-14.md) — Bleach bypass / Skip bleach
+- [PP-17](PP-17.md) — Cross-processing / X-pro
+- [ENV-01](ENV-01.md) — Day-night cycle
+- [REN-30](REN-30.md) — Exposure/Auto exposure/Eye adaptation
 
 ## References
 

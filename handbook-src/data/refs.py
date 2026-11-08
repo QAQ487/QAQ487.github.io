@@ -99,7 +99,7 @@ REFS={
 
 # worker-owned extra refs (avoid edit conflicts): data/refs_vfx.py / data/refs_pix.py each define EXTRA={key:(title,url)}
 import importlib.util as _iu, os as _os
-for _m in ('refs_vfx','refs_pix','refs_ui','refs_nav','refs_lgt','refs_cin','refs_pp','refs_ani','refs_cam','refs_npr','refs_mat','refs_a11y','refs_diag','refs_phy','refs_batch2','refs_expand','refs_uihud','refs_motion'):
+for _m in ('refs_vfx','refs_pix','refs_ui','refs_nav','refs_lgt','refs_cin','refs_pp','refs_ani','refs_cam','refs_npr','refs_mat','refs_a11y','refs_diag','refs_phy','refs_batch2','refs_expand','refs_uihud','refs_motion','refs_graphics'):
     _p=_os.path.join(_os.path.dirname(__file__),_m+'.py')
     if _os.path.exists(_p):
         _s=_iu.spec_from_file_location(_m,_p);_mod=_iu.module_from_spec(_s);_s.loader.exec_module(_mod)

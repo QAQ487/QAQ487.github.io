@@ -35,6 +35,8 @@ Fullscreen post pass on the scene render target: luminance → tint multiply →
 - [FB-05](FB-05.md) — Status effect tint
 - [FB-16](FB-16.md) — Low-health vignette
 - [TRN-03](TRN-03.md) — Crossfade
+- [REN-29](REN-29.md) — Bloom/Glow
+- [REN-32](REN-32.md) — Color grading/LUT/White balance
 
 ## References
 

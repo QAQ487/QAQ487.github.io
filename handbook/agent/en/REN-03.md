@@ -1,5 +1,7 @@
 # REN-03 · Toon shading/Cel shading/Ramp shading
 
+**Aliases:** Three-tone; Three-tone shading; Wrap lighting; Half-Lambert; Painted shade masks; 三階明暗; 半朗伯; 包裹明暗; 手繪陰影遮罩
+
 **Group:** Stylized rendering (NPR)
 **Subcategory:** Overall Style and Outlines
 
@@ -26,6 +28,12 @@ In your game, add toon shading: use three lighting bands on the character with t
 ## Implementation hint
 
 Map a lighting term through an artist-authored ramp or a small set of thresholds, with separate controls for shadow and highlight bands. Keep face or hero-character overrides available where raw normals produce unwanted bands.
+
+## Related
+
+- [NPR-21](NPR-21.md) — Authored shadow colours
+- [NPR-22](NPR-22.md) — Core-shadow band
+- [NPR-23](NPR-23.md) — Art-directed face shadows
 
 ## References
 

@@ -7,11 +7,11 @@
 
 ## What you see
 
-On the floor of shallow water or on walls near water there is a constantly deforming bright net of light — sunlight focused by refraction through the waves.
+On the floor of shallow water, on adjacent walls or pool sides, a constantly deforming bright net of light — sunlight focused by refraction through the waves; the net moves with the waves.
 
 ## Not to be confused with
 
-Not surface ripples (ENV-12, on the surface); caustics appear on the bottom or lit objects as a net of bright lines.
+Not surface ripples (ENV-12, on the surface); not sun glitter / surface sparkles (ENV-21); not coloured window-light pools (LGT-16). Caustics appear on the bottom, adjacent walls or lit objects as a wave-driven net of bright lines.
 
 ## Use it for
 
@@ -23,7 +23,7 @@ texture scale · two-layer scroll speeds/directions · intensity · depth fallof
 
 ## Request prompt
 
-Add caustics to the clear spring in the game: additively blend a tileable caustics texture over the bottom tiles, sampling two layers scrolled in different directions and scales and taking min() to form a shifting net of bright lines; strength 0.35, shallows only.
+Add caustics to the clear spring in the game: additively blend a tileable caustics texture over the bottom tiles and nearby walls, sampling two layers scrolled in different directions and scales and taking min() to form a shifting net of bright lines; strength 0.35, shallows only.
 
 ## Implementation hint
 
@@ -33,6 +33,8 @@ Pixel shader: c = min(tex(uv*s1 + t*v1), tex(uv*s2 + t*v2)); out += c * intensit
 
 - [ENV-12](ENV-12.md) — Water surface
 - [ENV-13](ENV-13.md) — Ripples
+- [ENV-21](ENV-21.md) — Sun glitter / glittering water specular
+- [LGT-16](LGT-16.md) — Stained-glass colored light pool
 
 ## References
 
