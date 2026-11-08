@@ -27,6 +27,10 @@ In your game, add chromatic aberration: use 0 px offset at the center and ramp r
 
 Offset color channels radially by a small, position-dependent amount, normally increasing toward the image edge. Apply it before UI composition and clamp the displacement to preserve text and gameplay readability.
 
+## Related
+
+- [PP-16](PP-16.md) — Prism filter / Split-prism image
+
 ## References
 
 - [Unreal — Post Process Effects，Chromatic Aberration](https://dev.epicgames.com/documentation/en-us/unreal-engine/post-process-effects-in-unreal-engine)

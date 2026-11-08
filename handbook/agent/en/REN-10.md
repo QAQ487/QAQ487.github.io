@@ -29,6 +29,10 @@ In your game, add specular highlights: show one white spot about 6 px wide on ea
 
 Compute highlights from the light, view, surface normal, and micro-surface parameters. For stylized art, quantize or reshape the highlight after preserving its angle-dependent movement.
 
+## Related
+
+- [ENV-21](ENV-21.md) — Sun glitter / glittering water specular
+
 ## References
 
 - [Godot — Specular Mode](https://docs.godotengine.org/en/stable/tutorials/3d/standard_material_3d.html#specular-mode)

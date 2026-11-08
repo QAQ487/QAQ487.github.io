@@ -27,6 +27,10 @@ In your game, add rim lighting: give the hero a cyan rim covering about 6% insid
 
 Build a surface-edge mask from the view and normal angle, then optionally constrain it by light direction and occlusion. Apply the result inside the silhouette as a controlled lighting or emissive contribution.
 
+## Related
+
+- [LGT-17](LGT-17.md) — Backlit leaf translucency
+
 ## References
 
 - [Unity Shader Graph — Fresnel Effect Node](https://docs.unity3d.com/Packages/com.unity.shadergraph@17.0/manual/Fresnel-Effect-Node.html)

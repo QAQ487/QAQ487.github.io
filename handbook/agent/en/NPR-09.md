@@ -1,17 +1,17 @@
 # NPR-09 · Sketch / Pencil shader
 
-**Aliases:** Pencil rendering; Pencil sketch effect; Graphite shading; Sketchy outlines
+**Aliases:** Pencil rendering; Pencil sketch effect; Graphite shading; Sketchy outlines; Charcoal; Pastel; 炭筆; 木炭; 粉彩; パステル
 
 **Group:** Stylized rendering (NPR)
 **Subcategory:** Strokes & print
 
 ## What you see
 
-The image looks like a pencil sketch on paper: outlines are built from several slightly offset, sometimes broken strokes; shading is loose diagonal hatching with graphite grain; the paper tooth is clearly visible; colour is grey-black only, sometimes with lines that boil slightly.
+The image looks like a pencil sketch on paper: outlines are built from several slightly offset, sometimes broken strokes; shading is loose diagonal hatching with graphite grain; the paper tooth is clearly visible; colour is grey-black only, sometimes with lines that boil slightly. Related dry-media cousins — charcoal and pastel — stay under this card, not separate entries.
 
 ## Not to be confused with
 
-Not hatching (NPR-05, clean, regular pen-ink lines) nor edge-detection outlines (NPR-03, a single stable line). Pencil reads as repeated loose contours, graphite grain and paper texture.
+Not hatching (NPR-05, clean, regular pen-ink lines) nor edge-detection outlines (NPR-03, a single stable line). Pencil reads as repeated loose contours, graphite grain and paper texture; charcoal and pastel are related dry media, not separate cards.
 
 ## Use it for
 
@@ -35,6 +35,7 @@ Edge buffer from depth/normals; sketch = sum over passes i of edge(uv + noise_i(
 - [NPR-03](NPR-03.md) — Edge-detection outline
 - [NPR-04](NPR-04.md) — Line boil
 - [NPR-07](NPR-07.md) — Watercolor rendering
+- [NPR-15](NPR-15.md) — Sumi-e / ink-wash
 
 ## References
 

@@ -1,6 +1,6 @@
 # REN-34 · Depth of Field/DoF/Bokeh
 
-**Aliases:** Depth of field; DOF; 景深; 敘事對焦; 焦點在眼睛
+**Aliases:** Depth of field; DOF; 景深; 敘事對焦; 焦點在眼睛; Miniature; Tilt-shift; Tilt shift; Split-field diopter; Split diopter; 雙焦點濾鏡; スプリット・ディオプター; 微型景深; 移軸
 
 **Group:** Post-processing & screen filters
 **Subcategory:** Cameras, Color, and Post-Processing
@@ -15,19 +15,24 @@ DoF is the depth-of-field effect; bokeh emphasizes the character of out-of-focus
 
 ## Use it for
 
-directing attention, cinematic shots, and miniature looks. In dialogue, place the focus on the character’s eyes and let near and far scenery soften with distance. Screen-space HUD must stay fully sharp. (Former entry CAM-28, “Depth of field”, is merged here.)
+directing attention, cinematic shots, and miniature looks. In dialogue, place the focus on the character’s eyes and let near and far scenery soften with distance. Screen-space HUD must stay fully sharp. (Former entry CAM-28, “Depth of field”, is merged here.) Miniature / tilt-shift is a narrow band of focus; a split-field diopter keeps two sharp zones (often top/bottom) with a seam between — distinct from miniature/tilt-shift, not a separate card.
 
 ## Tunable parameters
 
-focus distance · aperture · focal length · near blur · far blur · bokeh blades
+focus distance · aperture · focal length · near blur · far blur · bokeh blades · miniature band · split-diopter seam · oval bokeh
 
 ## Request prompt
 
-In your game, add depth of field: use a 50 mm lens at f/2.0 focused at 4 meters, keep the character sharp from 3.5 to 4.5 meters, and turn lights beyond 12 meters into roughly 18 px hexagonal bokeh.
+In your game, add depth of field at 50 mm, f/2.0, focus 4 m; also demonstrate miniature/tilt-shift (narrow focus band) and a split-field diopter (near and far sharp with a seam) as distinct constructions, not synonyms.
 
 ## Implementation hint
 
-Derive a circle of confusion from camera focus and aperture, then gather or scatter color while respecting foreground/background depth boundaries. Treat transparent and hair-like geometry with an explicit compositing strategy.
+Derive a circle of confusion from camera focus and aperture, then gather or scatter color while respecting depth boundaries. Support a miniature/tilt-shift narrow focus band and a split-field diopter that keeps two separated zones sharp with a soft seam, without sharpening the intervening depths. Oval bokeh may accompany anamorphic framing notes.
+
+## Related
+
+- [PP-16](PP-16.md) — Prism filter / Split-prism image
+- [REN-35](REN-35.md) — Lens flare/Lens ghost
 
 ## References
 

@@ -34,6 +34,7 @@ Keep a handheldOffset quaternion/euler driven by 2–3 octaves of value/Perlin n
 - [CAM-30](CAM-30.md) — Camera shake／Screen shake
 - [UX-20](UX-20.md) — Reduced motion / Motion settings
 - [FB-07](FB-07.md) — Trauma-based screen shake
+- [PP-21](PP-21.md) — Gate weave / Film weave
 
 ## References
 

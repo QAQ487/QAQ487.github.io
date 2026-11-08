@@ -27,6 +27,10 @@ In your game, add subsurface scattering to skin: use a 1.2 mm scatter radius wit
 
 Diffuse lighting beneath the surface with a material-specific scattering profile and scale-aware radius. Use thickness or transmission data for backlit thin regions and prevent cross-object bleeding.
 
+## Related
+
+- [LGT-17](LGT-17.md) — Backlit leaf translucency
+
 ## References
 
 - [Godot — Standard Material 3D，Subsurface scattering](https://docs.godotengine.org/en/stable/tutorials/3d/standard_material_3d.html#subsurface-scattering)

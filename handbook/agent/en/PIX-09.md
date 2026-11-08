@@ -34,6 +34,8 @@ Art-side technique; engine side only needs indexed palettes (PIX-06) or authorin
 - [PIX-06](PIX-06.md) — Palette swap
 - [PIX-10](PIX-10.md) — Limited palette
 - [PIX-12](PIX-12.md) — Selective outlining
+- [NPR-21](NPR-21.md) — Authored shadow colours
+- [PP-17](PP-17.md) — Cross-processing / X-pro
 
 ## References
 

@@ -29,6 +29,10 @@ In your game, add normal mapping to a flat brick wall: use 20 cm bricks with app
 
 Perturb shading normals with a correctly decoded normal or height map while leaving mesh positions unchanged. Match tangent basis and channel orientation across asset creation and rendering.
 
+## Related
+
+- [NPR-23](NPR-23.md) — Art-directed face shadows
+
 ## References
 
 - [Godot — Normal map](https://docs.godotengine.org/en/stable/tutorials/3d/standard_material_3d.html#normal-map)

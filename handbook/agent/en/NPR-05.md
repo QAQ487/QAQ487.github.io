@@ -35,6 +35,8 @@ Screen-space: for each layer i, if tone < t_i and frac(dot(pixel, dir_i)/spacing
 - [NPR-09](NPR-09.md) — Sketch / Pencil shader
 - [PIX-08](PIX-08.md) — Dithering
 - [NPR-03](NPR-03.md) — Edge-detection outline
+- [NPR-15](NPR-15.md) — Sumi-e / ink-wash
+- [NPR-17](NPR-17.md) — Stroke-based impasto
 
 ## References
 

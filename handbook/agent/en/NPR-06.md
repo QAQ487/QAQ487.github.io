@@ -7,11 +7,11 @@
 
 ## What you see
 
-Fine noise and texture in the image are smeared into flat patches of colour, as if laid on with an oil brush, yet object edges stay sharp instead of the whole image blurring. Patch borders look slightly blocky or stroke-like.
+Fine noise and texture in the image are smeared into flat patches of colour, as if laid on with an oil brush, yet object edges stay sharp instead of the whole image blurring. Patch borders look slightly blocky or stroke-like. Kuwahara is a screen-space filter that clusters neighbourhoods — distinct from authored form-following strokes (NPR-17).
 
 ## Not to be confused with
 
-Not Gaussian blur (PP-08, which also blurs edges) nor posterization (PP-04, which only bands colours and keeps texture detail). Kuwahara flattens detail inside regions while preserving edges.
+Not Gaussian blur (PP-08, which also blurs edges) nor posterization (PP-04, which only bands colours and keeps texture detail) nor authored form-following strokes (NPR-17). Kuwahara flattens detail inside neighbourhoods while preserving edges, as a screen filter.
 
 ## Use it for
 
@@ -34,6 +34,7 @@ Per pixel, for each sector k: mean_k and var_k over the sector (box sums via a s
 - [PP-08](PP-08.md) — Gaussian blur
 - [PP-04](PP-04.md) — Posterization
 - [NPR-07](NPR-07.md) — Watercolor rendering
+- [NPR-17](NPR-17.md) — Stroke-based impasto
 - [REN-34](REN-34.md) — Depth of Field/DoF/Bokeh
 
 ## References

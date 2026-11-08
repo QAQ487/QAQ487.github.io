@@ -35,6 +35,7 @@ Ray-march the view ray through a spherical atmosphere shell; at each sample accu
 - [ENV-01](ENV-01.md) — Day-night cycle
 - [LGT-12](LGT-12.md) — Height fog
 - [REN-26](REN-26.md) — Fog/Distance fog/Depth fog
+- [LGT-19](LGT-19.md) — Hemisphere / sky–ground ambient
 
 ## References
 

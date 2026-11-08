@@ -35,6 +35,7 @@ Directional: L = −dir, constant intensity. Point: L = normalize(pos − p), mu
 - [LGT-05](LGT-05.md) — Area light
 - [PIX-21](PIX-21.md) — Normal-mapped sprites
 - [LGT-03](LGT-03.md) — Light cookie
+- [LGT-18](LGT-18.md) — Character–environment lighting separation
 
 ## References
 

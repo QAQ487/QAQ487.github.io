@@ -1,5 +1,7 @@
 # REN-35 · Lens flare/Lens ghost
 
+**Aliases:** Anamorphic flare; Streak filter; Anamorphic streaks; 變形鏡頭橫向光斑; 拉絲濾鏡; アナモフィックフレア; ストリークフィルター
+
 **Group:** Post-processing & screen filters
 **Subcategory:** Cameras, Color, and Post-Processing
 
@@ -13,19 +15,25 @@ this is not bloom's simple spreading of bright regions; a lens ghost is not a TA
 
 ## Use it for
 
-simulating internal lens reflections, intense light, and a photographic look; also useful stylistically.
+simulating internal lens reflections, intense light, and a photographic look; also useful stylistically. Long directional streaks / a streak filter can evoke anamorphic horizontal flares, but a streak filter is not full anamorphic optics; oval bokeh → REN-34, letterbox / anamorphic framing bars → CIN-01.
 
 ## Tunable parameters
 
-ghost count · flare intensity · streak length · chromatic tint · occlusion · threshold
+ghost count · flare intensity · streak length · chromatic tint · occlusion · threshold · anamorphic streak filter
 
 ## Request prompt
 
-In your game, add lens flare: when the sun exceeds brightness 6, create five ghosts along the screen-center axis and an 80 px streak at total intensity 0.3; fade it within 0.1 seconds when a building occludes more than 70% of the sun.
+In your game, add lens flare with directional streaks: when the sun exceeds brightness 6, create five ghosts along the center axis and an 80 px directional streak at intensity 0.3; fade within 0.1 s when more than 70% occluded. Note that a streak filter is not full anamorphic optics.
 
 ## Implementation hint
 
-Generate lens ghosts and streaks from bright, visible light sources or bright image regions using a controlled optical-style layout. Test source occlusion and suppress the effect when the light is behind solid geometry.
+Generate lens ghosts and long directional streaks from bright visible sources using a controlled optical-style layout. A streak filter can evoke anamorphic horizontal flares but is not full anamorphic optics. Suppress when the source is occluded; oval bokeh belongs with REN-34.
+
+## Related
+
+- [REN-34](REN-34.md) — Depth of Field/DoF/Bokeh
+- [CIN-01](CIN-01.md) — Letterbox
+- [PP-16](PP-16.md) — Prism filter / Split-prism image
 
 ## References
 

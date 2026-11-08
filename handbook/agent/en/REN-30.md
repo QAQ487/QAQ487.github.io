@@ -27,6 +27,11 @@ In your game, add auto exposure: clamp it from EV -2 to 12, adapt dark-to-bright
 
 Estimate representative scene luminance with robust metering, convert it to a bounded exposure target, and approach that target at separate brightening and darkening rates. Exclude overlays and exceptional pixels from metering where appropriate.
 
+## Related
+
+- [REN-32](REN-32.md) — Color grading/LUT/White balance
+- [PP-18](PP-18.md) — Image-intensifier night vision / NVG look
+
 ## References
 
 - [Unreal — Post Process Effects，Exposure and Local Exposure](https://dev.epicgames.com/documentation/en-us/unreal-engine/post-process-effects-in-unreal-engine)

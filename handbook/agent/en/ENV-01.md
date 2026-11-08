@@ -34,6 +34,7 @@ Global ambient colour in a constant buffer, applied as multiply in the sprite pi
 - [ENV-02](ENV-02.md) — Sky gradient
 - [TRN-03](TRN-03.md) — Crossfade
 - [PIX-21](PIX-21.md) — Normal-mapped sprites
+- [REN-32](REN-32.md) — Color grading/LUT/White balance
 
 ## References
 

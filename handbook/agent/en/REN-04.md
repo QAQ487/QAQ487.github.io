@@ -27,6 +27,11 @@ In your game, add object outlines: use a 2 px dark-blue contour for the player a
 
 Generate contours from an expanded shell or from depth, normal, and object-ID discontinuities. Stabilize width in screen space and exclude small interior edges that would clutter the image.
 
+## Related
+
+- [NPR-16](NPR-16.md) — Ukiyo-e / woodblock print
+- [NPR-24](NPR-24.md) — Cavity and ridge shading
+
 ## References
 
 - [Unity Toon Shader — Outline Settings（含開關及粗幼比較）](https://docs.unity3d.com/Packages/com.unity.toonshader@0.11/manual/Outline.html)

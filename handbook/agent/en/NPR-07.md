@@ -1,17 +1,17 @@
 # NPR-07 · Watercolor rendering
 
-**Aliases:** Watercolour shader; Painterly wash; Wet-edge darkening; Pigment granulation
+**Aliases:** Watercolour shader; Painterly wash; Wet-edge darkening; Pigment granulation; Gouache; 水粉; ガッシュ
 
 **Group:** Stylized rendering (NPR)
 **Subcategory:** Strokes & print
 
 ## What you see
 
-The image looks like watercolour on rough paper: colours are translucent with paper texture showing through, patch edges darken where pigment pools, flat areas carry fine granulation speckle, outlines wobble and bleed past the shapes, the brightest spots are left as bare paper, and the frame edge is an irregular deckle.
+The image looks like watercolour on rough paper: colours are translucent with paper texture showing through, patch edges darken where pigment pools, flat areas carry fine granulation speckle, outlines wobble and bleed past the shapes, the brightest spots are left as bare paper, and the frame edge is an irregular deckle. Related opaque flatter matte cousin — gouache — stays under this card, not a separate entry.
 
 ## Not to be confused with
 
-Not a Kuwahara filter (NPR-06, whose patches are opaque and flat), nor simply desaturating or adding a paper texture. Watercolour reads as transparent glazes, darkened edges, granulation and paper-white highlights.
+Not a Kuwahara filter (NPR-06, whose patches are opaque and flat), nor simply desaturating or adding a paper texture, nor form-following strokes (NPR-17). Watercolour reads as transparent glazes, darkened edges, granulation and paper-white highlights; gouache is the more opaque matte cousin, not a separate card.
 
 ## Use it for
 
@@ -33,6 +33,8 @@ Post-process on colour + depth/ID: uvW = uv + (noise(uv*f)-0.5)*amp; region = ID
 
 - [NPR-06](NPR-06.md) — Kuwahara / Painterly filter
 - [NPR-09](NPR-09.md) — Sketch / Pencil shader
+- [NPR-17](NPR-17.md) — Stroke-based impasto
+- [NPR-15](NPR-15.md) — Sumi-e / ink-wash
 - [PP-06](PP-06.md) — Desaturation
 - [PP-02](PP-02.md) — Film grain
 

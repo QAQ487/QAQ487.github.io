@@ -76,7 +76,7 @@ REN-23 | Reflections/Image-Based Lighting (IBL)/Reflection probes | Box projecti
 REN-24 | Screen-Space Reflections/SSR | — | Lighting & shadows | agent/en/REN-24.md
 REN-25 | Cast shadows/Soft shadows/Penumbra | Lightmapping, Baked lighting, Cascaded shadow maps, CSM, 烘焙光照, 級聯陰影, 窗光柔影 | Lighting & shadows | agent/en/REN-25.md
 REN-26 | Fog/Distance fog/Depth fog | — | Lighting & shadows | agent/en/REN-26.md
-REN-27 | Volumetric lighting/Volumetric fog/Light shafts/God rays | — | Lighting & shadows | agent/en/REN-27.md
+REN-27 | Volumetric lighting/Volumetric fog/Light shafts/God rays | Dust motes in shafts, God-ray dust, 光柱塵埃, 光束中的浮塵, 光線の中の塵 | Lighting & shadows | agent/en/REN-27.md
 LGT-01 | Directional, point and spot lights | Light types, Sun light, Omni light, Spotlight, Punctual lights, Forward+, Clustered shading, Deferred rendering, Tiled forward, 多光源管線 | Lighting & shadows | agent/en/LGT-01.md
 LGT-02 | Light attenuation | Falloff, Distance falloff, Inverse-square falloff, Light range | Lighting & shadows | agent/en/LGT-02.md
 LGT-03 | Light cookie | Gobo, Projector texture, Light mask, Projected light texture | Lighting & shadows | agent/en/LGT-03.md
@@ -86,8 +86,13 @@ LGT-14 | Moving light pool from a swinging fixture | Swinging lamp lighting, Pen
 LGT-07 | Light probes | Irradiance probes, Probe grid, Light probe group, Spherical harmonics lighting | Lighting & shadows | agent/en/LGT-07.md
 LGT-09 | Contact shadows | Screen-space shadows, Micro shadows, Contact hardening | Lighting & shadows | agent/en/LGT-09.md
 LGT-10 | Blob shadow | Drop shadow, Fake shadow, Circle shadow, Shadow decal | Lighting & shadows | agent/en/LGT-10.md
+LGT-18 | Character–environment lighting separation | Split lighting rig, Character vs environment lights, Hero light separation, 角色與場景分開打光, キャラと背景のライティング分離 | Lighting & shadows | agent/en/LGT-18.md
+LGT-19 | Hemisphere / sky–ground ambient | Hemisphere lighting, Sky–ground ambient, SH ambient, Zenith–nadir tint, 天空—地面半球環境光, 半球ライティング, 空と地面のアンビエント | Lighting & shadows | agent/en/LGT-19.md
 LGT-12 | Height fog | Exponential height fog, Ground fog, Altitude fog, Valley fog | Lighting & shadows | agent/en/LGT-12.md
 LGT-13 | Atmospheric scattering | Sky model, Physically based sky, Rayleigh and Mie scattering, Aerial perspective | Lighting & shadows | agent/en/LGT-13.md
+LGT-15 | Komorebi / dappled canopy light | Dappled canopy light, Forest floor godets, Leaf-gap sunlight, 木漏れ日, 樹隙光斑, 木洩れ日, 葉隙間の光 | Lighting & shadows | agent/en/LGT-15.md
+LGT-16 | Stained-glass colored light pool | Stained-glass light pool, Colored window caustic, Cathedral colour spill, 彩窗色光, 彩色玻璃投影, ステンドグラスの投影, 色つき窓光 | Lighting & shadows | agent/en/LGT-16.md
+LGT-17 | Backlit leaf translucency | Backlit foliage, Leaf subsurface glow, Transmitted leaf light, 逆光透葉, 葉片透光, 逆光の葉透け, 木の葉の半透明 | Lighting & shadows | agent/en/LGT-17.md
 REN-07 | Base color/Albedo/Diffuse color | Texture shimmer, Moiré, Mipmap, Anisotropic filtering, 遠處貼圖閃爍, 地板摩爾紋 | Materials & surfaces | agent/en/REN-07.md
 REN-08 | Roughness/Smoothness/Glossiness | — | Materials & surfaces | agent/en/REN-08.md
 REN-09 | Metallic/Metalness | — | Materials & surfaces | agent/en/REN-09.md
@@ -110,13 +115,13 @@ MATX-11 | Frosted refractive glass | 毛玻璃, 磨砂玻璃, 玻璃後面模糊
 MATX-07 | Hologram shader | Hologram effect, Holographic material, Holo shader | Materials & surfaces | agent/en/MATX-07.md
 MATX-08 | Force field / Shield | Energy shield, Bubble shield, Intersection highlight, Depth-fade edge, Shield impact ripple | Materials & surfaces | agent/en/MATX-08.md
 MATX-10 | X-ray silhouette | See-through walls, Occluded silhouette, Behind-wall outline, Character occlusion silhouette | Materials & surfaces | agent/en/MATX-10.md
-REN-29 | Bloom/Glow | — | Post-processing & screen filters | agent/en/REN-29.md
+REN-29 | Bloom/Glow | Film halation, Red halation, Halation, Optical diffusion, Black mist, Black-mist filter, 菲林紅暈, 黑柔濾鏡, フィルム・ハレーション, ブラックミスト | Post-processing & screen filters | agent/en/REN-29.md
 REN-30 | Exposure/Auto exposure/Eye adaptation | — | Post-processing & screen filters | agent/en/REN-30.md
 REN-31 | Tone mapping/Tonemapper/Filmic curve | HDR, High dynamic range, Tone mapping order, 高光爆白, Blown-out highlights, HDR 渲染 | Post-processing & screen filters | agent/en/REN-31.md
-REN-32 | Color grading/LUT/White balance | Linear workflow, sRGB, Gamma correction, 光暈疊加變髒, 漸層中間發暗 | Post-processing & screen filters | agent/en/REN-32.md
+REN-32 | Color grading/LUT/White balance | Linear workflow, sRGB, Gamma correction, 光暈疊加變髒, 漸層中間發暗, Split toning, Teal and orange, Teal & orange, 分離色調, 青橙調色, スプリットトーニング, ティール＆オレンジ, Day-for-night, American night, 日拍夜, デイ・フォー・ナイト | Post-processing & screen filters | agent/en/REN-32.md
 REN-33 | Motion blur/Velocity blur | — | Post-processing & screen filters | agent/en/REN-33.md
-REN-34 | Depth of Field/DoF/Bokeh | Depth of field, DOF, 景深, 敘事對焦, 焦點在眼睛 | Post-processing & screen filters | agent/en/REN-34.md
-REN-35 | Lens flare/Lens ghost | — | Post-processing & screen filters | agent/en/REN-35.md
+REN-34 | Depth of Field/DoF/Bokeh | Depth of field, DOF, 景深, 敘事對焦, 焦點在眼睛, Miniature, Tilt-shift, Tilt shift, Split-field diopter, Split diopter, 雙焦點濾鏡, スプリット・ディオプター, 微型景深, 移軸 | Post-processing & screen filters | agent/en/REN-34.md
+REN-35 | Lens flare/Lens ghost | Anamorphic flare, Streak filter, Anamorphic streaks, 變形鏡頭橫向光斑, 拉絲濾鏡, アナモフィックフレア, ストリークフィルター | Post-processing & screen filters | agent/en/REN-35.md
 REN-36 | Chromatic aberration/Color fringing | — | Post-processing & screen filters | agent/en/REN-36.md
 PP-01 | Vignette | Vignetting, Edge darkening, Lens vignette | Post-processing & screen filters | agent/en/PP-01.md
 PP-02 | Film grain | Grain, Noise overlay, Film noise | Post-processing & screen filters | agent/en/PP-02.md
@@ -126,31 +131,49 @@ PP-05 | Pixelation | Mosaic, Pixelize, Pixelate filter, Censor mosaic | Post-pro
 PP-06 | Desaturation | Grayscale, Monochrome, Black and white filter, Saturation reduction | Post-processing & screen filters | agent/en/PP-06.md
 PP-12 | Screen glitch (digital corruption, non-flashing) | 畫面故障, 訊號干擾, 數碼雜訊, Glitch effect, Datamosh look, Block displacement, RGB split glitch, グリッチ | Post-processing & screen filters | agent/en/PP-12.md
 PP-13 | Manga speed lines (focus lines) | 漫畫速度線, 集中線, 衝刺線, Speed lines, Focus lines, Action lines, Anime speed lines | Post-processing & screen filters | agent/en/PP-13.md
+PP-14 | Bleach bypass / Skip bleach | Bleach bypass, Skip bleach, Silver retention, 留銀效果, 漂白旁路, 銀残し, ブリーチバイパス | Post-processing & screen filters | agent/en/PP-14.md
+PP-15 | Selective colour / Colour splash | Selective colour, Colour splash, Colour isolation, Leave-one-colour, 局部保色, 選擇性留色, 黑白留紅, パートカラー, 部分カラー, 色残し | Post-processing & screen filters | agent/en/PP-15.md
+PP-17 | Cross-processing / X-pro | Cross-processing, X-pro, Cross-processed look, 交叉沖洗, 正片負沖, クロスプロセス, クロス現像 | Post-processing & screen filters | agent/en/PP-17.md
+PP-18 | Image-intensifier night vision / NVG look | Night vision, NVG look, Image-intensifier, White-phosphor NV, 微光夜視, 綠色夜視, 白磷夜視, 暗視ゴーグル, 微光暗視, ナイトビジョン | Post-processing & screen filters | agent/en/PP-18.md
+PP-19 | Thermal vision / Thermographic imaging | Thermal vision, FLIR-style, White-hot, Black-hot, Thermographic, 熱成像, 熱能視覺, 白熱／黑熱, 熱画像, サーモグラフィ, ホワイトホット | Post-processing & screen filters | agent/en/PP-19.md
+PP-20 | False-colour infrared / Aerochrome | False-colour infrared, Aerochrome, IR false colour, Wood effect, 偽色紅外攝影, 紅外假色, 紅葉紅外效果, 赤外線カラー写真, 疑似カラー赤外線, エアロクローム | Post-processing & screen filters | agent/en/PP-20.md
 PP-07 | Radial blur | Zoom blur, Zoom burst, Radial motion blur, Speed blur | Post-processing & screen filters | agent/en/PP-07.md
 PP-08 | Gaussian blur | Kawase blur, Dual Kawase blur, Box blur, Background blur, Screen blur | Post-processing & screen filters | agent/en/PP-08.md
 PP-09 | Screen-space distortion | Refraction distortion, Heat distortion, Displacement post-process, Screen warp | Post-processing & screen filters | agent/en/PP-09.md
 PP-10 | Sharpening | CAS, Contrast adaptive sharpening, Unsharp mask, Sharpen filter, Aliasing, Jaggies, Shimmering, Specular aliasing, MSAA, FXAA, SMAA, TAA, Temporal anti-aliasing, Upscaling, Temporal upscaling, Super resolution, 鋸齒, 幼線閃爍, 升頻 | Post-processing & screen filters | agent/en/PP-10.md
 PP-11 | Lens dirt | Lens dirt mask, Dirt mask, Bloom dirt, Dirty lens | Post-processing & screen filters | agent/en/PP-11.md
+PP-16 | Prism filter / Split-prism image | Prism filter, Split-prism, Kaleidoscopic lens, Glass shard repeat, 棱鏡濾鏡, 分像效果, 萬花筒鏡頭, プリズムフィルター, 分身効果, 万華鏡フィルター | Post-processing & screen filters | agent/en/PP-16.md
+PP-21 | Gate weave / Film weave | Gate weave, Film weave, Registration weave, 菲林畫格微晃, 膠片套準晃動, ゲートウィーブ, フィルムの揺れ, 画揺れ | Post-processing & screen filters | agent/en/PP-21.md
 REN-01 | Physically Based Rendering/PBR/PBS | — | Stylized rendering (NPR) | agent/en/REN-01.md
 REN-02 | Unlit/Unshaded | — | Stylized rendering (NPR) | agent/en/REN-02.md
-REN-03 | Toon shading/Cel shading/Ramp shading | — | Stylized rendering (NPR) | agent/en/REN-03.md
+REN-03 | Toon shading/Cel shading/Ramp shading | Three-tone, Three-tone shading, Wrap lighting, Half-Lambert, Painted shade masks, 三階明暗, 半朗伯, 包裹明暗, 手繪陰影遮罩 | Stylized rendering (NPR) | agent/en/REN-03.md
 REN-04 | Outline/Contour/Inverted-hull outline | — | Stylized rendering (NPR) | agent/en/REN-04.md
 REN-05 | Rim lighting/Rim light | — | Stylized rendering (NPR) | agent/en/REN-05.md
 REN-06 | Fresnel effect/Fresnel reflectance | — | Stylized rendering (NPR) | agent/en/REN-06.md
 NPR-01 | Gooch shading | Gooch lighting, Cool-to-warm shading, Technical illustration shading | Stylized rendering (NPR) | agent/en/NPR-01.md
 NPR-02 | Stylized specular / Anime hair highlight | Angel ring, Hair halo highlight, Toon specular, Stylized highlight | Stylized rendering (NPR) | agent/en/NPR-02.md
+NPR-21 | Authored shadow colours | Authored shadow colour, Painted shadow hue, Material-specific shade colour, 手繪影色, 指定陰影色, 指定影色, 影色の塗り分け | Stylized rendering (NPR) | agent/en/NPR-21.md
+NPR-22 | Core-shadow band | Core shadow, Terminator band, Dark band at the terminator, 明暗交界暗帶, コアシャドウ, 明暗境界の暗帯 | Stylized rendering (NPR) | agent/en/NPR-22.md
+NPR-23 | Art-directed face shadows | Authored face shadow, Painted cheek shadow, Design-shadow face, 作畫式臉影, 指定臉部陰影, 作画的な顔影, 影の設計 | Stylized rendering (NPR) | agent/en/NPR-23.md
+NPR-24 | Cavity and ridge shading | Cavity shading, Concavity darkening, Ridge highlight, Curvature shading, 凹槽暗染, 凸脊提亮, キャビティシェーディング, 凹みを落とす, エッジの強調 | Stylized rendering (NPR) | agent/en/NPR-24.md
 NPR-03 | Edge-detection outline | Sobel outline, Screen-space outline, Depth/normal edge detection, Post-process outline | Stylized rendering (NPR) | agent/en/NPR-03.md
 NPR-04 | Line boil | Boiling lines, Wiggle lines, Jittered outline | Stylized rendering (NPR) | agent/en/NPR-04.md
 NPR-05 | Hatching / Cross-hatching | Cross-hatching, Pen-and-ink shading, Tonal art map (TAM), Stroke shading | Stylized rendering (NPR) | agent/en/NPR-05.md
 NPR-06 | Kuwahara / Painterly filter | Kuwahara filter, Oil-paint filter, Anisotropic Kuwahara, Painterly post-process | Stylized rendering (NPR) | agent/en/NPR-06.md
-NPR-07 | Watercolor rendering | Watercolour shader, Painterly wash, Wet-edge darkening, Pigment granulation | Stylized rendering (NPR) | agent/en/NPR-07.md
+NPR-07 | Watercolor rendering | Watercolour shader, Painterly wash, Wet-edge darkening, Pigment granulation, Gouache, 水粉, ガッシュ | Stylized rendering (NPR) | agent/en/NPR-07.md
 NPR-08 | Halftone / Ben-Day dots | Halftone shader, Comic dots, Screen tone, Ben-Day dots | Stylized rendering (NPR) | agent/en/NPR-08.md
-NPR-09 | Sketch / Pencil shader | Pencil rendering, Pencil sketch effect, Graphite shading, Sketchy outlines | Stylized rendering (NPR) | agent/en/NPR-09.md
+NPR-09 | Sketch / Pencil shader | Pencil rendering, Pencil sketch effect, Graphite shading, Sketchy outlines, Charcoal, Pastel, 炭筆, 木炭, 粉彩, パステル | Stylized rendering (NPR) | agent/en/NPR-09.md
+NPR-15 | Sumi-e / ink-wash | Sumi-e, Ink-wash, Japanese ink painting, 水墨渲染, 水墨畫風, 水墨画, 墨絵, すみえ | Stylized rendering (NPR) | agent/en/NPR-15.md
+NPR-16 | Ukiyo-e / woodblock print | Ukiyo-e, Woodblock print, Nishiki-e, 浮世繪, 木刻版畫, 浮世絵, 木版画, 錦絵 | Stylized rendering (NPR) | agent/en/NPR-16.md
+NPR-17 | Stroke-based impasto | Impasto, Brush-stroke shading, Painted relief strokes, 厚塗筆觸, 浮雕筆觸, インパスト, 厚塗り筆触 | Stylized rendering (NPR) | agent/en/NPR-17.md
+NPR-18 | Risograph / misregistered spot-colour print | Risograph, Riso print, Spot-colour overlay, Stencil print misregistration, 孔版錯版套印, Risograph 風格, リソグラフ, 孔版印刷, 版ズレ | Stylized rendering (NPR) | agent/en/NPR-18.md
+NPR-20 | Stained-glass cell style | Stained-glass shading, Leaded-glass cells, Glowing glass panes, 彩繪玻璃格子風格, 鑲嵌玻璃畫面, ステンドグラス風, 鉛枠の彩色セル | Stylized rendering (NPR) | agent/en/NPR-20.md
 NPR-10 | 1-bit dithering (Obra Dinn style) | 1-bit rendering, Monochrome dithering, Obra Dinn style, Two-colour ordered dither | Stylized rendering (NPR) | agent/en/NPR-10.md
 NPR-11 | PS1-style rendering | PS1 style, PSX look, Vertex snapping / jitter, Affine texture mapping, Retro 3D | Stylized rendering (NPR) | agent/en/NPR-11.md
 NPR-12 | Low-poly flat shading | Flat shading, Faceted shading, Low poly style, Facet shading | Stylized rendering (NPR) | agent/en/NPR-12.md
 NPR-13 | 3D pixel art (pixelated 3D) | Pixelated 3D, 3D-to-pixel pipeline, Low-res 3D render, Pixel-perfect 3D | Stylized rendering (NPR) | agent/en/NPR-13.md
 NPR-14 | HD-2D | 2D-HD, Pixel sprites in 3D, Diorama look, Octopath-style | Stylized rendering (NPR) | agent/en/NPR-14.md
+NPR-19 | Papercraft / paper-world construction | Papercraft, Paper theatre, Construction-paper world, Layered paper diorama, 剪紙, 紙藝世界, 層疊色紙, ペーパークラフト, 切り紙, 紙の世界 | Stylized rendering (NPR) | agent/en/NPR-19.md
 PIX-01 | Integer scaling | Pixel-perfect rendering, Nearest-neighbour upscaling, Point filtering, Low-res render target, Mixels, Mixed pixel sizes, Inconsistent pixel density, 混合像素, 像素大小不一致 | 2D & pixel-art techniques | agent/en/PIX-01.md
 PIX-02 | Pixel snapping | Pixel jitter, Sprite jitter, Position rounding, Snap to pixel grid | 2D & pixel-art techniques | agent/en/PIX-02.md
 PIX-03 | Sub-pixel camera smoothing | Smooth pixel camera, High-res camera offset, Render-target margin scrolling | 2D & pixel-art techniques | agent/en/PIX-03.md
@@ -328,7 +351,7 @@ ENV-18 | Systemic environmental interactions | 系統式環境互動, 火遇雨�
 ENV-04 | Rain | Rainfall, Rain particles, Rain splash | Environment, weather & time | agent/en/ENV-04.md
 ENV-05 | Snow | Snowfall, Snow accumulation, Snow cover | Environment, weather & time | agent/en/ENV-05.md
 ENV-06 | Lightning flash | Thunder flash, Storm flash, Sky flash | Environment, weather & time | agent/en/ENV-06.md
-ENV-07 | Cloud shadows | Moving cloud shadows, Cloud shadow overlay | Environment, weather & time | agent/en/ENV-07.md
+ENV-07 | Cloud shadows | Moving cloud shadows, Cloud shadow overlay, cloud shadows sweeping terrain, 雲影掠地, 雲の影、地上を走る雲影 | Environment, weather & time | agent/en/ENV-07.md
 ENV-11 | Ambient particles | Floating motes, Dust motes, Fireflies, Pollen | Environment, weather & time | agent/en/ENV-11.md
 ENV-17 | Heat haze | Heat shimmer, Heat distortion, Mirage shimmer | Environment, weather & time | agent/en/ENV-17.md
 ENV-20 | Surface runoff and edge dripping | Rain runoff, Roof edge drips, Water rivulets, Foliage water shedding, 屋簷滴水, 雨垂れ | Environment, weather & time | agent/en/ENV-20.md
@@ -339,6 +362,7 @@ ENV-19 | Contact-driven leaf litter | Interactive leaf litter, Footstep debris s
 ENV-12 | Water surface | Shoreline foam, Animated water, Water tiles | Environment, weather & time | agent/en/ENV-12.md
 ENV-13 | Ripples | Interactive water, Water ripples, Wake, Contact-scaled splash, 接觸縮放水花, 接触スケール飛沫 | Environment, weather & time | agent/en/ENV-13.md
 ENV-14 | Caustics | Water caustics, Light caustics, Pool-floor light pattern | Environment, weather & time | agent/en/ENV-14.md
+ENV-21 | Sun glitter / glittering water specular | Sun glitter, Glittering highlights, Sparkling water specular, Sun path on water, 水面金光, 波光粼粼, 太陽のきらめき, 水面のきらきら, サングリッター | Environment, weather & time | agent/en/ENV-21.md
 TRN-01 | Fade to black | Fade out / fade in, Dip to black | Transitions | agent/en/TRN-01.md
 TRN-02 | Fade to white | Flash cut, White-out, Dip to white | Transitions | agent/en/TRN-02.md
 TRN-03 | Crossfade | Dissolve, Cross-dissolve, Mix | Transitions | agent/en/TRN-03.md

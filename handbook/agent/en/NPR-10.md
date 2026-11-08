@@ -36,6 +36,7 @@ Render tone to a low-res target; out = tone > bayer8[(p.y&7)*8+(p.x&7)] ? light 
 - [PIX-10](PIX-10.md) — Limited palette
 - [NPR-03](NPR-03.md) — Edge-detection outline
 - [MATX-06](MATX-06.md) — Dithered transparency
+- [NPR-15](NPR-15.md) — Sumi-e / ink-wash
 
 ## References
 

@@ -31,6 +31,7 @@ Generate deterministic band-limited noise for positional and rotational offsets,
 
 - [CAM-33](CAM-33.md) — Handheld idle camera / Camera breathing
 - [FB-24](FB-24.md) — Damage vibration
+- [PP-21](PP-21.md) — Gate weave / Film weave
 
 ## References
 

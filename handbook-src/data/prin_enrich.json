@@ -306,12 +306,12 @@
     }
   },
   "REN-03": {
-    "params": "band count · ramp colors · shadow threshold · softness · specular size · ambient fill",
-    "impl": "Map a lighting term through an artist-authored ramp or a small set of thresholds, with separate controls for shadow and highlight bands. Keep face or hero-character overrides available where raw normals produce unwanted bands.",
+    "params": "band count · ramp colors · shadow threshold · softness · specular size · ambient fill · wrap / Half-Lambert · painted shade mask",
+    "impl": "Map a lighting term through an artist-authored ramp or a small set of thresholds (two-tone or three-tone), with hard or soft band boundaries. Offer wrap / Half-Lambert so faces do not fall to full black, and optional painted persistent shade masks as a coarse complement to the live ramp. SDF or edited normals can author shade shape without separate cards.",
     "prompt": {
-      "zh": "在你的遊戲加入動畫式分層明暗：角色使用 3 級色帶，暗面門檻 0.35、亮面門檻 0.7、過渡寬度 0.02，並把高光限制為一塊硬邊亮色。",
-      "en": "In your game, add toon shading: use three lighting bands on the character with thresholds at 0.35 and 0.7, a transition width of 0.02, and one hard-edged highlight patch.",
-      "ja": "ゲームにアニメ風の段階的な陰影を追加してください。キャラクターを3段階にし、しきい値を0.35と0.7、遷移幅を0.02に設定して、ハイライトは硬い縁の1色面にします。"
+      "zh": "在你的遊戲加入動畫式分層明暗：角色使用 3 級色帶（暗 0.35／亮 0.7、過渡 0.02），並示範 wrap／Half-Lambert 與一塊手繪陰影遮罩；高光為硬邊亮色塊。",
+      "en": "In your game, add toon shading with three lighting bands (thresholds 0.35 and 0.7, transition 0.02), demonstrate wrap / Half-Lambert and one painted shade mask, and keep a hard-edged highlight patch.",
+      "ja": "ゲームにトゥーン陰影を追加してください。3段階（しきい値0.35と0.7、遷移0.02）、wrap／Half-Lambert と手描きの影マスクを示し、ハイライトは硬い縁の1色面にします。"
     }
   },
   "REN-04": {
@@ -522,12 +522,12 @@
     }
   },
   "REN-27": {
-    "params": "density · scattering · absorption · anisotropy · volume resolution · temporal weight",
-    "impl": "Integrate light scattering and extinction through a participating medium, including shadowed regions along each view path. Use jittered low-resolution sampling and guarded temporal accumulation to balance cost and stability.",
+    "params": "density · scattering · absorption · anisotropy · volume resolution · temporal weight · mote count · mote brightness in/out of beam",
+    "impl": "Integrate light scattering and extinction through a participating medium, including shadowed regions along each view path. Seed sparse bright motes that brighten inside beams and dim outside; use jittered low-resolution sampling and guarded temporal accumulation.",
     "prompt": {
-      "zh": "在你的遊戲加入體積光：教堂窗外陽光穿過密度 0.04 的薄霧，scattering anisotropy 設為 0.6，以每條光線 64 步取樣，門柱遮擋後形成 3 條清楚但柔邊的光柱。",
-      "en": "In your game, add volumetric lighting: send sunlight through church windows into fog of density 0.04, use scattering anisotropy 0.6 and 64 samples per ray, and form three distinct soft-edged beams behind the pillars.",
-      "ja": "ゲームにボリューメトリックライトを追加してください。教会の窓から密度0.04の霧へ日光を通し、散乱のanisotropyを0.6、1本あたり64サンプルにして、柱の遮蔽で3本の明瞭かつ柔らかい光筋を作ります。"
+      "zh": "在你的遊戲加入體積光與光柱微粒：教堂窗外陽光穿過密度 0.04 的薄霧，scattering anisotropy 0.6，每條光線 64 步；門柱遮擋後形成 3 條柔邊光柱，柱內約 12 顆浮塵在進入光束時變亮、離開時變暗。",
+      "en": "In your game, add volumetric lighting with shaft motes: send sunlight through church windows into fog of density 0.04, anisotropy 0.6, 64 samples per ray; form three soft-edged beams behind pillars, and brighten about 12 dust motes inside the beams while dimming them outside.",
+      "ja": "ゲームにボリューメトリックライトと光筋の塵を追加してください。教会の窓から密度0.04の霧へ日光を通し、anisotropy 0.6・64サンプルで柱の陰に3本の柔らかい光筋を作り、光束内の約12個の塵を明るく、外では暗くします。"
     }
   },
   "REN-28": {
@@ -540,12 +540,12 @@
     }
   },
   "REN-29": {
-    "params": "threshold · knee · intensity · radius · mip count · tint",
-    "impl": "Extract or weight bright image regions, blur them across several scales, and add the result back conservatively. Keep the source image intact and expose controls that prevent halos from swallowing nearby detail.",
+    "params": "threshold · knee · intensity · radius · mip count · tint · halation width · halation warm tint · black-mist strength · black vs white diffusion",
+    "impl": "Extract or weight bright image regions, blur them across several scales, and add the result back conservatively for bloom. For film halation, add a narrow warm red-orange fringe only at very bright/dark boundaries. For black-mist diffusion, soften highlight shoulders and fine contrast while keeping subject edges readable — not a full-screen Gaussian blur.",
     "prompt": {
-      "zh": "在你的遊戲加入 bloom：亮度門檻設為 1.2、soft knee 0.5、強度 0.35、最大光暈半徑 24 px；強度為 8 的招牌可見柔光，但白色 UI 不可觸發。",
-      "en": "In your game, add bloom: use threshold 1.2, soft knee 0.5, intensity 0.35, and a maximum 24 px halo radius; an emissive sign at intensity 8 should glow, while white UI must not trigger it.",
-      "ja": "ゲームにbloomを追加してください。しきい値1.2、soft knee 0.5、強度0.35、光輪の最大半径24 pxとし、強度8の発光看板は光らせますが、白いUIには反応させません。"
+      "zh": "在你的遊戲加入 bloom，並示範兩種具名變體：菲林紅暈只在極亮邊界出現窄幅暖紅橙滲邊；黑柔濾鏡柔化燈火肩部與皮膚細對比但保留主體邊緣。亮度門檻 1.2、soft knee 0.5、強度 0.35；白 UI 不可觸發。",
+      "en": "In your game, add bloom and two named variants: film red-halation as a narrow warm fringe only at very bright boundaries; black-mist diffusion that softens lamp shoulders and fine skin contrast while keeping subject edges. Use threshold 1.2, soft knee 0.5, intensity 0.35; white UI must not trigger bloom.",
+      "ja": "ゲームにbloomと二つの具名バリエーションを追加してください。フィルム赤ハレーションは極亮境界のみに狭い暖色のにじみ。ブラックミストは灯りの肩と肌の細かいコントラストを和らげつつ被写体の縁は残します。しきい値1.2、soft knee 0.5、強度0.35。白いUIには反応させません。"
     }
   },
   "REN-30": {
@@ -567,12 +567,12 @@
     }
   },
   "REN-32": {
-    "params": "temperature · tint · saturation · contrast · shadow color · highlight color · LUT strength",
-    "impl": "Apply white balance and creative grading in a known color space at a fixed point in the display pipeline. Blend grades by scene state and verify that neutral references and skin tones remain controllable.",
+    "params": "temperature · tint · saturation · contrast · shadow color · highlight color · LUT strength · day-for-night sky suppress · teal-orange split",
+    "impl": "Apply white balance and creative grading in a known color space at a fixed point in the display pipeline. Offer split toning (teal shadows / orange highlights) and a day-for-night grade that darkens mids/highlights, restrains colour, cools selectively, and suppresses a conspicuously bright sky. Blend grades by scene state.",
     "prompt": {
-      "zh": "在你的遊戲加入全畫面調色：雪地白平衡設為 7500 K、飽和度 0.9，陰影加入 8% 藍青、高光加入 4% 暖黃，LUT 強度 0.7，角色膚色偏移不得超過 5%。",
-      "en": "In your game, add whole-image color grading: set the snow scene white balance to 7500 K and saturation to 0.9, add 8% cyan-blue to shadows and 4% warm yellow to highlights, use LUT strength 0.7, and keep skin-tone shift below 5%.",
-      "ja": "ゲームに画面全体のカラーグレーディングを追加してください。雪原のホワイトバランスを7500 K、彩度を0.9にし、シャドウへ8%の青緑、ハイライトへ4%の暖色を加え、LUT強度0.7で肌色のずれを5%未満にします。"
+      "zh": "在你的遊戲加入全畫面調色：雪地白平衡 7500 K、飽和度 0.9，陰影 8% 藍青、高光 4% 暖黃；另提供日拍夜例子——壓暗中高光、抑制飽和、選擇性偏冷並壓掉過亮天空，角色膚色偏移不得超過 5%。",
+      "en": "In your game, add whole-image color grading: snow white balance 7500 K, saturation 0.9, 8% cyan-blue shadows and 4% warm yellow highlights; also offer a day-for-night example that darkens mids/highlights, restrains colour, cools selectively and suppresses a bright sky, keeping skin-tone shift below 5%.",
+      "ja": "ゲームに画面全体のカラーグレーディングを追加してください。雪原は7500 K・彩度0.9、シャドウへ8%青緑・ハイライトへ4%暖色。さらに日中映像を夜に見せるデイ・フォー・ナイト例で中間〜ハイライトを暗くし彩度を抑え、空の明るさを抑え、肌色のずれを5%未満にします。"
     }
   },
   "REN-33": {
@@ -585,21 +585,21 @@
     }
   },
   "REN-34": {
-    "params": "focus distance · aperture · focal length · near blur · far blur · bokeh blades",
-    "impl": "Derive a circle of confusion from camera focus and aperture, then gather or scatter color while respecting foreground/background depth boundaries. Treat transparent and hair-like geometry with an explicit compositing strategy.",
+    "params": "focus distance · aperture · focal length · near blur · far blur · bokeh blades · miniature band · split-diopter seam · oval bokeh",
+    "impl": "Derive a circle of confusion from camera focus and aperture, then gather or scatter color while respecting depth boundaries. Support a miniature/tilt-shift narrow focus band and a split-field diopter that keeps two separated zones sharp with a soft seam, without sharpening the intervening depths. Oval bokeh may accompany anamorphic framing notes.",
     "prompt": {
-      "zh": "在你的遊戲加入景深：50 mm 鏡頭、f/2.0，焦點距離 4 米；3.5 至 4.5 米的角色保持清楚，12 米外燈點形成直徑約 18 px 的六角散景。",
-      "en": "In your game, add depth of field: use a 50 mm lens at f/2.0 focused at 4 meters, keep the character sharp from 3.5 to 4.5 meters, and turn lights beyond 12 meters into roughly 18 px hexagonal bokeh.",
-      "ja": "ゲームに被写界深度を追加してください。50 mmレンズ、f/2.0、焦点距離4 mとし、3.5〜4.5 mのキャラクターは鮮明に、12 m以遠の光点は直径約18 pxの六角形ボケにします。"
+      "zh": "在你的遊戲加入景深：50 mm、f/2.0、焦點 4 m；並示範微型／移軸（窄合焦帶）與雙焦點濾鏡（近遠兩區清楚、中間交界），兩者不可混為同一效果。",
+      "en": "In your game, add depth of field at 50 mm, f/2.0, focus 4 m; also demonstrate miniature/tilt-shift (narrow focus band) and a split-field diopter (near and far sharp with a seam) as distinct constructions, not synonyms.",
+      "ja": "ゲームに被写界深度を追加してください。50 mm・f/2.0・焦点4 m。さらにミニチュア／ティルトシフト（狭い合焦帯）とスプリット・ディオプター（近遠がシャープで境がある）を別の構成として示し、同義にしないでください。"
     }
   },
   "REN-35": {
-    "params": "ghost count · flare intensity · streak length · chromatic tint · occlusion · threshold",
-    "impl": "Generate lens ghosts and streaks from bright, visible light sources or bright image regions using a controlled optical-style layout. Test source occlusion and suppress the effect when the light is behind solid geometry.",
+    "params": "ghost count · flare intensity · streak length · chromatic tint · occlusion · threshold · anamorphic streak filter",
+    "impl": "Generate lens ghosts and long directional streaks from bright visible sources using a controlled optical-style layout. A streak filter can evoke anamorphic horizontal flares but is not full anamorphic optics. Suppress when the source is occluded; oval bokeh belongs with REN-34.",
     "prompt": {
-      "zh": "在你的遊戲加入鏡頭耀光：太陽亮度超過 6 時沿畫面中心線產生 5 個光斑及 80 px 光線，總強度 0.3；太陽被建築遮住超過 70% 時在 0.1 秒內淡走。",
-      "en": "In your game, add lens flare: when the sun exceeds brightness 6, create five ghosts along the screen-center axis and an 80 px streak at total intensity 0.3; fade it within 0.1 seconds when a building occludes more than 70% of the sun.",
-      "ja": "ゲームにレンズフレアを追加してください。太陽の輝度が6を超えたら画面中心軸上に5個のゴーストと80 pxのストリークを合計強度0.3で出し、建物が太陽を70%以上隠したら0.1秒以内に消します。"
+      "zh": "在你的遊戲加入鏡頭耀光與橫向拉絲：太陽亮度超過 6 時沿中心線產生 5 個光斑及 80 px 方向性光絲，總強度 0.3；遮擋超過 70% 時 0.1 秒內淡走。註明拉絲濾鏡≠完整變形鏡頭光學。",
+      "en": "In your game, add lens flare with directional streaks: when the sun exceeds brightness 6, create five ghosts along the center axis and an 80 px directional streak at intensity 0.3; fade within 0.1 s when more than 70% occluded. Note that a streak filter is not full anamorphic optics.",
+      "ja": "ゲームにレンズフレアと横方向ストリークを追加してください。太陽輝度が6超で中心軸上に5個のゴーストと80 pxの方向性ストリークを強度0.3で出し、70%以上遮蔽で0.1秒以内に消します。ストリークフィルターはフルのアナモ光学ではないと明記します。"
     }
   },
   "REN-36": {
