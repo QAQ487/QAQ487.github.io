@@ -27,6 +27,10 @@ In your game, add SSAO: use a 0.6 m radius, 16 samples, 0.02 m depth bias, inten
 
 Estimate local visibility from screen depth and normals with a bounded sampling radius, then edge-aware filter the result. Reject depth discontinuities and accept that off-screen or hidden geometry is unavailable.
 
+## Related
+
+- [NPR-24](NPR-24.md) — Cavity and ridge shading
+
 ## References
 
 - [LearnOpenGL — SSAO（含噪點、取樣、範圍檢查比較）](https://learnopengl.com/Advanced-Lighting/SSAO)

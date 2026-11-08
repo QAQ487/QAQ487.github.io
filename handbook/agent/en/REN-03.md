@@ -15,19 +15,19 @@ toon shading does not require an outline. A ramp is a common approach, not the o
 
 ## Use it for
 
-anime, comics, limited-tone styles, and other NPR (Non-Photorealistic Rendering).
+anime, comics, limited-tone styles, and other NPR (Non-Photorealistic Rendering). Common variants include three-tone bands, hard vs soft transitions, wrap / Half-Lambert shading, and painted shade masks — methods for looks such as NPR-23, not separate cards.
 
 ## Tunable parameters
 
-band count · ramp colors · shadow threshold · softness · specular size · ambient fill
+band count · ramp colors · shadow threshold · softness · specular size · ambient fill · wrap / Half-Lambert · painted shade mask
 
 ## Request prompt
 
-In your game, add toon shading: use three lighting bands on the character with thresholds at 0.35 and 0.7, a transition width of 0.02, and one hard-edged highlight patch.
+In your game, add toon shading with three lighting bands (thresholds 0.35 and 0.7, transition 0.02), demonstrate wrap / Half-Lambert and one painted shade mask, and keep a hard-edged highlight patch.
 
 ## Implementation hint
 
-Map a lighting term through an artist-authored ramp or a small set of thresholds, with separate controls for shadow and highlight bands. Keep face or hero-character overrides available where raw normals produce unwanted bands.
+Map a lighting term through an artist-authored ramp or a small set of thresholds (two-tone or three-tone), with hard or soft band boundaries. Offer wrap / Half-Lambert so faces do not fall to full black, and optional painted persistent shade masks as a coarse complement to the live ramp. SDF or edited normals can author shade shape without separate cards.
 
 ## Related
 

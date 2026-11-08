@@ -27,6 +27,11 @@ In your game, add ambient occlusion: darken gradually within 10 cm of corners an
 
 Represent the fraction of surrounding ambient illumination blocked by nearby geometry, from baked data or a runtime estimate. Apply it chiefly to indirect/environment lighting so direct illumination does not become dirty or double-darkened.
 
+## Related
+
+- [NPR-22](NPR-22.md) — Core-shadow band
+- [NPR-24](NPR-24.md) — Cavity and ridge shading
+
 ## References
 
 - [LearnOpenGL — SSAO，開首 AO 比較及原理](https://learnopengl.com/Advanced-Lighting/SSAO)

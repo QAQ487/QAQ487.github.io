@@ -34,6 +34,7 @@ Pixel shader: float th = (BAYER4[(px.y&3)*4 + (px.x&3)] + 0.5) / 16; col = (valu
 - [TRN-09](TRN-09.md) — Dither transition
 - [PIX-10](PIX-10.md) — Limited palette
 - [PIX-22](PIX-22.md) — 2D shadow casting
+- [NPR-18](NPR-18.md) — Risograph / misregistered spot-colour print
 
 ## References
 

@@ -15,19 +15,19 @@ bloom spreads bright image regions; it does not actually illuminate nearby objec
 
 ## Use it for
 
-communicating brightness, magical energy, and soft dreamlike atmosphere.
+communicating brightness, magical energy, and soft dreamlike atmosphere. Film red halation and optical black-mist diffusion are distinct looks — not interchangeable; not chromatic aberration (REN-36) and not plain Gaussian blur (PP-08). Dappled leaf light is LGT-15.
 
 ## Tunable parameters
 
-threshold · knee · intensity · radius · mip count · tint
+threshold · knee · intensity · radius · mip count · tint · halation width · halation warm tint · black-mist strength · black vs white diffusion
 
 ## Request prompt
 
-In your game, add bloom: use threshold 1.2, soft knee 0.5, intensity 0.35, and a maximum 24 px halo radius; an emissive sign at intensity 8 should glow, while white UI must not trigger it.
+In your game, add bloom and two named variants: film red-halation as a narrow warm fringe only at very bright boundaries; black-mist diffusion that softens lamp shoulders and fine skin contrast while keeping subject edges. Use threshold 1.2, soft knee 0.5, intensity 0.35; white UI must not trigger bloom.
 
 ## Implementation hint
 
-Extract or weight bright image regions, blur them across several scales, and add the result back conservatively. Keep the source image intact and expose controls that prevent halos from swallowing nearby detail.
+Extract or weight bright image regions, blur them across several scales, and add the result back conservatively for bloom. For film halation, add a narrow warm red-orange fringe only at very bright/dark boundaries. For black-mist diffusion, soften highlight shoulders and fine contrast while keeping subject edges readable — not a full-screen Gaussian blur.
 
 ## Related
 

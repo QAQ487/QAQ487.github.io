@@ -35,6 +35,9 @@ Mode blend m eased 0→1; post: col = mix(col, luma(col)*tint*bright, m*desat). 
 - [UX-29](UX-29.md) — Breadcrumbing / Breadcrumb trail
 - [A11Y-06](A11Y-06.md) — High-contrast solid silhouette mode
 - [FX-06](FX-06.md) — Decals / Surface Marks
+- [PP-15](PP-15.md) — Selective colour / Colour splash
+- [PP-18](PP-18.md) — Image-intensifier night vision / NVG look
+- [PP-19](PP-19.md) — Thermal vision / Thermographic imaging
 
 ## References
 

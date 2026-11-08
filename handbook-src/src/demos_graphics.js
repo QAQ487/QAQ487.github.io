@@ -70,14 +70,15 @@ DEMOS['LGT-18']={d:6,f:(c,t)=>{
 
 /* ---------- LGT-19 sky+bounce fill: cool tops, greenish undersides ---------- */
 DEMOS['LGT-19']={d:5,f:(c,t)=>{
-  const o=outData(c),d=o.data;for(let y=0;y<H;y++)for(let x=0;x<W;x++){const sky=y<78;const p=(y*W+x)*4;if(sky){const u=y/78;d[p]=lerp(120,180,u);d[p+1]=lerp(170,210,u);d[p+2]=lerp(220,235,u)}else{const g=((x>>3)+(y>>3))&1;d[p]=g?90:78;d[p+1]=g?150:132;d[p+2]=g?70:58}d[p+3]=255}
-  /* sphere with sky/bounce, weak key */
-  const cx=80,cy=72,rad=28,key=[.15,.35,.9]; /* weak overhead-ish */
-  for(let y=cy-rad;y<=cy+rad;y++)for(let x=cx-rad;x<=cx+rad;x++){const nx=(x-cx)/rad,ny=(cy-y)/rad,q=nx*nx+ny*ny;if(q>1)continue;const nz=Math.sqrt(1-q);const nd=Math.max(0,nx*key[0]+ny*key[1]+nz*key[2])*.25; /* weak key */
-    const skyT=Math.max(0,ny)*.55,bounce=Math.max(0,-ny)*.65;const r=140*nd+90*skyT+40*bounce,g=150*nd+110*skyT+110*bounce,b=170*nd+180*skyT+55*bounce;const p=(y*W+x)*4;d[p]=r;d[p+1]=g;d[p+2]=b;d[p+3]=255}
-  blitData(c,o);shadow(c,170,105,7);spr(c,'hero',170,105,{sx:2.2,sy:2.2});
+  const o=outData(c),d=o.data,skyPulse=.5+.5*Math.sin(t*TAU);
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){const sky=y<78;const p=(y*W+x)*4;if(sky){const u=y/78;d[p]=lerp(110+skyPulse*20,170+skyPulse*20,u);d[p+1]=lerp(160,205,u);d[p+2]=lerp(210,235,u)}else{const g=((x>>3)+(y>>3))&1;d[p]=g?90:78;d[p+1]=g?150:132;d[p+2]=g?70:58}d[p+3]=255}
+  /* sphere with sky/bounce, weak drifting fill (no hard key) */
+  const cx=80,cy=72,rad=28,ka=t*TAU*.5,key=[Math.sin(ka)*.2,.35,.85];
+  for(let y=cy-rad;y<=cy+rad;y++)for(let x=cx-rad;x<=cx+rad;x++){const nx=(x-cx)/rad,ny=(cy-y)/rad,q=nx*nx+ny*ny;if(q>1)continue;const nz=Math.sqrt(1-q);const nd=Math.max(0,nx*key[0]+ny*key[1]+nz*key[2])*.22;
+    const skyT=Math.max(0,ny)*(.45+.2*skyPulse),bounce=Math.max(0,-ny)*.65;const r=140*nd+90*skyT+40*bounce,g=150*nd+110*skyT+110*bounce,b=170*nd+180*skyT+55*bounce;const p=(y*W+x)*4;d[p]=r;d[p+1]=g;d[p+2]=b;d[p+3]=255}
+  blitData(c,o);const hx=160+Math.sin(t*TAU)*16;shadow(c,hx,105,7);spr(c,'hero',hx,105,{sx:2.2,sy:2.2,flip:Math.cos(t*TAU)>0});
   /* tint hero: cool top / green underside via overlay strips */
-  const m=TMP(),g=m.getContext('2d');spr(g,'hero',170,105,{sx:2.2,sy:2.2});g.globalCompositeOperation='source-atop';
+  const m=TMP(),g=m.getContext('2d');spr(g,'hero',hx,105,{sx:2.2,sy:2.2,flip:Math.cos(t*TAU)>0});g.globalCompositeOperation='source-atop';
   const gr=g.createLinearGradient(0,80,0,105);gr.addColorStop(0,'rgba(140,180,230,.45)');gr.addColorStop(.55,'rgba(255,255,255,0)');gr.addColorStop(1,'rgba(90,160,80,.5)');g.fillStyle=gr;g.fillRect(0,0,W,H);c.drawImage(m,0,0);
   gfTag(c,'NO HARD KEY',40,8,P.cyan);gfTag(c,'cool top · green bounce',160,8,P.gold)}};
 
@@ -97,11 +98,11 @@ DEMOS['ENV-21']={d:5,f:(c,t)=>{
 
 /* ---------- PP-14 OFF | BYPASS (hard blacks, reduced sat, colour kept) ---------- */
 DEMOS['PP-14']={d:5,f:(c,t)=>{
-  const s=imgData('eday').data,o=outData(c),d=o.data,half=W/2,on=t>.15;
+  const s=imgData('eday').data,o=outData(c),d=o.data,half=W/2,on=t>.12,hx=50+Math.sin(t*TAU)*18;
   for(let y=0;y<H;y++)for(let x=0;x<W;x++){const i=(y*W+x)*4;let r=s[i],g=s[i+1],b=s[i+2];
     if(x>=half&&on){const L=gfLuma(r,g,b);const sat=.55;r=lerp(L,r,sat);g=lerp(L,g,sat);b=lerp(L,b,sat); /* crush blacks */const crush=gfSS(40,0,L);r*=1-crush*.55;g*=1-crush*.55;b*=1-crush*.5;r=Math.min(255,r*1.05+8);g=Math.min(255,g*1.02);b=Math.min(255,b*.98)}
     d[i]=r;d[i+1]=g;d[i+2]=b;d[i+3]=255}
-  blitData(c,o);spr(c,'hero',60,90,{sx:1.5,sy:1.5});spr(c,'hero',180,90,{sx:1.5,sy:1.5});
+  blitData(c,o);spr(c,'hero',hx,90,{sx:1.5,sy:1.5,flip:Math.cos(t*TAU)>0});spr(c,'hero',hx+half,90,{sx:1.5,sy:1.5,flip:Math.cos(t*TAU)>0});
   gfDiv(c,half);gfTag(c,'OFF',half/2,8);gfTag(c,'BYPASS',half*1.5,8,P.cyan)}};
 
 /* ---------- PP-15 selective colour: one red coat/umbrella ---------- */
@@ -132,11 +133,12 @@ DEMOS['PP-16']={d:5,f:(c,t)=>{
 
 /* ---------- PP-17 OFF | X-PRO (cyan shadows / yellow highlights) ---------- */
 DEMOS['PP-17']={d:5,f:(c,t)=>{
-  const s=imgData('eday').data,o=outData(c),d=o.data,half=W/2;
+  const s=imgData('eday').data,o=outData(c),d=o.data,half=W/2,amt=.55+.45*Math.sin(t*TAU);
   for(let y=0;y<H;y++)for(let x=0;x<W;x++){const i=(y*W+x)*4;let r=s[i],g=s[i+1],b=s[i+2];
-    if(x>=half){const L=gfLuma(r,g,b)/255;const sh=gfSS(.45,0,L),hi=gfSS(.55,1,L);r=r*(1-sh*.15)+40*sh+hi*50;g=g*(1-sh*.05)+90*sh+hi*40;b=b+sh*70-hi*30;r=clamp(r,0,255);g=clamp(g,0,255);b=clamp(b,0,255)}
+    if(x>=half){const L=gfLuma(r,g,b)/255;const sh=gfSS(.45,0,L)*amt,hi=gfSS(.55,1,L)*amt;r=r*(1-sh*.15)+40*sh+hi*50;g=g*(1-sh*.05)+90*sh+hi*40;b=b+sh*70-hi*30;r=clamp(r,0,255);g=clamp(g,0,255);b=clamp(b,0,255)}
     d[i]=r;d[i+1]=g;d[i+2]=b;d[i+3]=255}
-  blitData(c,o);gfDiv(c,half);gfTag(c,'OFF',half/2,8);gfTag(c,'X-PRO',half*1.5,8,P.gold);
+  blitData(c,o);spr(c,'hero',half/2,100,{sx:1.4,sy:1.4});spr(c,'hero',half*1.5,100,{sx:1.4,sy:1.4});
+  gfDiv(c,half);gfTag(c,'OFF',half/2,8);gfTag(c,'X-PRO',half*1.5,8,P.gold);
   R(c,half+8,H-14,20,6,'#3a8a9a');R(c,half+32,H-14,20,6,'#e8d060');txt(c,'sh',half+18,H-20,'#cfd8e3',5);txt(c,'hi',half+42,H-20,'#cfd8e3',5)}};
 
 /* ---------- PP-18 NVG toggle ---------- */
@@ -278,23 +280,25 @@ DEMOS['NPR-22']={d:5,f:(c,t)=>{
 
 /* ---------- NPR-23 CAVITY vs AUTHORED face shadows ---------- */
 DEMOS['NPR-23']={d:6,f:(c,t)=>{
+  const sway=Math.sin(t*TAU)*4,blink=Math.sin(t*TAU*2)>.85;
   for(const lane of[0,1]){const ox=lane*120;c.save();c.beginPath();c.rect(ox,0,120,H);c.clip();R(c,ox,0,120,H,'#3a4558');
-    const cx=ox+60,cy=70;circ(c,cx,cy,32,P.skin);circ(c,cx-10,cy-4,4,'#fff');circ(c,cx+10,cy-4,4,'#fff');circ(c,cx-9,cy-3,2,P.ink);circ(c,cx+11,cy-3,2,P.ink);
-    if(!lane){/* CAVITY: soft AO in eye sockets / nose / neck */c.fillStyle='rgba(40,20,20,.45)';c.beginPath();c.ellipse(cx-10,cy-2,7,5,0,0,TAU);c.fill();c.beginPath();c.ellipse(cx+10,cy-2,7,5,0,0,TAU);c.fill();
+    const cx=ox+60+sway*.3,cy=70;circ(c,cx,cy,32,P.skin);if(!blink){circ(c,cx-10,cy-4,4,'#fff');circ(c,cx+10,cy-4,4,'#fff');circ(c,cx-9,cy-3,2,P.ink);circ(c,cx+11,cy-3,2,P.ink)}else{R(c,cx-12,cy-4,8,2,P.ink);R(c,cx+6,cy-4,8,2,P.ink)}
+    if(!lane){/* CAVITY: soft AO in eye sockets / nose / neck */const a=.35+.15*Math.sin(t*TAU);c.fillStyle='rgba(40,20,20,'+a+')';c.beginPath();c.ellipse(cx-10,cy-2,7,5,0,0,TAU);c.fill();c.beginPath();c.ellipse(cx+10,cy-2,7,5,0,0,TAU);c.fill();
       c.fillStyle='rgba(40,20,20,.3)';c.beginPath();c.ellipse(cx,cy+6,5,4,0,0,TAU);c.fill();c.fillStyle='rgba(30,15,15,.4)';c.beginPath();c.ellipse(cx,cy+28,18,8,0,0,TAU);c.fill()}
-    else{/* AUTHORED: deliberate graphic shadow shapes */c.fillStyle='#5a3040';c.beginPath();c.moveTo(cx-18,cy-8);c.lineTo(cx-4,cy-2);c.lineTo(cx-16,cy+6);c.closePath();c.fill();
-      c.beginPath();c.moveTo(cx+4,cy-2);c.lineTo(cx+18,cy-8);c.lineTo(cx+16,cy+6);c.closePath();c.fill();R(c,cx-14,cy+18,28,10,'#4a2838')}
+    else{/* AUTHORED: deliberate graphic shadow shapes that hold as head turns */const ox2=sway;c.fillStyle='#5a3040';c.beginPath();c.moveTo(cx-18+ox2,cy-8);c.lineTo(cx-4+ox2,cy-2);c.lineTo(cx-16+ox2,cy+6);c.closePath();c.fill();
+      c.beginPath();c.moveTo(cx+4+ox2,cy-2);c.lineTo(cx+18+ox2,cy-8);c.lineTo(cx+16+ox2,cy+6);c.closePath();c.fill();R(c,cx-14,cy+18,28,10,'#4a2838')}
     c.restore()}
   gfDiv(c,120);gfTag(c,'CAVITY AO',60,8,P.cyan);gfTag(c,'AUTHORED',180,8,P.gold)}};
 
 /* ---------- NPR-24 carved panel AO-only vs CAVITY+RIDGE ---------- */
 DEMOS['NPR-24']={d:5,f:(c,t)=>{
+  const light=Math.sin(t*TAU);
   for(const lane of[0,1]){const ox=lane*120;c.save();c.beginPath();c.rect(ox,0,120,H);c.clip();R(c,ox,0,120,H,'#2a2218');R(c,ox+10,12,100,110,'#8a6a48');
     /* carved pattern */const pattern=(ridge)=>{for(let row=0;row<4;row++)for(let col=0;col<3;col++){const x=ox+22+col*30,y=24+row*26;
       R(c,x,y,22,20,'#7a5a3a'); /* recess */
-      /* AO in corners */c.fillStyle='rgba(20,10,5,.55)';c.fillRect(x,y,22,3);c.fillRect(x,y,3,20);c.fillRect(x,y+17,22,3);
-      if(ridge){R(c,x+2,y+2,18,2,'rgba(255,230,180,.45)');R(c,x+2,y+2,2,16,'rgba(255,230,180,.3)');R(c,x+18,y+4,2,14,'rgba(20,10,5,.4)')}
-      circ(c,x+11,y+10,5,'#6a4a30');if(ridge){circ(c,x+9,y+8,2,'rgba(255,230,180,.5)')}}};
+      /* AO in corners */c.fillStyle='rgba(20,10,5,'+(.45+.15*light)+')';c.fillRect(x,y,22,3);c.fillRect(x,y,3,20);c.fillRect(x,y+17,22,3);
+      if(ridge){const hi=.35+.25*Math.max(0,light);R(c,x+2,y+2,18,2,'rgba(255,230,180,'+hi+')');R(c,x+2,y+2,2,16,'rgba(255,230,180,'+(hi*.7)+')');R(c,x+18,y+4,2,14,'rgba(20,10,5,.4)')}
+      circ(c,x+11,y+10,5,'#6a4a30');if(ridge){circ(c,x+9+light,y+8,2,'rgba(255,230,180,.5)')}}};
     pattern(lane===1);c.restore()}
   gfDiv(c,120);gfTag(c,'AO ONLY',60,8);gfTag(c,'CAVITY + RIDGE',180,8,P.gold)}};
 })();

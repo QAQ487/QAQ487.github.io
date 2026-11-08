@@ -34,6 +34,7 @@ Stepped time: seed = floor(time*rate) % variants. Offset stroke vertices (or UVs
 - [NPR-03](NPR-03.md) — Edge-detection outline
 - [NPR-09](NPR-09.md) — Sketch / Pencil shader
 - [PIX-14](PIX-14.md) — Sub-pixel animation
+- [NPR-16](NPR-16.md) — Ukiyo-e / woodblock print
 
 ## References
 

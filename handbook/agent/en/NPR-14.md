@@ -35,6 +35,7 @@ Two layers: 3D world (tile-textured meshes, point-sampled) and camera-facing or 
 - [REN-29](REN-29.md) — Bloom/Glow
 - [NPR-13](NPR-13.md) — 3D pixel art (pixelated 3D)
 - [PIX-01](PIX-01.md) — Integer scaling
+- [NPR-19](NPR-19.md) — Papercraft / paper-world construction
 
 ## References
 

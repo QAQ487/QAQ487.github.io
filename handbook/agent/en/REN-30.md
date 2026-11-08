@@ -30,6 +30,7 @@ Estimate representative scene luminance with robust metering, convert it to a bo
 ## Related
 
 - [REN-32](REN-32.md) — Color grading/LUT/White balance
+- [PP-18](PP-18.md) — Image-intensifier night vision / NVG look
 
 ## References
 

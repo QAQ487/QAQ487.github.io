@@ -35,6 +35,7 @@ Duplicate vertices per face so each triangle carries its face normal, or derive 
 - [REN-03](REN-03.md) — Toon shading/Cel shading/Ramp shading
 - [NPR-13](NPR-13.md) — 3D pixel art (pixelated 3D)
 - [LGT-01](LGT-01.md) — Directional, point and spot lights
+- [NPR-19](NPR-19.md) — Papercraft / paper-world construction
 
 ## References
 

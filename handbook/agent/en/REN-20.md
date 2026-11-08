@@ -29,6 +29,12 @@ In your game, add global illumination: compute at least one bounce in the small 
 
 Capture or solve indirect diffuse and specular transport with a method suited to scene motion and scale. Blend spatial data smoothly, limit leaks, and keep direct lighting independently controllable.
 
+## Related
+
+- [LGT-18](LGT-18.md) — Character–environment lighting separation
+- [LGT-19](LGT-19.md) — Hemisphere / sky–ground ambient
+- [NPR-21](NPR-21.md) — Authored shadow colours
+
 ## References
 
 - [Unreal — Post Process Effects，Global Illumination](https://dev.epicgames.com/documentation/en-us/unreal-engine/post-process-effects-in-unreal-engine)

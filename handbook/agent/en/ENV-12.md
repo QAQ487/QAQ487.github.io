@@ -34,6 +34,7 @@ Water pixel shader: two UV-scrolled samples of a ripple texture combined; foam =
 - [ENV-13](ENV-13.md) — Ripples
 - [ENV-14](ENV-14.md) — Caustics
 - [VFX-03](VFX-03.md) — Flowmap
+- [ENV-21](ENV-21.md) — Sun glitter / glittering water specular
 
 ## References
 

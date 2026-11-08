@@ -29,6 +29,10 @@ In your game, add filmic tone mapping: set the linear white point to 11.2, begin
 
 Map scene-referred HDR values into the target display range with a smooth toe and highlight shoulder. Apply the transform in a documented color pipeline and test hue preservation in saturated highlights.
 
+## Related
+
+- [PP-14](PP-14.md) — Bleach bypass / Skip bleach
+
 ## References
 
 - [Godot — Environment and post-processing，Tonemap](https://docs.godotengine.org/en/stable/tutorials/3d/environment_and_post_processing.html)

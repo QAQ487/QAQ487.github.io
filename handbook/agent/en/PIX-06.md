@@ -34,6 +34,8 @@ Store sprites as R8_UNORM index textures (or encode index in the red channel of 
 - [FB-05](FB-05.md) — Status effect tint
 - [PIX-07](PIX-07.md) — Color cycling
 - [PIX-10](PIX-10.md) — Limited palette
+- [PP-15](PP-15.md) — Selective colour / Colour splash
+- [PP-20](PP-20.md) — False-colour infrared / Aerochrome
 
 ## References
 

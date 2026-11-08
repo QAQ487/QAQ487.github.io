@@ -29,6 +29,10 @@ In your game, add soft cast shadows from a 0.5 m area light: target about 2 cm p
 
 Project occluders into a shadow representation and filter visibility in a way that reflects the apparent light size. Tune bias by world scale, preserve contact, and allocate resolution according to camera importance.
 
+## Related
+
+- [LGT-15](LGT-15.md) — Komorebi / dappled canopy light
+
 ## References
 
 - [LearnOpenGL — Shadow Mapping](https://learnopengl.com/Advanced-Lighting/Shadows/Shadow-Mapping)

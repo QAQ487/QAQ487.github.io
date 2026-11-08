@@ -34,6 +34,7 @@ Add blob shadows to the game's characters and enemies: draw a soft ellipse at gr
 - [PIX-18](PIX-18.md) — Fake height with ground shadow
 - [LGT-09](LGT-09.md) — Contact shadows
 - [REN-25](REN-25.md) — Cast shadows/Soft shadows/Penumbra
+- [NPR-19](NPR-19.md) — Papercraft / paper-world construction
 
 ## References
 
