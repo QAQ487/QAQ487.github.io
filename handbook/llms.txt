@@ -61,7 +61,7 @@ CAMX-03 | Lock-on camera | Target lock, Z-targeting, Lock-on targeting, Soft loc
 CAMX-04 | Edge scrolling | Edge pan, Screen-edge panning, Mouse edge scroll | Camera & composition | agent/en/CAMX-04.md
 CAMX-05 | Auto-scrolling | Forced scrolling, Autoscroller, Auto-scroll level | Camera & composition | agent/en/CAMX-05.md
 CAMX-06 | Flip-screen | Screen-by-screen scrolling, Room-by-room camera, Flick-screen | Camera & composition | agent/en/CAMX-06.md
-CAMX-14 | Third-person aim camera | 越肩瞄準, 準星打不中, 子彈打到牆, 準星與槍口不一致, Crosshair lies, Bullets hit the wall beside cover, Muzzle vs camera ray, Shoulder swap, Aim down sights zoom, Camera-ray targeting, Parallax aiming error | Camera & composition | agent/en/CAMX-14.md
+CAMX-14 | Third-person aim camera | 越肩瞄準, 準星打不中, 子彈打到牆, 準星與槍口不一致, Crosshair lies, Bullets hit the wall beside cover, Muzzle vs camera ray, Shoulder swap, Aim down sights zoom, Camera-ray targeting, Parallax aiming error, Melee-aim swap, Instant aim from melee, Gun mode swap, 近戰瞄準即時切換, 即時瞄準, 近接と射撃の即時切替 | Camera & composition | agent/en/CAMX-14.md
 CAMX-07 | Top-down view | Bird's-eye view, Overhead view, Straight-down view | Camera & composition | agent/en/CAMX-07.md
 CAMX-08 | Three-quarter view | 3/4 view, 3/4 top-down, Top-down RPG view, Oblique top-down | Camera & composition | agent/en/CAMX-08.md
 CAMX-09 | Isometric / dimetric projection | Isometric view, 2:1 dimetric, Pixel isometric, Axonometric view | Camera & composition | agent/en/CAMX-09.md
@@ -115,7 +115,7 @@ MATX-05 | Wet surface | Wetness, Rain-soaked surface, Puddles, Wet shader | Mate
 MATX-06 | Dithered transparency | Screen-door transparency, Stipple transparency, Dither fade, Opacity mask dithering | Materials & surfaces | agent/en/MATX-06.md
 MATX-11 | Frosted refractive glass | 毛玻璃, 磨砂玻璃, 玻璃後面模糊, Frosted glass, Refractive blur, Rough refraction, Screen-space refraction blur, すりガラス | Materials & surfaces | agent/en/MATX-11.md
 MATX-07 | Hologram shader | Hologram effect, Holographic material, Holo shader | Materials & surfaces | agent/en/MATX-07.md
-MATX-08 | Force field / Shield | Energy shield, Bubble shield, Intersection highlight, Depth-fade edge, Shield impact ripple, Shield burn-through, Light burn shield, Shield pop, 聚光燒穿護盾, 光で剥がすシールド | Materials & surfaces | agent/en/MATX-08.md
+MATX-08 | Force field / Shield | Energy shield, Bubble shield, Intersection highlight, Depth-fade edge, Shield impact ripple, Shield burn-through, Light burn shield, Shield pop, 聚光燒穿護盾, 光で剥がすシールド, Shield hit vs flesh hit, Shielded hit feedback, Shield break feedback, 護盾命中回饋, 破盾手感, シールド被弾の手応え | Materials & surfaces | agent/en/MATX-08.md
 MATX-10 | X-ray silhouette | See-through walls, Occluded silhouette, Behind-wall outline, Character occlusion silhouette | Materials & surfaces | agent/en/MATX-10.md
 REN-29 | Bloom/Glow | Film halation, Red halation, Halation, Optical diffusion, Black mist, Black-mist filter, 菲林紅暈, 黑柔濾鏡, フィルム・ハレーション, ブラックミスト | Post-processing & screen filters | agent/en/REN-29.md
 REN-30 | Exposure/Auto exposure/Eye adaptation | — | Post-processing & screen filters | agent/en/REN-30.md
@@ -268,7 +268,8 @@ ACT-44 | Weapon clash / Hitbox clash | Weapon clash, Hitbox clash, Clank, Attack
 ACT-45 | Pogo bounce / Downward strike bounce | Pogo bounce, Pogo jump, Downward strike bounce, Down-slash bounce, Nail bounce, 下劈反彈, 下突彈跳, 空中下劈彈起, ポゴジャンプ, 下突きバウンド | Combat feedback & game feel | agent/en/ACT-45.md
 ACT-46 | Bob and weave / Slip | Bob and weave, Slip, Sway dodge, Duck, Lean-back dodge, Upper-body evade, 原地搖身閃避, 搖頭閃避, 下潛閃避, スウェー, ダッキング | Combat feedback & game feel | agent/en/ACT-46.md
 ACT-47 | Air juggle / Launcher | Air juggle, Juggle, Launcher, Air combo, Juggle decay, Spike, 浮空連擊, 挑空, 空中追打, 浮かせ, 空中コンボ | Combat feedback & game feel | agent/en/ACT-47.md
-ACT-41 | Stance break / Poise break | 架勢破壞, 韌性擊破, 姿勢崩壞, Poise break, Stance break, Posture break, Break meter, スタンスブレイク, Impact gauge, Stagger gauge, ACS overload, Direct hit window, 衝擊計量, 直擊破防, スタッガー, 衝撃ゲージ | Combat feedback & game feel | agent/en/ACT-41.md
+ACT-48 | Directional counter dodge / Warp-behind counter | Directional counter dodge, Warp-behind counter, Blink counter, Teleport-behind counter, Step-in counter, Colour-keyed counter dodge, Push-off counter, 定向反擊閃避, 瞬移繞背反擊, 迎擊閃避, 後撤反推, 方向回避カウンター, 背後回りカウンター | Combat feedback & game feel | agent/en/ACT-48.md
+ACT-41 | Stance break / Poise break | 架勢破壞, 韌性擊破, 姿勢崩壞, Poise break, Stance break, Posture break, Break meter, スタンスブレイク, Impact gauge, Stagger gauge, ACS overload, Direct hit window, 衝擊計量, 直擊破防, スタッガー, 衝撃ゲージ, Segmented posture, Balance pips, Pip-based stance, Posture pips, 分格式架勢, 架勢格, 分割式スタンス, バランスの菱形 | Combat feedback & game feel | agent/en/ACT-41.md
 ACT-42 | Guard counter | 防反, 格擋反擊, Block counter, Just guard punish, ガードカウンター | Combat feedback & game feel | agent/en/ACT-42.md
 ACT-43 | Perfect dodge window | 完美閃避窗口, 剛好迴避, i-frame dodge window, Perfect dodge timing, ジャスト回避 | Combat feedback & game feel | agent/en/ACT-43.md
 FB-01 | Hit flash | White flash, Damage flash, Flash on hit | Combat feedback & game feel | agent/en/FB-01.md
@@ -355,6 +356,7 @@ FX-28 | Audio Hierarchy / Mix Separation | Voice stealing, Sound concurrency, Po
 FX-29 | Adaptive Music: Vertical Layering | Adaptive Music | Audio & haptics | agent/en/FX-29.md
 FX-30 | Adaptive Music: Horizontal Resequencing | Adaptive Music | Audio & haptics | agent/en/FX-30.md
 FX-31 | Stinger | — | Audio & haptics | agent/en/FX-31.md
+FX-41 | Diegetic-to-score music transition | Diegetic to non-diegetic transition, Source music to score, Source-to-score crossfade, In-world music becomes the soundtrack, Diegetic music bleed, 場景音樂轉配樂, 畫內音樂轉配樂, 劇中音樂轉場, 劇中音楽から劇伴へ, ソース音楽から劇伴 | Audio & haptics | agent/en/FX-41.md
 FX-32 | Haptic Feedback / Rumble | Controller vibration, Tactile feedback, 手把震動, コントローラー振動 | Audio & haptics | agent/en/FX-32.md
 FX-33 | Haptic Pattern / Event Identity | — | Audio & haptics | agent/en/FX-33.md
 FX-34 | Haptic Customization / Opt-out | — | Audio & haptics | agent/en/FX-34.md
@@ -462,6 +464,7 @@ UX-37 | Onboarding / Interactive tutorial / Contextual teaching | — | Visual g
 NAV-01 | Interactable highlight | Outline on hover, Proximity highlight, Interaction outline | Visual guidance & wayfinding | agent/en/NAV-01.md
 NAV-02 | Yellow paint | Climbable markers, Ledge paint, Traversal markers | Visual guidance & wayfinding | agent/en/NAV-02.md
 NAV-14 | Contextual ping (multiplayer) | 情境標記, Ping 系統, Look ping, Context ping, ピン留め | Visual guidance & wayfinding | agent/en/NAV-14.md
+NAV-17 | Scan pulse / Sonar ping | Scan pulse, Sonar ping, Recon pulse, Pulse scan, Area scan, Echo scan, Scanner sweep, 掃描脈衝, 聲納掃描, 偵察脈衝, スキャンパルス, ソナー探知 | Visual guidance & wayfinding | agent/en/NAV-17.md
 NAV-03 | Foreground-background separation | Figure–ground separation, Gameplay layer readability, Value separation | Visual guidance & wayfinding | agent/en/NAV-03.md
 NAV-04 | Attack telegraph | Danger zone marking, AoE indicator, Ground telegraph | Visual guidance & wayfinding | agent/en/NAV-04.md
 NAV-09 | Weak-point highlight | 弱點高亮, 弱點標記, Critical spot marker, Weak point outline, 弱点ハイライト, Stagger finisher prompt, Finisher reticle, Deathblow marker, 處決提示點, 忍殺マーク, とどめマーカー, Stagger melee prompt, Limb-shot stagger, Weak-point sigil, Glowing sigil, 部位射擊硬直, 弱點印記, 部位撃ちの体術, 弱点の紋章 | Visual guidance & wayfinding | agent/en/NAV-09.md

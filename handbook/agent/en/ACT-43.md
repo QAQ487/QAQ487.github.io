@@ -11,7 +11,7 @@ Dodge grants invulnerability (or heavy damage reduction) only for a brief middle
 
 ## Not to be confused with
 
-Not slow motion itself (FB-10, how success is shown). They often pair, but do not merge. Distinct from ACT-42 guard counters.
+Not slow motion itself (FB-10, how success is shown). They often pair, but do not merge. Distinct from ACT-42 guard counters. Dodging in a set direction to warp behind the enemy is ACT-48.
 
 ## Use it for
 
@@ -35,6 +35,7 @@ dodgeAge in [perfectStart, perfectEnd] and Overlaps(attack): flag Perfect. Prese
 - [ACT-42](ACT-42.md) — Guard counter
 - [ACT-25](ACT-25.md) — Cancel Window / Action Window
 - [ACT-27](ACT-27.md) — Invulnerability / Invincibility Frames / I-frames
+- [ACT-48](ACT-48.md) — Directional counter dodge / Warp-behind counter
 - [FB-26](FB-26.md) — Perfect parry flash / Just guard
 - [ACT-46](ACT-46.md) — Bob and weave / Slip
 

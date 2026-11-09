@@ -1,6 +1,6 @@
 # Visual Presentation Handbook — agent index (English)
 
-479 entries. Prefer individual files under this folder; do not ingest the human SPA HTML.
+482 entries. Prefer individual files under this folder; do not ingest the human SPA HTML.
 
 Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 
@@ -48,7 +48,7 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [CAMX-04](CAMX-04.md) — **Edge scrolling** (aliases: Edge pan · Screen-edge panning · Mouse edge scroll)
 - [CAMX-05](CAMX-05.md) — **Auto-scrolling** (aliases: Forced scrolling · Autoscroller · Auto-scroll level)
 - [CAMX-06](CAMX-06.md) — **Flip-screen** (aliases: Screen-by-screen scrolling · Room-by-room camera · Flick-screen)
-- [CAMX-14](CAMX-14.md) — **Third-person aim camera** (aliases: 越肩瞄準 · 準星打不中 · 子彈打到牆 · 準星與槍口不一致 · Crosshair lies · Bullets hit the wall beside cover · Muzzle vs camera ray · Shoulder swap · Aim down sights zoom · Camera-ray targeting · Parallax aiming error)
+- [CAMX-14](CAMX-14.md) — **Third-person aim camera** (aliases: 越肩瞄準 · 準星打不中 · 子彈打到牆 · 準星與槍口不一致 · Crosshair lies · Bullets hit the wall beside cover · Muzzle vs camera ray · Shoulder swap · Aim down sights zoom · Camera-ray targeting · Parallax aiming error · Melee-aim swap · Instant aim from melee · Gun mode swap · 近戰瞄準即時切換 · 即時瞄準 · 近接と射撃の即時切替)
 - [CAMX-07](CAMX-07.md) — **Top-down view** (aliases: Bird's-eye view · Overhead view · Straight-down view)
 - [CAMX-08](CAMX-08.md) — **Three-quarter view** (aliases: 3/4 view · 3/4 top-down · Top-down RPG view · Oblique top-down)
 - [CAMX-09](CAMX-09.md) — **Isometric / dimetric projection** (aliases: Isometric view · 2:1 dimetric · Pixel isometric · Axonometric view)
@@ -108,7 +108,7 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [MATX-06](MATX-06.md) — **Dithered transparency** (aliases: Screen-door transparency · Stipple transparency · Dither fade · Opacity mask dithering)
 - [MATX-11](MATX-11.md) — **Frosted refractive glass** (aliases: 毛玻璃 · 磨砂玻璃 · 玻璃後面模糊 · Frosted glass · Refractive blur · Rough refraction · Screen-space refraction blur · すりガラス)
 - [MATX-07](MATX-07.md) — **Hologram shader** (aliases: Hologram effect · Holographic material · Holo shader)
-- [MATX-08](MATX-08.md) — **Force field / Shield** (aliases: Energy shield · Bubble shield · Intersection highlight · Depth-fade edge · Shield impact ripple · Shield burn-through · Light burn shield · Shield pop · 聚光燒穿護盾 · 光で剥がすシールド)
+- [MATX-08](MATX-08.md) — **Force field / Shield** (aliases: Energy shield · Bubble shield · Intersection highlight · Depth-fade edge · Shield impact ripple · Shield burn-through · Light burn shield · Shield pop · 聚光燒穿護盾 · 光で剥がすシールド · Shield hit vs flesh hit · Shielded hit feedback · Shield break feedback · 護盾命中回饋 · 破盾手感 · シールド被弾の手応え)
 - [MATX-10](MATX-10.md) — **X-ray silhouette** (aliases: See-through walls · Occluded silhouette · Behind-wall outline · Character occlusion silhouette)
 ## Post-processing & screen filters
 
@@ -271,7 +271,8 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [ACT-45](ACT-45.md) — **Pogo bounce / Downward strike bounce** (aliases: Pogo bounce · Pogo jump · Downward strike bounce · Down-slash bounce · Nail bounce · 下劈反彈 · 下突彈跳 · 空中下劈彈起 · ポゴジャンプ · 下突きバウンド)
 - [ACT-46](ACT-46.md) — **Bob and weave / Slip** (aliases: Bob and weave · Slip · Sway dodge · Duck · Lean-back dodge · Upper-body evade · 原地搖身閃避 · 搖頭閃避 · 下潛閃避 · スウェー · ダッキング)
 - [ACT-47](ACT-47.md) — **Air juggle / Launcher** (aliases: Air juggle · Juggle · Launcher · Air combo · Juggle decay · Spike · 浮空連擊 · 挑空 · 空中追打 · 浮かせ · 空中コンボ)
-- [ACT-41](ACT-41.md) — **Stance break / Poise break** (aliases: 架勢破壞 · 韌性擊破 · 姿勢崩壞 · Poise break · Stance break · Posture break · Break meter · スタンスブレイク · Impact gauge · Stagger gauge · ACS overload · Direct hit window · 衝擊計量 · 直擊破防 · スタッガー · 衝撃ゲージ)
+- [ACT-48](ACT-48.md) — **Directional counter dodge / Warp-behind counter** (aliases: Directional counter dodge · Warp-behind counter · Blink counter · Teleport-behind counter · Step-in counter · Colour-keyed counter dodge · Push-off counter · 定向反擊閃避 · 瞬移繞背反擊 · 迎擊閃避 · 後撤反推 · 方向回避カウンター · 背後回りカウンター)
+- [ACT-41](ACT-41.md) — **Stance break / Poise break** (aliases: 架勢破壞 · 韌性擊破 · 姿勢崩壞 · Poise break · Stance break · Posture break · Break meter · スタンスブレイク · Impact gauge · Stagger gauge · ACS overload · Direct hit window · 衝擊計量 · 直擊破防 · スタッガー · 衝撃ゲージ · Segmented posture · Balance pips · Pip-based stance · Posture pips · 分格式架勢 · 架勢格 · 分割式スタンス · バランスの菱形)
 - [ACT-42](ACT-42.md) — **Guard counter** (aliases: 防反 · 格擋反擊 · Block counter · Just guard punish · ガードカウンター)
 - [ACT-43](ACT-43.md) — **Perfect dodge window** (aliases: 完美閃避窗口 · 剛好迴避 · i-frame dodge window · Perfect dodge timing · ジャスト回避)
 - [FB-01](FB-01.md) — **Hit flash** (aliases: White flash · Damage flash · Flash on hit)
@@ -362,6 +363,7 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [FX-29](FX-29.md) — **Adaptive Music: Vertical Layering** (aliases: Adaptive Music)
 - [FX-30](FX-30.md) — **Adaptive Music: Horizontal Resequencing** (aliases: Adaptive Music)
 - [FX-31](FX-31.md) — **Stinger** (aliases: —)
+- [FX-41](FX-41.md) — **Diegetic-to-score music transition** (aliases: Diegetic to non-diegetic transition · Source music to score · Source-to-score crossfade · In-world music becomes the soundtrack · Diegetic music bleed · 場景音樂轉配樂 · 畫內音樂轉配樂 · 劇中音樂轉場 · 劇中音楽から劇伴へ · ソース音楽から劇伴)
 - [FX-32](FX-32.md) — **Haptic Feedback / Rumble** (aliases: Controller vibration · Tactile feedback · 手把震動 · コントローラー振動)
 - [FX-33](FX-33.md) — **Haptic Pattern / Event Identity** (aliases: —)
 - [FX-34](FX-34.md) — **Haptic Customization / Opt-out** (aliases: —)
@@ -477,6 +479,7 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [NAV-01](NAV-01.md) — **Interactable highlight** (aliases: Outline on hover · Proximity highlight · Interaction outline)
 - [NAV-02](NAV-02.md) — **Yellow paint** (aliases: Climbable markers · Ledge paint · Traversal markers)
 - [NAV-14](NAV-14.md) — **Contextual ping (multiplayer)** (aliases: 情境標記 · Ping 系統 · Look ping · Context ping · ピン留め)
+- [NAV-17](NAV-17.md) — **Scan pulse / Sonar ping** (aliases: Scan pulse · Sonar ping · Recon pulse · Pulse scan · Area scan · Echo scan · Scanner sweep · 掃描脈衝 · 聲納掃描 · 偵察脈衝 · スキャンパルス · ソナー探知)
 - [NAV-03](NAV-03.md) — **Foreground-background separation** (aliases: Figure–ground separation · Gameplay layer readability · Value separation)
 - [NAV-04](NAV-04.md) — **Attack telegraph** (aliases: Danger zone marking · AoE indicator · Ground telegraph)
 - [NAV-09](NAV-09.md) — **Weak-point highlight** (aliases: 弱點高亮 · 弱點標記 · Critical spot marker · Weak point outline · 弱点ハイライト · Stagger finisher prompt · Finisher reticle · Deathblow marker · 處決提示點 · 忍殺マーク · とどめマーカー · Stagger melee prompt · Limb-shot stagger · Weak-point sigil · Glowing sigil · 部位射擊硬直 · 弱點印記 · 部位撃ちの体術 · 弱点の紋章)

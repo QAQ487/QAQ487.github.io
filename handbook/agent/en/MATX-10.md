@@ -37,6 +37,7 @@ Pass 1: normal draw, stencil write 1. Pass 2 (after all occluders): same mesh, d
 - [NAV-03](NAV-03.md) — Foreground-background separation
 - [MATX-07](MATX-07.md) — Hologram shader
 - [PP-19](PP-19.md) — Thermal vision / Thermographic imaging
+- [NAV-17](NAV-17.md) — Scan pulse / Sonar ping
 
 ## References
 
