@@ -56,7 +56,7 @@ html{scroll-padding-top:calc(var(--top) + 12px)}
 .guide details details{background:var(--panel2)}.guide summary{font-weight:600}.guide h3{font-size:14px;margin:12px 0 4px;color:var(--muted)}
 .typehelp{color:var(--muted);font-size:12.5px;margin:8px 0}#empty{text-align:center;color:var(--muted);grid-column:1/-1}
 /* gallery columns: explicit 1/2/3 via data-cols (vh-cols); list stays a single compact column */
-#cards{display:grid;grid-template-columns:repeat(var(--vh-cols,2),minmax(0,1fr));gap:12px;margin-top:10px;align-items:start}
+#cards{display:grid;grid-template-columns:repeat(var(--vh-cols,2),minmax(0,1fr));gap:16px;margin-top:10px;align-items:stretch}
 html[data-cols="1"]{--vh-cols:1}html[data-cols="2"]{--vh-cols:2}html[data-cols="3"]{--vh-cols:3}
 .view-list #cards{display:flex;flex-direction:column;gap:0}
 .view-list .cols{display:none}
@@ -64,9 +64,6 @@ body:not(.view-list) #cards>article{cursor:pointer}
 h2.sect{display:flex;align-items:baseline;gap:10px;margin:18px 0 0;padding-bottom:6px;border-bottom:1px solid var(--line);font-size:18px;scroll-margin-top:calc(var(--top) + 8px);grid-column:1/-1}
 h2.sect .n{color:var(--muted);font-size:12px;font-weight:400}
 article{scroll-margin-top:calc(var(--top) + 12px)}
-body:not(.view-list) article{padding:12px 12px}
-body:not(.view-list) h2.nm{font-size:17px;line-height:1.35;overflow-wrap:anywhere}
-body:not(.view-list) .recog{font-size:13.5px;max-width:none}
 body:not(.view-list) .body{max-width:none}
 .body{max-width:72ch;overflow-wrap:anywhere}
 .view-list .main .body{max-width:72ch}
@@ -133,3 +130,36 @@ article.in-modal .svgfig svg{max-width:100%;max-height:min(56vh,520px);width:aut
 article.in-modal h2.nm{font-size:22px}
 article.in-modal .body{max-width:none}
 @media(max-width:560px){.mpanel{padding:10px 10px 14px;max-height:95vh}.modal{padding:8px}}
+/* ---- gallery summary tiles: equal height, canvas on top, title + English name + 3-line "what you see"; the modal shows the full entry ---- */
+.badge .bl{font-weight:700}
+body:not(.view-list) #cards>article{display:flex;flex-direction:column;padding:0 0 14px;overflow:hidden;letter-spacing:.01em}
+body:not(.view-list) #cards>article>*{margin-left:14px;margin-right:14px}
+body:not(.view-list) #cards>article:hover{border-color:#5d7f95}
+body:not(.view-list) #cards>article:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+body:not(.view-list) #cards>article>.visual{order:-1;margin:0 0 10px;border:0;border-bottom:1px solid var(--line);border-radius:0;display:flex;align-items:center;justify-content:center;padding:10px 0;min-height:155px;background:#0b1426}
+body:not(.view-list) #cards>article>.visual canvas{max-height:100%}
+body:not(.view-list) #cards>article>.visual.svgfig svg{width:100%;max-width:100%;height:auto}
+body:not(.view-list) #cards>article>.visual .ctl,body:not(.view-list) #cards>article>.visual .cap{display:none}
+body:not(.view-list) #cards>article>.body,body:not(.view-list) #cards>article>.banner,body:not(.view-list) #cards>article>.tags{display:none}
+body:not(.view-list) #cards>article>.hd{font-size:11.5px;gap:6px;flex-wrap:nowrap;min-width:0}
+body:not(.view-list) #cards>article>.hd .eid,body:not(.view-list) #cards>article>.hd .badge,body:not(.view-list) #cards>article>.hd .hit{flex:none;white-space:nowrap}
+body:not(.view-list) #cards>article>.hd .badge{padding:1px 6px}
+body:not(.view-list) #cards>article>.hd .badge .bt,body:not(.view-list) #cards>article>.hd .entry-link{display:none}
+body:not(.view-list) #cards>article>.hd .subn{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;color:#c9b48c}
+body:not(.view-list) #cards>article>h2.nm{font-size:18px;line-height:1.35;font-weight:700;margin-top:4px;margin-bottom:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body:not(.view-list) #cards>article>.std{font-size:12.5px;line-height:1.5;color:#c9d7ea;margin-top:2px;margin-bottom:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body:not(.view-list) #cards>article>.std b{color:inherit;font-weight:500}
+body:not(.view-list) #cards>article>.std .al{display:none}
+body:not(.view-list) #cards>article>.std.dup{visibility:hidden}
+body:not(.view-list) #cards>article>.recog{font-size:14.5px;line-height:1.75;color:#dfe5ee;margin-top:8px;margin-bottom:0;max-width:none;display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:calc(3 * 1.75em)}
+body:not(.view-list) #cards>article>.recog .rl{display:none}
+/* 1 column: horizontal tile (canvas left, text right) so the demo does not fill the screen */
+html[data-cols="1"] body:not(.view-list) #cards>article{display:grid;grid-template-columns:min(44%,440px) minmax(0,1fr);grid-auto-rows:min-content;column-gap:0;padding:0}
+html[data-cols="1"] body:not(.view-list) #cards>article>.visual{grid-row:1/span 6;grid-column:1;margin:0;border-bottom:0;border-right:1px solid var(--line);align-self:stretch}
+html[data-cols="1"] body:not(.view-list) #cards>article>*:not(.visual){grid-column:2;margin-left:18px;margin-right:18px}
+html[data-cols="1"] body:not(.view-list) #cards>article>.hd{margin-top:14px}
+html[data-cols="1"] body:not(.view-list) #cards>article>.recog{-webkit-line-clamp:4;line-clamp:4;min-height:calc(4 * 1.75em);max-width:60ch;margin-bottom:14px}
+@media(max-width:560px){html[data-cols="1"] body:not(.view-list) #cards>article{display:flex;padding:0 0 14px}html[data-cols="1"] body:not(.view-list) #cards>article>.visual{border-right:0;border-bottom:1px solid var(--line);margin-bottom:10px}html[data-cols="1"] body:not(.view-list) #cards>article>*:not(.visual){margin-left:14px;margin-right:14px}html[data-cols="1"] body:not(.view-list) #cards>article>.hd{margin-top:0}html[data-cols="1"] body:not(.view-list) #cards>article>.recog{-webkit-line-clamp:3;line-clamp:3;min-height:calc(3 * 1.75em);margin-bottom:0}}
+/* modal: full entry, comfortable measure */
+article.in-modal .recog,article.in-modal .body{max-width:68ch}
+article.in-modal .recog,article.in-modal dd,article.in-modal .callout .cb{font-size:15px;line-height:1.8}

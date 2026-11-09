@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Layout regression: dl label column must not crush entry body text in gallery cards. */
+/* Layout regression: dl label column must not crush entry body text in the entry modal; gallery summary tiles stay equal height. */
 const puppeteer = require('puppeteer-core');
 const path = require('path');
 const html = path.resolve(__dirname, '../../handbook/index.html');
@@ -19,10 +19,13 @@ const html = path.resolve(__dirname, '../../handbook/index.html');
     await p.evaluate((l) => document.querySelector('[data-lang=' + l + ']').click(), lang);
     await new Promise((r) => setTimeout(r, 120));
     const m = await p.evaluate(() => {
-      document.documentElement.dataset.cols = '3';
+      // Gallery tiles are summaries; the full body is checked inside the entry modal.
+      document.querySelector('[data-cols="3"]').click();
       const a = document.getElementById('NPR-14');
       if (!a) return { err: 'missing NPR-14' };
       a.scrollIntoView();
+      a.click();
+      if (!a.classList.contains('in-modal')) return { err: 'NPR-14 modal did not open' };
       const body = a.querySelector('.body');
       const dl = body && body.querySelector('dl');
       const dd = body && body.querySelector('dd');
@@ -47,8 +50,11 @@ const html = path.resolve(__dirname, '../../handbook/index.html');
         cbFS: parseFloat(cs.fontSize),
         transform: getComputedStyle(body).transform,
         bodyTransform: getComputedStyle(document.body).transform,
+        measure: parseFloat(getComputedStyle(body).maxWidth),
+        fs: parseFloat(getComputedStyle(dd).fontSize),
       };
     });
+    await p.evaluate(() => document.getElementById('mclose').click());
     if (m.err) fails.push(lang + ': ' + m.err);
     else {
       // Content column must keep readable width in a 3-col gallery card.
@@ -61,8 +67,55 @@ const html = path.resolve(__dirname, '../../handbook/index.html');
       if (m.transform !== 'none' || m.bodyTransform !== 'none') fails.push(`${lang}: unexpected transform`);
       // Line box must not be vertically crushed vs font-size.
       if (m.cbLH < m.cbFS * 1.25) fails.push(`${lang}: callout line-height too tight (${m.cbLH}/${m.cbFS})`);
+      // Modal reading measure: body text 15px, capped line length.
+      if (m.fs < 15) fails.push(`${lang}: modal dd font-size ${m.fs}px < 15px`);
+      if (!(m.measure > 0) || m.bodyW > m.measure + 1) fails.push(`${lang}: modal body measure not capped (${m.bodyW.toFixed(1)}/${m.measure})`);
     }
   }
+
+  // Gallery summary tiles: equal height in every column mode and language, no row-gap waste,
+  // full body hidden on the tile, demo still on the tile, keyboard Enter opens the modal.
+  const tiles = {};
+  for (const lang of ['zh', 'en', 'ja']) {
+    await p.evaluate((l) => document.querySelector('[data-lang=' + l + ']').click(), lang);
+    for (const cols of [3, 2, 1]) {
+      await p.evaluate((c) => document.querySelector('[data-cols="' + c + '"]').click(), cols);
+      await new Promise((r) => setTimeout(r, 150));
+      const t = await p.evaluate(() => {
+        const arts = [...document.querySelectorAll('#cards > article')].filter((a) => !a.hidden);
+        const hs = arts.map((a) => a.getBoundingClientRect().height);
+        const rows = {};
+        arts.forEach((a, i) => { const k = Math.round(a.getBoundingClientRect().top + scrollY); (rows[k] = rows[k] || []).push(hs[i]); });
+        let waste = 0;
+        Object.values(rows).forEach((v) => { const mx = Math.max(...v); v.forEach((h) => { waste += mx - h; }); });
+        const bodyShown = arts.filter((a) => getComputedStyle(a.querySelector('.body')).display !== 'none').length;
+        const noVisual = arts.filter((a) => { const f = a.querySelector('.visual'); return !f || f.getBoundingClientRect().height < 100; }).length;
+        const tabbable = arts.filter((a) => a.tabIndex !== 0).length;
+        return { n: arts.length, min: Math.min(...hs), max: Math.max(...hs), waste, bodyShown, noVisual, tabbable };
+      });
+      tiles[lang + cols] = Math.round(t.max);
+      if (t.max - t.min > 1) fails.push(`${lang} ${cols}-col: tile heights differ (${t.min.toFixed(1)}–${t.max.toFixed(1)})`);
+      if (t.waste > 1) fails.push(`${lang} ${cols}-col: row gap waste ${t.waste.toFixed(1)}px`);
+      if (t.bodyShown) fails.push(`${lang} ${cols}-col: ${t.bodyShown} tiles show the full body`);
+      if (t.noVisual) fails.push(`${lang} ${cols}-col: ${t.noVisual} tiles without a visible demo`);
+      if (t.tabbable) fails.push(`${lang} ${cols}-col: ${t.tabbable} tiles not keyboard-focusable`);
+    }
+  }
+  await p.evaluate(() => document.querySelector('[data-cols="3"]').click());
+  await p.focus('#FB-01');
+  await p.keyboard.press('Enter');
+  await new Promise((r) => setTimeout(r, 150));
+  const kb = await p.evaluate(() => document.getElementById('FB-01').classList.contains('in-modal'));
+  if (!kb) fails.push('keyboard: Enter on a gallery tile did not open the modal');
+  await p.keyboard.press('Escape');
+  await new Promise((r) => setTimeout(r, 100));
+  await p.focus('#FB-03');
+  await p.keyboard.press('Space');
+  await new Promise((r) => setTimeout(r, 150));
+  const kb2 = await p.evaluate(() => document.getElementById('FB-03').classList.contains('in-modal'));
+  if (!kb2) fails.push('keyboard: Space on a gallery tile did not open the modal');
+  await p.keyboard.press('Escape');
+  console.log('TILES', JSON.stringify(tiles));
 
   // Mobile modal: same constraints after opening NPR-14.
   await p.setViewport({ width: 390, height: 844 });
