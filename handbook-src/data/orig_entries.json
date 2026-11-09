@@ -11325,15 +11325,15 @@
     "fields": [
      [
       "現象",
-      "同一段翻越動作適應略有不同的障礙位置，或突進攻擊調整步程與朝向，對準目標。"
+      "同一段翻越動作適應略有不同的障礙位置，或突進攻擊調整步程與朝向，對準目標。近戰吸附（Melee magnetism／攻擊鎖附）：出招一開始，若前方錐形範圍內有敵人，角色會在起手幾幀內滑步貼近到剛好打中的距離並轉向對方；遇到牆或障礙則停在障礙前，不會穿過去，也不會從太遠的地方飛撲過去。"
      ],
      [
       "用途",
-      "在指定窗口調整 root motion，讓預製動作配合場景目標。"
+      "在指定窗口調整 root motion，讓預製動作配合場景目標。近身戰中讓連段自然地黏住目標，減少揮空。"
      ],
      [
       "易混淆",
-      "不是單純 IK：前者可調整角色整體路徑，後者主要解骨鏈姿勢。也不等於無條件追蹤必中或自動正確處理所有碰撞。"
+      "不是單純 IK：前者可調整角色整體路徑，後者主要解骨鏈姿勢。也不等於無條件追蹤必中或自動正確處理所有碰撞。近戰吸附也不是瞄準輔助（FB-20，影響準星與瞄準方向，不移動角色身體）。"
      ],
      [
       "核對來源",
@@ -11352,15 +11352,15 @@
     "fields": [
      [
       "What you see",
-      "The same vault adapts to slightly different obstacle positions, or a lunging attack adjusts its travel and facing to align with a target."
+      "The same vault adapts to slightly different obstacle positions, or a lunging attack adjusts its travel and facing to align with a target. Melee magnetism / attack latching: when an attack starts with an enemy inside a forward cone and range, the character slides over the first few frames to exactly hitting distance and turns to face it; obstacles stop the slide in front of them, and it never lunges from too far away."
      ],
      [
       "Purpose",
-      "Adjust root motion within a specified window so an authored action fits a scene target."
+      "Adjust root motion within a specified window so an authored action fits a scene target. In melee, it keeps combo strings latched onto the target and reduces whiffs."
      ],
      [
       "Do not confuse with",
-      "IK alone: warping can alter the character's overall path, while IK primarily solves poses along bone chains. Nor does warping imply unconditional homing hits or automatic correct handling of every collision."
+      "IK alone: warping can alter the character's overall path, while IK primarily solves poses along bone chains. Nor does warping imply unconditional homing hits or automatic correct handling of every collision. Melee magnetism is also not aim assist (FB-20, which bends the reticle and aim direction, not the character body)."
      ],
      [
       "Source check",
@@ -11377,15 +11377,15 @@
     "fields": [
      [
       "見られる現象",
-      "同じ乗り越え動作が少し異なる障害物の位置に対応したり、突進攻撃が移動距離と向きを調整して目標に合ったりします。"
+      "同じ乗り越え動作が少し異なる障害物の位置に対応したり、突進攻撃が移動距離と向きを調整して目標に合ったりします。近接の吸い付き（メレーマグネティズム／攻撃ラッチ）：攻撃開始時に前方の円錐と距離内に敵がいれば、出だしの数フレームで当たる距離まで滑り寄って向きを合わせる。壁や障害物があれば手前で止まり、遠すぎる敵には飛びつかない。"
      ],
      [
       "目的",
-      "指定した区間内で root motion を調整し、あらかじめ作った動作をシーン内の目標に合わせます。"
+      "指定した区間内で root motion を調整し、あらかじめ作った動作をシーン内の目標に合わせます。近接戦ではコンボを自然に目標へ吸い付かせ、空振りを減らします。"
      ],
      [
       "混同しやすい点",
-      "単なるIKではありません。warping はキャラクター全体の経路を調整できるのに対し、IKは主にボーンチェーンの姿勢を解きます。無条件に追尾して必中になることや、あらゆる衝突を自動で正しく処理することも意味しません。"
+      "単なるIKではありません。warping はキャラクター全体の経路を調整できるのに対し、IKは主にボーンチェーンの姿勢を解きます。無条件に追尾して必中になることや、あらゆる衝突を自動で正しく処理することも意味しません。近接の吸い付きはエイムアシスト（FB-20、照準や狙いの向きを曲げるもので、体は動かさない）でもありません。"
      ],
      [
       "確認用資料",
@@ -16188,11 +16188,11 @@
     "fields": [
      [
       "現象／用途",
-      "角色看手錶讀餘量、操作牆上終端；資訊是故事世界的一部分，而不單止給玩家看。"
+      "角色看手錶讀餘量、操作牆上終端；資訊是故事世界的一部分，而不單止給玩家看。狀態也可以由角色身上的實物顯示：裝甲背脊上的一排燈就是生命值，槍身上的小屏幕顯示剩餘彈藥；受傷時角色一拐一拐、呼吸變重，代替畫面角落的血條。"
      ],
      [
       "常見誤解",
-      "有 3D 立體感就是 diegetic？不是，要問角色世界承不承認它存在。世界內介面亦可以難讀、慢，不是天生較好。"
+      "有 3D 立體感就是 diegetic？不是，要問角色世界承不承認它存在。世界內介面亦可以難讀、慢，不是天生較好。受傷時畫面泛紅的暗角（FB-16）是畫面層疊加，不是世界內介面。"
      ],
      [
       "來源",
@@ -16211,11 +16211,11 @@
     "fields": [
      [
       "What you see / purpose",
-      "A character checks a watch for remaining resources or operates a wall terminal. The information belongs to the story world, rather than existing only for the player."
+      "A character checks a watch for remaining resources or operates a wall terminal. The information belongs to the story world, rather than existing only for the player. Status can also live on the character: a row of lights along the suit spine is the health bar, a small display on the gun shows remaining ammo, and when hurt the character limps and breathes heavily instead of a corner health bar."
      ],
      [
       "Common misconceptions",
-      "Does looking three-dimensional make something diegetic? No: ask whether its existence is acknowledged within the character’s world. In-world interfaces can also be hard to read or slow to use; they are not inherently better."
+      "Does looking three-dimensional make something diegetic? No: ask whether its existence is acknowledged within the character’s world. In-world interfaces can also be hard to read or slow to use; they are not inherently better. A red low-health vignette (FB-16) is a screen overlay, not an in-world interface."
      ],
      [
       "Source",
@@ -16232,11 +16232,11 @@
     "fields": [
      [
       "現象／用途",
-      "キャラクターが腕時計で残量を確認する、壁の端末を操作する、といったものです。情報がプレイヤーだけのためにあるのではなく、物語世界の一部になっています。"
+      "キャラクターが腕時計で残量を確認する、壁の端末を操作する、といったものです。情報がプレイヤーだけのためにあるのではなく、物語世界の一部になっています。状態をキャラ自身の物で示すこともできます。スーツの背骨に並ぶライトが体力、銃の小さな表示が残弾、負傷時は足を引きずり呼吸が荒くなり、画面隅の体力バーの代わりになります。"
      ],
      [
       "よくある誤解",
-      "3Dらしい立体感があればdiegeticなのでしょうか。そうではなく、その存在がキャラクターの世界で認められているかを問います。世界内のインターフェースでも、読みにくかったり操作に時間がかかったりするため、本質的に優れているわけではありません。"
+      "3Dらしい立体感があればdiegeticなのでしょうか。そうではなく、その存在がキャラクターの世界で認められているかを問います。世界内のインターフェースでも、読みにくかったり操作に時間がかかったりするため、本質的に優れているわけではありません。負傷時に画面が赤くなるビネット（FB-16）は画面上の重ねであり、世界内のインターフェースではありません。"
      ],
      [
       "出典",

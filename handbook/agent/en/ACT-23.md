@@ -31,6 +31,7 @@ On a successful block, apply a distinct timed restriction and any configured pus
 
 - [ACT-42](ACT-42.md) — Guard counter
 - [ACT-41](ACT-41.md) — Stance break / Poise break
+- [FB-26](FB-26.md) — Perfect parry flash / Just guard
 
 ## References
 

@@ -37,6 +37,7 @@ CPU particles with a separate height (z) channel for top-down: screen y = ground
 - [VFX-09](VFX-09.md) — Explosion
 - [UX-08](UX-08.md) — Modal dialog
 - [ENV-19](ENV-19.md) — Contact-driven leaf litter
+- [FB-27](FB-27.md) — Part break / Component severing
 
 ## References
 

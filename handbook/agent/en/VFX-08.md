@@ -35,6 +35,7 @@ Ring buffer of past positions per projectile (CPU), expanded into a camera-facin
 - [VFX-07](VFX-07.md) — Slash VFX
 - [FB-15](FB-15.md) — Muzzle flash
 - [FX-02](FX-02.md) — Trails / Ribbons
+- [FB-30](FB-30.md) — Weapon recall / Return-path pierce
 
 ## References
 

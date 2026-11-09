@@ -37,6 +37,8 @@ Draw the telegraph as a ground decal / projected quad after the ground and befor
 - [FB-01](FB-01.md) — Hit flash
 - [UI-09](UI-09.md) — Off-screen indicator / Edge arrow
 - [ACT-43](ACT-43.md) — Perfect dodge window
+- [UI-27](UI-27.md) — Threat direction ring
+- [FB-28](FB-28.md) — Unblockable attack signifier
 
 ## References
 

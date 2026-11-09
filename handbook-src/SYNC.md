@@ -12,6 +12,6 @@ HB=batch1.html node test.js   # optional smoke
 python3 tools/check_handbook.py ../handbook/index.html
 ```
 
-`build.py` publishes the human SPA and the English agent static layer together so the ~460 entries stay aligned.
+`build.py` publishes the human SPA and the English agent static layer together so the ~470 entries stay aligned.
 
 Do not edit only the monolithic HTML unless you also mirror the same change into `src/` (or rebuild will overwrite it).

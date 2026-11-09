@@ -27,6 +27,10 @@ Activate the sword hit volume from 240 to 330 ms for a 90 ms window; allow one h
 
 Enable attack detection only during explicit active intervals and test it against valid targets and protection rules. Track prior contacts when a move should hit each target only once.
 
+## Related
+
+- [ACT-44](ACT-44.md) — Weapon clash / Hitbox clash
+
 ## References
 
 - [Capcom — Street Fighter 6 A.K.I. Frame Data，active 區間說明](https://www.streetfighter.com/6/en-us/character/aki/frame)

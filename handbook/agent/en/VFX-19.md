@@ -35,6 +35,8 @@ Pre-fracture with Voronoi cells (clip the mesh/quad by bisector half-planes per 
 - [TRN-12](TRN-12.md) — Shatter transition
 - [VFX-04](VFX-04.md) — Dissolve
 - [FB-04](FB-04.md) — Death effect
+- [FB-27](FB-27.md) — Part break / Component severing
+- [FB-29](FB-29.md) — Delayed slash detonation / Lingering rift
 
 ## References
 

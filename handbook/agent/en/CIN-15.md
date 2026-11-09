@@ -35,6 +35,8 @@ A timed prompt node in the cutscene timeline: it pauses or slows the timeline, r
 - [FB-10](FB-10.md) — Slow motion
 - [FB-11](FB-11.md) — Freeze-frame finisher
 - [CIN-01](CIN-01.md) — Letterbox
+- [ACT-44](ACT-44.md) — Weapon clash / Hitbox clash
+- [CAM-36](CAM-36.md) — Contextual finisher / Environmental takedown
 
 ## References
 
