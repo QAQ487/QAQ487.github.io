@@ -33,7 +33,7 @@ Project a multi-colour cookie (or several tinted cookies) from the window light 
 
 - [LGT-03](LGT-03.md) — Light cookie
 - [ENV-14](ENV-14.md) — Caustics
-- [LGT-15](LGT-15.md) — Komorebi / dappled canopy light
+- [LGT-15](LGT-15.md) — Komorebi / canopy light shafts
 - [NPR-20](NPR-20.md) — Stained-glass cell style
 
 ## References

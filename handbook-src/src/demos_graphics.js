@@ -8,21 +8,56 @@ function gfDiv(c,x){R(c,x,0,1,H,'rgba(255,255,255,.85)')}
 const gfLuma=(r,g,b)=>.2126*r+.7152*g+.0722*b;
 function gfVN(x,y,s){const xi=Math.floor(x),yi=Math.floor(y),fx=x-xi,fy=y-yi,ux=fx*fx*(3-2*fx),uy=fy*fy*(3-2*fy);const h=(i,j)=>hash(i*31.7+j*97.1+s*13.3);return lerp(lerp(h(xi,yi),h(xi+1,yi),ux),lerp(h(xi,yi+1),h(xi+1,yi+1),ux),uy)}
 
-/* ---------- LGT-15 komorebi: warm spots on ground + walker under canopy ---------- */
+/* ---------- LGT-15 komorebi: volumetric canopy shafts through misty forest ---------- */
 DEMOS['LGT-15']={d:6,f:(c,t)=>{
-  const ox=t*48,hx=lerp(30,210,(.5-.5*Math.cos(t*TAU))),hy=98+((Math.floor(t*24)%2)?-1:0);
-  const sway=x=>Math.sin(t*TAU*1.4+x*.05)*2.2;
-  /* base forest + walker first */
-  R(c,0,0,W,52,'#1e3a24');R(c,0,52,W,H-52,P.grass);path(c);
-  for(const[tx,ty]of[[40,48],[90,42],[150,50],[200,44]])tree(c,tx,ty,sway(tx),P.leaf,P.leafD);
-  shadow(c,hx,hy,6,.4);spr(c,'hero',hx,hy,{sx:1.6,sy:1.6,flip:Math.cos(t*TAU)>0});
-  /* multiply warm dapples over ground AND character */
-  const id=c.getImageData(0,0,W,H),d=id.data;
+  const sway=x=>Math.sin(t*TAU*1.2+x*.04)*2.4;
+  const gapX=188+Math.sin(t*TAU)*.8,gapY=10+Math.cos(t*TAU*.5)*.4;
+  const hx=lerp(48,168,(.5-.5*Math.cos(t*TAU))),hy=108+((Math.floor(t*22)%2)?-1:0);
+  /* dark misty woodland + wet road receding toward bright opening */
+  R(c,0,0,W,H,'#0c1410');
+  const o=outData(c),d=o.data;
   for(let y=0;y<H;y++)for(let x=0;x<W;x++){
-    let spot=0;for(let i=0;i<7;i++){const cx=((hash(i*7+1)*W+ox*(.6+hash(i)*.8))%(W+40))-20,cy=58+hash(i*3+2)*58+Math.sin(t*TAU+i)*3,rr=10+hash(i*5)*14;spot=Math.max(spot,gfSS(rr,rr*.35,Math.hypot(x-cx,(y-cy)*.85)))}
-    if(spot<.02)continue;const i=(y*W+x)*4,warm=spot;d[i]=Math.min(255,d[i]*(.55+warm*.9)+warm*90);d[i+1]=Math.min(255,d[i+1]*(.55+warm*.8)+warm*55);d[i+2]=Math.min(255,d[i+2]*(.55+warm*.45)+warm*12)}
-  c.putImageData(id,0,0);
-  gfTag(c,'KOMOREBI',30,8,P.gold);gfTag(c,'spots on ground + body',150,8,P.cyan)}};
+    const mist=.08+gfVN(x*.04,y*.05,2.1)*.12+(y/H)*.1;
+    let col=y<78?[12+mist*40,22+mist*55,16+mist*35]:[18+mist*30,28+mist*40,22+mist*28];
+    /* asphalt road: curve from bottom-center toward bright right opening */
+    const rd=y/H,cx=118+rd*52+Math.sin(rd*3.1)*6,hw=10+rd*22;
+    if(y>42&&Math.abs(x-cx)<hw){const edge=1-Math.abs(x-cx)/hw;col=[28+edge*18,32+edge*16,36+edge*14];if(x>cx+hw*.55&&x<cx+hw*.72)col=[210,214,220]}
+    /* distant glow near canopy opening */
+    const glow=gfSS(70,8,Math.hypot(x-gapX,(y-gapY)*1.1));
+    if(glow>0){col=[lerp(col[0],210,glow*.55),lerp(col[1],230,glow*.5),lerp(col[2],180,glow*.35)]}
+    const p=(y*W+x)*4;d[p]=col[0];d[p+1]=col[1];d[p+2]=col[2];d[p+3]=255}
+  blitData(c,o);
+  /* dark trunks silhouetting the shafts */
+  for(const[tx,ty,sc]of[[28,118,1.1],[58,122,1],[96,120,1.15],[132,124,.95],[168,118,1.05],[210,122,1.2]]){
+    const sw=sway(tx);R(c,tx-2+sw*.2,ty-42*sc,4,42*sc,'#0a100c');R(c,tx-1+sw*.2,ty-42*sc,2,42*sc,'#152018')}
+  /* leafy canopy; bright rim at the opening */
+  for(const[tx,ty]of[[20,46],[50,38],[80,44],[110,36],[140,42],[170,34],[200,40],[225,36]])tree(c,tx,ty,sway(tx),'#1f4a28','#132e1a');
+  for(const[lx,ly,r]of[[gapX-8,gapY+6,7],[gapX+4,gapY+10,6],[gapX-2,gapY+16,5],[gapX+10,gapY+4,5]]){
+    const gr=c.createRadialGradient(lx+sway(lx)*.3,ly,0,lx,ly,r);gr.addColorStop(0,'rgba(160,210,90,.85)');gr.addColorStop(1,'rgba(60,110,40,0)');c.fillStyle=gr;c.beginPath();c.arc(lx,ly,r,0,TAU);c.fill()}
+  /* hero shafts: 5 pale beams fan from canopy gap onto the road */
+  const shafts=[];
+  c.save();c.globalCompositeOperation='lighter';
+  for(let i=0;i<5;i++){
+    const a=.55+i*.16+Math.sin(t*TAU+i)*.035+sway(i*20)*.01,len=118+i*4;
+    const x1=gapX+Math.cos(a)*len,y1=gapY+Math.sin(a)*len+8;
+    const half=.028+i*.004;shafts.push([a,len,x1,y1,half]);
+    const gr=c.createLinearGradient(gapX,gapY,x1,y1);
+    gr.addColorStop(0,'rgba(255,248,220,.42)');gr.addColorStop(.45,'rgba(240,235,210,.18)');gr.addColorStop(1,'rgba(220,230,210,0)');
+    c.fillStyle=gr;c.beginPath();c.moveTo(gapX,gapY);
+    c.lineTo(gapX+Math.cos(a-half)*len,gapY+Math.sin(a-half)*len+8);
+    c.lineTo(gapX+Math.cos(a+half)*len,gapY+Math.sin(a+half)*len+8);c.closePath();c.fill()}
+  c.restore();
+  /* elongated bright landings on the road (not round discs) */
+  for(const[a,len,x1,y1]of shafts){
+    const lx=gapX+Math.cos(a)*(len*.78),ly=Math.min(126,gapY+Math.sin(a)*(len*.78)+10);
+    const gr=c.createRadialGradient(lx,ly,0,lx,ly,18);gr.addColorStop(0,'rgba(255,250,230,.55)');gr.addColorStop(.45,'rgba(230,235,210,.18)');gr.addColorStop(1,'rgba(200,210,190,0)');
+    c.fillStyle=gr;c.beginPath();c.ellipse(lx,ly,16,5.5,a-.2,0,TAU);c.fill()}
+  /* walker brightens while inside a shaft */
+  let inShaft=0;for(const[a,len,,,half]of shafts){const dx=hx-gapX,dy=hy-14-gapY;const ang=Math.atan2(dy,dx),dist=Math.hypot(dx,dy);if(dist<len&&Math.abs(ang-a)<half*2.8)inShaft=Math.max(inShaft,1-Math.abs(ang-a)/(half*2.8))}
+  shadow(c,hx,hy,6,.35);spr(c,'hero',hx,hy,{sx:1.55,sy:1.55,flip:Math.cos(t*TAU)>0,tint:'#fff6c8',tintA:inShaft*.55});
+  /* soft mist veil so shafts read in air */
+  c.fillStyle='rgba(180,200,190,.06)';c.fillRect(0,0,W,H);
+  gfTag(c,'KOMOREBI',34,8,P.gold);gfTag(c,'SHAFTS',90,8,P.cyan);gfTag(c,'elongated landings',170,126,'#cfd8e3')}};
 
 /* ---------- LGT-16 stained-glass LIGHT POOLS (not leaded image cells) ---------- */
 DEMOS['LGT-16']={d:7,f:(c,t)=>{

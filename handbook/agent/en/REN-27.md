@@ -15,7 +15,7 @@ volumetric refers to scattering/absorption in a medium; god rays describe an app
 
 ## Use it for
 
-stages, forests, churches, and smoky or dusty atmosphere. Dust motes inside light shafts brighten in the beam and dim outside it, reinforcing the volume; ambient floating particles are ENV-11 — they can share a scene but are not this entry.
+stages, forests, churches, and smoky or dusty atmosphere. Dust motes inside light shafts brighten in the beam and dim outside it, reinforcing the volume; ambient floating particles are ENV-11 — they can share a scene but are not this entry. Forest canopy shafts shaped by leaf gaps over a dark woodland path are LGT-15 (木漏れ日) — that forest picture, not bouncing ground spots.
 
 ## Tunable parameters
 
@@ -32,7 +32,7 @@ Integrate light scattering and extinction through a participating medium, includ
 ## Related
 
 - [ENV-11](ENV-11.md) — Ambient particles
-- [LGT-15](LGT-15.md) — Komorebi / dappled canopy light
+- [LGT-15](LGT-15.md) — Komorebi / canopy light shafts
 
 ## References
 

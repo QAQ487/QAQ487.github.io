@@ -31,7 +31,7 @@ Project occluders into a shadow representation and filter visibility in a way th
 
 ## Related
 
-- [LGT-15](LGT-15.md) — Komorebi / dappled canopy light
+- [LGT-15](LGT-15.md) — Komorebi / canopy light shafts
 
 ## References
 

@@ -81,7 +81,7 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [LGT-19](LGT-19.md) — **Hemisphere / sky–ground ambient** (aliases: Hemisphere lighting · Sky–ground ambient · SH ambient · Zenith–nadir tint · 天空—地面半球環境光 · 半球ライティング · 空と地面のアンビエント)
 - [LGT-12](LGT-12.md) — **Height fog** (aliases: Exponential height fog · Ground fog · Altitude fog · Valley fog)
 - [LGT-13](LGT-13.md) — **Atmospheric scattering** (aliases: Sky model · Physically based sky · Rayleigh and Mie scattering · Aerial perspective)
-- [LGT-15](LGT-15.md) — **Komorebi / dappled canopy light** (aliases: Dappled canopy light · Forest floor godets · Leaf-gap sunlight · 木漏れ日 · 樹隙光斑 · 木洩れ日 · 葉隙間の光)
+- [LGT-15](LGT-15.md) — **Komorebi / canopy light shafts** (aliases: Forest light shafts · Canopy god rays · Crepuscular rays through trees · Tree-filtered sunbeams · Jacob's ladder in woodland · 木漏れ日 · 林間光芒 · 樹隙光束 · 樹蔭光芒 · 木洩れ日 · 樹間の光芒 · 林間の天使の梯子)
 - [LGT-16](LGT-16.md) — **Stained-glass colored light pool** (aliases: Stained-glass light pool · Colored window caustic · Cathedral colour spill · 彩窗色光 · 彩色玻璃投影 · ステンドグラスの投影 · 色つき窓光)
 - [LGT-17](LGT-17.md) — **Backlit leaf translucency** (aliases: Backlit foliage · Leaf subsurface glow · Transmitted leaf light · 逆光透葉 · 葉片透光 · 逆光の葉透け · 木の葉の半透明)
 ## Materials & surfaces

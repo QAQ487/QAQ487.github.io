@@ -11,7 +11,7 @@ When the sun sits behind foliage, leaves glow yellow-green (or autumn warm) and 
 
 ## Not to be confused with
 
-Not general SSS (REN-19, often skin). Not rim light hugging the silhouette (REN-05). Not spots cast by gaps onto other surfaces (LGT-15).
+Not general SSS (REN-19, often skin). Not rim light hugging the silhouette (REN-05). Not canopy light shafts of 木漏れ日 that travel through mist onto other surfaces (LGT-15).
 
 ## Use it for
 
@@ -33,7 +33,7 @@ Shade leaves with a thin-surface transmission term when N·L is negative (or L i
 
 - [REN-19](REN-19.md) — Subsurface scattering/SSS
 - [REN-05](REN-05.md) — Rim lighting/Rim light
-- [LGT-15](LGT-15.md) — Komorebi / dappled canopy light
+- [LGT-15](LGT-15.md) — Komorebi / canopy light shafts
 - [ENV-08](ENV-08.md) — Foliage sway
 
 ## References

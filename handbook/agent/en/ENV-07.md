@@ -7,11 +7,11 @@
 
 ## What you see
 
-Large soft terrain-scale dark patches drift slowly across hills, fields or sea, like clouds blocking the sun; characters and buildings darken as they pass under. These are ground-scale cloud shadows — not the small rounded leaf spots of komorebi (LGT-15).
+Large soft terrain-scale dark patches drift slowly across hills, fields or sea, like clouds blocking the sun; characters and buildings darken as they pass under. These are ground-scale cloud shadows — not forest canopy light shafts / komorebi (LGT-15).
 
 ## Not to be confused with
 
-Not fog (which whitens and obscures) nor fog of war (ENV-15, visibility). Not dappled leaf light / komorebi (LGT-15, small rounded spots). Cloud shadows are only moving shade with no gameplay effect.
+Not fog (which whitens and obscures) nor fog of war (ENV-15, visibility). Not canopy light shafts / komorebi (LGT-15, pale shafts in mist with elongated landings). Cloud shadows are only moving shade with no gameplay effect.
 
 ## Use it for
 
@@ -34,7 +34,7 @@ Fullscreen multiply pass (Blend: DestColor/Zero) sampling a tiling noise texture
 - [ENV-08](ENV-08.md) — Foliage sway
 - [ENV-01](ENV-01.md) — Day-night cycle
 - [LGT-03](LGT-03.md) — Light cookie
-- [LGT-15](LGT-15.md) — Komorebi / dappled canopy light
+- [LGT-15](LGT-15.md) — Komorebi / canopy light shafts
 
 ## References
 
