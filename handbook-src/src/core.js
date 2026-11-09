@@ -63,7 +63,7 @@ function blitData(c,img){
   g.putImageData(img,0,0);
   const sm=c.imageSmoothingEnabled;
   c.imageSmoothingEnabled=false;
-  c.drawImage(_blit,0,0,w,h,0,0,W,H);
+  c.drawImage(_blit,0,0,w,h,0,0,w,h);
   c.imageSmoothingEnabled=sm;
 }
 const BAYER4=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5];

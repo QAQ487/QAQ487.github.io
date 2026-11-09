@@ -263,11 +263,12 @@ DEMOS['CAM-21']={d:6,f:(c,t)=>{const k=b1K(t),camZ=lerp(0,2,k),cam={z:camZ,f:ler
  hdr(c,'Dolly zoom');prTag(c,'subj x'+sf.toFixed(2),4,16,P.cyan);prTag(c,'bg x'+bf.toFixed(2),4,28,house?P.gold:'#e9edf2');b1Rig(c,cam,4,10);tl(c,t,[.5])}};
 
 /* CAM-22 rule of thirds */
-DEMOS['CAM-22']={d:6,f:(c,t)=>{const k=ease(prTri(t)),cx=lerp(280,520,k),cy=190,z=1.15;
- prView(c,cx,cy,z,g=>{shadow(g,cx,200,5);prWalker(g,cx,200,cx/14,{flip:prWrap(t)<.5,still:0});spr(g,'coin',cx+70,170+Math.sin(t*TAU*2)*4)});
+DEMOS['CAM-22']={d:6,f:(c,t)=>{const k=ease(prTri(t)),hx=lerp(280,520,k),z=1.15,ld=clamp(Math.sin(prWrap(t)*TAU)*3,-1,1),cx=hx+ld*(W/6)/z,cy=192-(H/6)/z;
+ /* camera leads the walker: hero sits on a lower third intersection, open space ahead */
+ prView(c,cx,cy,z,g=>{shadow(g,hx,200,5);prWalker(g,hx,200,hx/14,{flip:prWrap(t)<.5,still:0});spr(g,'coin',hx+60*ld,170+Math.sin(t*TAU*2)*4)});
  for(let i=1;i<=2;i++){prLine(c,W*i/3,8,W*i/3,H-8,'rgba(242,201,76,.55)',1,[2,2]);prLine(c,8,H*i/3,W-8,H*i/3,'rgba(242,201,76,.55)',1,[2,2])}
- const [sx,sy]=prW2S(cx,200,cx,cy,z);circ(c,sx,sy-8,3,P.gold);circ(c,W*2/3,H/3,2,P.cyan);
- hdr(c,'Rule of thirds');prTag(c,'subject on grid',4,16,P.gold);tl(c,t,[.5])}};
+ const [sx,sy]=prW2S(hx,192,cx,cy,z),tx=ld>=0?W/3:W*2/3;ring(c,tx,H*2/3,6,1,P.cyan);circ(c,sx,sy,2,P.gold);
+ hdr(c,'Rule of thirds');prTag(c,'subject on a third, space ahead',4,16,P.gold);tl(c,t,[.5])}};
 
 /* CAM-23 negative space */
 DEMOS['CAM-23']={d:5,f:(c,t)=>{const side=prWrap(t)<.5?0:1;
@@ -288,7 +289,7 @@ DEMOS['CAM-24']={d:7,f:(c,t)=>{const u=prWrap(t),w=prKeys([[0,0],[.2,0],[.55,1],
 DEMOS['CAM-25']={d:5,f:(c,t)=>{const u=prWrap(t),w=ease(prKeys([[0,0],[.2,0],[.55,1],[.8,1],[1,0]],u));
  for(const i of[0,1])prLane(c,i,i?'CLOSE-UP':'WIDE',i?P.gold:'#e9edf2',gy=>{
   if(!i){tree(c,40,gy);tree(c,200,gy);house(c,150,gy);shadow(c,90,gy,6);spr(c,'hero',90,gy,{sx:2,sy:2})}
-  else{const s=lerp(2,7,w);R(c,0,gy-54,W,54,P.sky);shadow(c,120,gy,10);spr(c,'hero',120,gy,{sx:s,sy:s});if(w>.7){circ(c,120-s*1.2,gy-s*7.5,s*.9,P.skin);R(c,120-s*2,gy-s*9,s*4,s*1.2,'#d9a441')}}
+  else{/* push in on the face: head centre glides to frame centre while the sprite scales 2x -> 11x */const s=lerp(2,11,w),hy=lerp(gy-16,gy-27,w);c.globalAlpha=w;R(c,0,gy-54,W,66,P.sky);c.globalAlpha=1;if(w<.3)shadow(c,120,gy,10*(1-w/.3));spr(c,'hero',120+s*.5,hy+s*8,{sx:s,sy:s})}
  });prTag(c,'detail fills frame',W-4,4,P.gold,'rgba(10,14,24,.75)',6,'right');tl(c,t,[.55])}};
 
 /* CAM-26 Dutch angle */

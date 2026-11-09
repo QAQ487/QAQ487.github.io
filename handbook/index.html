@@ -210,7 +210,7 @@ function blitData(c,img){
   g.putImageData(img,0,0);
   const sm=c.imageSmoothingEnabled;
   c.imageSmoothingEnabled=false;
-  c.drawImage(_blit,0,0,w,h,0,0,W,H);
+  c.drawImage(_blit,0,0,w,h,0,0,w,h);
   c.imageSmoothingEnabled=sm;
 }
 const BAYER4=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5];
@@ -1247,7 +1247,7 @@ DEMOS['PP-02']={d:2,f:(c,t)=>{const s=ppSmData().data,o=outData(c),d=o.data,fr=M
 let ppCrtO=null;
 DEMOS['PP-03']={d:6,hi:true,f:(c,t)=>{const OW=480,OH=270,s=imgData('day').data;if(!ppCrtO)ppCrtO=c.createImageData(OW,OH);const d=ppCrtO.data,split=Math.round(240+170*Math.sin(t*TAU)),band=(1-t)*(OH+60)-30,X0=60,Y0=34;
  for(let y=0;y<OH;y++)for(let x=0;x<OW;x++){const i=(y*OW+x)*4;let r,g,b;if(x<split){const j=((Y0+(y>>2))*W+X0+(x>>2))*4;r=s[j];g=s[j+1];b=s[j+2]}else{let u=x/OW*2-1,v=y/OH*2-1;const rr=u*u+v*v,k=1+.05*rr;u*=k;v*=k;if(Math.abs(u)>1||Math.abs(v)>1){r=g=b=0}else{const sx=X0+(u+1)/2*W/2,sy=Y0+(v+1)/2*H/2,j=((Math.min(H-1,sy|0))*W+Math.min(W-1,sx|0))*4,fy=sy-Math.floor(sy);const scan=.35+.8*Math.sin(Math.PI*fy);const m=x%3;const ed=Math.min(1,(1-Math.abs(u))*10)*Math.min(1,(1-Math.abs(v))*10);const bb=1+.06*Math.max(0,1-Math.abs(y-band)/14);const f=scan*ed*bb;r=s[j]*f*(m===0?1.06:.86);g=s[j+1]*f*(m===1?1.06:.86);b=s[j+2]*f*(m===2?1.06:.86)}}d[i]=r;d[i+1]=g;d[i+2]=b;d[i+3]=255}
- c.putImageData(ppCrtO,0,0);c.fillStyle='rgba(255,255,255,.9)';c.fillRect(split,0,2,OH);c.save();c.scale(2,2);if(split>40)ppTag(c,'PLAIN',Math.min(split/4,60),8);if(split<440)ppTag(c,'CRT',Math.max((split/2+W)/2,180),8);ppTag(c,'4x ZOOM',W/2,H-8);c.restore()}};
+ blitData(c,ppCrtO);c.fillStyle='rgba(255,255,255,.9)';c.fillRect(split,0,2,OH);c.save();c.scale(2,2);if(split>40)ppTag(c,'PLAIN',Math.min(split/4,60),8);if(split<440)ppTag(c,'CRT',Math.max((split/2+W)/2,180),8);ppTag(c,'4x ZOOM',W/2,H-8);c.restore()}};
 
 /* PP-04 Posterization — levels per channel step down then back up */
 const ppLv=[32,12,8,5,4,3,2,3,5,8];
@@ -1278,7 +1278,7 @@ DEMOS['PP-09']={d:4,f:(c,t)=>{const s=imgData('day').data,o=outData(c),d=o.data,
 /* PP-10 Sharpening — hi-res soft (upscaled + blurred) image; right half sharpened, amount ramps up to overdone halos */
 let ppSoft=null,ppShO=null;
 function ppSoftData(){if(ppSoft)return ppSoft;const k=mk(480,270),g=k.getContext('2d');g.imageSmoothingEnabled=true;g.imageSmoothingQuality='high';g.drawImage(scene('day'),0,0,480,270);const a=g.getImageData(0,0,480,270),s=a.data,out=new Uint8ClampedArray(s.length);for(let y=0;y<270;y++)for(let x=0;x<480;x++)for(let ch=0;ch<3;ch++){let acc=0;for(let j=-2;j<=2;j++)for(let i=-2;i<=2;i++)acc+=s[((clamp(y+j,0,269))*480+clamp(x+i,0,479))*4+ch];out[(y*480+x)*4+ch]=acc/25}return ppSoft=out}
-DEMOS['PP-10']={d:4,hi:true,f:(c,t)=>{const s=ppSoftData(),OW=480,OH=270;if(!ppShO)ppShO=c.createImageData(OW,OH);const d=ppShO.data,amt=2.4*(.5-.5*Math.cos(t*TAU)),half=240;for(let y=0;y<OH;y++)for(let x=0;x<OW;x++){const i=(y*OW+x)*4;if(x<half||x===0||y===0||x===OW-1||y===OH-1){d[i]=s[i];d[i+1]=s[i+1];d[i+2]=s[i+2]}else{for(let ch=0;ch<3;ch++){const v=s[i+ch];d[i+ch]=v+amt*(4*v-s[i+ch-4]-s[i+ch+4]-s[i+ch-OW*4]-s[i+ch+OW*4])}}d[i+3]=255}c.putImageData(ppShO,0,0);c.fillStyle='rgba(255,255,255,.9)';c.fillRect(half,0,2,OH);c.save();c.scale(2,2);ppTag(c,'SOFT (e.g. after TAA)',60,8);ppTag(c,'SHARPEN '+amt.toFixed(2),180,8);c.restore()}};
+DEMOS['PP-10']={d:4,hi:true,f:(c,t)=>{const s=ppSoftData(),OW=480,OH=270;if(!ppShO)ppShO=c.createImageData(OW,OH);const d=ppShO.data,amt=2.4*(.5-.5*Math.cos(t*TAU)),half=240;for(let y=0;y<OH;y++)for(let x=0;x<OW;x++){const i=(y*OW+x)*4;if(x<half||x===0||y===0||x===OW-1||y===OH-1){d[i]=s[i];d[i+1]=s[i+1];d[i+2]=s[i+2]}else{for(let ch=0;ch<3;ch++){const v=s[i+ch];d[i+ch]=v+amt*(4*v-s[i+ch-4]-s[i+ch+4]-s[i+ch-OW*4]-s[i+ch+OW*4])}}d[i+3]=255}blitData(c,ppShO);c.fillStyle='rgba(255,255,255,.9)';c.fillRect(half,0,2,OH);c.save();c.scale(2,2);ppTag(c,'SOFT (e.g. after TAA)',60,8);ppTag(c,'SHARPEN '+amt.toFixed(2),180,8);c.restore()}};
 
 /* PP-11 Lens dirt — screen-fixed dirt mask lit only by the wide bloom of a moving bright light */
 let ppDirt=null;
@@ -1904,7 +1904,7 @@ function npHead(d,cx,cy,rad,L,toon){const P=npHeadPre(rad),S=P.S;let hx=L[0],hy=
 let npHBg=null;
 DEMOS['NPR-02']={d:6,hi:true,f:(c,t)=>{const o=npImg(c,480,270),d=o.data;if(!npHBg){npHBg=new Uint8ClampedArray(480*270*4);for(let y=0;y<270;y++){const k=y/270;for(let x=0;x<480;x++){const j=(y*480+x)*4;npHBg[j]=(.16+.1*k)*255;npHBg[j+1]=(.18+.1*k)*255;npHBg[j+2]=(.26+.08*k)*255;npHBg[j+3]=255}}}d.set(npHBg);
  const s=Math.sin(t*TAU),L=[s*.8,.55,.45],ll=Math.hypot(...L);L[0]/=ll;L[1]/=ll;L[2]/=ll;
- npHead(d,125,150,88,L,false);npHead(d,355,150,88,L,true);c.putImageData(o,0,0);
+ npHead(d,125,150,88,L,false);npHead(d,355,150,88,L,true);blitData(c,o);
  c.save();c.scale(2,2);npDiv(c,W/2);npTag(c,'REALISTIC (Blinn-Phong)',60,8);npTag(c,'TOON + ANGEL RING',180,8);
  for(const cx of [62,177]){circ(c,cx+s*40,24,3,P.gold);}txt(c,'light',W/2,24,'#c9d1dc',6);c.restore()}};
 
@@ -1949,7 +1949,7 @@ DEMOS['NPR-05']={d:6,hi:true,f:(c,t)=>{const G=npG(480),w=480,h=270,o=npImg(c,w,
   if(m&96)ink=m===32;else if(m&16)ink=!!id;else if(id&&(m&15)){let tone=clamp((.08+.92*Math.max(0,nn[i*3]*L[0]+nn[i*3+1]*L[1]+nn[i*3+2]*L[2]))*G.ao[i]);if(id===1)tone=Math.min(1,tone*1.15);
    ink=((m&1)&&tone<TH[0])||((m&2)&&tone<TH[1])||((m&4)&&tone<TH[2])||((m&8)&&tone<TH[3])}
   const col=ink?IN:PA;d[j]=col[0];d[j+1]=col[1];d[j+2]=col[2];d[j+3]=255}
- c.putImageData(o,0,0);c.save();c.scale(2,2);npTag(c,'HATCHING  tone -> stroke layers',W/2,8);txt(c,'dark',62,126,'#2a2238',7);txt(c,'light',178,126,'#2a2238',7);c.restore()}};
+ blitData(c,o);c.save();c.scale(2,2);npTag(c,'HATCHING  tone -> stroke layers',W/2,8);txt(c,'dark',62,126,'#2a2238',7);txt(c,'light',178,126,'#2a2238',7);c.restore()}};
 
 /* NPR-06 Kuwahara — painterly filter via summed-area tables; divider sweeps SOURCE | KUWAHARA */
 let npKw=null;
@@ -1968,7 +1968,7 @@ function npKuwa(c){if(npKw)return npKw;const G=npG(480),w=480,h=270,N=w*h,src=ne
   B.data[j]=br*255;B.data[j+1]=bg*255;B.data[j+2]=bb*255;B.data[j+3]=255}
  return npKw={A,B}}
 DEMOS['NPR-06']={d:6,hi:true,f:(c,t)=>{const K=npKuwa(c),split=Math.round(240+170*Math.sin(t*TAU)),o=npImg(c,480,270),d=o.data,a=K.A.data,b=K.B.data;
- for(let y=0;y<270;y++){const r=y*480*4;d.set(a.subarray(r,r+split*4),r);d.set(b.subarray(r+split*4,r+480*4),r+split*4)}c.putImageData(o,0,0);
+ for(let y=0;y<270;y++){const r=y*480*4;d.set(a.subarray(r,r+split*4),r);d.set(b.subarray(r+split*4,r+480*4),r+split*4)}blitData(c,o);
  c.save();c.scale(2,2);npDiv(c,split/2);if(split>60)npTag(c,'SOURCE',Math.min(split/4,60),8);if(split<420)npTag(c,'KUWAHARA r=5',Math.max((split/2+W)/2,180),8);c.restore()}};
 
 /* NPR-07 Watercolour — washes, edge darkening, granulation, wobbly bleeds, paper; painted in with a wet front */
@@ -1989,7 +1989,7 @@ DEMOS['NPR-07']={d:7,hi:true,f:(c,t)=>{const WC=npWater(),PP=WC.pp||(WC.pp=(()=>
  for(let i=0;i<480*270;i++){const j=i*4,m=WC.mask[i],paper=PP[i];let r=.97*paper,g=.95*paper,b=.90*paper;
   if(m<rv){const k=1-fade;r=r+(WC.col[i*3]-r)*k;g=g+(WC.col[i*3+1]-g)*k;b=b+(WC.col[i*3+2]-b)*k;const dlt=rv-m;if(dlt<.025&&rv<1.05){const e=.8+.2*dlt/.025;r*=e;g*=e;b*=e}}
   d[j]=r*255;d[j+1]=g*255;d[j+2]=b*255;d[j+3]=255}
- c.putImageData(o,0,0);c.save();c.scale(2,2);npTag(c,t<.64?'WET WASH SPREADING':'WATERCOLOUR: washes, dark edges, granulation',W/2,8);c.restore()}};
+ blitData(c,o);c.save();c.scale(2,2);npTag(c,t<.64?'WET WASH SPREADING':'WATERCOLOUR: washes, dark edges, granulation',W/2,8);c.restore()}};
 
 /* NPR-08 Halftone — left continuous tone | right 45° dot screen, dot size from shade, Ben-Day tint + ink edges */
 let npHT=null;
@@ -2007,7 +2007,7 @@ DEMOS['NPR-08']={d:6,hi:true,f:(c,t)=>{const G=npG(480),w=480,h=270,o=npImg(c,w,
    if(id){const B=NP_COL[id];if(f&1){r=B[0];g=B[1];b=B[2]}else{r=.5+.5*B[0];g=.5+.5*B[1];b=.5+.5*B[2]}}else{r=1;g=1;b=.97}
    const tn=tone(HP.si[i]);if(tn<1&&HP.dist[i]<cs*.56*Math.sqrt(1-tn)){r=.1;g=.08;b=.14}}}
   d[j]=r*255;d[j+1]=g*255;d[j+2]=b*255;d[j+3]=255}
- c.putImageData(o,0,0);c.save();c.scale(2,2);npDiv(c,split/2);npTag(c,'CONTINUOUS',split/4,8);npTag(c,'HALFTONE 45deg + BEN-DAY TINT',(split/2+W)/2,8);c.restore()}};
+ blitData(c,o);c.save();c.scale(2,2);npDiv(c,split/2);npTag(c,'CONTINUOUS',split/4,8);npTag(c,'HALFTONE 45deg + BEN-DAY TINT',(split/2+W)/2,8);c.restore()}};
 
 /* NPR-09 Sketch / pencil — paper tooth, repeated offset contours, loose graphite shading; drawn in, then boils at 4 fps */
 let npSk=null;
@@ -2023,7 +2023,7 @@ function npSketch(){if(npSk)return npSk;const G=npG(480),w=480,h=270,N=w*h,L=npL
 DEMOS['NPR-09']={d:7,hi:true,f:(c,t)=>{const S=npSketch(),o=npImg(c,480,270),d=o.data,pc=seg(t,.02,.36)*1.05,ps=seg(t,.36,.68)*1.05,v=t>.7?Math.floor(t*7*4)%2:0,gr=[58,58,66];
  for(let i=0;i<480*270;i++){const j=i*4,p=S.pap[i];let dk=(S.tc[i]<pc?S.cd[v][i]:0)+(S.ts[i]<ps?S.sd[i]:0);dk=Math.min(.9,dk);
   d[j]=(p*240)*(1-dk)+gr[0]*dk;d[j+1]=(p*236)*(1-dk)+gr[1]*dk;d[j+2]=(p*226)*(1-dk)+gr[2]*dk;d[j+3]=255}
- c.putImageData(o,0,0);c.save();c.scale(2,2);npTag(c,t<.36?'1. LOOSE CONTOURS':t<.68?'2. GRAPHITE SHADING':'3. DONE (lines boil at 4 fps)',W/2,8);c.restore()}};
+ blitData(c,o);c.save();c.scale(2,2);npTag(c,t<.36?'1. LOOSE CONTOURS':t<.68?'2. GRAPHITE SHADING':'3. DONE (lines boil at 4 fps)',W/2,8);c.restore()}};
 
 /* NPR-10 1-bit dithering — left 8-bit grey | right 2 colours via Bayer 8x8 threshold + ink edges */
 const npB8=(()=>{const m=new Float32Array(64);for(let y=0;y<8;y++)for(let x=0;x<8;x++){let a=0;for(let k=0;k<3;k++){a=a*4+(((x^y)>>k)&1)*2+((y>>k)&1)}m[y*8+x]=(a+.5)/64}return m})();
@@ -2079,7 +2079,7 @@ DEMOS['NPR-13']={d:10,hi:true,f:(c,t)=>{const o=npImg(c,480,270),d=o.data,a=t*TA
  npFill(d,480,cl,(x,y,oo)=>{oo[0]=150;oo[1]=190;oo[2]=220});
  for(const tr of T){const vv=tr.p.map(p=>{const v=cam.proj(p);v.a=[0];return v});const k=.35+.65*Math.max(0,tr.n[0]*L[0]+tr.n[1]*L[1]+tr.n[2]*L[2]);const col=tr.col.map(x=>clamp(x*k)*255);
   npTri(d,zb,480,cl,vv[0],vv[1],vv[2],(A,oo)=>{oo[0]=col[0];oo[1]=col[1];oo[2]=col[2]},{ortho:true,cull:false})}
- c.putImageData(o,0,0);
+ blitData(c,o);
  /* right: 60x68 low-res buffer */const lw=60,lh=68;if(!npPx){npPx={k:mk(lw,lh)};npPx.g=npPx.k.getContext('2d');npPx.o=npPx.g.createImageData(lw,lh);npPx.id=new Int16Array(lw*lh);npPx.zz=new Float32Array(lw*lh)}
  const lo=npPx.o.data,lz=npPx.zz,lid=npPx.id;lz.fill(1e9);lid.fill(-1);const cam2=npCam([4,3.4,4],[0,.4,0],0,0,0,lw,lh,62/4);
  npFill(lo,lw,[0,0,lw,lh],(x,y,oo)=>{oo[0]=150;oo[1]=190;oo[2]=220});
@@ -4013,11 +4013,12 @@ DEMOS['CAM-21']={d:6,f:(c,t)=>{const k=b1K(t),camZ=lerp(0,2,k),cam={z:camZ,f:ler
  hdr(c,'Dolly zoom');prTag(c,'subj x'+sf.toFixed(2),4,16,P.cyan);prTag(c,'bg x'+bf.toFixed(2),4,28,house?P.gold:'#e9edf2');b1Rig(c,cam,4,10);tl(c,t,[.5])}};
 
 /* CAM-22 rule of thirds */
-DEMOS['CAM-22']={d:6,f:(c,t)=>{const k=ease(prTri(t)),cx=lerp(280,520,k),cy=190,z=1.15;
- prView(c,cx,cy,z,g=>{shadow(g,cx,200,5);prWalker(g,cx,200,cx/14,{flip:prWrap(t)<.5,still:0});spr(g,'coin',cx+70,170+Math.sin(t*TAU*2)*4)});
+DEMOS['CAM-22']={d:6,f:(c,t)=>{const k=ease(prTri(t)),hx=lerp(280,520,k),z=1.15,ld=clamp(Math.sin(prWrap(t)*TAU)*3,-1,1),cx=hx+ld*(W/6)/z,cy=192-(H/6)/z;
+ /* camera leads the walker: hero sits on a lower third intersection, open space ahead */
+ prView(c,cx,cy,z,g=>{shadow(g,hx,200,5);prWalker(g,hx,200,hx/14,{flip:prWrap(t)<.5,still:0});spr(g,'coin',hx+60*ld,170+Math.sin(t*TAU*2)*4)});
  for(let i=1;i<=2;i++){prLine(c,W*i/3,8,W*i/3,H-8,'rgba(242,201,76,.55)',1,[2,2]);prLine(c,8,H*i/3,W-8,H*i/3,'rgba(242,201,76,.55)',1,[2,2])}
- const [sx,sy]=prW2S(cx,200,cx,cy,z);circ(c,sx,sy-8,3,P.gold);circ(c,W*2/3,H/3,2,P.cyan);
- hdr(c,'Rule of thirds');prTag(c,'subject on grid',4,16,P.gold);tl(c,t,[.5])}};
+ const [sx,sy]=prW2S(hx,192,cx,cy,z),tx=ld>=0?W/3:W*2/3;ring(c,tx,H*2/3,6,1,P.cyan);circ(c,sx,sy,2,P.gold);
+ hdr(c,'Rule of thirds');prTag(c,'subject on a third, space ahead',4,16,P.gold);tl(c,t,[.5])}};
 
 /* CAM-23 negative space */
 DEMOS['CAM-23']={d:5,f:(c,t)=>{const side=prWrap(t)<.5?0:1;
@@ -4038,7 +4039,7 @@ DEMOS['CAM-24']={d:7,f:(c,t)=>{const u=prWrap(t),w=prKeys([[0,0],[.2,0],[.55,1],
 DEMOS['CAM-25']={d:5,f:(c,t)=>{const u=prWrap(t),w=ease(prKeys([[0,0],[.2,0],[.55,1],[.8,1],[1,0]],u));
  for(const i of[0,1])prLane(c,i,i?'CLOSE-UP':'WIDE',i?P.gold:'#e9edf2',gy=>{
   if(!i){tree(c,40,gy);tree(c,200,gy);house(c,150,gy);shadow(c,90,gy,6);spr(c,'hero',90,gy,{sx:2,sy:2})}
-  else{const s=lerp(2,7,w);R(c,0,gy-54,W,54,P.sky);shadow(c,120,gy,10);spr(c,'hero',120,gy,{sx:s,sy:s});if(w>.7){circ(c,120-s*1.2,gy-s*7.5,s*.9,P.skin);R(c,120-s*2,gy-s*9,s*4,s*1.2,'#d9a441')}}
+  else{/* push in on the face: head centre glides to frame centre while the sprite scales 2x -> 11x */const s=lerp(2,11,w),hy=lerp(gy-16,gy-27,w);c.globalAlpha=w;R(c,0,gy-54,W,66,P.sky);c.globalAlpha=1;if(w<.3)shadow(c,120,gy,10*(1-w/.3));spr(c,'hero',120+s*.5,hy+s*8,{sx:s,sy:s})}
  });prTag(c,'detail fills frame',W-4,4,P.gold,'rgba(10,14,24,.75)',6,'right');tl(c,t,[.55])}};
 
 /* CAM-26 Dutch angle */
@@ -4726,7 +4727,7 @@ function slash(c,x,y,a0,a1,k,col){c.save();c.strokeStyle=col;c.lineCap='round';f
 function star(c,x,y,r,col){c.fillStyle=col;c.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4,rr=i%2?r*.3:r;c.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr)}c.fill()}
 DEMOS['FX-09']={d:5,f:(c,t,_w,_h,p)=>{const u=prWrap(t);prSide(c,120,67,{props:false});const gy=100,fx=u<.45?170:lerp(170,128,ease(seg(u,.45,.55)));
  const sw=(a,b)=>seg(u,a,b);const s1=sw(.12,.2),s2=sw(.6,.68);const arm=u<.4?lerp(-1.3,.7,eo(s1)):lerp(-1.3,.7,eo(s2));const rc=u<.4?seg(u,.25,.35):seg(u,.73,.83);
- c.save();c.translate(100,gy);shadow(c,0,0,7);c.scale(2,2);c.drawImage(sprCanvas('hero'),0,0,7,10,-4,-10,7,10);c.restore();c.save();c.translate(106,gy-10);c.rotate(lerp(arm,-1.3,ease(rc)));R(c,0,-1,16,2,'#e9edf2');c.restore();
+ c.save();c.translate(100,gy);shadow(c,0,0,7);/* 2x hero without its own sword; drawn at 2x via dest size so the auto-hi wrapper still scales the whole demo */c.drawImage(sprCanvas('hero'),0,0,7,10,-8,-20,14,20);c.restore();c.save();c.translate(106,gy-10);c.rotate(lerp(arm,-1.3,ease(rc)));R(c,0,-1,16,2,'#e9edf2');c.restore();
  if(s1>0&&u<.3)slash(c,106,gy-10,-1.3,.7,seg(u,.12,.3),'#fff');if(s2>0&&u<.78)slash(c,106,gy-10,-1.3,.7,seg(u,.6,.78),'#fff');
  const hit=u>=.66,hk=(u-.66)*p.dur;shadow(c,fx,gy,7);spr(c,'foe',fx+(hit?Math.max(0,4-hk*16):0),gy,{sx:2,sy:2,flip:true,flash:hit&&hk<.08?1:0});
  if(hit&&hk<.5){star(c,120,gy-12,lerp(3,12,eo(hk/.12))*(1-seg(hk,.12,.5)),'#fff6c8');star(c,120,gy-12,lerp(2,7,eo(hk/.12))*(1-seg(hk,.12,.5)),P.gold);burst(c,120,gy-12,hk,10,7,{speed:70,life:.4,col:P.gold})}
