@@ -35,7 +35,7 @@ function slash(c,x,y,a0,a1,k,col){c.save();c.strokeStyle=col;c.lineCap='round';f
 function star(c,x,y,r,col){c.fillStyle=col;c.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4,rr=i%2?r*.3:r;c.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr)}c.fill()}
 DEMOS['FX-09']={d:5,f:(c,t,_w,_h,p)=>{const u=prWrap(t);prSide(c,120,67,{props:false});const gy=100,fx=u<.45?170:lerp(170,128,ease(seg(u,.45,.55)));
  const sw=(a,b)=>seg(u,a,b);const s1=sw(.12,.2),s2=sw(.6,.68);const arm=u<.4?lerp(-1.3,.7,eo(s1)):lerp(-1.3,.7,eo(s2));const rc=u<.4?seg(u,.25,.35):seg(u,.73,.83);
- c.save();c.translate(100,gy);shadow(c,0,0,7);c.scale(2,2);c.drawImage(sprCanvas('hero'),0,0,7,10,-4,-10,7,10);c.restore();c.save();c.translate(106,gy-10);c.rotate(lerp(arm,-1.3,ease(rc)));R(c,0,-1,16,2,'#e9edf2');c.restore();
+ c.save();c.translate(100,gy);shadow(c,0,0,7);/* 2x hero without its own sword; drawn at 2x via dest size so the auto-hi wrapper still scales the whole demo */c.drawImage(sprCanvas('hero'),0,0,7,10,-8,-20,14,20);c.restore();c.save();c.translate(106,gy-10);c.rotate(lerp(arm,-1.3,ease(rc)));R(c,0,-1,16,2,'#e9edf2');c.restore();
  if(s1>0&&u<.3)slash(c,106,gy-10,-1.3,.7,seg(u,.12,.3),'#fff');if(s2>0&&u<.78)slash(c,106,gy-10,-1.3,.7,seg(u,.6,.78),'#fff');
  const hit=u>=.66,hk=(u-.66)*p.dur;shadow(c,fx,gy,7);spr(c,'foe',fx+(hit?Math.max(0,4-hk*16):0),gy,{sx:2,sy:2,flip:true,flash:hit&&hk<.08?1:0});
  if(hit&&hk<.5){star(c,120,gy-12,lerp(3,12,eo(hk/.12))*(1-seg(hk,.12,.5)),'#fff6c8');star(c,120,gy-12,lerp(2,7,eo(hk/.12))*(1-seg(hk,.12,.5)),P.gold);burst(c,120,gy-12,hk,10,7,{speed:70,life:.4,col:P.gold})}

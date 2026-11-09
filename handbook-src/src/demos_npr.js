@@ -110,7 +110,7 @@ function npHead(d,cx,cy,rad,L,toon){const P=npHeadPre(rad),S=P.S;let hx=L[0],hy=
 let npHBg=null;
 DEMOS['NPR-02']={d:6,hi:true,f:(c,t)=>{const o=npImg(c,480,270),d=o.data;if(!npHBg){npHBg=new Uint8ClampedArray(480*270*4);for(let y=0;y<270;y++){const k=y/270;for(let x=0;x<480;x++){const j=(y*480+x)*4;npHBg[j]=(.16+.1*k)*255;npHBg[j+1]=(.18+.1*k)*255;npHBg[j+2]=(.26+.08*k)*255;npHBg[j+3]=255}}}d.set(npHBg);
  const s=Math.sin(t*TAU),L=[s*.8,.55,.45],ll=Math.hypot(...L);L[0]/=ll;L[1]/=ll;L[2]/=ll;
- npHead(d,125,150,88,L,false);npHead(d,355,150,88,L,true);c.putImageData(o,0,0);
+ npHead(d,125,150,88,L,false);npHead(d,355,150,88,L,true);blitData(c,o);
  c.save();c.scale(2,2);npDiv(c,W/2);npTag(c,'REALISTIC (Blinn-Phong)',60,8);npTag(c,'TOON + ANGEL RING',180,8);
  for(const cx of [62,177]){circ(c,cx+s*40,24,3,P.gold);}txt(c,'light',W/2,24,'#c9d1dc',6);c.restore()}};
 
@@ -155,7 +155,7 @@ DEMOS['NPR-05']={d:6,hi:true,f:(c,t)=>{const G=npG(480),w=480,h=270,o=npImg(c,w,
   if(m&96)ink=m===32;else if(m&16)ink=!!id;else if(id&&(m&15)){let tone=clamp((.08+.92*Math.max(0,nn[i*3]*L[0]+nn[i*3+1]*L[1]+nn[i*3+2]*L[2]))*G.ao[i]);if(id===1)tone=Math.min(1,tone*1.15);
    ink=((m&1)&&tone<TH[0])||((m&2)&&tone<TH[1])||((m&4)&&tone<TH[2])||((m&8)&&tone<TH[3])}
   const col=ink?IN:PA;d[j]=col[0];d[j+1]=col[1];d[j+2]=col[2];d[j+3]=255}
- c.putImageData(o,0,0);c.save();c.scale(2,2);npTag(c,'HATCHING  tone -> stroke layers',W/2,8);txt(c,'dark',62,126,'#2a2238',7);txt(c,'light',178,126,'#2a2238',7);c.restore()}};
+ blitData(c,o);c.save();c.scale(2,2);npTag(c,'HATCHING  tone -> stroke layers',W/2,8);txt(c,'dark',62,126,'#2a2238',7);txt(c,'light',178,126,'#2a2238',7);c.restore()}};
 
 /* NPR-06 Kuwahara — painterly filter via summed-area tables; divider sweeps SOURCE | KUWAHARA */
 let npKw=null;
@@ -174,7 +174,7 @@ function npKuwa(c){if(npKw)return npKw;const G=npG(480),w=480,h=270,N=w*h,src=ne
   B.data[j]=br*255;B.data[j+1]=bg*255;B.data[j+2]=bb*255;B.data[j+3]=255}
  return npKw={A,B}}
 DEMOS['NPR-06']={d:6,hi:true,f:(c,t)=>{const K=npKuwa(c),split=Math.round(240+170*Math.sin(t*TAU)),o=npImg(c,480,270),d=o.data,a=K.A.data,b=K.B.data;
- for(let y=0;y<270;y++){const r=y*480*4;d.set(a.subarray(r,r+split*4),r);d.set(b.subarray(r+split*4,r+480*4),r+split*4)}c.putImageData(o,0,0);
+ for(let y=0;y<270;y++){const r=y*480*4;d.set(a.subarray(r,r+split*4),r);d.set(b.subarray(r+split*4,r+480*4),r+split*4)}blitData(c,o);
  c.save();c.scale(2,2);npDiv(c,split/2);if(split>60)npTag(c,'SOURCE',Math.min(split/4,60),8);if(split<420)npTag(c,'KUWAHARA r=5',Math.max((split/2+W)/2,180),8);c.restore()}};
 
 /* NPR-07 Watercolour — washes, edge darkening, granulation, wobbly bleeds, paper; painted in with a wet front */
@@ -195,7 +195,7 @@ DEMOS['NPR-07']={d:7,hi:true,f:(c,t)=>{const WC=npWater(),PP=WC.pp||(WC.pp=(()=>
  for(let i=0;i<480*270;i++){const j=i*4,m=WC.mask[i],paper=PP[i];let r=.97*paper,g=.95*paper,b=.90*paper;
   if(m<rv){const k=1-fade;r=r+(WC.col[i*3]-r)*k;g=g+(WC.col[i*3+1]-g)*k;b=b+(WC.col[i*3+2]-b)*k;const dlt=rv-m;if(dlt<.025&&rv<1.05){const e=.8+.2*dlt/.025;r*=e;g*=e;b*=e}}
   d[j]=r*255;d[j+1]=g*255;d[j+2]=b*255;d[j+3]=255}
- c.putImageData(o,0,0);c.save();c.scale(2,2);npTag(c,t<.64?'WET WASH SPREADING':'WATERCOLOUR: washes, dark edges, granulation',W/2,8);c.restore()}};
+ blitData(c,o);c.save();c.scale(2,2);npTag(c,t<.64?'WET WASH SPREADING':'WATERCOLOUR: washes, dark edges, granulation',W/2,8);c.restore()}};
 
 /* NPR-08 Halftone — left continuous tone | right 45° dot screen, dot size from shade, Ben-Day tint + ink edges */
 let npHT=null;
@@ -213,7 +213,7 @@ DEMOS['NPR-08']={d:6,hi:true,f:(c,t)=>{const G=npG(480),w=480,h=270,o=npImg(c,w,
    if(id){const B=NP_COL[id];if(f&1){r=B[0];g=B[1];b=B[2]}else{r=.5+.5*B[0];g=.5+.5*B[1];b=.5+.5*B[2]}}else{r=1;g=1;b=.97}
    const tn=tone(HP.si[i]);if(tn<1&&HP.dist[i]<cs*.56*Math.sqrt(1-tn)){r=.1;g=.08;b=.14}}}
   d[j]=r*255;d[j+1]=g*255;d[j+2]=b*255;d[j+3]=255}
- c.putImageData(o,0,0);c.save();c.scale(2,2);npDiv(c,split/2);npTag(c,'CONTINUOUS',split/4,8);npTag(c,'HALFTONE 45deg + BEN-DAY TINT',(split/2+W)/2,8);c.restore()}};
+ blitData(c,o);c.save();c.scale(2,2);npDiv(c,split/2);npTag(c,'CONTINUOUS',split/4,8);npTag(c,'HALFTONE 45deg + BEN-DAY TINT',(split/2+W)/2,8);c.restore()}};
 
 /* NPR-09 Sketch / pencil — paper tooth, repeated offset contours, loose graphite shading; drawn in, then boils at 4 fps */
 let npSk=null;
@@ -229,7 +229,7 @@ function npSketch(){if(npSk)return npSk;const G=npG(480),w=480,h=270,N=w*h,L=npL
 DEMOS['NPR-09']={d:7,hi:true,f:(c,t)=>{const S=npSketch(),o=npImg(c,480,270),d=o.data,pc=seg(t,.02,.36)*1.05,ps=seg(t,.36,.68)*1.05,v=t>.7?Math.floor(t*7*4)%2:0,gr=[58,58,66];
  for(let i=0;i<480*270;i++){const j=i*4,p=S.pap[i];let dk=(S.tc[i]<pc?S.cd[v][i]:0)+(S.ts[i]<ps?S.sd[i]:0);dk=Math.min(.9,dk);
   d[j]=(p*240)*(1-dk)+gr[0]*dk;d[j+1]=(p*236)*(1-dk)+gr[1]*dk;d[j+2]=(p*226)*(1-dk)+gr[2]*dk;d[j+3]=255}
- c.putImageData(o,0,0);c.save();c.scale(2,2);npTag(c,t<.36?'1. LOOSE CONTOURS':t<.68?'2. GRAPHITE SHADING':'3. DONE (lines boil at 4 fps)',W/2,8);c.restore()}};
+ blitData(c,o);c.save();c.scale(2,2);npTag(c,t<.36?'1. LOOSE CONTOURS':t<.68?'2. GRAPHITE SHADING':'3. DONE (lines boil at 4 fps)',W/2,8);c.restore()}};
 
 /* NPR-10 1-bit dithering — left 8-bit grey | right 2 colours via Bayer 8x8 threshold + ink edges */
 const npB8=(()=>{const m=new Float32Array(64);for(let y=0;y<8;y++)for(let x=0;x<8;x++){let a=0;for(let k=0;k<3;k++){a=a*4+(((x^y)>>k)&1)*2+((y>>k)&1)}m[y*8+x]=(a+.5)/64}return m})();
@@ -285,7 +285,7 @@ DEMOS['NPR-13']={d:10,hi:true,f:(c,t)=>{const o=npImg(c,480,270),d=o.data,a=t*TA
  npFill(d,480,cl,(x,y,oo)=>{oo[0]=150;oo[1]=190;oo[2]=220});
  for(const tr of T){const vv=tr.p.map(p=>{const v=cam.proj(p);v.a=[0];return v});const k=.35+.65*Math.max(0,tr.n[0]*L[0]+tr.n[1]*L[1]+tr.n[2]*L[2]);const col=tr.col.map(x=>clamp(x*k)*255);
   npTri(d,zb,480,cl,vv[0],vv[1],vv[2],(A,oo)=>{oo[0]=col[0];oo[1]=col[1];oo[2]=col[2]},{ortho:true,cull:false})}
- c.putImageData(o,0,0);
+ blitData(c,o);
  /* right: 60x68 low-res buffer */const lw=60,lh=68;if(!npPx){npPx={k:mk(lw,lh)};npPx.g=npPx.k.getContext('2d');npPx.o=npPx.g.createImageData(lw,lh);npPx.id=new Int16Array(lw*lh);npPx.zz=new Float32Array(lw*lh)}
  const lo=npPx.o.data,lz=npPx.zz,lid=npPx.id;lz.fill(1e9);lid.fill(-1);const cam2=npCam([4,3.4,4],[0,.4,0],0,0,0,lw,lh,62/4);
  npFill(lo,lw,[0,0,lw,lh],(x,y,oo)=>{oo[0]=150;oo[1]=190;oo[2]=220});
