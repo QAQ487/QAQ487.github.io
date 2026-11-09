@@ -36,7 +36,7 @@ Vertex shader on foliage quads: use the quad’s local v (top = 1) as height wei
 - [ENV-04](ENV-04.md) — Rain
 - [ENV-19](ENV-19.md) — Contact-driven leaf litter
 - [PHY-04](PHY-04.md) — Damped rigid-prop settling
-- [LGT-15](LGT-15.md) — Komorebi / dappled canopy light
+- [LGT-15](LGT-15.md) — Komorebi / canopy light shafts
 
 ## References
 

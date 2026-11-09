@@ -1,33 +1,33 @@
-# LGT-15 · Komorebi / dappled canopy light
+# LGT-15 · Komorebi / canopy light shafts
 
-**Aliases:** Dappled canopy light; Forest floor godets; Leaf-gap sunlight; 木漏れ日; 樹隙光斑; 木洩れ日; 葉隙間の光
+**Aliases:** Forest light shafts; Canopy god rays; Crepuscular rays through trees; Tree-filtered sunbeams; Jacob's ladder in woodland; 木漏れ日; 林間光芒; 樹隙光束; 樹蔭光芒; 木洩れ日; 樹間の光芒; 林間の天使の梯子
 
 **Group:** Lighting & shadows
 **Subcategory:** Atmosphere & volume
 
 ## What you see
 
-Under a tree canopy, rounded warm light spots land on the ground and slide across characters and props as leaf gaps move. Spots breathe and reshape with foliage sway, and canopy shade darkens coherently.
+Sunlight leaks through gaps in a forest canopy and becomes visible as several pale shafts in mist or dust, fanning through dark trunks toward a path or road. The air inside each shaft is brighter than the air beside it. Where a shaft meets the ground or a wet road, it lands as a bright elongated pool — not a scatter of small round discs. Canopy leaves may glow at the rim of the opening; the woodland interior stays dark. As foliage sways or the sun angle creeps, the shafts drift and the landings slide.
 
 ## Not to be confused with
 
-Not a light cookie (LGT-03 — a method that can fake this picture). Not visible shafts in air (REN-27). Not a single object’s penumbra edge (REN-25). Not large slow cloud patches (ENV-07). This card names the recognizable canopy-dapple picture itself.
+Not a light cookie / gobo (LGT-03 — a projector-mask method that can stamp leaf spots or window bars onto surfaces without any visible air shafts). Not ground 光斑 / dappled discs only: a floor of bouncing circular spots with no shafts readable in the air is not this card — that cheap cookie approximation must not be treated as 木漏れ日 here. Not volumetric lighting / god rays in general (REN-27 — church windows, stage spots, any occluder through smoke or fog). Not a single object’s cast shadow / penumbra (REN-25). Not large slow cloud-shadow patches (ENV-07). Not glow inside backlit leaves themselves (LGT-17). This card is the specific forest-canopy picture: many shafts shaped by leaf gaps, dark woodland, a receding path or road receiving the landings.
 
 ## Use it for
 
-Forest paths, woodland combat, outdoor scenes that need sunlight through leaf gaps.
+Forest paths, woodland combat, outdoor scenes that need sunlight through leaf gaps as visible shafts.
 
 ## Tunable parameters
 
-spot scale · sway amplitude · warmth tint · canopy shadow depth · scroll speed (authoring defaults)
+shaft count · mist density · canopy gap contrast · landing elongation · foliage-sway phase · sun angle (authoring defaults)
 
 ## Request prompt
 
-Enter a sunlit forest presentation → ground, character, and nearby props under canopy → rounded warm spots appear where leaf gaps aim, slide and reshape as leaves sway, and darken coherently in canopy shadow → restore even illumination when disabled.
+Enter a sunlit forest presentation → the woodland air, the canopy opening, the path or road, and anyone standing in a shaft → several pale shafts become visible in mist where leaf gaps aim, the air inside each shaft brightens, and elongated bright pools land where shafts meet the ground; shafts drift as foliage sways → restore clear air and even illumination when disabled.
 
 ## Implementation hint
 
-Multiply a soft circular/spot noise cookie (or projected gobo) over direct sun on ground and characters; animate UV with foliage-sway phase. Keep ambient separate so shade still reads. Prefer world-locked UVs so spots do not swim with the camera.
+Occlude a strong directional sun with canopy foliage (or a high-contrast canopy shadow map). Integrate scattering in a participating medium (mist/dust) so shafts are visible in air, not only as surface multiply. Where a shaft hits the ground, add a brighter elongated pool (wet-road specular optional). Animate the canopy / shadow map with a slow foliage-sway phase so shafts drift. Do not implement this card as a tiled circular-spot cookie on the ground with no volumetric term.
 
 ## Related
 
@@ -37,6 +37,7 @@ Multiply a soft circular/spot noise cookie (or projected gobo) over direct sun o
 - [ENV-07](ENV-07.md) — Cloud shadows
 - [ENV-08](ENV-08.md) — Foliage sway
 - [REN-29](REN-29.md) — Bloom/Glow
+- [LGT-17](LGT-17.md) — Backlit leaf translucency
 
 ## References
 

@@ -15,7 +15,7 @@ bloom spreads bright image regions; it does not actually illuminate nearby objec
 
 ## Use it for
 
-communicating brightness, magical energy, and soft dreamlike atmosphere. Film red halation and optical black-mist diffusion are distinct looks — not interchangeable; not chromatic aberration (REN-36) and not plain Gaussian blur (PP-08). Dappled leaf light is LGT-15.
+communicating brightness, magical energy, and soft dreamlike atmosphere. Film red halation and optical black-mist diffusion are distinct looks — not interchangeable; not chromatic aberration (REN-36) and not plain Gaussian blur (PP-08). Forest canopy light shafts / komorebi is LGT-15.
 
 ## Tunable parameters
 
@@ -31,7 +31,7 @@ Extract or weight bright image regions, blur them across several scales, and add
 
 ## Related
 
-- [LGT-15](LGT-15.md) — Komorebi / dappled canopy light
+- [LGT-15](LGT-15.md) — Komorebi / canopy light shafts
 - [CIN-14](CIN-14.md) — Flashback filter
 
 ## References

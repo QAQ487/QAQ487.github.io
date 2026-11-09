@@ -7,15 +7,15 @@
 
 ## What you see
 
-As if a cut-out plate sits in front of the light, the light on the floor and walls carries a pattern: window-frame bars, dappled light through leaves, coloured stained glass; the pattern moves or rotates with the light. A cookie/gobo is a cheap projector-mask method for imitating komorebi (LGT-15) or cloud shadows (ENV-07), but this entry names the mask — not those phenomena.
+As if a cut-out plate sits in front of the light, the light on the floor and walls carries a pattern: window-frame bars, dappled light through leaves, coloured stained glass; the pattern moves or rotates with the light. A cookie/gobo is a cheap projector-mask method that can stamp leaf spots or window bars onto surfaces (and is often used to approximate cloud shadows, ENV-07), but this entry names the mask — not those phenomena, and not the misty canopy light shafts of komorebi (LGT-15).
 
 ## Not to be confused with
 
-Not a shadow (REN-25 Cast shadows / REN-25, made by real objects blocking light); a cookie is just a texture attached to the light, with no actual window or leaves needed in the scene. Not the cloud-shadow phenomenon itself (ENV-07, large terrain-scale moving shade) nor komorebi itself (LGT-15, small rounded leaf spots) — those are the looks being imitated; the cookie is the projector mask.
+Not a shadow (REN-25 Cast shadows / REN-25, made by real objects blocking light); a cookie is just a texture attached to the light, with no actual window or leaves needed in the scene. Not the cloud-shadow phenomenon itself (ENV-07, large terrain-scale moving shade) nor komorebi itself (LGT-15, pale shafts visible in mist with elongated ground landings) — those are the looks; the cookie is the projector mask. A floor of bouncing circular spots with no air shafts is not LGT-15.
 
 ## Use it for
 
-Window light indoors, dappled forest light, stage and disco lights, irregular flashlight pools, cheaply implying off-screen objects.
+Window light indoors, stamping leaf-gap or window-bar patterns onto floors and walls, stage and disco lights, irregular flashlight pools, cheaply implying off-screen objects.
 
 ## Tunable parameters
 
@@ -23,7 +23,7 @@ cookie texture · projection size / angle · scroll & rotation speed · colour v
 
 ## Request prompt
 
-Add light cookies to the game's interiors: the spot light outside each window uses a 128×128 greyscale texture (2×3 panes, 8 px bars) to throw a grid of light on the floor; the forest directional light uses a dappled-leaf cookie panning at 0.05 UV/s to suggest leaves in the wind. Cookies affect direct light only, not ambient.
+Add light cookies to the game's interiors: the spot light outside each window uses a 128×128 greyscale texture (2×3 panes, 8 px bars) to throw a grid of light on the floor; the forest directional light may use a dappled-leaf cookie panning at 0.05 UV/s to stamp leaf-gap patterns on surfaces (a surface mask, not LGT-15’s air shafts). Cookies affect direct light only, not ambient.
 
 ## Implementation hint
 
@@ -33,7 +33,7 @@ Project the shaded point into the light's space (spot: its view-projection; dire
 
 - [LGT-01](LGT-01.md) — Directional, point and spot lights
 - [ENV-07](ENV-07.md) — Cloud shadows
-- [LGT-15](LGT-15.md) — Komorebi / dappled canopy light
+- [LGT-15](LGT-15.md) — Komorebi / canopy light shafts
 - [REN-25](REN-25.md) — Cast shadows/Soft shadows/Penumbra
 - [LGT-14](LGT-14.md) — Moving light pool from a swinging fixture
 

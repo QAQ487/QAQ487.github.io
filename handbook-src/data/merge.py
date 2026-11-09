@@ -237,13 +237,13 @@ FIELDS_ADD={'FX-32':{
   'en':('Narrative focus, HUD, and split diopter','In dialogue, place the focus on the character’s eyes and let near and far scenery soften with distance. Screen-space HUD must stay fully sharp. (Former entry CAM-28, “Depth of field”, is merged here.) Miniature / tilt-shift is a narrow band of focus; a split-field diopter keeps two sharp zones (often top/bottom) with a seam between — distinct from miniature/tilt-shift, not a separate card.'),
   'ja':('物語上の焦点、HUD、スプリット・ディオプター','会話中は焦点をキャラクターの目に置き、近景と遠景は距離に応じてぼかします。画面上の HUD は完全にくっきり保ちます。（旧項目 CAM-28「被写界深度」は本項目に統合済み。）ミニチュア／ティルトシフトは狭い合焦帯の見え方。スプリット・ディオプターは上下（または左右）に二つの合焦帯と境の線があり、ミニチュア／ティルトシフトとは別で、別カードにはしない。')},
  'REN-27':{
-  'zh':('光柱中的微粒','光束內的浮塵／塵埃在柱內變亮、柱外變暗，加強體積感；環境漂浮粒子見 ENV-11，可與光柱同場但不是同一條。'),
-  'en':('Particulate in shafts','Dust motes inside light shafts brighten in the beam and dim outside it, reinforcing the volume; ambient floating particles are ENV-11 — they can share a scene but are not this entry.'),
-  'ja':('光筋の中の微粒子','光束内の塵は柱の中で明るく、外では暗くなり体積感を強めます。環境の漂う粒子は ENV-11。同じ場面に出せますが、別項目です。')},
+  'zh':('光柱中的微粒與林間特寫','光束內的浮塵／塵埃在柱內變亮、柱外變暗，加強體積感；環境漂浮粒子見 ENV-11，可與光柱同場但不是同一條。樹冠葉隙塑形、深林與林道路面落點的木漏れ日畫面見 LGT-15——那是本條的森林特寫，不是地面跳動光斑。'),
+  'en':('Particulate in shafts; forest specialty','Dust motes inside light shafts brighten in the beam and dim outside it, reinforcing the volume; ambient floating particles are ENV-11 — they can share a scene but are not this entry. Forest canopy shafts shaped by leaf gaps over a dark woodland path are LGT-15 (木漏れ日) — that forest picture, not bouncing ground spots.'),
+  'ja':('光筋の中の微粒子と森の特写','光束内の塵は柱の中で明るく、外では暗くなり体積感を強めます。環境の漂う粒子は ENV-11。同じ場面に出せますが、別項目です。葉隙が形作り、暗い林と小道の着地を伴う木漏れ日は LGT-15——森の絵であり、地面の跳ねる斑ではありません。')},
  'REN-29':{
-  'zh':('兩種具名變體','菲林紅暈（film red halation）與光學黑柔／擴散（black-mist diffusion）是兩種不同做法，不可互換；不是色差（REN-36），也不是單純高斯模糊（PP-08）。樹隙間的木漏れ日見 LGT-15。'),
-  'en':('Two named variants','Film red halation and optical black-mist diffusion are distinct looks — not interchangeable; not chromatic aberration (REN-36) and not plain Gaussian blur (PP-08). Dappled leaf light is LGT-15.'),
-  'ja':('二つの具名バリエーション','フィルムの赤ハレーションと光学のブラックミスト拡散は別物で、置き換え不可。色収差（REN-36）でも単なるガウスぼかし（PP-08）でもない。木漏れ日は LGT-15。')},
+  'zh':('兩種具名變體','菲林紅暈（film red halation）與光學黑柔／擴散（black-mist diffusion）是兩種不同做法，不可互換；不是色差（REN-36），也不是單純高斯模糊（PP-08）。樹冠光柱木漏れ日見 LGT-15。'),
+  'en':('Two named variants','Film red halation and optical black-mist diffusion are distinct looks — not interchangeable; not chromatic aberration (REN-36) and not plain Gaussian blur (PP-08). Forest canopy light shafts / komorebi is LGT-15.'),
+  'ja':('二つの具名バリエーション','フィルムの赤ハレーションと光学のブラックミスト拡散は別物で、置き換え不可。色収差（REN-36）でも単なるガウスぼかし（PP-08）でもない。樹冠の光筋／木漏れ日は LGT-15。')},
  'REN-35':{
   'zh':('橫向拉絲與對照','長而有方向的光絲／拉絲濾鏡可做出變形鏡頭橫向光斑的味道，但拉絲濾鏡≠完整變形鏡頭光學；橢圓散景見 REN-34，黑邊／變形寬銀幕感見 CIN-01。'),
   'en':('Directional streaks vs full anamorphic','Long directional streaks / a streak filter can evoke anamorphic horizontal flares, but a streak filter is not full anamorphic optics; oval bokeh → REN-34, letterbox / anamorphic framing bars → CIN-01.'),

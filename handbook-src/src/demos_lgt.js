@@ -41,7 +41,7 @@ const o=outData(c),d=o.data;for(let y=0;y<H;y++)for(let x=0;x<W;x++){const pl=(M
 if(!leaf){const u=(x-70-(y-20)*sk)/110,v=(y-28)/80;L=lgWin(u,v)}else{L=lgLeaf(x/150+k*.5,y/150+k*.12)*.9+.05}
 L*=fade;const amb=.22,p=(y*W+x)*4,lc=leaf?[1.15,1.15,.8]:[1.25,1.1,.85];d[p]=Math.min(255,base[0]*(amb+L*lc[0]*1.3));d[p+1]=Math.min(255,base[1]*(amb+L*lc[1]*1.3));d[p+2]=Math.min(255,base[2]*(amb+L*lc[2]*1.3));d[p+3]=255}c.putImageData(o,0,0);
 /* cookie thumbnail */const tx=6,ty=16,ts=30;R(c,tx-2,ty-2,ts+4,ts+4,P.ink);for(let j=0;j<ts;j++)for(let i=0;i<ts;i++){const v=leaf?lgLeaf(i/ts*1.5,j/ts*1.5):lgWin(i/ts,j/ts);if(v>.5)R(c,tx+i,ty+j,1,1,'#f4f0e0');else R(c,tx+i,ty+j,1,1,'#222')}
-lgLab(c,'COOKIE',tx+ts/2,ty+ts+8,P.gold);lgLab(c,leaf?'LEAF COOKIE · PANNING':'WINDOW COOKIE · SUN ANGLE',150,8,P.cyan);lgLab(c,leaf?'can imitate komorebi':'can imitate clouds',150,126,'#cfd8e3')}};
+lgLab(c,'COOKIE',tx+ts/2,ty+ts+8,P.gold);lgLab(c,leaf?'LEAF COOKIE · PANNING':'WINDOW COOKIE · SUN ANGLE',150,8,P.cyan);lgLab(c,leaf?'stamps leaf spots · not shafts':'can imitate clouds',150,126,'#cfd8e3')}};
 
 /* LGT-04 flicker: random vs noise vs pattern */
 const lgPat='mmamammmmammamamaaamammma';

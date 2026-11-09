@@ -90,7 +90,7 @@ LGT-18 | Character–environment lighting separation | Split lighting rig, Chara
 LGT-19 | Hemisphere / sky–ground ambient | Hemisphere lighting, Sky–ground ambient, SH ambient, Zenith–nadir tint, 天空—地面半球環境光, 半球ライティング, 空と地面のアンビエント | Lighting & shadows | agent/en/LGT-19.md
 LGT-12 | Height fog | Exponential height fog, Ground fog, Altitude fog, Valley fog | Lighting & shadows | agent/en/LGT-12.md
 LGT-13 | Atmospheric scattering | Sky model, Physically based sky, Rayleigh and Mie scattering, Aerial perspective | Lighting & shadows | agent/en/LGT-13.md
-LGT-15 | Komorebi / dappled canopy light | Dappled canopy light, Forest floor godets, Leaf-gap sunlight, 木漏れ日, 樹隙光斑, 木洩れ日, 葉隙間の光 | Lighting & shadows | agent/en/LGT-15.md
+LGT-15 | Komorebi / canopy light shafts | Forest light shafts, Canopy god rays, Crepuscular rays through trees, Tree-filtered sunbeams, Jacob's ladder in woodland, 木漏れ日, 林間光芒, 樹隙光束, 樹蔭光芒, 木洩れ日, 樹間の光芒, 林間の天使の梯子 | Lighting & shadows | agent/en/LGT-15.md
 LGT-16 | Stained-glass colored light pool | Stained-glass light pool, Colored window caustic, Cathedral colour spill, 彩窗色光, 彩色玻璃投影, ステンドグラスの投影, 色つき窓光 | Lighting & shadows | agent/en/LGT-16.md
 LGT-17 | Backlit leaf translucency | Backlit foliage, Leaf subsurface glow, Transmitted leaf light, 逆光透葉, 葉片透光, 逆光の葉透け, 木の葉の半透明 | Lighting & shadows | agent/en/LGT-17.md
 REN-07 | Base color/Albedo/Diffuse color | Texture shimmer, Moiré, Mipmap, Anisotropic filtering, 遠處貼圖閃爍, 地板摩爾紋 | Materials & surfaces | agent/en/REN-07.md
