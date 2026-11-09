@@ -30,6 +30,8 @@ Enable attack detection only during explicit active intervals and test it agains
 ## Related
 
 - [ACT-44](ACT-44.md) — Weapon clash / Hitbox clash
+- [FB-32](FB-32.md) — Projectile reflect / Batting
+- [ACT-47](ACT-47.md) — Air juggle / Launcher
 
 ## References
 

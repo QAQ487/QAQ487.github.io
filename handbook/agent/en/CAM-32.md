@@ -27,6 +27,10 @@ In your game, blend from exploration to dialogue framing over 0.75 s: use cubic 
 
 Interpolate one complete camera state into another: position along a chosen curve, orientation on the shortest rotation arc, and projection parameters in a perceptually suitable space. Evaluate collision and target visibility on intermediate states, and define whether a new request restarts from the current blended state or queues.
 
+## Related
+
+- [CAM-37](CAM-37.md) — Perspective shift (3D ↔ side-scroll / top-down)
+
 ## References
 
 - [Unity Blender Settings：Style／Time／Custom Blends](https://docs.unity3d.com/Packages/com.unity.cinemachine@3.1/manual/CinemachineBlending.html)

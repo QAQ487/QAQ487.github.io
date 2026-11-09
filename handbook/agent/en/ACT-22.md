@@ -31,6 +31,7 @@ Apply a timed action restriction after a valid hit while allowing explicitly lis
 
 - [ACT-41](ACT-41.md) — Stance break / Poise break
 - [ACT-28](ACT-28.md) — Super Armor / Armor / Hyper Armor
+- [ACT-47](ACT-47.md) — Air juggle / Launcher
 
 ## References
 

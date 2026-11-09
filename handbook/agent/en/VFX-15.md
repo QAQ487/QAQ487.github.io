@@ -35,6 +35,7 @@ Sprite VS scales the quad around its feet pivot (scaleY curve from a small CB va
 - [VFX-13](VFX-13.md) — Magic circle
 - [FB-13](FB-13.md) — Squash on hit
 - [FB-01](FB-01.md) — Hit flash
+- [NAV-15](NAV-15.md) — Blink targeting arc / Ledge-snapped landing preview
 
 ## References
 

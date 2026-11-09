@@ -36,6 +36,7 @@ Render background layers into their own render target and composite with a fulls
 - [NAV-02](NAV-02.md) — Yellow paint
 - [PIX-12](PIX-12.md) — Selective outlining
 - [A11Y-01](A11Y-01.md) — Text contrast, backplate and dual outline
+- [NAV-16](NAV-16.md) — Colour-coded projectiles / Readable barrage
 
 ## References
 

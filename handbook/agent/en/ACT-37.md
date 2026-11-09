@@ -34,6 +34,7 @@ During a marked interval, redistribute authored root translation and rotation so
 - [ANI-22](ANI-22.md) — Contextual vault / Traversal snapping
 - [CAM-36](CAM-36.md) — Contextual finisher / Environmental takedown
 - [FB-20](FB-20.md) — Aim-assist friction and magnetism
+- [ACT-05](ACT-05.md) — Wall-Jump Forgiveness / Wall-Jump Window
 
 ## References
 
