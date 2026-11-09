@@ -1,0 +1,22 @@
+# Action-presentation batch 3 refs (curl-checked 2026-11-09)
+EXTRA={
+'s3_fx_sb_combat':('Stellar Blade Wiki (Fextralife) — Combat (blue glow → Blink, purple glow → Repulse; enemy Shield; Balance and Groggy)','https://stellarblade.wiki.fextralife.com/Combat'),
+'s3_fx_sb_blink':('Stellar Blade Wiki (Fextralife) — Blink (dodges and teleports behind the enemy, stuns it)','https://stellarblade.wiki.fextralife.com/Blink'),
+'s3_fx_sb_repulse':('Stellar Blade Wiki (Fextralife) — Repulse (pushes the enemy away and steps back; ranged attack up, reveals weaknesses)','https://stellarblade.wiki.fextralife.com/Repulse'),
+'s3_g8_blink':('Game8 — Stellar Blade: How to Blink (stick up + dodge on a blue light; teleport behind the enemy)','https://game8.co/games/Stellar-Blade/archives/451463'),
+'s3_g8_repulse':('Game8 — Stellar Blade: How to Repulse (stick down + dodge on a purple light)','https://game8.co/games/Stellar-Blade/archives/451422'),
+'s3_fx_mikiri':('Sekiro Wiki (Fextralife) — Mikiri Counter (forward step-dodge into a thrust attack)','https://sekiroshadowsdietwice.wiki.fextralife.com/Mikiri+Counter'),
+'s3_w_bayonetta':('Wikipedia — Bayonetta (video game) (Witch Time on a well-timed dodge)','https://en.wikipedia.org/wiki/Bayonetta_(video_game)'),
+'s3_w_ds':('Wikipedia — Death Stranding (odradek scan reveals invisible BTs)','https://en.wikipedia.org/wiki/Death_Stranding'),
+'s3_fx_div_pulse':('The Division Wiki (Fextralife) — Pulse (recon pulse marks hostiles through walls and cover)','https://thedivision.wiki.fextralife.com/Pulse'),
+'s3_g8_scan':('Game8 — Stellar Blade: How to Scan (reveals enemies, crates and interactables; short cooldown)','https://game8.co/games/Stellar-Blade/archives/451525'),
+'s3_w_diegesis':('Wikipedia — Diegesis (diegetic vs non-diegetic sound and music)','https://en.wikipedia.org/wiki/Diegesis'),
+'s3_w_bioshock':('Wikipedia — BioShock (licensed songs on phonographs; score written to blend with them)','https://en.wikipedia.org/wiki/BioShock'),
+'s3_w_rdr2':('Wikipedia — Red Dead Redemption 2 (environmental music: campfire singing, characters playing in the world)','https://en.wikipedia.org/wiki/Red_Dead_Redemption_2'),
+'s3_w_fo3':('Wikipedia — Fallout 3 (in-game radio stations with licensed songs)','https://en.wikipedia.org/wiki/Fallout_3'),
+'s3_g8_sb_patch':('Game8 — Stellar Blade patch 1.011 (new tracks for the camp turntable)','https://game8.co/games/Stellar-Blade/archives/528692'),
+'s3_epic_retribution':('Epicdope — How to perform Retribution in Stellar Blade (yellow diamond Balance bar drained by parries)','https://www.epicdope.com/how-to-perform-retribution-in-stellar-blade/'),
+'s3_w_halo':('Wikipedia — Halo: Combat Evolved (recharging energy shields on the player and on Elites)','https://en.wikipedia.org/wiki/Halo:_Combat_Evolved'),
+'s3_g8_ranged':('Game8 — Stellar Blade: How to Use Ranged Attacks (hold L2 to aim; aiming disengages melee focus)','https://game8.co/games/Stellar-Blade/archives/452514'),
+'s3_gr_gun':('Game Rant — Stellar Blade gun (hold L2 and the drone quickly mounts on the arm)','https://gamerant.com/stellar-blade-how-unlock-use-gun-ammo/'),
+}

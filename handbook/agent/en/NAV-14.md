@@ -35,6 +35,7 @@ OnPing: raycast; type=Classify(hit); replicate icon+pos+type to peers; local des
 - [UI-08](UI-08.md) — Minimap
 - [UI-11](UI-11.md) — Radial menu
 - [UI-09](UI-09.md) — Off-screen indicator / Edge arrow
+- [NAV-17](NAV-17.md) — Scan pulse / Sonar ping
 
 ## References
 

@@ -2,7 +2,7 @@ import json,sys,os,importlib
 sys.path.insert(0,'data')
 from common import ENTRIES
 from refs import REFS
-mods=[m for m in ['fb','trn','env','vfx','pix','ui','nav','lgt','cin','pp','ani','cam','npr','mat','a11y','diag','phy','batch2','expand','uihud','motion','graphics','combat','action2'] if os.path.exists(f'data/{m}.py')]
+mods=[m for m in ['fb','trn','env','vfx','pix','ui','nav','lgt','cin','pp','ani','cam','npr','mat','a11y','diag','phy','batch2','expand','uihud','motion','graphics','combat','action2','action3'] if os.path.exists(f'data/{m}.py')]
 for m in mods: importlib.import_module(m)
 CATS=[dict(id='FB',zh='戰鬥回饋與手感',en='Combat feedback & game feel',ja='戦闘フィードバックと手触り'),
 dict(id='PIX',zh='2D／像素美術技巧',en='2D & pixel-art techniques',ja='2D・ドット絵技法'),

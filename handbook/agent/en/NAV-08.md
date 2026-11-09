@@ -38,6 +38,7 @@ Mode blend m eased 0→1; post: col = mix(col, luma(col)*tint*bright, m*desat). 
 - [PP-15](PP-15.md) — Selective colour / Colour splash
 - [PP-18](PP-18.md) — Image-intensifier night vision / NVG look
 - [PP-19](PP-19.md) — Thermal vision / Thermographic imaging
+- [NAV-17](NAV-17.md) — Scan pulse / Sonar ping
 
 ## References
 

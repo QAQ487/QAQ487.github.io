@@ -37,6 +37,7 @@ Play an upper-body layered or additive slip animation keyed to the input directi
 - [ACT-42](ACT-42.md) — Guard counter
 - [ACT-34](ACT-34.md) — Animation Layers / Bone Mask / Partial-body Animation
 - [ACT-25](ACT-25.md) — Cancel Window / Action Window
+- [ACT-48](ACT-48.md) — Directional counter dodge / Warp-behind counter
 
 ## References
 
