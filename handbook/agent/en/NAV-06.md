@@ -34,6 +34,7 @@ Draw a circle quad on the ground layer below units with a shader: d = length(uv)
 - [NAV-04](NAV-04.md) — Attack telegraph
 - [NAV-05](NAV-05.md) — Placement ghost
 - [ENV-15](ENV-15.md) — Fog of war
+- [NAV-15](NAV-15.md) — Blink targeting arc / Ledge-snapped landing preview
 
 ## References
 

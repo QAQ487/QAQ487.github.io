@@ -34,6 +34,8 @@ On a confirmed hit, pause selected attacker/target simulation clocks. Optional v
 - [FB-26](FB-26.md) — Perfect parry flash / Just guard
 - [ACT-44](ACT-44.md) — Weapon clash / Hitbox clash
 - [FB-31](FB-31.md) — Stasis with stored impact
+- [ACT-45](ACT-45.md) — Pogo bounce / Downward strike bounce
+- [ACT-47](ACT-47.md) — Air juggle / Launcher
 
 ## References
 

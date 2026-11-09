@@ -36,6 +36,8 @@ OnGuardSuccess(hit): arm CounterWindow(t). If AttackPressed while window: Play(C
 - [ACT-18](ACT-18.md) — Startup / Start-up / Wind-up Frames
 - [ACT-19](ACT-19.md) — Active Frames / Hit Window
 - [FB-26](FB-26.md) — Perfect parry flash / Just guard
+- [ACT-46](ACT-46.md) — Bob and weave / Slip
+- [UI-28](UI-28.md) — Directional guard indicator
 
 ## References
 

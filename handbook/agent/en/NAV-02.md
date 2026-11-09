@@ -35,6 +35,7 @@ Author markers as decals, an overlay layer or tile variants on climbable edges, 
 - [NAV-03](NAV-03.md) — Foreground-background separation
 - [PIX-13](PIX-13.md) — Silhouette readability
 - [ANI-22](ANI-22.md) — Contextual vault / Traversal snapping
+- [ANI-23](ANI-23.md) — Creature climbing / Clinging to large enemies
 
 ## References
 

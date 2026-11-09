@@ -39,6 +39,8 @@ Draw the telegraph as a ground decal / projected quad after the ground and befor
 - [ACT-43](ACT-43.md) — Perfect dodge window
 - [UI-27](UI-27.md) — Threat direction ring
 - [FB-28](FB-28.md) — Unblockable attack signifier
+- [UI-28](UI-28.md) — Directional guard indicator
+- [NAV-16](NAV-16.md) — Colour-coded projectiles / Readable barrage
 
 ## References
 

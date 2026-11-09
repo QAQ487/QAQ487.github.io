@@ -8131,7 +8131,8 @@
    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 300\" role=\"img\" aria-labelledby=\"title desc\"><title id=\"ACT-05-title\">Wall-Jump Forgiveness / Wall-Jump Window</title><desc id=\"ACT-05-desc\">Gold marks accepted distance from the wall; the jump travels away. Tolerance is game-specific.</desc><rect width=\"640\" height=\"300\" rx=\"16\" fill=\"#0b1526\"/><g font-family=\"Arial, sans-serif\"><text x=\"22\" y=\"32\" fill=\"#f4cd70\" font-size=\"18\">ACT-05 · Wall-Jump Forgiveness</text><rect x=\"430\" y=\"65\" width=\"30\" height=\"175\" rx=\"7\" fill=\"#51d6c5\" fill-opacity=\".17\" stroke=\"#51d6c5\"/><rect x=\"380\" y=\"65\" width=\"50\" height=\"175\" rx=\"7\" fill=\"#f4cd70\" fill-opacity=\".17\" stroke=\"#f4cd70\"/><g transform=\"translate(365 205)\" stroke=\"#51d6c5\" stroke-width=\"5\" stroke-linecap=\"round\" fill=\"none\"><circle cy=\"-65\" r=\"11\"/><path d=\"M0 -53 L0 -20 M0 -20 L-20 12 M0 -20 L22 12 M0 -45 L-22 -28 M0 -45 L25 -28\"/></g><path d=\"M365 180 Q270 85 200 130\" fill=\"none\" stroke=\"#f4cd70\" stroke-width=\"3\"/><text x=\"60\" y=\"90\" fill=\"#dce9f4\" font-size=\"15\">near-wall spatial tolerance</text><text x=\"65\" y=\"265\" fill=\"#dce9f4\" font-size=\"15\">distance window ≠ only a timer</text></g></svg>",
    "dur": 0,
    "refs": [
-    "https://www.maddymakesgames.com/articles/celeste_and_forgiveness/index.html"
+    "https://www.maddymakesgames.com/articles/celeste_and_forgiveness/index.html",
+    "https://en.wikipedia.org/wiki/Ninja_Gaiden_(2004_video_game)"
    ],
    "sub": {
     "zh": "移動、跳躍與容錯",
@@ -8146,19 +8147,19 @@
     "fields": [
      [
       "現象",
-      "角色未完全貼牆，或稍微離開牆面，仍能蹬牆跳。"
+      "角色未完全貼牆，或稍微離開牆面，仍能蹬牆跳。變化——蹬牆反彈突襲：角色在空中貼牆時按攻擊，雙腳蹬牆後以斜線高速撲向附近的敵人，身後拖出一道殘影線，命中時有短暫停頓；附近沒有目標時，則沿蹬牆方向斜斜飛出。"
      ],
      [
       "用途",
-      "放寬牆跳的空間條件，令高速移動時較容易表達意圖。"
+      "放寬牆跳的空間條件，令高速移動時較容易表達意圖。在牆邊戰鬥時，把牆面變成突襲的起點。"
      ],
      [
       "易混淆",
-      "window 不一定指時間；此處主要是可接受的距離。《Celeste》的像素數值不應直接搬去其他解析度或3D世界。"
+      "window 不一定指時間；此處主要是可接受的距離。《Celeste》的像素數值不應直接搬去其他解析度或3D世界。蹬牆反彈突襲撲向目標的吸附屬攻擊鎖附（ACT-37）；本條只負責牆跳的距離與方向容錯。"
      ],
      [
       "核對來源",
-      "<a href=\"https://www.maddymakesgames.com/articles/celeste_and_forgiveness/index.html\">Maddy Thorson — Celeste &amp; Forgiveness，§8–9</a>。"
+      "<a href=\"https://www.maddymakesgames.com/articles/celeste_and_forgiveness/index.html\">Maddy Thorson — Celeste &amp; Forgiveness，§8–9</a>。 <a href=\"https://en.wikipedia.org/wiki/Ninja_Gaiden_(2004_video_game)\">Wikipedia — Ninja Gaiden (2004 video game)</a>（沿牆奔跑與蹬牆跳的戰鬥動作）。"
      ]
     ],
     "caph": "原創概念示意 · 非遊戲實機",
@@ -8173,19 +8174,19 @@
     "fields": [
      [
       "What you see",
-      "A wall jump works even when the character is not quite flush against the wall, or is slightly away from it."
+      "A wall jump works even when the character is not quite flush against the wall, or is slightly away from it.Variant — wall-kick dive attack: pressing attack while clinging to a wall in mid-air kicks off the wall and dives diagonally at high speed onto a nearby enemy, trailing an afterimage line, with a short hit pause on contact; with no target nearby the character simply shoots off along the kick-off direction."
      ],
      [
       "Purpose",
-      "Relax the spatial requirements for wall jumping so that intent is easier to express during fast movement."
+      "Relax the spatial requirements for wall jumping so that intent is easier to express during fast movement.In fights next to walls, it turns the wall into a launch point for an attack."
      ],
      [
       "Do not confuse with",
-      "A “window” need not be temporal; here it mainly refers to an acceptable distance. <em>Celeste</em>'s pixel values should not be transplanted directly into another resolution or a 3D world."
+      "A “window” need not be temporal; here it mainly refers to an acceptable distance. <em>Celeste</em>'s pixel values should not be transplanted directly into another resolution or a 3D world.The homing of the wall-kick dive onto a target is attack latching (ACT-37); this card only covers distance and direction forgiveness for the wall jump."
      ],
      [
       "Source check",
-      "<a href=\"https://www.maddymakesgames.com/articles/celeste_and_forgiveness/index.html\">Maddy Thorson — Celeste &amp; Forgiveness, §8–9</a>."
+      "<a href=\"https://www.maddymakesgames.com/articles/celeste_and_forgiveness/index.html\">Maddy Thorson — Celeste &amp; Forgiveness, §8–9</a>. <a href=\"https://en.wikipedia.org/wiki/Ninja_Gaiden_(2004_video_game)\">Wikipedia — Ninja Gaiden (2004 video game)</a> (wall running and wall jumps in combat)."
      ]
     ],
     "caph": "Original conceptual illustration · not game footage",
@@ -8198,19 +8199,19 @@
     "fields": [
      [
       "見られる現象",
-      "壁に完全に密着していなくても、あるいは少し離れていても、壁を蹴って跳べます。"
+      "壁に完全に密着していなくても、あるいは少し離れていても、壁を蹴って跳べます。変化——壁蹴りからの急襲：空中で壁に張り付いた状態で攻撃を押すと、壁を蹴って近くの敵へ斜めに高速で飛びかかり、残像の線を引き、命中時に短く止まる。近くに目標がなければ、蹴った方向へ斜めに飛び出す。"
      ],
      [
       "目的",
-      "壁ジャンプの位置条件を緩め、高速移動中でも意図した操作を成立させやすくします。"
+      "壁ジャンプの位置条件を緩め、高速移動中でも意図した操作を成立させやすくします。壁際の戦闘で、壁を攻撃の起点に変えます。"
      ],
      [
       "混同しやすい点",
-      "window は必ずしも時間を意味しません。ここでは主に、許容される距離を指します。『Celeste』のピクセル値を、解像度の異なるゲームや3D空間へそのまま持ち込むべきではありません。"
+      "window は必ずしも時間を意味しません。ここでは主に、許容される距離を指します。『Celeste』のピクセル値を、解像度の異なるゲームや3D空間へそのまま持ち込むべきではありません。壁蹴り急襲が目標へ吸い付く部分は攻撃の吸い付き（ACT-37）。本項目は壁ジャンプの距離と方向の許容だけを扱います。"
      ],
      [
       "確認用資料",
-      "<a href=\"https://www.maddymakesgames.com/articles/celeste_and_forgiveness/index.html\">Maddy Thorson — Celeste &amp; Forgiveness、§8–9</a>。"
+      "<a href=\"https://www.maddymakesgames.com/articles/celeste_and_forgiveness/index.html\">Maddy Thorson — Celeste &amp; Forgiveness、§8–9</a>。 <a href=\"https://en.wikipedia.org/wiki/Ninja_Gaiden_(2004_video_game)\">Wikipedia — Ninja Gaiden (2004 video game)</a>（壁走りと壁蹴りを使う戦闘アクション）。"
      ]
     ],
     "caph": "オリジナル概念図・ゲームの実機映像ではありません",

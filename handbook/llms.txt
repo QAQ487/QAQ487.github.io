@@ -48,12 +48,13 @@ CAM-25 | Close-up／CU | — | Camera & composition | agent/en/CAM-25.md
 CAM-26 | Dutch angle／Canted angle | — | Camera & composition | agent/en/CAM-26.md
 CAM-27 | Rail camera／Spline dolly／Camera path | — | Camera & composition | agent/en/CAM-27.md
 CAM-29 | Rack focus／Focus pull | — | Camera & composition | agent/en/CAM-29.md
-CAM-36 | Contextual finisher / Environmental takedown | Environmental takedown, Contextual finisher, Environmental kill, Context-sensitive execution, Finisher staging, 場景處決, 環境終結技, 環境テイクダウン, 状況フィニッシュ | Camera & composition | agent/en/CAM-36.md
+CAM-36 | Contextual finisher / Environmental takedown | Environmental takedown, Contextual finisher, Environmental kill, Context-sensitive execution, Finisher staging, 場景處決, 環境終結技, 環境テイクダウン, 状況フィニッシュ, Tag-team finisher, Dual finisher, Double-team takedown, 雙人合體終結技, 合體技, 連携フィニッシュ | Camera & composition | agent/en/CAM-36.md
 CAM-30 | Camera shake／Screen shake | — | Camera & composition | agent/en/CAM-30.md
 CAM-31 | Camera cut／Hard cut | — | Camera & composition | agent/en/CAM-31.md
 CAM-32 | Camera blend／Interpolated camera transition | — | Camera & composition | agent/en/CAM-32.md
 CAM-33 | Handheld idle camera / Camera breathing | Idle camera noise, Procedural handheld, Perlin camera drift, Camera breathing, 待機鏡頭呼吸, 手持微顫, 手持ちカメラの呼吸 | Camera & composition | agent/en/CAM-33.md
 CAM-34 | Landing camera dip | Landing bob, Camera land squash, Fall impact camera, Landing impulse, 落地鏡頭下沉, 着地ディップ | Camera & composition | agent/en/CAM-34.md
+CAM-37 | Perspective shift (3D ↔ side-scroll / top-down) | Perspective shift, Dimension shift, 2.5D section, Side-scrolling section, Top-down section, Camera mode switch with input remap, 視角維度轉換, 3D 轉橫向捲軸, 2D 段落, 視点切り替え, 2D 区間 | Camera & composition | agent/en/CAM-37.md
 CAMX-01 | Cue-focus | Attention point, Point of interest framing, Camera attractor | Camera & composition | agent/en/CAMX-01.md
 CAMX-02 | Zoom-to-fit | Auto-zoom to fit targets, Dynamic zoom, Framing zoom | Camera & composition | agent/en/CAMX-02.md
 CAMX-03 | Lock-on camera | Target lock, Z-targeting, Lock-on targeting, Soft lock | Camera & composition | agent/en/CAMX-03.md
@@ -114,7 +115,7 @@ MATX-05 | Wet surface | Wetness, Rain-soaked surface, Puddles, Wet shader | Mate
 MATX-06 | Dithered transparency | Screen-door transparency, Stipple transparency, Dither fade, Opacity mask dithering | Materials & surfaces | agent/en/MATX-06.md
 MATX-11 | Frosted refractive glass | 毛玻璃, 磨砂玻璃, 玻璃後面模糊, Frosted glass, Refractive blur, Rough refraction, Screen-space refraction blur, すりガラス | Materials & surfaces | agent/en/MATX-11.md
 MATX-07 | Hologram shader | Hologram effect, Holographic material, Holo shader | Materials & surfaces | agent/en/MATX-07.md
-MATX-08 | Force field / Shield | Energy shield, Bubble shield, Intersection highlight, Depth-fade edge, Shield impact ripple | Materials & surfaces | agent/en/MATX-08.md
+MATX-08 | Force field / Shield | Energy shield, Bubble shield, Intersection highlight, Depth-fade edge, Shield impact ripple, Shield burn-through, Light burn shield, Shield pop, 聚光燒穿護盾, 光で剥がすシールド | Materials & surfaces | agent/en/MATX-08.md
 MATX-10 | X-ray silhouette | See-through walls, Occluded silhouette, Behind-wall outline, Character occlusion silhouette | Materials & surfaces | agent/en/MATX-10.md
 REN-29 | Bloom/Glow | Film halation, Red halation, Halation, Optical diffusion, Black mist, Black-mist filter, 菲林紅暈, 黑柔濾鏡, フィルム・ハレーション, ブラックミスト | Post-processing & screen filters | agent/en/REN-29.md
 REN-30 | Exposure/Auto exposure/Eye adaptation | — | Post-processing & screen filters | agent/en/REN-30.md
@@ -203,7 +204,7 @@ ACT-01 | Coyote Time / Ledge Grace Period | — | Animation, movement & physics 
 ACT-02 | Jump Buffering / Input Buffer | — | Animation, movement & physics | agent/en/ACT-02.md
 ACT-03 | Apex Hang Time / Reduced Gravity at Jump Peak | — | Animation, movement & physics | agent/en/ACT-03.md
 ACT-04 | Corner Correction / Jump Corner Correction | — | Animation, movement & physics | agent/en/ACT-04.md
-ACT-05 | Wall-Jump Forgiveness / Wall-Jump Window | — | Animation, movement & physics | agent/en/ACT-05.md
+ACT-05 | Wall-Jump Forgiveness / Wall-Jump Window | Wall-kick attack, Wall-kick dive, Wall rebound attack, 蹬牆反彈突襲, 蹬牆突襲, 壁蹴り急襲 | Animation, movement & physics | agent/en/ACT-05.md
 ACT-06 | Lift Momentum Storage / Momentum Retention | — | Animation, movement & physics | agent/en/ACT-06.md
 ACT-07 | Acceleration / Braking / Deceleration | — | Animation, movement & physics | agent/en/ACT-07.md
 ACT-08 | Air Control / Air Steering | — | Animation, movement & physics | agent/en/ACT-08.md
@@ -247,6 +248,7 @@ ANI-19 | Turn-in-place / Pivot step | Idle turn, Rotate-in-place threshold, Foot
 ANI-20 | Locomotion lean / Body banking | Lean into turns, Acceleration lean, Procedural lean, Run tilt, 移動側傾, 走行リーン | Animation, movement & physics | agent/en/ANI-20.md
 ANI-21 | Hand IK contact | Hand placement IK, Wall brace, Environmental hand contact, Cover hand, Rail hand, 手部接觸 IK, 手の接触 IK | Animation, movement & physics | agent/en/ANI-21.md
 ANI-22 | Contextual vault / Traversal snapping | Auto vault, Contextual vault, Parkour vault, Mantle, Slide under, Traversal snapping, 自動翻越, 跑酷翻越, 自動乗り越え, ボルト, マントル | Animation, movement & physics | agent/en/ANI-22.md
+ANI-23 | Creature climbing / Clinging to large enemies | Creature climbing, Colossus climbing, Monster mounting, Clinging, Grab and climb, Shake-off, 攀爬大型生物, 攀附巨獸, 甩落, 巨大生物登攀, しがみつき | Animation, movement & physics | agent/en/ANI-23.md
 PHY-01 | Position-based cloth (PBD / XPBD) | 披風穿模, 布料像紙板, 旗幟飄動, Cloth simulation, PBD cloth, XPBD, Distance constraints, クロスシミュレーション, Relative wind, Reactive curtains, 相對風, 反応カーテン, VAT, Vertex animation texture, Baked vertex animation, 頂點動畫貼圖, 群眾動畫, 倒塌動畫 | Animation, movement & physics | agent/en/PHY-01.md
 PHY-02 | Verlet rope and chain | 繩子像鐵棒, 吊橋晃動, 鎖鏈, Verlet rope, Chain physics, Rope constraint, Grappling rope, ロープ物理 | Animation, movement & physics | agent/en/PHY-02.md
 PHY-03 | Jelly soft body (shape matching / pressure) | 史萊姆彈彈的, 果凍感, 落地壓扁, Soft body, Jelly physics, Shape matching, Pressure soft body, ソフトボディ | Animation, movement & physics | agent/en/PHY-03.md
@@ -263,7 +265,10 @@ ACT-27 | Invulnerability / Invincibility Frames / I-frames | — | Combat feedba
 ACT-28 | Super Armor / Armor / Hyper Armor | — | Combat feedback & game feel | agent/en/ACT-28.md
 ACT-29 | Knockback / Pushback | — | Combat feedback & game feel | agent/en/ACT-29.md
 ACT-44 | Weapon clash / Hitbox clash | Weapon clash, Hitbox clash, Clank, Attack cancel-out, Blade lock, 兵器互撞, 刀劍相擊, 拼刀, 鍔迫り合い, 相殺, 打ち消し | Combat feedback & game feel | agent/en/ACT-44.md
-ACT-41 | Stance break / Poise break | 架勢破壞, 韌性擊破, 姿勢崩壞, Poise break, Stance break, Posture break, Break meter, スタンスブレイク | Combat feedback & game feel | agent/en/ACT-41.md
+ACT-45 | Pogo bounce / Downward strike bounce | Pogo bounce, Pogo jump, Downward strike bounce, Down-slash bounce, Nail bounce, 下劈反彈, 下突彈跳, 空中下劈彈起, ポゴジャンプ, 下突きバウンド | Combat feedback & game feel | agent/en/ACT-45.md
+ACT-46 | Bob and weave / Slip | Bob and weave, Slip, Sway dodge, Duck, Lean-back dodge, Upper-body evade, 原地搖身閃避, 搖頭閃避, 下潛閃避, スウェー, ダッキング | Combat feedback & game feel | agent/en/ACT-46.md
+ACT-47 | Air juggle / Launcher | Air juggle, Juggle, Launcher, Air combo, Juggle decay, Spike, 浮空連擊, 挑空, 空中追打, 浮かせ, 空中コンボ | Combat feedback & game feel | agent/en/ACT-47.md
+ACT-41 | Stance break / Poise break | 架勢破壞, 韌性擊破, 姿勢崩壞, Poise break, Stance break, Posture break, Break meter, スタンスブレイク, Impact gauge, Stagger gauge, ACS overload, Direct hit window, 衝擊計量, 直擊破防, スタッガー, 衝撃ゲージ | Combat feedback & game feel | agent/en/ACT-41.md
 ACT-42 | Guard counter | 防反, 格擋反擊, Block counter, Just guard punish, ガードカウンター | Combat feedback & game feel | agent/en/ACT-42.md
 ACT-43 | Perfect dodge window | 完美閃避窗口, 剛好迴避, i-frame dodge window, Perfect dodge timing, ジャスト回避 | Combat feedback & game feel | agent/en/ACT-43.md
 FB-01 | Hit flash | White flash, Damage flash, Flash on hit | Combat feedback & game feel | agent/en/FB-01.md
@@ -288,6 +293,8 @@ FB-12 | Permanence | Persistent debris, Corpses & decals, Leftover shells | Comb
 FB-13 | Squash on hit | Hit wobble, Hit squash and stretch, Jelly reaction | Combat feedback & game feel | agent/en/FB-13.md
 FB-14 | Pickup magnetism | Item vacuum, Loot magnet, Auto-collect pull | Combat feedback & game feel | agent/en/FB-14.md
 FB-30 | Weapon recall / Return-path pierce | Weapon recall, Axe recall, Recall throw, Return pierce, Thrown weapon return, 召回武器, 回收飛斧, 武器回収, 呼び戻し, 投擲武器の帰還 | Combat feedback & game feel | agent/en/FB-30.md
+FB-32 | Projectile reflect / Batting | Projectile reflect, Deflect projectile, Bat back, Return fire with melee, Projectile parry, 拍返飛行道具, 彈返子彈, 反彈光彈, 弾き返し, 反射打ち | Combat feedback & game feel | agent/en/FB-32.md
+FB-33 | Telekinetic grab & throw | Telekinesis, Telekinetic throw, Gravity gun, Kinesis grab, Psychokinetic launch, Catch and release, Catch and throw back, 念力抓物投擲, 重力槍, 接住擲回, 念動力投げ, キャッチ＆リリース | Combat feedback & game feel | agent/en/FB-33.md
 FB-15 | Muzzle flash | Gun flash, Firing flash | Combat feedback & game feel | agent/en/FB-15.md
 FB-28 | Unblockable attack signifier | Unblockable warning, Perilous attack symbol, Danger kanji, Red unblockable glow, Guard-break warning, 不可防禦警示, 危字提示, ガード不能の予兆, 危険攻撃, 危 | Combat feedback & game feel | agent/en/FB-28.md
 FB-29 | Delayed slash detonation / Lingering rift | Delayed slash, Lingering rift, Delayed cut, Spatial rift slash, Sheathe detonation, 延遲斬擊, 空間裂痕, 次元斬, 遅延斬撃, 空間の裂け目, 納刀で炸裂 | Combat feedback & game feel | agent/en/FB-29.md
@@ -318,7 +325,7 @@ VFX-03 | Flowmap | Flow map, Vector-field distortion, Flow field texture | VFX &
 VFX-04 | Dissolve | Burn-away, Noise dissolve, Disintegration, Dissolve shader | VFX & particles | agent/en/VFX-04.md
 VFX-05 | UV scrolling | Panning texture, UV panning, Texture scrolling, Scrolling UVs | VFX & particles | agent/en/VFX-05.md
 VFX-06 | Shockwave | Ring wave, Shock ring, Distortion ring, Impact ring | VFX & particles | agent/en/VFX-06.md
-VFX-07 | Slash VFX | Sword arc, Swoosh, Slash trail, Weapon trail | VFX & particles | agent/en/VFX-07.md
+VFX-07 | Slash VFX | Sword arc, Swoosh, Slash trail, Weapon trail, Sword beam, Slash wave, Projected slash, 劍氣, 飛ぶ斬撃 | VFX & particles | agent/en/VFX-07.md
 VFX-08 | Projectile trail | Tracer, Bullet trail, Arrow trail, Missile trail | VFX & particles | agent/en/VFX-08.md
 VFX-09 | Explosion | Layered explosion, Fireball, Blast, Burst | VFX & particles | agent/en/VFX-09.md
 VFX-10 | Lightning | Electric arc, Lightning bolt, Chain lightning, Zap | VFX & particles | agent/en/VFX-10.md
@@ -435,6 +442,7 @@ UI-24 | Contextual HUD / dynamic HUD | 情境 HUD, 平時冇血條受傷先出, 
 UI-25 | HUD safe area / viewport anchors | HUD 安全區, 超寬屏血條太遠, 分割畫面字被切, Safe zone, Viewport anchors, Overscan margins, セーフエリア, ビューポートアンカー | UI & HUD | agent/en/UI-25.md
 UI-26 | HUD edit mode | 可編輯 HUD, 自己拖技能列同小地圖, Edit Mode, Custom HUD layout, ドラッグ配置HUD | UI & HUD | agent/en/UI-26.md
 UI-27 | Threat direction ring | Threat indicator, Threat ring, Incoming attack indicator, Off-screen attack warning, Attack direction arc, 威脅方向環, 背後攻擊預警, 脅威インジケーター, 被攻撃方向リング | UI & HUD | agent/en/UI-27.md
+UI-28 | Directional guard indicator | Directional guard, Directional block, Stance direction indicator, Guard direction reticle, Directional combat UI, 方向架勢格擋, 方向防禦指示, 三向架勢, 方向ガード, 構え方向インジケーター | UI & HUD | agent/en/UI-28.md
 UI-15 | Typewriter effect | Text crawl, Letter-by-letter reveal, Character reveal, Scrolling text | UI & HUD | agent/en/UI-15.md
 UI-16 | Dialogue box / Text box | Text box, Message window, Speech box, Dialogue window | UI & HUD | agent/en/UI-16.md
 UI-17 | Animated text (wave, shake, rainbow) | Text effects, Rich-text effects, Wavy text, Shaky text, Rainbow text | UI & HUD | agent/en/UI-17.md
@@ -456,13 +464,15 @@ NAV-02 | Yellow paint | Climbable markers, Ledge paint, Traversal markers | Visu
 NAV-14 | Contextual ping (multiplayer) | 情境標記, Ping 系統, Look ping, Context ping, ピン留め | Visual guidance & wayfinding | agent/en/NAV-14.md
 NAV-03 | Foreground-background separation | Figure–ground separation, Gameplay layer readability, Value separation | Visual guidance & wayfinding | agent/en/NAV-03.md
 NAV-04 | Attack telegraph | Danger zone marking, AoE indicator, Ground telegraph | Visual guidance & wayfinding | agent/en/NAV-04.md
-NAV-09 | Weak-point highlight | 弱點高亮, 弱點標記, Critical spot marker, Weak point outline, 弱点ハイライト, Stagger finisher prompt, Finisher reticle, Deathblow marker, 處決提示點, 忍殺マーク, とどめマーカー | Visual guidance & wayfinding | agent/en/NAV-09.md
+NAV-09 | Weak-point highlight | 弱點高亮, 弱點標記, Critical spot marker, Weak point outline, 弱点ハイライト, Stagger finisher prompt, Finisher reticle, Deathblow marker, 處決提示點, 忍殺マーク, とどめマーカー, Stagger melee prompt, Limb-shot stagger, Weak-point sigil, Glowing sigil, 部位射擊硬直, 弱點印記, 部位撃ちの体術, 弱点の紋章 | Visual guidance & wayfinding | agent/en/NAV-09.md
 NAV-10 | Detection meter (stealth) | 偵測計, 警覺條, 發現計量, Alert meter, Detection eye, Suspicion meter, 検知メーター | Visual guidance & wayfinding | agent/en/NAV-10.md
 NAV-11 | Last known position silhouette | 最後已知位置, 記憶剪影, LKP ghost, Last-seen silhouette, 捜索シルエット | Visual guidance & wayfinding | agent/en/NAV-11.md
 NAV-12 | Noise investigation | 噪音調查, 聲東擊西, Sound bait, Noise distraction, 音の調査 | Visual guidance & wayfinding | agent/en/NAV-12.md
 NAV-13 | Visibility / light meter | 可見度計, 光線暴露, Hidden in shadow, Light exposure meter, 視認度メーター | Visual guidance & wayfinding | agent/en/NAV-13.md
+NAV-16 | Colour-coded projectiles / Readable barrage | Colour-coded projectiles, Bullet colour coding, Readable bullet hell, Projectile response colours, Destructible vs indestructible bullets, 顏色分類彈幕, 彈幕顏色規則, 可打碎子彈, 弾の色分け, 破壊可能弾 | Visual guidance & wayfinding | agent/en/NAV-16.md
 NAV-05 | Placement ghost | Build placement preview, Ghost building, Valid / invalid placement tint | Visual guidance & wayfinding | agent/en/NAV-05.md
 NAV-06 | Range indicator | Tower radius, Attack range circle, Range preview | Visual guidance & wayfinding | agent/en/NAV-06.md
+NAV-15 | Blink targeting arc / Ledge-snapped landing preview | Blink targeting, Teleport arc, Teleport preview, Landing marker, Ledge snap preview, Blink marker, 瞬移落點預覽, 瞬移弧線, テレポート照準, 着地点プレビュー | Visual guidance & wayfinding | agent/en/NAV-15.md
 NAV-07 | Guiding wind (environmental direction cue) | 風指引方向, 沒有導航箭頭, 草和樹葉指路, Guiding wind, Environmental wayfinding, Diegetic navigation, Wind direction cue, 風による誘導 | Visual guidance & wayfinding | agent/en/NAV-07.md
 NAV-08 | Detective-vision trail (investigation highlight mode) | 偵探模式, 追蹤腳印, 調查視覺, Detective vision, Investigation mode, Tracking trail, Forensic highlight, 調査モード | Visual guidance & wayfinding | agent/en/NAV-08.md
 A11Y-01 | Text contrast, backplate and dual outline | 字幕看不清, 白字在雪地看不見, 字幕被爆炸蓋過, Subtitle backplate, Text background plate, Text outline / stroke, Contrast ratio, Legibility on busy backgrounds, コントラスト比 | Readability & accessibility | agent/en/A11Y-01.md

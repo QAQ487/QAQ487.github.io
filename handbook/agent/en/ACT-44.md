@@ -37,6 +37,7 @@ Give weapons a separate clash volume. Each tick, test opposing active clash volu
 - [ACT-29](ACT-29.md) — Knockback / Pushback
 - [CIN-15](CIN-15.md) — Quick time event
 - [FX-09](FX-09.md) — Impact Burst / Hit Spark
+- [UI-28](UI-28.md) — Directional guard indicator
 
 ## References
 

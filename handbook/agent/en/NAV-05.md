@@ -37,6 +37,7 @@ Ghost = the same sprite drawn with alpha and a tint uniform (or a colour-multipl
 - [UX-04](UX-04.md) — Objective marker / Waypoint；Objective tracker
 - [UI-08](UI-08.md) — Minimap
 - [UI-22](UI-22.md) — Spatial inventory / grid inventory
+- [NAV-15](NAV-15.md) — Blink targeting arc / Ledge-snapped landing preview
 
 ## References
 

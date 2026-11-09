@@ -27,6 +27,10 @@ From 80 to 260 ms after a roll starts, grant invulnerability to strikes and proj
 
 During a defined action interval, reject only the configured damage or grab categories while leaving other interactions intact. Distinguish rule-based invulnerability from attacks missing because hurtboxes moved.
 
+## Related
+
+- [ACT-46](ACT-46.md) — Bob and weave / Slip
+
 ## References
 
 - [Capcom — Street Fighter 6 A.K.I. Frame Data，completely invincible／invincible to throws 等註解](https://www.streetfighter.com/6/en-us/character/aki/frame)

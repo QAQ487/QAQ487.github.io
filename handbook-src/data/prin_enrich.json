@@ -702,12 +702,12 @@
     }
   },
   "ACT-05": {
-    "params": "wall probe distance · surface normal · jump impulse · approach side · use limit",
-    "impl": "Probe for a valid wall within a small spatial tolerance rather than requiring direct contact. Launch away from the detected surface and consume the wall-jump opportunity according to the movement rules.",
+    "params": "wall probe distance · surface normal · jump impulse · approach side · use limit · wall-kick dive attack: dive angle & speed, target search cone, afterimage line, hitstop on hit",
+    "impl": "Probe for a valid wall within a small spatial tolerance rather than requiring direct contact. Launch away from the detected surface and consume the wall-jump opportunity according to the movement rules. Wall-kick dive variant: when attack is pressed during a wall cling, launch away from the wall along a downward-tilted direction toward the best target in a cone (latching per ACT-37), draw an afterimage line, apply hitstop on contact; with no target, dive along the default angle.",
     "prompt": {
-      "zh": "牆跳容許角色離牆最多 12 cm：偵測最近有效牆面法線，施加離牆方向速度，並限制每次離牆只觸發一次。",
-      "en": "Allow wall jumps from up to 12 cm away: use the nearest valid wall normal to launch outward, and permit only one trigger per wall departure.",
-      "ja": "壁から最大12 cm離れていても壁ジャンプを許可し、最寄りの有効な壁法線から外向きに跳ばしてください。壁を離れるたびに1回だけ発動可能にしてください。"
+      "zh": "牆跳容許角色離牆最多 12 cm：偵測最近有效牆面法線，施加離牆方向速度，並限制每次離牆只觸發一次。 另加蹬牆反彈突襲：貼牆時按攻擊，以向下 30–45° 的斜線蹬牆撲向前方錐形範圍內最近的敵人，身後拖出殘影線，命中停頓 3–5 幀；沒有目標時沿預設角度斜飛。",
+      "en": "Allow wall jumps from up to 12 cm away: use the nearest valid wall normal to launch outward, and permit only one trigger per wall departure. Also add a wall-kick dive attack: pressing attack during a wall cling launches the character off the wall on a 30–45° downward diagonal toward the nearest enemy in a forward cone, trailing an afterimage line, with 3–5 frames of hitstop on hit; with no target, dive along the default angle.",
+      "ja": "壁から最大12 cm離れていても壁ジャンプを許可し、最寄りの有効な壁法線から外向きに跳ばしてください。壁を離れるたびに1回だけ発動可能にしてください。 壁蹴り急襲も追加：壁に張り付き中に攻撃を押すと、前方の円錐内で最も近い敵へ下向き 30〜45° の斜めに壁を蹴って飛びかかり、残像の線を引き、命中時に 3〜5 フレームのヒットストップ。目標がなければ既定の角度で斜めに飛ぶ。"
     }
   },
   "ACT-06": {

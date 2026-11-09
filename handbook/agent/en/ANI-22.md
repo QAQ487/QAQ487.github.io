@@ -37,6 +37,8 @@ While running, sweep a capsule forward and trace down to measure the obstacle's 
 - [ANI-16](ANI-16.md) — Stride warping
 - [ACT-36](ACT-36.md) — Inverse Kinematics / IK; Forward Kinematics / FK
 - [ANI-12](ANI-12.md) — Foot IK / Foot placement
+- [NAV-15](NAV-15.md) — Blink targeting arc / Ledge-snapped landing preview
+- [ANI-23](ANI-23.md) — Creature climbing / Clinging to large enemies
 
 ## References
 

@@ -27,6 +27,10 @@ In your game, use an orthographic view based on 320×180: show 180 world pixels 
 
 Use an orthographic projection whose scale is defined by visible world height or width, not FOV. Recalculate the opposite dimension from aspect ratio, and for pixel art align the final camera transform to the world-units-per-pixel grid.
 
+## Related
+
+- [CAM-37](CAM-37.md) — Perspective shift (3D ↔ side-scroll / top-down)
+
 ## References
 
 - [Epic Camera Component Types：Orthographic](https://dev.epicgames.com/documentation/fortnite/camera-types-in-unreal-editor-for-fortnite?lang=en-US)

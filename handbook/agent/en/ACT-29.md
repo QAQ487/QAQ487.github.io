@@ -27,6 +27,12 @@ On a normal hit, push the target 1.2 m away from contact over 180 ms while apply
 
 Compute displacement from contact direction and apply it over its own duration, separately from any action lockout. Define wall and corner behavior so spacing changes remain predictable.
 
+## Related
+
+- [ACT-45](ACT-45.md) — Pogo bounce / Downward strike bounce
+- [ACT-47](ACT-47.md) — Air juggle / Launcher
+- [FB-33](FB-33.md) — Telekinetic grab & throw
+
 ## References
 
 - [Celia Wagar — Stunning Detail，pushback](https://critpoints.net/2016/08/14/stunning-detail/)
