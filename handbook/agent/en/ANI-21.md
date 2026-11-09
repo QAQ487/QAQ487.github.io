@@ -33,6 +33,7 @@ Sphere/capsule probes beside the torso along velocity and side vectors. On hit, 
 
 - [ANI-12](ANI-12.md) — Foot IK / Foot placement
 - [PHY-01](PHY-01.md) — Position-based cloth (PBD / XPBD)
+- [ANI-22](ANI-22.md) — Contextual vault / Traversal snapping
 
 ## References
 

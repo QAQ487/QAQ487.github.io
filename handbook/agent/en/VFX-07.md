@@ -35,6 +35,8 @@ Build a triangle-strip mesh each frame: N segments along the arc from angleStart
 - [FX-03](FX-03.md) — Afterimages / Ghost Trails
 - [VFX-08](VFX-08.md) — Projectile trail
 - [FB-06](FB-06.md) — Critical hit emphasis
+- [VFX-22](VFX-22.md) — Weapon infusion / Surface coating
+- [FB-29](FB-29.md) — Delayed slash detonation / Lingering rift
 
 ## References
 

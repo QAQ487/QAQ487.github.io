@@ -31,6 +31,9 @@ On a confirmed hit, pause selected attacker/target simulation clocks. Optional v
 
 - [FB-24](FB-24.md) — Damage vibration
 - [ANI-05](ANI-05.md) — Hit reaction
+- [FB-26](FB-26.md) — Perfect parry flash / Just guard
+- [ACT-44](ACT-44.md) — Weapon clash / Hitbox clash
+- [FB-31](FB-31.md) — Stasis with stored impact
 
 ## References
 

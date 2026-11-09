@@ -35,6 +35,7 @@ Outline in the sprite PS: sample alpha at 4–8 neighbour texel offsets; if cent
 - [VFX-17](VFX-17.md) — Healing effect
 - [VFX-12](VFX-12.md) — Fire and smoke
 - [FB-01](FB-01.md) — Hit flash
+- [VFX-22](VFX-22.md) — Weapon infusion / Surface coating
 
 ## References
 

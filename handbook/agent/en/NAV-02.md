@@ -34,6 +34,7 @@ Author markers as decals, an overlay layer or tile variants on climbable edges, 
 - [NAV-01](NAV-01.md) — Interactable highlight
 - [NAV-03](NAV-03.md) — Foreground-background separation
 - [PIX-13](PIX-13.md) — Silhouette readability
+- [ANI-22](ANI-22.md) — Contextual vault / Traversal snapping
 
 ## References
 

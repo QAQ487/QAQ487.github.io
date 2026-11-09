@@ -35,6 +35,7 @@ OnGuardSuccess(hit): arm CounterWindow(t). If AttackPressed while window: Play(C
 - [ACT-41](ACT-41.md) — Stance break / Poise break
 - [ACT-18](ACT-18.md) — Startup / Start-up / Wind-up Frames
 - [ACT-19](ACT-19.md) — Active Frames / Hit Window
+- [FB-26](FB-26.md) — Perfect parry flash / Just guard
 
 ## References
 

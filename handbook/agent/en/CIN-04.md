@@ -35,6 +35,7 @@ A ring buffer of per-entity snapshots (transform, anim state, events) recorded e
 - [FB-10](FB-10.md) — Slow motion
 - [CIN-03](CIN-03.md) — Scripted camera
 - [FB-09](FB-09.md) — Camera punch-in
+- [CAM-36](CAM-36.md) — Contextual finisher / Environmental takedown
 
 ## References
 

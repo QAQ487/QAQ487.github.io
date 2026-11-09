@@ -35,6 +35,8 @@ OnHit: poise = min(max, poise + amount(attackTags)); if poise>=max: EnterBreak(d
 - [ACT-28](ACT-28.md) — Super Armor / Armor / Hyper Armor
 - [ACT-23](ACT-23.md) — Blockstun / Guard Stun
 - [FB-01](FB-01.md) — Hit flash
+- [FB-27](FB-27.md) — Part break / Component severing
+- [NAV-09](NAV-09.md) — Weak-point highlight
 
 ## References
 

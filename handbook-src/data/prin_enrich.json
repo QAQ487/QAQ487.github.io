@@ -990,12 +990,12 @@
     }
   },
   "ACT-37": {
-    "params": "warp window · target transform · translation scale · rotation scale · collision validation",
-    "impl": "During a marked interval, redistribute authored root translation and rotation so the action reaches a nearby target transform. Limit correction magnitude and validate the adjusted path against collision; warping should not guarantee a hit.",
+    "params": "warp window · target transform · translation scale · rotation scale · collision validation · melee latch: forward cone angle · max latch distance · stop distance (hit range) · latch frames · obstacle stop",
+    "impl": "During a marked interval, redistribute authored root translation and rotation so the action reaches a nearby target transform. Limit correction magnitude and validate the adjusted path against collision; warping should not guarantee a hit. Melee latch: at attack start pick the best target inside a forward cone and max distance; compute a destination at the attack’s hit distance in front of the target, trace the path and clamp it at the first obstacle; warp root translation and facing toward that destination over the startup frames only. If no target qualifies, play the move unwarped.",
     "prompt": {
-      "zh": "翻越動作在 220–680 ms 扭配根運動以對準障礙頂點，最多修正前後 0.6 m、左右 0.25 m 及朝向 20°；路徑碰撞失敗時取消動作。",
-      "en": "Warp root motion from 220 to 680 ms to align a vault with the obstacle top, limiting correction to 0.6 m forward/back, 0.25 m sideways, and 20° facing; abort if the adjusted path fails collision validation.",
-      "ja": "乗り越え動作の220～680 msでルートモーションを障害物上端へ合わせ、前後0.6 m、左右0.25 m、向き20°までに補正を制限し、経路の衝突検証に失敗したら中止してください。"
+      "zh": "翻越動作在 220–680 ms 扭配根運動以對準障礙頂點，最多修正前後 0.6 m、左右 0.25 m 及朝向 20°；路徑碰撞失敗時取消動作。 近戰吸附：出招時若前方 60° 錐形、4 米內有敵人，在起手 4–8 幀內把角色滑到剛好命中的距離並轉向對方；路徑遇牆即停在牆前；範圍外不吸附。",
+      "en": "Warp root motion from 220 to 680 ms to align a vault with the obstacle top, limiting correction to 0.6 m forward/back, 0.25 m sideways, and 20° facing; abort if the adjusted path fails collision validation. Melee latch: when an attack starts with an enemy inside a 60° forward cone within 4 m, slide the character to exact hitting distance and face it over the first 4–8 frames; stop at any wall on the way; outside the range, do not latch.",
+      "ja": "乗り越え動作の220～680 msでルートモーションを障害物上端へ合わせ、前後0.6 m、左右0.25 m、向き20°までに補正を制限し、経路の衝突検証に失敗したら中止してください。 近接の吸い付き：攻撃開始時に前方 60° の円錐・4 m 以内に敵がいれば、出だし 4〜8 フレームで当たる距離まで滑らせて向きを合わせる。途中に壁があれば手前で止め、範囲外では吸い付かない。"
     }
   },
   "ACT-38": {
@@ -1440,12 +1440,12 @@
     }
   },
   "UX-11": {
-    "params": "world ownership · character access · physical placement · legibility · interaction distance · fallback",
-    "impl": "Anchor the interface to an object acknowledged by the fictional world and let character actions operate it. Preserve readability across viewing distances and provide a fallback when perspective, lighting, or occlusion makes the in-world surface unusable.",
+    "params": "world ownership · character access · physical placement · legibility · interaction distance · fallback · diegetic vitals carriers (suit lights, weapon display, limp / breathing)",
+    "impl": "Anchor the interface to an object acknowledged by the fictional world and let character actions operate it. Preserve readability across viewing distances and provide a fallback when perspective, lighting, or occlusion makes the in-world surface unusable. For diegetic vitals, drive emissive segments on the suit or weapon mesh from the same health / ammo values the HUD would use, and layer injured locomotion and breathing audio from health thresholds; keep a fallback readout for accessibility.",
     "prompt": {
-      "zh": "設計角色世界內的氧氣手錶：錶面顯示 0–100% 及剩餘 12:30，角色抬手 0.4 秒後才可讀；在強光下加入高對比模式，數值低於 15% 時由手錶本身發出警示。",
-      "en": "Design an in-world oxygen watch showing 0–100% and 12:30 remaining, readable after a 0.4-second raise-hand action; add a high-contrast mode for bright light and have the watch itself warn below 15%.",
-      "ja": "物語世界内に存在する酸素腕時計を設計し、0～100%と残り12:30を表示してください。腕を上げて0.4秒後に読めるようにし、強い光では高コントラスト表示、15%未満では腕時計自体が警告するようにしてください。"
+      "zh": "設計角色世界內的氧氣手錶：錶面顯示 0–100% 及剩餘 12:30，角色抬手 0.4 秒後才可讀；在強光下加入高對比模式，數值低於 15% 時由手錶本身發出警示。 另做生命值與彈藥的世界內版本：裝甲背脊 5 段燈表示生命值，槍身小屏幕顯示剩餘彈藥；生命值低於 30% 時角色改為拐行並加重呼吸聲。",
+      "en": "Design an in-world oxygen watch showing 0–100% and 12:30 remaining, readable after a 0.4-second raise-hand action; add a high-contrast mode for bright light and have the watch itself warn below 15%. Also build in-world vitals: five light segments on the suit spine show health and a small screen on the gun shows ammo; below 30% health switch to a limping walk with heavier breathing.",
+      "ja": "物語世界内に存在する酸素腕時計を設計し、0～100%と残り12:30を表示してください。腕を上げて0.4秒後に読めるようにし、強い光では高コントラスト表示、15%未満では腕時計自体が警告するようにしてください。 体力と弾薬の世界内版も作ってください。スーツの背骨の 5 段のライトで体力、銃の小画面で残弾を示し、体力 30% 未満では足を引きずる歩きと荒い呼吸にしてください。"
     }
   },
   "UX-12": {
