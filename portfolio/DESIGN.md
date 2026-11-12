@@ -1,5 +1,9 @@
 # Portfolio mockup — design plan
 
+The live portfolio is a person-first job page at `/portfolio/`. This document still describes the engine showcase, which now lives at `/portfolio/works/ivy-engine/` (same tokens, type, and WebGL hero).
+
+
+
 Subject: a Japanese-primary 就職 portfolio for Terry Yeung, an engine programmer who built Ivy Engine (ツタエンジン) and shipped games on it.
 Audience: hiring engineers and recruiters at Japanese game companies (they skim).
 Job of the page: make the engine’s world felt in one glance, then prove it with short project rows.

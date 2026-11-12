@@ -7,12 +7,12 @@
     "brand-mark-folio": { ja: "作品集", en: "Portfolio" },
     "lang-group": { ja: "表示言語", en: "Language" },
     "footer-hub": {
-      ja: "モックアップ。ハンドブックは未変更。",
-      en: "Mockup. The handbook is unchanged."
+      ja: "一部の項目はプレースホルダ。",
+      en: "Some fields are placeholders."
     },
     "footer-folio": {
-      ja: "モックアップ。映像・ビルド・一部プロフィールはプレースホルダ。",
-      en: "Mockup. Video, builds, and some profile fields are placeholders."
+      ja: "映像・ビルド・一部の項目はプレースホルダ。",
+      en: "Video, builds, and some fields are placeholders."
     },
 
     "hub-title": { ja: "ツタエンジン", en: "Ivy Engine" },
@@ -28,10 +28,14 @@
       ja: "画面演出のカタログ（/handbook/）",
       en: "A catalogue of screen direction (/handbook/)"
     },
+    "hub-ivy-title": { ja: "ツタエンジン", en: "Ivy Engine" },
+    "hub-ivy-desc": { ja: "エンジンの詳細", en: "The engine, in detail" },
     "hub-note": {
-      ja: "志望はエンジンプログラマー。",
-      en: "Target role: engine programmer."
+      ja: "志望はエンジンプログラマー／ゲームプログラマー。",
+      en: "Target roles: engine programmer / game programmer."
     },
+    "back-portfolio": { ja: "作品集へ戻る", en: "Back to the portfolio" },
+    "doc-title-ivy": { ja: "ツタエンジン — Terry Yeung", en: "Ivy Engine — Terry Yeung" },
 
     "doc-title-folio": { ja: "作品集 — Terry Yeung", en: "Portfolio — Terry Yeung" },
     "hero-title": { ja: "ツタエンジン", en: "Ivy Engine" },
@@ -145,7 +149,7 @@
     "about-name-l": { ja: "名前", en: "Name" },
     "about-name-v": { ja: "Terry Yeung（日本語名はプレースホルダ）", en: "Terry Yeung (Japanese name is a placeholder)" },
     "about-role-l": { ja: "志望職種", en: "Target role" },
-    "about-role-v": { ja: "エンジンプログラマー（ゲームも可）", en: "Engine programmer (gameplay also welcome)" },
+    "about-role-v": { ja: "エンジンプログラマー／ゲームプログラマー", en: "Engine programmer / game programmer" },
     "about-lang-l": { ja: "言語", en: "Languages" },
     "about-lang-v": { ja: "JLPT N1、TOEIC 940", en: "JLPT N1, TOEIC 940" },
     "about-loc-l": { ja: "所在地", en: "Location" },
@@ -183,6 +187,27 @@
     if (titleKey && dict[titleKey]) {
       document.title = dict[titleKey][lang];
     }
+
+    document.querySelectorAll("[data-ja]").forEach((el) => {
+      const value = el.getAttribute(lang === "en" ? "data-en" : "data-ja");
+      if (value == null) return;
+      el.textContent = value;
+    });
+
+    document.querySelectorAll("[data-aria-ja]").forEach((el) => {
+      const value = el.getAttribute(lang === "en" ? "data-aria-en" : "data-aria-ja");
+      if (value == null) return;
+      el.setAttribute("aria-label", value);
+    });
+
+    const titleJa = document.body.getAttribute("data-title-ja");
+    const titleEn = document.body.getAttribute("data-title-en");
+    if (titleJa && titleEn) document.title = lang === "en" ? titleEn : titleJa;
+
+    const descJa = document.body.getAttribute("data-desc-ja");
+    const descEn = document.body.getAttribute("data-desc-en");
+    const desc = document.querySelector('meta[name="description"]');
+    if (desc && descJa && descEn) desc.setAttribute("content", lang === "en" ? descEn : descJa);
 
     document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
       const isActive = btn.getAttribute("data-lang-btn") === lang;

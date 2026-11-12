@@ -6,8 +6,9 @@ Static personal site served by GitHub Pages from the repository root (`main` bra
 
 | Path | Role |
 | --- | --- |
-| `index.html` | Hub homepage. Links to the portfolio (`/portfolio/`) and the handbook (`/handbook/`). |
-| `portfolio/` | Portfolio page (Japanese by default, English toggle) and its design notes. |
+| `index.html` | Hub. Links to `/portfolio/`, `/portfolio/works/ivy-engine/`, and `/handbook/`. |
+| `portfolio/index.html` | Job portfolio: profile, skills, works, and contact. Japanese by default, English toggle. |
+| `portfolio/works/` | One page per work. `ivy-engine/` keeps the engine showcase (WebGL hero and systems). |
 | `css/`, `js/`, `fonts/` | Styles, language toggle, WebGL editor sketch, and self-hosted fonts shared by the hub and portfolio. Fonts are subset WOFF2 (Dela Gothic One, IBM Plex Sans JP); see `fonts/OFL.txt`. |
 | `handbook/index.html` | Self-contained, offline single-file page: 遊戲畫面表現手冊 / Game Visual Handbook / ゲーム画面表現ハンドブック. |
 | `handbook/llms.txt` | Agent catalog for the handbook (do not ingest the SPA HTML). |

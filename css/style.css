@@ -853,3 +853,260 @@ body.is-hub .site-header { border-bottom-color: transparent; }
 .title-phrase {
   white-space: nowrap;
 }
+
+/* ---------- Job portfolio ---------- */
+
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  margin: 0 0 1.35rem;
+}
+
+.page-nav a {
+  color: var(--moss);
+  text-decoration: none;
+}
+
+.page-nav a:hover,
+.page-nav a:focus-visible {
+  color: var(--fern);
+}
+
+.profile { padding: 2.1rem 0 0.4rem; }
+
+.profile-name {
+  margin: 0;
+  font-size: clamp(2.7rem, 7vw, 4.8rem);
+}
+
+.profile-aka {
+  margin: 0.4rem 0 0;
+  color: var(--moss);
+}
+
+.profile-role {
+  margin: 0.85rem 0 1.1rem;
+  max-width: 36rem;
+  font-weight: 600;
+}
+
+.pr-block {
+  margin-top: 1.35rem;
+  max-width: 40rem;
+}
+
+.pr-block h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.pr-empty .shot-label { min-height: 5.5rem; }
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: 46rem;
+}
+
+.skill-list li {
+  margin: 0;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--trellis);
+  background: var(--hollow);
+  font-weight: 500;
+}
+
+.skill-list li.is-placeholder {
+  border-style: dashed;
+  color: var(--moss);
+  font-weight: 400;
+}
+
+.work-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.work-list > li { margin: 0; padding: 0.85rem 0; border-top: 1px solid var(--line); }
+.work-list > li:last-child { border-bottom: 1px solid var(--line); }
+
+.work-link {
+  display: grid;
+  grid-template-columns: 2.6rem minmax(0, 11.5rem) minmax(0, 1fr);
+  gap: 0.75rem 1.15rem;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.work-link:hover,
+.work-link:focus-visible {
+  text-decoration: none;
+  transform: translateX(0.35rem);
+}
+
+.work-link:hover h3,
+.work-link:focus-visible h3 { color: var(--fern); }
+
+.work-link:hover .shot-well,
+.work-link:focus-visible .shot-well {
+  border-color: var(--fern);
+  border-style: solid;
+}
+
+.work-num {
+  color: var(--fern);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.05rem;
+}
+
+.work-link .shot-well {
+  min-height: 0;
+  aspect-ratio: 16 / 10;
+  margin: 0;
+  padding: 0.45rem;
+}
+
+.work-link .shot-label {
+  font-size: 0.78rem;
+  padding: 0.4rem 0.5rem;
+}
+
+.work-link h3 {
+  margin: 0;
+  font-size: 1.28rem;
+  font-weight: 600;
+}
+
+.work-line {
+  margin: 0.2rem 0 0;
+  color: var(--lumen);
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.75rem;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--moss);
+  font-size: 0.88rem;
+}
+
+.handbook-extra {
+  margin: 1.5rem 0 0;
+  max-width: 40rem;
+  color: var(--moss);
+}
+
+.handbook-extra a {
+  font-weight: 600;
+  margin-right: 0.55rem;
+}
+
+.back-row { margin: 0 0 0.85rem; }
+
+.work-hero { padding-top: 1.7rem; }
+
+.work-kicker {
+  margin: 0;
+  color: var(--fern);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.work-hero h1,
+.detail-title {
+  margin: 0.15rem 0 0.55rem;
+  font-size: clamp(1.85rem, 4vw, 2.7rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.fact-list {
+  margin: 0;
+  padding: 0;
+  max-width: 52rem;
+}
+
+.fact-list > div {
+  display: grid;
+  grid-template-columns: 14.5rem minmax(0, 1fr);
+  gap: 0.35rem 1.2rem;
+  align-items: start;
+  margin: 0;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.fact-list > div:last-child { border-bottom: 1px solid var(--line); }
+
+.fact-list dt {
+  margin: 0;
+  color: var(--moss);
+  font-weight: 600;
+}
+
+.fact-list dd { margin: 0; }
+.fact-list dd p { margin: 0; }
+.fact-list .shot-row { margin: 0; }
+.fact-list .shot-well { min-height: 7.5rem; }
+
+.code-block {
+  margin: 0 0 0.45rem;
+  padding: 0.75rem 0.85rem;
+  max-width: 36rem;
+  overflow-x: auto;
+  background: var(--hollow);
+  border: 1px dashed var(--trellis);
+  color: var(--lumen);
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.project h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.project h3 a:hover,
+.project h3 a:focus-visible { color: var(--fern); }
+
+@media (max-width: 800px) {
+  .work-link {
+    grid-template-columns: 2.4rem minmax(0, 1fr);
+  }
+
+  .work-link .shot-well {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    max-width: 16rem;
+  }
+
+  .work-num { grid-column: 1; grid-row: 2; }
+  .work-copy { grid-column: 2; grid-row: 2; }
+
+  .fact-list > div { grid-template-columns: 1fr; gap: 0.15rem; }
+
+  .profile-name { font-size: clamp(2.3rem, 11vw, 3.4rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .work-link:hover,
+  .work-link:focus-visible { transform: none; }
+}

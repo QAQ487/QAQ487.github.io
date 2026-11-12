@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="Terry Yeung の作品集。自作 C++ / Direct3D 11 エンジン「ツタエンジン」と、それで作ったゲーム。">
+  <meta name="description" content="Terry Yeung の作品集。エンジンプログラマー／ゲームプログラマー志望。">
   <title>作品集 — Terry Yeung</title>
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="../css/style.css">
 </head>
-<body data-title-key="doc-title-folio">
+<body data-title-ja="作品集 — Terry Yeung" data-title-en="Portfolio — Terry Yeung" data-desc-ja="Terry Yeung の作品集。エンジンプログラマー／ゲームプログラマー志望。" data-desc-en="Portfolio of Terry Yeung, aiming at engine programmer / game programmer roles.">
   <a class="skip" href="#main" data-i18n="skip">本文へ進む</a>
   <header class="site-header">
     <div class="wrap">
@@ -23,263 +23,217 @@
       </div>
     </div>
   </header>
-
   <main id="main">
-    <header class="hero">
+    <header class="section profile" id="profile">
       <div class="wrap">
-        <h1 class="display hero-title" data-i18n="hero-title">ツタエンジン</h1>
-        <p class="lede" data-i18n="hero-lede">一人で書いた C++ / Direct3D 11 エンジン。エディタとランタイムを分離。</p>
-
-        <figure class="ghost-editor" data-editor aria-label="Ivy Engine editor live sketch">
-          <div class="ghost-titlebar">
-            <span data-i18n="ghost-title">Ivy Engine エディタ</span>
-            <span class="ghost-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+        <nav class="page-nav" data-aria-ja="ページ内の移動" data-aria-en="On this page" aria-label="ページ内の移動">
+          <a href="#skills" data-ja="スキルセット" data-en="Skills">スキルセット</a>
+          <a href="#works" data-ja="作品一覧" data-en="Works">作品一覧</a>
+          <a href="#contact" data-ja="連絡先" data-en="Contact">連絡先</a>
+        </nav>
+        <h1 class="display profile-name">Terry Yeung</h1>
+        <p class="profile-aka" data-ja="日本語名はプレースホルダ" data-en="Japanese name is a placeholder">日本語名はプレースホルダ</p>
+        <p class="profile-role" data-ja="志望職種: エンジンプログラマー／ゲームプログラマー" data-en="Target roles: engine programmer / game programmer">志望職種: エンジンプログラマー／ゲームプログラマー</p>
+        <dl class="about-list">
+          <div>
+            <dt data-ja="学校" data-en="School">学校</dt>
+            <dd data-ja="HAL東京 ゲーム制作学科（4年制）" data-en="HAL Tokyo, Game Production (4-year)">HAL東京 ゲーム制作学科（4年制）</dd>
           </div>
-          <div class="ghost-grid">
-            <div class="ghost-panel ghost-hierarchy">
-              <div class="panel-kicker" data-i18n="ghost-hierarchy">ヒエラルキー</div>
-              <ul class="hier-list">
-                <li><button type="button" class="hier-item is-active" data-entity="mesh" data-i18n="hier-mesh">Icosahedron</button></li>
-                <li><button type="button" class="hier-item" data-entity="light" data-i18n="hier-light">DirectionalLight</button></li>
-                <li><button type="button" class="hier-item" data-entity="grid" data-i18n="hier-grid">Grid</button></li>
-              </ul>
-            </div>
-            <div class="ghost-viewport">
-              <canvas class="editor-canvas" data-editor-canvas role="img" aria-hidden="true"></canvas>
-              <p class="shot-label viewport-caption">
-                <strong data-i18n="shot-editor-k">ライブデモ</strong>
-                <span data-i18n="shot-editor-v">WebGL による見本。実機のエディタ画面は下の枠へ。</span>
-              </p>
-            </div>
-            <div class="ghost-panel ghost-inspector">
-              <div class="panel-kicker" data-i18n="ghost-inspector">インスペクタ</div>
-              <dl class="insp-list">
-                <div>
-                  <dt data-i18n="insp-rot-l">Rotation</dt>
-                  <dd data-insp="rot">0.0, 0.0, 0.0</dd>
-                </div>
-                <div>
-                  <dt data-i18n="insp-rough-l">Roughness</dt>
-                  <dd data-insp="rough">0.34</dd>
-                </div>
-                <div>
-                  <dt data-i18n="insp-metal-l">Metallic</dt>
-                  <dd data-insp="metal">0.28</dd>
-                </div>
-              </dl>
-            </div>
-            <div class="ghost-panel ghost-assets">
-              <span class="panel-kicker" data-i18n="ghost-assets">アセットブラウザ</span>
-              <span class="asset-name" data-i18n="asset-mesh">Icosahedron</span>
-              <span class="asset-name" data-i18n="asset-grid">Grid</span>
-              <span class="asset-name" data-i18n="asset-mat">DefaultPBR</span>
-            </div>
+          <div>
+            <dt data-ja="卒業" data-en="Graduation">卒業</dt>
+            <dd data-ja="2028年卒業予定（28卒）" data-en="Graduating in 2028 (28卒)">2028年卒業予定（28卒）</dd>
           </div>
-        </figure>
-
-        <div class="shot-row">
-          <figure class="shot-well">
-            <p class="shot-label">
-              <strong data-i18n="shot-2d-k">ここに入れる写真</strong>
-              <span data-i18n="shot-2d-v">2D ビュー。スプライトと Box2D 表示（F11）。</span>
-            </p>
-          </figure>
-          <figure class="shot-well">
-            <p class="shot-label">
-              <strong data-i18n="shot-play-k">ここに入れる写真</strong>
-              <span data-i18n="shot-play-v">Play モード（F3）。配布と同じ動作。</span>
-            </p>
-          </figure>
-          <figure class="shot-well">
-            <p class="shot-label">
-              <strong data-i18n="shot-boot-k">ここに入れる写真</strong>
-              <span data-i18n="shot-boot-v">ランタイム起動画面（ロゴと読み込み）。</span>
-            </p>
-          </figure>
+          <div>
+            <dt data-ja="言語" data-en="Languages">言語</dt>
+            <dd data-ja="JLPT N1、TOEIC 940" data-en="JLPT N1, TOEIC 940">JLPT N1、TOEIC 940</dd>
+          </div>
+          <div>
+            <dt data-ja="連絡先" data-en="Contact">連絡先</dt>
+            <dd data-ja="メール（準備中）" data-en="Email (to be added)">メール（準備中）</dd>
+          </div>
+        </dl>
+        <div class="pr-block">
+          <h2 id="pr-title" data-ja="自己PR" data-en="Personal statement">自己PR</h2>
+          <div class="pr-empty">
+            <p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder">プレースホルダ</strong> <span data-ja="未記入。" data-en="Not filled in yet.">未記入。</span></p>
+          </div>
         </div>
       </div>
     </header>
 
-    <section class="section" id="architecture" aria-labelledby="systems-title">
+    <section class="section" id="skills" aria-labelledby="skills-title">
       <div class="wrap">
-        <h2 class="section-title" id="systems-title" data-i18n="systems-title">エンジンの構成</h2>
-        <dl class="systems">
-          <div>
-            <dt data-i18n="sys-arch-t">アーキテクチャ</dt>
-            <dd data-i18n="sys-arch-d">エディタとランタイムが本体を共有。ゲームは独立コンテンツ（JSON、ECS、C++ DLL）。</dd>
-          </div>
-          <div>
-            <dt data-i18n="sys-ren-t">レンダリング</dt>
-            <dd data-i18n="sys-ren-d">D3D11 フォワード。IBL PBR、トゥーン、ポストFX。</dd>
-          </div>
-          <div>
-            <dt data-i18n="sys-phy-t">物理</dt>
-            <dd data-i18n="sys-phy-d">3D は自前の衝突。2D は公式 Box2D 3.1.1。</dd>
-          </div>
-          <div>
-            <dt data-i18n="sys-2d-t">2D モード</dt>
-            <dd data-i18n="sys-2d-d">同じエンジンで純 2D（直交カメラ、スプライト、2D ビュー）。</dd>
-          </div>
-          <div>
-            <dt data-i18n="sys-script-t">スクリプト</dt>
-            <dd data-i18n="sys-script-d">C++ DLL。編集中にホットリロード。</dd>
-          </div>
-          <div>
-            <dt data-i18n="sys-ed-t">エディタと配布</dt>
-            <dd data-i18n="sys-ed-d">ImGui エディタ、Play モード、ワンクリック /MT パッケージ。</dd>
-          </div>
-        </dl>
-        <p class="credit" data-i18n="sys-credit">自作。利用ライブラリ: ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。基盤: D3D11、XAudio2、XInput。リポジトリは非公開。</p>
-      </div>
-    </section>
-
-    <section class="section" id="games" aria-labelledby="games-title">
-      <div class="wrap">
-        <h2 class="section-title" id="games-title" data-i18n="games-title">ツタエンジンで作ったゲーム</h2>
-        <ul class="project-list">
-          <li class="project is-feature" id="village-and-goblin">
-            <figure class="shot-well">
-              <p class="shot-label">
-                <strong data-i18n="vg-shot-k">ここに入れる写真</strong>
-                <span data-i18n="vg-shot-v">昼間の村と畑（実機。夜襲もあると良い）。</span>
-              </p>
-            </figure>
-            <div>
-              <h3 data-i18n="vg-title">Village &amp; Goblin</h3>
-              <p class="prose"><span data-i18n="vg-body">昼は農作業、夜は防衛。俯視の 2D。仮題</span><span class="title-phrase" lang="zh-Hant" data-i18n="vg-aka">「農耕與哥布林襲村」</span><span data-i18n="vg-body-end">。</span></p>
-              <p class="project-meta" data-i18n="vg-meta">最新作、個人、2026年10月〜、Ivy / 2D</p>
-              <p class="project-meta" data-i18n="media-pending">映像・ビルド（準備中）</p>
-            </div>
-          </li>
-          <li class="project is-flip" id="gravity-swing">
-            <figure class="shot-well">
-              <p class="shot-label">
-                <strong data-i18n="gs-shot-k">ここに入れる写真</strong>
-                <span data-i18n="gs-shot-v">スイング中のプレイ画面。</span>
-              </p>
-            </figure>
-            <div>
-              <h3 data-i18n="gs-title">Gravity Swing</h3>
-              <p class="prose" data-i18n="gs-body">フックで隙間を渡る 3D スイング。コース 2 本。</p>
-              <p class="project-meta" data-i18n="gs-meta">個人、2026年9月〜10月、Ivy / 3D</p>
-              <p class="project-meta" data-i18n="media-pending">映像・ビルド（準備中）</p>
-            </div>
-          </li>
-          <li class="project" id="frisbee-arena">
-            <figure class="shot-well">
-              <p class="shot-label">
-                <strong data-i18n="fa-shot-k">ここに入れる写真</strong>
-                <span data-i18n="fa-shot-v">代表的なプレイ画面。</span>
-              </p>
-            </figure>
-            <div>
-              <h3 data-i18n="fa-title">Frisbee Arena</h3>
-              <p class="prose" data-i18n="fa-body">ツタエンジン上のフリスビー。詳細は確認待ち。</p>
-              <p class="project-meta" data-i18n="fa-meta">個人、2026年9月、Ivy</p>
-              <p class="project-meta" data-i18n="media-pending">映像・ビルド（準備中）</p>
-            </div>
-          </li>
+        <h2 class="section-title" id="skills-title" data-ja="スキルセット" data-en="Skills">スキルセット</h2>
+        <ul class="skill-list">
+          <li>C++</li>
+          <li>Direct3D 11 / 12</li>
+          <li data-ja="AIエージェント活用" data-en="AI agents">AIエージェント活用</li>
+          <li class="is-placeholder" data-ja="追加のスキル（プレースホルダ）" data-en="Another skill (placeholder)">追加のスキル（プレースホルダ）</li>
         </ul>
       </div>
     </section>
 
-    <section class="section" id="other-work" aria-labelledby="other-title">
+    <section class="section" id="works" aria-labelledby="works-title">
       <div class="wrap">
-        <h2 class="section-title" id="other-title" data-i18n="other-title">そのほかの作品</h2>
-        <ul class="project-list">
-          <li class="project" id="magnet-field">
-            <figure class="shot-well">
-              <p class="shot-label">
-                <strong data-i18n="mf-shot-k">ここに入れる写真</strong>
-                <span data-i18n="mf-shot-v">プレイ画面（担当が分かると良い）。</span>
-              </p>
-            </figure>
-            <div>
-              <h3 data-i18n="mf-title">Magnet Field</h3>
-              <p class="prose" data-i18n="mf-body">磁気テーマのプロトタイプ。のちのツタエンジンの前身。</p>
-              <p class="project-meta" data-i18n="mf-meta">グループ、2026年3月〜7月、担当はプレースホルダ</p>
-              <p class="project-meta" data-i18n="media-pending">映像・ビルド（準備中）</p>
-            </div>
+        <h2 class="section-title" id="works-title" data-ja="作品一覧" data-en="Works">作品一覧</h2>
+        <ol class="work-list">
+          <li>
+            <a class="work-link" href="/portfolio/works/ivy-engine/">
+              <span class="work-num" aria-hidden="true">01</span>
+              <figure class="shot-well work-thumb">
+                <p class="shot-label">
+                  <strong data-ja="ここに入れる写真" data-en="Photograph to place here">ここに入れる写真</strong>
+                </p>
+              </figure>
+              <div class="work-copy">
+                <h3 data-ja="ツタエンジン" data-en="Ivy Engine">ツタエンジン</h3>
+                <p class="work-line" data-ja="一人で書いた C++ / Direct3D 11 エンジン。エディタとランタイムを分離。" data-en="A solo C++ / Direct3D 11 engine. Editor and runtime are separate.">一人で書いた C++ / Direct3D 11 エンジン。エディタとランタイムを分離。</p>
+                <ul class="tag-list">
+                <li data-ja="個人" data-en="Solo">個人</li>
+                <li data-ja="C++ / D3D11" data-en="C++ / D3D11">C++ / D3D11</li>
+                <li data-ja="期間はプレースホルダ" data-en="Period is a placeholder">期間はプレースホルダ</li>
+                </ul>
+              </div>
+            </a>
           </li>
-          <li class="project" id="third-person-shooter">
-            <figure class="shot-well">
-              <p class="shot-label">
-                <strong data-i18n="tps-shot-k">ここに入れる写真</strong>
-                <span data-i18n="tps-shot-v">照準と敵が見えるプレイ画面。</span>
-              </p>
-            </figure>
-            <div>
-              <h3 data-i18n="tps-title">TPS シューティング</h3>
-              <p class="prose" data-i18n="tps-body">D3D11 の三人称。99 秒タイムアタック。</p>
-              <p class="project-meta" data-i18n="tps-meta">2026年1月、体制はプレースホルダ</p>
-              <p class="project-meta" data-i18n="media-pending">映像・ビルド（準備中）</p>
-            </div>
+          <li>
+            <a class="work-link" href="/portfolio/works/village-and-goblin/">
+              <span class="work-num" aria-hidden="true">02</span>
+              <figure class="shot-well work-thumb">
+                <p class="shot-label">
+                  <strong data-ja="ここに入れる写真" data-en="Photograph to place here">ここに入れる写真</strong>
+                </p>
+              </figure>
+              <div class="work-copy">
+                <h3 data-ja="Village &amp; Goblin" data-en="Village &amp; Goblin">Village &amp; Goblin</h3>
+                <p class="work-line" data-ja="昼は農作業、夜は防衛。俯視の 2D。" data-en="Farm by day, defend by night. Top-down 2D.">昼は農作業、夜は防衛。俯視の 2D。</p>
+                <ul class="tag-list">
+                <li data-ja="個人" data-en="Solo">個人</li>
+                <li data-ja="Ivy / 2D" data-en="Ivy / 2D">Ivy / 2D</li>
+                <li data-ja="2026年10月〜" data-en="Oct 2026–">2026年10月〜</li>
+                </ul>
+              </div>
+            </a>
           </li>
-          <li class="project" id="scrap-burst">
-            <figure class="shot-well">
-              <p class="shot-label">
-                <strong data-i18n="sb-shot-k">ここに入れる写真</strong>
-                <span data-i18n="sb-shot-v">プレイ画面またはキーアート（提供待ち）。</span>
-              </p>
-            </figure>
-            <div>
-              <h3 data-i18n="sb-title">Scrap Burst</h3>
-              <p class="prose" data-i18n="sb-body">グループ制作。担当と期間は確認待ち。</p>
-              <p class="project-meta" data-i18n="sb-meta">グループ、担当は未定（TBD）</p>
-              <p class="project-meta" data-i18n="media-pending">映像・ビルド（準備中）</p>
-            </div>
+          <li>
+            <a class="work-link" href="/portfolio/works/gravity-swing/">
+              <span class="work-num" aria-hidden="true">03</span>
+              <figure class="shot-well work-thumb">
+                <p class="shot-label">
+                  <strong data-ja="ここに入れる写真" data-en="Photograph to place here">ここに入れる写真</strong>
+                </p>
+              </figure>
+              <div class="work-copy">
+                <h3 data-ja="Gravity Swing" data-en="Gravity Swing">Gravity Swing</h3>
+                <p class="work-line" data-ja="フックで隙間を渡る 3D スイング。コース 2 本。" data-en="Hook across gaps on a 3D swing course. Two stages.">フックで隙間を渡る 3D スイング。コース 2 本。</p>
+                <ul class="tag-list">
+                <li data-ja="個人" data-en="Solo">個人</li>
+                <li data-ja="Ivy / 3D" data-en="Ivy / 3D">Ivy / 3D</li>
+                <li data-ja="2026年9月〜10月" data-en="Sep–Oct 2026">2026年9月〜10月</li>
+                </ul>
+              </div>
+            </a>
           </li>
-          <li class="project project-text-only" id="visual-handbook">
-            <div>
-              <h3 data-i18n="hb-title">ゲーム画面表現ハンドブック</h3>
-              <p class="prose" data-i18n="hb-body">画面演出と操作感のカタログ。</p>
-              <p class="project-meta" data-i18n="hb-meta">個人、/handbook/ で公開中</p>
-              <p><a href="/handbook/" data-i18n="hb-link">ハンドブックを開く</a></p>
-            </div>
+          <li>
+            <a class="work-link" href="/portfolio/works/frisbee-arena/">
+              <span class="work-num" aria-hidden="true">04</span>
+              <figure class="shot-well work-thumb">
+                <p class="shot-label">
+                  <strong data-ja="ここに入れる写真" data-en="Photograph to place here">ここに入れる写真</strong>
+                </p>
+              </figure>
+              <div class="work-copy">
+                <h3 data-ja="Frisbee Arena" data-en="Frisbee Arena">Frisbee Arena</h3>
+                <p class="work-line" data-ja="ツタエンジン上のフリスビー。詳細は確認待ち。" data-en="A frisbee game on Ivy Engine. Details pending confirmation.">ツタエンジン上のフリスビー。詳細は確認待ち。</p>
+                <ul class="tag-list">
+                <li data-ja="個人" data-en="Solo">個人</li>
+                <li data-ja="Ivy" data-en="Ivy">Ivy</li>
+                <li data-ja="2026年9月" data-en="Sep 2026">2026年9月</li>
+                </ul>
+              </div>
+            </a>
           </li>
-        </ul>
+          <li>
+            <a class="work-link" href="/portfolio/works/magnet-field/">
+              <span class="work-num" aria-hidden="true">05</span>
+              <figure class="shot-well work-thumb">
+                <p class="shot-label">
+                  <strong data-ja="ここに入れる写真" data-en="Photograph to place here">ここに入れる写真</strong>
+                </p>
+              </figure>
+              <div class="work-copy">
+                <h3 data-ja="Magnet Field" data-en="Magnet Field">Magnet Field</h3>
+                <p class="work-line" data-ja="磁気テーマのプロトタイプ。のちのツタエンジンの前身。" data-en="Magnet-themed prototype. Predecessor of Ivy Engine.">磁気テーマのプロトタイプ。のちのツタエンジンの前身。</p>
+                <ul class="tag-list">
+                <li data-ja="グループ" data-en="Group">グループ</li>
+                <li data-ja="技術はプレースホルダ" data-en="Tech is a placeholder">技術はプレースホルダ</li>
+                <li data-ja="2026年3月〜7月" data-en="Mar–Jul 2026">2026年3月〜7月</li>
+                <li data-ja="担当はプレースホルダ" data-en="Role is a placeholder">担当はプレースホルダ</li>
+                </ul>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a class="work-link" href="/portfolio/works/tps-shooter/">
+              <span class="work-num" aria-hidden="true">06</span>
+              <figure class="shot-well work-thumb">
+                <p class="shot-label">
+                  <strong data-ja="ここに入れる写真" data-en="Photograph to place here">ここに入れる写真</strong>
+                </p>
+              </figure>
+              <div class="work-copy">
+                <h3 data-ja="TPS シューティング" data-en="Third-person shooter">TPS シューティング</h3>
+                <p class="work-line" data-ja="D3D11 の三人称。99 秒タイムアタック。題名はプレースホルダ。" data-en="A D3D11 third-person shooter. 99-second time attack. The title is a placeholder.">D3D11 の三人称。99 秒タイムアタック。題名はプレースホルダ。</p>
+                <ul class="tag-list">
+                <li data-ja="体制はプレースホルダ" data-en="Team is a placeholder">体制はプレースホルダ</li>
+                <li data-ja="D3D11" data-en="D3D11">D3D11</li>
+                <li data-ja="2026年1月" data-en="Jan 2026">2026年1月</li>
+                <li data-ja="題名はプレースホルダ" data-en="Title is a placeholder">題名はプレースホルダ</li>
+                </ul>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a class="work-link" href="/portfolio/works/scrap-burst/">
+              <span class="work-num" aria-hidden="true">07</span>
+              <figure class="shot-well work-thumb">
+                <p class="shot-label">
+                  <strong data-ja="ここに入れる写真" data-en="Photograph to place here">ここに入れる写真</strong>
+                </p>
+              </figure>
+              <div class="work-copy">
+                <h3 data-ja="Scrap Burst" data-en="Scrap Burst">Scrap Burst</h3>
+                <p class="work-line" data-ja="グループ制作。担当と期間は確認待ち。" data-en="A group project. Role and dates pending.">グループ制作。担当と期間は確認待ち。</p>
+                <ul class="tag-list">
+                <li data-ja="グループ" data-en="Group">グループ</li>
+                <li data-ja="技術はプレースホルダ" data-en="Tech is a placeholder">技術はプレースホルダ</li>
+                <li data-ja="期間はプレースホルダ" data-en="Period is a placeholder">期間はプレースホルダ</li>
+                <li data-ja="担当は未定" data-en="Role TBD">担当は未定</li>
+                </ul>
+              </div>
+            </a>
+          </li>
+        </ol>
+        <p class="handbook-extra">
+          <a href="/handbook/" data-ja="ゲーム画面表現ハンドブック" data-en="Game Visual Handbook">ゲーム画面表現ハンドブック</a>
+          <span data-ja="画面演出のカタログ。個人、公開中。" data-en="A catalogue of screen direction. Solo, live.">画面演出のカタログ。個人、公開中。</span>
+        </p>
       </div>
     </section>
 
-    <section class="section" id="about" aria-labelledby="about-title">
+    <section class="section" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
-        <h2 class="section-title" id="about-title" data-i18n="about-title">プロフィール</h2>
-        <dl class="about-list">
-          <div>
-            <dt data-i18n="about-name-l">名前</dt>
-            <dd data-i18n="about-name-v">Terry Yeung（日本語名はプレースホルダ）</dd>
-          </div>
-          <div>
-            <dt data-i18n="about-role-l">志望職種</dt>
-            <dd data-i18n="about-role-v">エンジンプログラマー（ゲームも可）</dd>
-          </div>
-          <div>
-            <dt data-i18n="about-lang-l">言語</dt>
-            <dd data-i18n="about-lang-v">JLPT N1、TOEIC 940</dd>
-          </div>
-          <div>
-            <dt data-i18n="about-loc-l">所在地</dt>
-            <dd data-i18n="about-loc-v">プレースホルダ</dd>
-          </div>
-          <div>
-            <dt data-i18n="about-edu-l">経歴</dt>
-            <dd data-i18n="about-edu-v">プレースホルダ</dd>
-          </div>
-          <div>
-            <dt data-i18n="about-contact-l">連絡先</dt>
-            <dd data-i18n="about-contact-v">メール（準備中）</dd>
-          </div>
-        </dl>
+        <h2 class="section-title" id="contact-title" data-ja="連絡先" data-en="Contact">連絡先</h2>
+        <p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder">プレースホルダ</strong> <span data-ja="メール（準備中）。" data-en="Email (to be added).">メール（準備中）。</span></p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="wrap">
-      <p data-i18n="footer-folio">モックアップ。映像・ビルド・一部プロフィールはプレースホルダ。</p>
+      <p data-ja="一部の項目はプレースホルダ。" data-en="Some fields are placeholders.">一部の項目はプレースホルダ。</p>
     </div>
   </footer>
   <script src="../js/i18n.js"></script>
-  <script src="../js/editor-demo.js"></script>
 </body>
 </html>
