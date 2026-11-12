@@ -36,6 +36,7 @@ Author markers as decals, an overlay layer or tile variants on climbable edges, 
 - [PIX-13](PIX-13.md) — Silhouette readability
 - [ANI-22](ANI-22.md) — Contextual vault / Traversal snapping
 - [ANI-23](ANI-23.md) — Creature climbing / Clinging to large enemies
+- [ACT-57](ACT-57.md) — Magnetic surface crawl
 
 ## References
 

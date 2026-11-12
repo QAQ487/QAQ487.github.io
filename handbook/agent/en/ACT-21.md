@@ -36,6 +36,7 @@ On a confirmed hit, pause selected attacker/target simulation clocks. Optional v
 - [FB-31](FB-31.md) — Stasis with stored impact
 - [ACT-45](ACT-45.md) — Pogo bounce / Downward strike bounce
 - [ACT-47](ACT-47.md) — Air juggle / Launcher
+- [FB-36](FB-36.md) — Percentage knockback & trajectory influence
 
 ## References
 

@@ -36,6 +36,7 @@ Render the scene to an offscreen RT, then a full-screen (or bounding-quad) PS: d
 - [VFX-09](VFX-09.md) — Explosion
 - [FX-07](FX-07.md) — Distortion / Refraction
 - [NAV-17](NAV-17.md) — Scan pulse / Sonar ping
+- [ACT-55](ACT-55.md) — Ground pound & dive cancel
 
 ## References
 

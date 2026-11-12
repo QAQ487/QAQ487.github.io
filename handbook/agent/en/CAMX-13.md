@@ -36,6 +36,7 @@ Compute target roll from yaw rate (or lateral acceleration), damp it with its ow
 - [CAM-04](CAM-04.md) — Camera damping／Follow smoothing／Camera lag
 - [PIX-20](PIX-20.md) — Mode 7 and raster effects
 - [ANI-20](ANI-20.md) — Locomotion lean / Body banking
+- [ACT-51](ACT-51.md) — Planetoid gravity / Spherical gravity
 
 ## References
 

@@ -36,6 +36,8 @@ On JumpPressed while grounded/coyote: vy = jumpSpeed; jumping=true. While vy>0 a
 - [ACT-03](ACT-03.md) — Apex Hang Time / Reduced Gravity at Jump Peak
 - [ACT-04](ACT-04.md) — Corner Correction / Jump Corner Correction
 - [ACT-06](ACT-06.md) — Lift Momentum Storage / Momentum Retention
+- [ACT-54](ACT-54.md) — Thrown-object springboard / Cap jump
+- [ACT-56](ACT-56.md) — Hover float (puff, flutter, jet)
 
 ## References
 

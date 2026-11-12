@@ -33,6 +33,7 @@ Probe for a valid wall within a small spatial tolerance rather than requiring di
 
 - [ACT-45](ACT-45.md) — Pogo bounce / Downward strike bounce
 - [ACT-37](ACT-37.md) — Motion Warping / Root Motion Warping
+- [ACT-57](ACT-57.md) — Magnetic surface crawl
 
 ## References
 

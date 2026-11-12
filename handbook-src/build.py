@@ -2,7 +2,7 @@ import json,sys,os,importlib
 sys.path.insert(0,'data')
 from common import ENTRIES
 from refs import REFS
-mods=[m for m in ['fb','trn','env','vfx','pix','ui','nav','lgt','cin','pp','ani','cam','npr','mat','a11y','diag','phy','batch2','expand','uihud','motion','graphics','combat','action2','action3'] if os.path.exists(f'data/{m}.py')]
+mods=[m for m in ['fb','trn','env','vfx','pix','ui','nav','lgt','cin','pp','ani','cam','npr','mat','a11y','diag','phy','batch2','expand','uihud','motion','graphics','combat','action2','action3','nintendo'] if os.path.exists(f'data/{m}.py')]
 for m in mods: importlib.import_module(m)
 CATS=[dict(id='FB',zh='戰鬥回饋與手感',en='Combat feedback & game feel',ja='戦闘フィードバックと手触り'),
 dict(id='PIX',zh='2D／像素美術技巧',en='2D & pixel-art techniques',ja='2D・ドット絵技法'),
@@ -36,7 +36,7 @@ SUBS={'視覺模式與舒適度':('Visual modes & comfort','表示モードと�
 '載體與技術':('Carriers & techniques','表現手段と技術'),'戰鬥特效':('Combat VFX','戦闘エフェクト'),'元素':('Elements','属性エフェクト'),'狀態與增益':('States & buffs','状態・バフ'),'破壞':('Destruction','破壊'),
 '顯示與縮放':('Display & scaling','表示とスケーリング'),'色彩':('Colour','色彩'),'線條與形體':('Line & form','線と形'),'動畫':('Animation','アニメーション'),'場景構成':('Scene construction','シーン構成'),'光照':('Lighting','ライティング'),
 '布料與繩索':('Cloth & ropes','布とロープ'),'軟體與變形':('Soft bodies & deformation','ソフトボディと変形'),'剛體與約束':('Rigid bodies & constraints','剛体と拘束'),
-'移動與容錯':('Movement & forgiveness','移動と操作の許容'),'戰鬥節奏':('Combat timing','戦闘のタイミング'),
+'移動與容錯':('Movement & forgiveness','移動と操作の許容'),'移動能力與穿越':('Traversal abilities','移動アビリティと通り抜け'),'戰鬥節奏':('Combat timing','戦闘のタイミング'),
 '資源與狀態':('Resources & status','リソースと状態'),'多人提示':('Multiplayer cues','マルチプレイの合図'),
 '潛行與感知':('Stealth & awareness','ステルスと知覚'),'細節層級':('Level of detail','細部レベル'),
 '系統互動':('Systemic interactions','システム連動'),'輸入方式':('Input modes','入力方式'),
@@ -115,7 +115,7 @@ dict(id='MAT',zh='材質與表面',en='Materials & surfaces',ja='マテリアル
 dict(id='PP',zh='後處理與畫面濾鏡',en='Post-processing & screen filters',ja='ポストプロセスと画面フィルター',m=['PP',('REN','相機、色彩與後製')]),
 dict(id='NPR',zh='風格化渲染',en='Stylized rendering (NPR)',ja='ノンフォトリアルレンダリング（NPR）',m=['NPR',('REN','整體風格與邊線')]),
 dict(id='PIX',zh='2D／像素美術技巧',en='2D & pixel-art techniques',ja='2D・ドット絵技法',m=['PIX']),
-dict(id='ANI',zh='動畫、移動與物理',en='Animation, movement & physics',ja='アニメーション・移動・物理',m=['ANI',('ACT','動畫原則與動作可讀性'),('ACT','骨骼動畫、移動與姿勢組合'),('ACT','移動、跳躍與容錯'),('ACT','移動與容錯'),'PHY']),
+dict(id='ANI',zh='動畫、移動與物理',en='Animation, movement & physics',ja='アニメーション・移動・物理',m=['ANI',('ACT','動畫原則與動作可讀性'),('ACT','骨骼動畫、移動與姿勢組合'),('ACT','移動、跳躍與容錯'),('ACT','移動與容錯'),('ACT','移動能力與穿越'),'PHY']),
 dict(id='FB',zh='戰鬥回饋與手感',en='Combat feedback & game feel',ja='戦闘フィードバックと手触り',m=['FB',('ACT','戰鬥時間、命中反應與防護'),('ACT','戰鬥節奏')]),
 dict(id='VFX',zh='特效與粒子',en='VFX & particles',ja='エフェクトとパーティクル',m=['VFX',('FX','Realtime VFX')]),
 dict(id='SND',zh='音效與觸覺',en='Audio & haptics',ja='音響と触覚',m=[('FX','Audio'),('FX','Haptics、Accessibility 與跨感官資訊')]),

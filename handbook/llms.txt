@@ -226,6 +226,15 @@ ACT-36 | Inverse Kinematics / IK; Forward Kinematics / FK | — | Animation, mov
 ACT-37 | Motion Warping / Root Motion Warping | Melee magnetism, Attack latch, Attack latching, 近戰吸附, 攻擊鎖附, 近接の吸い付き | Animation, movement & physics | agent/en/ACT-37.md
 ACT-38 | Animation Event / Anim Notify / Notify State | — | Animation, movement & physics | agent/en/ACT-38.md
 ACT-39 | Variable jump height / Jump cut | 可變跳躍高度, 短按矮跳, 長按高跳, Jump cut, Variable-height jump, Hold-to-jump, 可変ジャンプ | Animation, movement & physics | agent/en/ACT-39.md
+ACT-49 | Phase-through traversal / Ascend through ceiling | Phase-through traversal, Ascend, Phase through ceiling, Surface through ceiling, Pass through solid, Dash-through block, Phase dash, 穿越實體移動, 穿頂上升, 穿透天花板, 衝刺穿越方塊, すり抜け移動, 天井抜け, すり抜けダッシュ | Animation, movement & physics | agent/en/ACT-49.md
+ACT-50 | Wall merge / Painting form | Wall merge, Painting form, Merge into wall, Mural form, Flat-on-wall mode, Shadow form, 2D-on-wall section, 融入牆壁, 化身壁畫, 牆上平面化, 影子形態, 壁に入る, 壁画化, 壁面移動 | Animation, movement & physics | agent/en/ACT-50.md
+ACT-51 | Planetoid gravity / Spherical gravity | Planetoid gravity, Spherical gravity, Small-planet gravity, Walk around the planet, Per-object gravity field, Gravity field, 球形重力, 小星球重力, 繞星行走, 局部重力場, 球体重力, 小惑星重力, 重力フィールド | Animation, movement & physics | agent/en/ACT-51.md
+ACT-52 | Launch star / Launch cannon | Launch star, Launch cannon, Barrel cannon, Blast barrel, Launcher, Sling star, Booster bubble, 發射星, 發射砲, 炮桶, 發射氣泡, 発射スター, タル大砲, 発射台 | Animation, movement & physics | agent/en/ACT-52.md
+ACT-53 | Possession / Capture | Possession, Capture, Possess enemy, Body takeover, Object possession, Wrap-around possession, Mouthful mode, 附身操控, 附身敵人, 附身物件, 包覆物件, 憑依, 乗り移り, キャプチャー, ほおばり | Animation, movement & physics | agent/en/ACT-53.md
+ACT-54 | Thrown-object springboard / Cap jump | Thrown-object springboard, Cap jump, Bounce off a thrown object, Throw-and-bounce, Summoned spring, Mid-air springboard, 帽子跳, 拋物踏板跳, 空中踏板, 召喚彈簧, キャップジャンプ, 投げた物を踏み台, 呼び出しバネ | Animation, movement & physics | agent/en/ACT-54.md
+ACT-55 | Ground pound & dive cancel | Ground pound, Butt stomp, Body slam, Ground-pound dive, Dive cancel, Pound cancel, Drop dash, 臀部重壓, 落地重壓, 重壓轉撲, 撲出取消, ヒップドロップ, ダイブキャンセル, ドロップダッシュ | Animation, movement & physics | agent/en/ACT-55.md
+ACT-56 | Hover float (puff, flutter, jet) | Hover float, Puff float, Flutter jump, Flap hover, Helicopter hover, Jet hover, Water-jet hover, Exhale drop, 懸浮滯空, 鼓氣浮空, 振翅懸停, 噴射懸停, ホバリング, ふんばりジャンプ, ジェットホバー | Animation, movement & physics | agent/en/ACT-56.md
+ACT-57 | Magnetic surface crawl | Magnetic crawl, Spider ball, Magnet rail, Wall walking, Ceiling walking, Gravity boots, Wall-walk path, 磁力貼面爬行, 磁吸軌道, 牆面行走, 天花板行走, 磁力移動, 壁歩き, 磁力ブーツ | Animation, movement & physics | agent/en/ACT-57.md
 ANI-01 | Smear frame | Smears, Smear drawing, Multiples | Animation, movement & physics | agent/en/ANI-01.md
 ANI-02 | Animating on twos | Stepped animation, On twos / on threes, Limited animation, Stepped interpolation | Animation, movement & physics | agent/en/ANI-02.md
 ANI-03 | Hold frame / Impact frame | Held pose, Impact hold, Impact frames, ショックコマ | Animation, movement & physics | agent/en/ANI-03.md
@@ -278,8 +287,9 @@ FB-04 | Death effect | Death burst, Death poof, Defeat effect | Combat feedback 
 FB-05 | Status effect tint | Status colour overlay, Debuff tint, Elemental tint | Combat feedback & game feel | agent/en/FB-05.md
 FB-06 | Critical hit emphasis | Crit feedback, Critical hit effect, Crit pop | Combat feedback & game feel | agent/en/FB-06.md
 FB-24 | Damage vibration | Hitstop shake, Hitlag vibration, Victim shake, Damage shake, 受擊顫動, ダメージバイブ | Combat feedback & game feel | agent/en/FB-24.md
-FB-26 | Perfect parry flash / Just guard | Perfect parry, Just guard, Deflect, Precision block, Parry flash, 完美格擋, 彈刀, 精準防禦, ジャストガード, 弾き, パリィ | Combat feedback & game feel | agent/en/FB-26.md
+FB-26 | Perfect parry flash / Just guard | Perfect parry, Just guard, Deflect, Precision block, Parry flash, 完美格擋, 彈刀, 精準防禦, ジャストガード, 弾き, パリィ, Melee counter, Counter flash, 近戰反擊, 反擊閃光, メレーカウンター | Combat feedback & game feel | agent/en/FB-26.md
 FB-27 | Part break / Component severing | Part break, Breakable parts, Tail cut, Armor stripping, Component removal, 部位破壞, 斷尾, 裝甲剝落, 部位破壊, パーツ破壊, 尻尾切断 | Combat feedback & game feel | agent/en/FB-27.md
+FB-36 | Percentage knockback & trajectory influence | Percentage knockback, Damage percentage, Launch scaling, Knockback scaling, Directional influence, DI, Launch trail, Smoke trail, 百分比擊飛, 累積傷害擊飛, 軌道影響, 擊飛軌跡, ふっとび率, ベクトル変更, ふっとびの煙 | Combat feedback & game feel | agent/en/FB-36.md
 FB-02 | Damage numbers | Floating combat text, Damage popups, Pop-up numbers | Combat feedback & game feel | agent/en/FB-02.md
 FB-16 | Low-health vignette | Damage vignette, Danger vignette, Red screen edges | Combat feedback & game feel | agent/en/FB-16.md
 FB-17 | Delayed health bar | Ghost bar, Damage delay bar, Chip-damage trail, Catch-up bar | Combat feedback & game feel | agent/en/FB-17.md
@@ -287,15 +297,18 @@ FB-18 | Combo counter | Hit counter, Chain counter | Combat feedback & game feel
 FB-07 | Trauma-based screen shake | Trauma shake, Perlin screen shake, Camera shake | Combat feedback & game feel | agent/en/FB-07.md
 FB-08 | Camera kick | Recoil kick, Directional screen shake, Camera recoil | Combat feedback & game feel | agent/en/FB-08.md
 FB-09 | Camera punch-in | Impact zoom, Zoom punch, Hit zoom | Combat feedback & game feel | agent/en/FB-09.md
-FB-10 | Slow motion | Bullet time, Time dilation, Slow-mo, Selective bullet time, Time dilation focus, 選擇性子彈時間, 専心スロー | Combat feedback & game feel | agent/en/FB-10.md
+FB-10 | Slow motion | Bullet time, Time dilation, Slow-mo, Selective bullet time, Time dilation focus, 選擇性子彈時間, 専心スロー, Flurry rush, Perfect-dodge flurry, 閃避連斬, ラッシュ攻撃 | Combat feedback & game feel | agent/en/FB-10.md
 FB-11 | Freeze-frame finisher | Time-stop finisher, Kill freeze, Final-hit freeze | Combat feedback & game feel | agent/en/FB-11.md
 FB-31 | Stasis with stored impact | Stasis, Stored momentum, Kinetic charge, Time-locked object, Frozen impact build-up, 靜止蓄能, 時停蓄力, ビタロック, 運動エネルギー蓄積, 時止め蓄積 | Combat feedback & game feel | agent/en/FB-31.md
+FB-37 | Object rewind | Recall, Local time reversal, Rewind a single object, Object time reverse, Reverse trajectory, Time restore, 物件倒帶, 物件時間倒流, 局部倒轉, 軌跡倒退, オブジェクト巻き戻し, 逆再生, 時間逆行 | Combat feedback & game feel | agent/en/FB-37.md
 FB-12 | Permanence | Persistent debris, Corpses & decals, Leftover shells | Combat feedback & game feel | agent/en/FB-12.md
 FB-13 | Squash on hit | Hit wobble, Hit squash and stretch, Jelly reaction | Combat feedback & game feel | agent/en/FB-13.md
 FB-14 | Pickup magnetism | Item vacuum, Loot magnet, Auto-collect pull | Combat feedback & game feel | agent/en/FB-14.md
 FB-30 | Weapon recall / Return-path pierce | Weapon recall, Axe recall, Recall throw, Return pierce, Thrown weapon return, 召回武器, 回收飛斧, 武器回収, 呼び戻し, 投擲武器の帰還 | Combat feedback & game feel | agent/en/FB-30.md
 FB-32 | Projectile reflect / Batting | Projectile reflect, Deflect projectile, Bat back, Return fire with melee, Projectile parry, 拍返飛行道具, 彈返子彈, 反彈光彈, 弾き返し, 反射打ち | Combat feedback & game feel | agent/en/FB-32.md
-FB-33 | Telekinetic grab & throw | Telekinesis, Telekinetic throw, Gravity gun, Kinesis grab, Psychokinetic launch, Catch and release, Catch and throw back, 念力抓物投擲, 重力槍, 接住擲回, 念動力投げ, キャッチ＆リリース | Combat feedback & game feel | agent/en/FB-33.md
+FB-33 | Telekinetic grab & throw | Telekinesis, Telekinetic throw, Gravity gun, Kinesis grab, Psychokinetic launch, Catch and release, Catch and throw back, 念力抓物投擲, 重力槍, 接住擲回, 念動力投げ, キャッチ＆リリース, Magnetic grab, Magnesis, 磁力抓取, マグネキャッチ | Combat feedback & game feel | agent/en/FB-33.md
+FB-34 | Inhale & spit | Inhale and spit, Inhale, Suction, Vacuum inhale, Swallow and spit, Star spit, Vacuum gun, Tongue swallow, 吸入與吐出, 吸入, 吸塵吸入, 吞吐, 吸い込み, 吐き出し, バキューム | Combat feedback & game feel | agent/en/FB-34.md
+FB-35 | Copy ability | Ability absorb, Power copy, Weapon copy, Ability steal, Soul absorb, Ability star, 複製能力, 吸收能力, 奪取能力, 能力星, コピー能力, 能力コピー, アビリティスター | Combat feedback & game feel | agent/en/FB-35.md
 FB-15 | Muzzle flash | Gun flash, Firing flash | Combat feedback & game feel | agent/en/FB-15.md
 FB-28 | Unblockable attack signifier | Unblockable warning, Perilous attack symbol, Danger kanji, Red unblockable glow, Guard-break warning, 不可防禦警示, 危字提示, ガード不能の予兆, 危険攻撃, 危 | Combat feedback & game feel | agent/en/FB-28.md
 FB-29 | Delayed slash detonation / Lingering rift | Delayed slash, Lingering rift, Delayed cut, Spatial rift slash, Sheathe detonation, 延遲斬擊, 空間裂痕, 次元斬, 遅延斬撃, 空間の裂け目, 納刀で炸裂 | Combat feedback & game feel | agent/en/FB-29.md
@@ -305,6 +318,7 @@ FB-22 | Weapon weight: sway and inertia lag | 武器太輕, 槍像貼在畫面�
 FB-23 | Weapon pull-back near obstacles | Weapon wall collision, Gun tuck, Weapon lowering near wall, Barrel retract, 槍枝收槍, 壁際の銃退避 | Combat feedback & game feel | agent/en/FB-23.md
 FB-25 | Weapon-model recoil and return | Viewmodel recoil, Animated recoil, Gun kickback, Recoil recovery, 槍模後座, ビューモデル反動 | Combat feedback & game feel | agent/en/FB-25.md
 FB-21 | Audio-visual beat quantization | 打擊跟著節拍, 特效對拍, 音樂同步回饋, Beat quantization, Beat-synced feedback, Music-synced VFX, Rhythm sync, ビート同期 | Combat feedback & game feel | agent/en/FB-21.md
+FB-38 | Beat-switch platforms | Beat blocks, Beep blocks, Blinking blocks, Rhythm platforms, Flip panels, Red-blue panels, On-off blocks, 節拍切換平台, 節拍方塊, 紅藍切換方塊, 跳躍翻板, ビートブロック, リズムで切り替わる足場, 切り替えパネル | Combat feedback & game feel | agent/en/FB-38.md
 FX-01 | Sprite / Billboard Particles | Soft particles, Depth fade, GPU particles, 柔和粒子, 煙邊硬邊 | VFX & particles | agent/en/FX-01.md
 FX-02 | Trails / Ribbons | — | VFX & particles | agent/en/FX-02.md
 FX-03 | Afterimages / Ghost Trails | Temporal ghosting, History smearing, Disocclusion artifacts, 衝刺殘像, Dash afterimage, 殘影, 時間性殘影 | VFX & particles | agent/en/FX-03.md
@@ -366,7 +380,8 @@ ENV-02 | Sky gradient | Skybox, Sky dome, Gradient sky | Environment, weather & 
 ENV-03 | Seasonal change | Seasons, Seasonal palette swap, Season cycle | Environment, weather & time | agent/en/ENV-03.md
 ENV-15 | Fog of war | Unexplored darkness, Vision mask, Shroud | Environment, weather & time | agent/en/ENV-15.md
 ENV-16 | Corruption spread | Biome blend, Blight spread, Creep | Environment, weather & time | agent/en/ENV-16.md
-ENV-18 | Systemic environmental interactions | 系統式環境互動, 火遇雨熄滅, 元素連鎖, Fire and rain, Elemental propagation, Environmental systems, 環境の連動 | Environment, weather & time | agent/en/ENV-18.md
+ENV-18 | Systemic environmental interactions | 系統式環境互動, 火遇雨熄滅, 元素連鎖, Fire and rain, Elemental propagation, Environmental systems, 環境の連動, Fire updraft, Heat updraft, 上升氣流, 熱氣流, 上昇気流 | Environment, weather & time | agent/en/ENV-18.md
+ENV-22 | Spray-to-clean grime | Spray cleaning, Grime wash-off, Goop cleaning, Power washing, Dirt mask, Clean reveal, 噴水清除污垢, 污垢沖洗, 清除黏液, 高壓清洗, 汚れを洗い流す, 洗浄, 放水で掃除 | Environment, weather & time | agent/en/ENV-22.md
 ENV-04 | Rain | Rainfall, Rain particles, Rain splash | Environment, weather & time | agent/en/ENV-04.md
 ENV-05 | Snow | Snowfall, Snow accumulation, Snow cover | Environment, weather & time | agent/en/ENV-05.md
 ENV-06 | Lightning flash | Thunder flash, Storm flash, Sky flash | Environment, weather & time | agent/en/ENV-06.md

@@ -1,6 +1,6 @@
 # Visual Presentation Handbook — agent index (English)
 
-482 entries. Prefer individual files under this folder; do not ingest the human SPA HTML.
+497 entries. Prefer individual files under this folder; do not ingest the human SPA HTML.
 
 Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 
@@ -227,6 +227,15 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [ACT-37](ACT-37.md) — **Motion Warping / Root Motion Warping** (aliases: Melee magnetism · Attack latch · Attack latching · 近戰吸附 · 攻擊鎖附 · 近接の吸い付き)
 - [ACT-38](ACT-38.md) — **Animation Event / Anim Notify / Notify State** (aliases: —)
 - [ACT-39](ACT-39.md) — **Variable jump height / Jump cut** (aliases: 可變跳躍高度 · 短按矮跳 · 長按高跳 · Jump cut · Variable-height jump · Hold-to-jump · 可変ジャンプ)
+- [ACT-49](ACT-49.md) — **Phase-through traversal / Ascend through ceiling** (aliases: Phase-through traversal · Ascend · Phase through ceiling · Surface through ceiling · Pass through solid · Dash-through block · Phase dash · 穿越實體移動 · 穿頂上升 · 穿透天花板 · 衝刺穿越方塊 · すり抜け移動 · 天井抜け · すり抜けダッシュ)
+- [ACT-50](ACT-50.md) — **Wall merge / Painting form** (aliases: Wall merge · Painting form · Merge into wall · Mural form · Flat-on-wall mode · Shadow form · 2D-on-wall section · 融入牆壁 · 化身壁畫 · 牆上平面化 · 影子形態 · 壁に入る · 壁画化 · 壁面移動)
+- [ACT-51](ACT-51.md) — **Planetoid gravity / Spherical gravity** (aliases: Planetoid gravity · Spherical gravity · Small-planet gravity · Walk around the planet · Per-object gravity field · Gravity field · 球形重力 · 小星球重力 · 繞星行走 · 局部重力場 · 球体重力 · 小惑星重力 · 重力フィールド)
+- [ACT-52](ACT-52.md) — **Launch star / Launch cannon** (aliases: Launch star · Launch cannon · Barrel cannon · Blast barrel · Launcher · Sling star · Booster bubble · 發射星 · 發射砲 · 炮桶 · 發射氣泡 · 発射スター · タル大砲 · 発射台)
+- [ACT-53](ACT-53.md) — **Possession / Capture** (aliases: Possession · Capture · Possess enemy · Body takeover · Object possession · Wrap-around possession · Mouthful mode · 附身操控 · 附身敵人 · 附身物件 · 包覆物件 · 憑依 · 乗り移り · キャプチャー · ほおばり)
+- [ACT-54](ACT-54.md) — **Thrown-object springboard / Cap jump** (aliases: Thrown-object springboard · Cap jump · Bounce off a thrown object · Throw-and-bounce · Summoned spring · Mid-air springboard · 帽子跳 · 拋物踏板跳 · 空中踏板 · 召喚彈簧 · キャップジャンプ · 投げた物を踏み台 · 呼び出しバネ)
+- [ACT-55](ACT-55.md) — **Ground pound & dive cancel** (aliases: Ground pound · Butt stomp · Body slam · Ground-pound dive · Dive cancel · Pound cancel · Drop dash · 臀部重壓 · 落地重壓 · 重壓轉撲 · 撲出取消 · ヒップドロップ · ダイブキャンセル · ドロップダッシュ)
+- [ACT-56](ACT-56.md) — **Hover float (puff, flutter, jet)** (aliases: Hover float · Puff float · Flutter jump · Flap hover · Helicopter hover · Jet hover · Water-jet hover · Exhale drop · 懸浮滯空 · 鼓氣浮空 · 振翅懸停 · 噴射懸停 · ホバリング · ふんばりジャンプ · ジェットホバー)
+- [ACT-57](ACT-57.md) — **Magnetic surface crawl** (aliases: Magnetic crawl · Spider ball · Magnet rail · Wall walking · Ceiling walking · Gravity boots · Wall-walk path · 磁力貼面爬行 · 磁吸軌道 · 牆面行走 · 天花板行走 · 磁力移動 · 壁歩き · 磁力ブーツ)
 - [ANI-01](ANI-01.md) — **Smear frame** (aliases: Smears · Smear drawing · Multiples)
 - [ANI-02](ANI-02.md) — **Animating on twos** (aliases: Stepped animation · On twos / on threes · Limited animation · Stepped interpolation)
 - [ANI-03](ANI-03.md) — **Hold frame / Impact frame** (aliases: Held pose · Impact hold · Impact frames · ショックコマ)
@@ -281,8 +290,9 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [FB-05](FB-05.md) — **Status effect tint** (aliases: Status colour overlay · Debuff tint · Elemental tint)
 - [FB-06](FB-06.md) — **Critical hit emphasis** (aliases: Crit feedback · Critical hit effect · Crit pop)
 - [FB-24](FB-24.md) — **Damage vibration** (aliases: Hitstop shake · Hitlag vibration · Victim shake · Damage shake · 受擊顫動 · ダメージバイブ)
-- [FB-26](FB-26.md) — **Perfect parry flash / Just guard** (aliases: Perfect parry · Just guard · Deflect · Precision block · Parry flash · 完美格擋 · 彈刀 · 精準防禦 · ジャストガード · 弾き · パリィ)
+- [FB-26](FB-26.md) — **Perfect parry flash / Just guard** (aliases: Perfect parry · Just guard · Deflect · Precision block · Parry flash · 完美格擋 · 彈刀 · 精準防禦 · ジャストガード · 弾き · パリィ · Melee counter · Counter flash · 近戰反擊 · 反擊閃光 · メレーカウンター)
 - [FB-27](FB-27.md) — **Part break / Component severing** (aliases: Part break · Breakable parts · Tail cut · Armor stripping · Component removal · 部位破壞 · 斷尾 · 裝甲剝落 · 部位破壊 · パーツ破壊 · 尻尾切断)
+- [FB-36](FB-36.md) — **Percentage knockback & trajectory influence** (aliases: Percentage knockback · Damage percentage · Launch scaling · Knockback scaling · Directional influence · DI · Launch trail · Smoke trail · 百分比擊飛 · 累積傷害擊飛 · 軌道影響 · 擊飛軌跡 · ふっとび率 · ベクトル変更 · ふっとびの煙)
 - [FB-02](FB-02.md) — **Damage numbers** (aliases: Floating combat text · Damage popups · Pop-up numbers)
 - [FB-16](FB-16.md) — **Low-health vignette** (aliases: Damage vignette · Danger vignette · Red screen edges)
 - [FB-17](FB-17.md) — **Delayed health bar** (aliases: Ghost bar · Damage delay bar · Chip-damage trail · Catch-up bar)
@@ -290,15 +300,18 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [FB-07](FB-07.md) — **Trauma-based screen shake** (aliases: Trauma shake · Perlin screen shake · Camera shake)
 - [FB-08](FB-08.md) — **Camera kick** (aliases: Recoil kick · Directional screen shake · Camera recoil)
 - [FB-09](FB-09.md) — **Camera punch-in** (aliases: Impact zoom · Zoom punch · Hit zoom)
-- [FB-10](FB-10.md) — **Slow motion** (aliases: Bullet time · Time dilation · Slow-mo · Selective bullet time · Time dilation focus · 選擇性子彈時間 · 専心スロー)
+- [FB-10](FB-10.md) — **Slow motion** (aliases: Bullet time · Time dilation · Slow-mo · Selective bullet time · Time dilation focus · 選擇性子彈時間 · 専心スロー · Flurry rush · Perfect-dodge flurry · 閃避連斬 · ラッシュ攻撃)
 - [FB-11](FB-11.md) — **Freeze-frame finisher** (aliases: Time-stop finisher · Kill freeze · Final-hit freeze)
 - [FB-31](FB-31.md) — **Stasis with stored impact** (aliases: Stasis · Stored momentum · Kinetic charge · Time-locked object · Frozen impact build-up · 靜止蓄能 · 時停蓄力 · ビタロック · 運動エネルギー蓄積 · 時止め蓄積)
+- [FB-37](FB-37.md) — **Object rewind** (aliases: Recall · Local time reversal · Rewind a single object · Object time reverse · Reverse trajectory · Time restore · 物件倒帶 · 物件時間倒流 · 局部倒轉 · 軌跡倒退 · オブジェクト巻き戻し · 逆再生 · 時間逆行)
 - [FB-12](FB-12.md) — **Permanence** (aliases: Persistent debris · Corpses & decals · Leftover shells)
 - [FB-13](FB-13.md) — **Squash on hit** (aliases: Hit wobble · Hit squash and stretch · Jelly reaction)
 - [FB-14](FB-14.md) — **Pickup magnetism** (aliases: Item vacuum · Loot magnet · Auto-collect pull)
 - [FB-30](FB-30.md) — **Weapon recall / Return-path pierce** (aliases: Weapon recall · Axe recall · Recall throw · Return pierce · Thrown weapon return · 召回武器 · 回收飛斧 · 武器回収 · 呼び戻し · 投擲武器の帰還)
 - [FB-32](FB-32.md) — **Projectile reflect / Batting** (aliases: Projectile reflect · Deflect projectile · Bat back · Return fire with melee · Projectile parry · 拍返飛行道具 · 彈返子彈 · 反彈光彈 · 弾き返し · 反射打ち)
-- [FB-33](FB-33.md) — **Telekinetic grab & throw** (aliases: Telekinesis · Telekinetic throw · Gravity gun · Kinesis grab · Psychokinetic launch · Catch and release · Catch and throw back · 念力抓物投擲 · 重力槍 · 接住擲回 · 念動力投げ · キャッチ＆リリース)
+- [FB-33](FB-33.md) — **Telekinetic grab & throw** (aliases: Telekinesis · Telekinetic throw · Gravity gun · Kinesis grab · Psychokinetic launch · Catch and release · Catch and throw back · 念力抓物投擲 · 重力槍 · 接住擲回 · 念動力投げ · キャッチ＆リリース · Magnetic grab · Magnesis · 磁力抓取 · マグネキャッチ)
+- [FB-34](FB-34.md) — **Inhale & spit** (aliases: Inhale and spit · Inhale · Suction · Vacuum inhale · Swallow and spit · Star spit · Vacuum gun · Tongue swallow · 吸入與吐出 · 吸入 · 吸塵吸入 · 吞吐 · 吸い込み · 吐き出し · バキューム)
+- [FB-35](FB-35.md) — **Copy ability** (aliases: Ability absorb · Power copy · Weapon copy · Ability steal · Soul absorb · Ability star · 複製能力 · 吸收能力 · 奪取能力 · 能力星 · コピー能力 · 能力コピー · アビリティスター)
 - [FB-15](FB-15.md) — **Muzzle flash** (aliases: Gun flash · Firing flash)
 - [FB-28](FB-28.md) — **Unblockable attack signifier** (aliases: Unblockable warning · Perilous attack symbol · Danger kanji · Red unblockable glow · Guard-break warning · 不可防禦警示 · 危字提示 · ガード不能の予兆 · 危険攻撃 · 危)
 - [FB-29](FB-29.md) — **Delayed slash detonation / Lingering rift** (aliases: Delayed slash · Lingering rift · Delayed cut · Spatial rift slash · Sheathe detonation · 延遲斬擊 · 空間裂痕 · 次元斬 · 遅延斬撃 · 空間の裂け目 · 納刀で炸裂)
@@ -308,6 +321,7 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [FB-23](FB-23.md) — **Weapon pull-back near obstacles** (aliases: Weapon wall collision · Gun tuck · Weapon lowering near wall · Barrel retract · 槍枝收槍 · 壁際の銃退避)
 - [FB-25](FB-25.md) — **Weapon-model recoil and return** (aliases: Viewmodel recoil · Animated recoil · Gun kickback · Recoil recovery · 槍模後座 · ビューモデル反動)
 - [FB-21](FB-21.md) — **Audio-visual beat quantization** (aliases: 打擊跟著節拍 · 特效對拍 · 音樂同步回饋 · Beat quantization · Beat-synced feedback · Music-synced VFX · Rhythm sync · ビート同期)
+- [FB-38](FB-38.md) — **Beat-switch platforms** (aliases: Beat blocks · Beep blocks · Blinking blocks · Rhythm platforms · Flip panels · Red-blue panels · On-off blocks · 節拍切換平台 · 節拍方塊 · 紅藍切換方塊 · 跳躍翻板 · ビートブロック · リズムで切り替わる足場 · 切り替えパネル)
 ## VFX & particles
 
 - [FX-01](FX-01.md) — **Sprite / Billboard Particles** (aliases: Soft particles · Depth fade · GPU particles · 柔和粒子 · 煙邊硬邊)
@@ -375,7 +389,8 @@ Full machine catalog: [`/handbook/llms.txt`](../../llms.txt).
 - [ENV-03](ENV-03.md) — **Seasonal change** (aliases: Seasons · Seasonal palette swap · Season cycle)
 - [ENV-15](ENV-15.md) — **Fog of war** (aliases: Unexplored darkness · Vision mask · Shroud)
 - [ENV-16](ENV-16.md) — **Corruption spread** (aliases: Biome blend · Blight spread · Creep)
-- [ENV-18](ENV-18.md) — **Systemic environmental interactions** (aliases: 系統式環境互動 · 火遇雨熄滅 · 元素連鎖 · Fire and rain · Elemental propagation · Environmental systems · 環境の連動)
+- [ENV-18](ENV-18.md) — **Systemic environmental interactions** (aliases: 系統式環境互動 · 火遇雨熄滅 · 元素連鎖 · Fire and rain · Elemental propagation · Environmental systems · 環境の連動 · Fire updraft · Heat updraft · 上升氣流 · 熱氣流 · 上昇気流)
+- [ENV-22](ENV-22.md) — **Spray-to-clean grime** (aliases: Spray cleaning · Grime wash-off · Goop cleaning · Power washing · Dirt mask · Clean reveal · 噴水清除污垢 · 污垢沖洗 · 清除黏液 · 高壓清洗 · 汚れを洗い流す · 洗浄 · 放水で掃除)
 - [ENV-04](ENV-04.md) — **Rain** (aliases: Rainfall · Rain particles · Rain splash)
 - [ENV-05](ENV-05.md) — **Snow** (aliases: Snowfall · Snow accumulation · Snow cover)
 - [ENV-06](ENV-06.md) — **Lightning flash** (aliases: Thunder flash · Storm flash · Sky flash)

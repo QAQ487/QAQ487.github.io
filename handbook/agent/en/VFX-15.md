@@ -37,6 +37,8 @@ Sprite VS scales the quad around its feet pivot (scaleY curve from a small CB va
 - [FB-01](FB-01.md) — Hit flash
 - [NAV-15](NAV-15.md) — Blink targeting arc / Ledge-snapped landing preview
 - [ACT-48](ACT-48.md) — Directional counter dodge / Warp-behind counter
+- [ACT-49](ACT-49.md) — Phase-through traversal / Ascend through ceiling
+- [ACT-52](ACT-52.md) — Launch star / Launch cannon
 
 ## References
 

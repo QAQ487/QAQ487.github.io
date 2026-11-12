@@ -38,6 +38,8 @@ Pass 1: normal draw, stencil write 1. Pass 2 (after all occluders): same mesh, d
 - [MATX-07](MATX-07.md) — Hologram shader
 - [PP-19](PP-19.md) — Thermal vision / Thermographic imaging
 - [NAV-17](NAV-17.md) — Scan pulse / Sonar ping
+- [ACT-49](ACT-49.md) — Phase-through traversal / Ascend through ceiling
+- [ACT-50](ACT-50.md) — Wall merge / Painting form
 
 ## References
 
