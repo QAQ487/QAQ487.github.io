@@ -276,6 +276,233 @@ html[lang="zh-Hant"] h1.profile-name {
 
 .lang-list li + li { margin-top: 0.12rem; }
 
+.icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+  color: var(--fern);
+  overflow: visible;
+}
+
+.with-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.skill-list li.skill-chip,
+a.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.meter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: 28rem;
+}
+
+.meter {
+  display: grid;
+  grid-template-columns: 1.15rem minmax(6.5rem, 9rem) 1fr;
+  gap: 0.45rem 0.6rem;
+  align-items: center;
+}
+
+.meter-name { font-weight: 600; }
+
+.meter-track {
+  height: 0.45rem;
+  background: color-mix(in srgb, var(--trellis) 35%, var(--canopy));
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.meter-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--fern);
+  border-radius: inherit;
+}
+
+.meter-fill.is-high { width: 92%; }
+
+.meter-note {
+  grid-column: 2 / -1;
+  color: var(--moss);
+  font-size: 0.88rem;
+}
+
+.year-line {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0 0 0 0.2rem;
+  list-style: none;
+  max-width: 46rem;
+}
+
+.year-line li { margin: 0; }
+
+.year-row {
+  display: grid;
+  grid-template-columns: 6.2rem minmax(0, 1fr);
+  gap: 0.35rem 0.8rem;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+a.year-row:hover,
+a.year-row:focus-visible { text-decoration: none; }
+
+a.year-row:hover .year-name,
+a.year-row:focus-visible .year-name { color: var(--fern); }
+
+.year-when {
+  color: var(--moss);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.92rem;
+}
+
+.year-track {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 1.7rem;
+}
+
+.year-bar {
+  height: 0.42rem;
+  border-radius: 99px;
+  background: var(--fern);
+  width: calc(var(--months, 1) * 1.35rem);
+  max-width: 100%;
+}
+
+.year-row.is-team .year-bar { background: var(--trellis); }
+
+.year-row.is-open .year-bar {
+  background: linear-gradient(90deg, var(--fern) 70%, transparent);
+}
+
+.year-row.is-undated .year-bar {
+  width: 1.1rem;
+  background: transparent;
+  border: 1px dashed var(--trellis);
+}
+
+.year-name { font-weight: 600; }
+
+.year-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--moss);
+  font-size: 0.88rem;
+}
+
+.arch {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0 0 1.4rem;
+  max-width: 52rem;
+}
+
+.arch-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.arch-node {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.75rem 0.85rem;
+  background: var(--hollow);
+  border: 1px solid var(--trellis);
+}
+
+.arch-node strong { display: block; font-weight: 600; }
+.arch-node span { color: var(--moss); font-size: 0.9rem; }
+
+.arch-node.is-shared { border-color: var(--fern); }
+
+.subsys-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.subsys-grid li {
+  margin: 0;
+  padding: 0.75rem 0.8rem;
+  background: color-mix(in srgb, var(--hollow) 70%, var(--canopy));
+  border-top: 2px solid var(--fern);
+}
+
+.subsys-grid h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 0.3rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.subsys-grid p { margin: 0; color: var(--moss); font-size: 0.9rem; }
+
+.lib-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lib-row li {
+  margin: 0;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--line);
+  color: var(--moss);
+  font-size: 0.85rem;
+}
+
+.shot-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
+.shot-label .icon { align-self: flex-start; }
+
+@media (max-width: 800px) {
+  .meter { grid-template-columns: 1.15rem minmax(0, 1fr); }
+  .meter-track,
+  .meter-note { grid-column: 2; }
+  .year-row { grid-template-columns: 5.2rem minmax(0, 1fr); }
+  .arch-row,
+  .subsys-grid { grid-template-columns: 1fr; }
+  .hub-link { display: flex; gap: 0.65rem; align-items: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .year-row:hover .year-name { color: var(--fern); }
+}
+
 .lang-switch button {
   appearance: none;
   margin: 0;
@@ -405,11 +632,24 @@ body.is-hub .site-header { border-bottom-color: transparent; }
 }
 
 .hub-link {
-  display: block;
+  display: grid;
+  grid-template-columns: 1.35rem minmax(0, 1fr);
+  column-gap: 0.7rem;
+  align-items: start;
   color: inherit;
   text-decoration: none;
-  max-width: 26rem;
+  max-width: 28rem;
   transition: transform 0.2s ease;
+}
+
+.hub-link .icon { grid-row: 1 / span 2; margin-top: 0.28rem; }
+.hub-link-title,
+.hub-link-desc { grid-column: 2; }
+
+a[href^="mailto:"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 .hub-link:hover,
 .hub-link:focus-visible {

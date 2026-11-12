@@ -29,6 +29,7 @@
       <div class="wrap">
         <nav class="page-nav" data-aria-ja="ページ内の移動" data-aria-en="On this page" data-aria-zh="本頁導覽" aria-label="ページ内の移動">
           <a href="#skills" data-ja="スキルセット" data-en="Skills" data-zh="技能">スキルセット</a>
+          <a href="#timeline" data-ja="年表" data-en="Timeline" data-zh="年表">年表</a>
           <a href="#works" data-ja="作品一覧" data-en="Works" data-zh="作品一覽">作品一覧</a>
           <a href="#contact" data-ja="連絡先" data-en="Contact" data-zh="聯絡方式">連絡先</a>
         </nav>
@@ -46,17 +47,37 @@
           <div>
             <dt data-ja="言語" data-en="Languages" data-zh="語言">言語</dt>
             <dd>
-              <ul class="lang-list">
-                <li data-ja="広東語（母語）" data-en="Cantonese (first language)" data-zh="廣東話（母語）">広東語（母語）</li>
-                <li data-ja="中国語・普通話（ネイティブ）" data-en="Chinese / Mandarin (native)" data-zh="普通話（母語水平）">中国語・普通話（ネイティブ）</li>
-                <li data-ja="英語（TOEIC 940）" data-en="English (TOEIC 940)" data-zh="英語（TOEIC 940）">英語（TOEIC 940）</li>
-                <li data-ja="日本語（JLPT N1）" data-en="Japanese (JLPT N1)" data-zh="日語（JLPT N1）">日本語（JLPT N1）</li>
+              <ul class="meter-list">
+                <li class="meter">
+                  <svg class="icon" aria-hidden="true"><use href="/icons.svg#person"/></svg>
+                  <span class="meter-name" data-ja="広東語" data-en="Cantonese" data-zh="廣東話">広東語</span>
+                  <span class="meter-track" role="img" data-aria-ja="広東語、母語" data-aria-en="Cantonese, first language" data-aria-zh="廣東話，母語" aria-label="広東語、母語"><span class="meter-fill"></span></span>
+                  <span class="meter-note" data-ja="母語" data-en="First language" data-zh="母語">母語</span>
+                </li>
+                <li class="meter">
+                  <svg class="icon" aria-hidden="true"><use href="/icons.svg#person"/></svg>
+                  <span class="meter-name" data-ja="普通話" data-en="Mandarin" data-zh="普通話">普通話</span>
+                  <span class="meter-track" role="img" data-aria-ja="中国語・普通話、ネイティブ" data-aria-en="Chinese / Mandarin, native" data-aria-zh="普通話，母語水平" aria-label="中国語・普通話、ネイティブ"><span class="meter-fill"></span></span>
+                  <span class="meter-note" data-ja="ネイティブ" data-en="Native" data-zh="母語水平">ネイティブ</span>
+                </li>
+                <li class="meter">
+                  <svg class="icon" aria-hidden="true"><use href="/icons.svg#text"/></svg>
+                  <span class="meter-name" data-ja="英語" data-en="English" data-zh="英語">英語</span>
+                  <span class="meter-track" role="img" data-aria-ja="英語、TOEIC 940" data-aria-en="English, TOEIC 940" data-aria-zh="英語，TOEIC 940" aria-label="英語、TOEIC 940"><span class="meter-fill is-high"></span></span>
+                  <span class="meter-note">TOEIC 940</span>
+                </li>
+                <li class="meter">
+                  <svg class="icon" aria-hidden="true"><use href="/icons.svg#text"/></svg>
+                  <span class="meter-name" data-ja="日本語" data-en="Japanese" data-zh="日語">日本語</span>
+                  <span class="meter-track" role="img" data-aria-ja="日本語、JLPT N1" data-aria-en="Japanese, JLPT N1" data-aria-zh="日語，JLPT N1" aria-label="日本語、JLPT N1"><span class="meter-fill"></span></span>
+                  <span class="meter-note">JLPT N1</span>
+                </li>
               </ul>
             </dd>
           </div>
           <div>
             <dt data-ja="連絡先" data-en="Contact" data-zh="聯絡方式">連絡先</dt>
-            <dd><a href="mailto:terryyeung234@gmail.com">terryyeung234@gmail.com</a></dd>
+            <dd><a href="mailto:terryyeung234@gmail.com"><svg class="icon" aria-hidden="true"><use href="/icons.svg#mail"/></svg>terryyeung234@gmail.com</a></dd>
           </div>
         </dl>
         <div class="pr-block">
@@ -72,11 +93,89 @@
       <div class="wrap">
         <h2 class="section-title" id="skills-title" data-ja="スキルセット" data-en="Skills" data-zh="技能">スキルセット</h2>
         <ul class="skill-list">
-          <li>C++</li>
-          <li>Direct3D 11 / 12</li>
-          <li data-ja="AIエージェント活用" data-en="AI agents" data-zh="AI 代理應用">AIエージェント活用</li>
-          <li class="is-placeholder" data-ja="追加のスキル（プレースホルダ）" data-en="Another skill (placeholder)" data-zh="其他技能（佔位）">追加のスキル（プレースホルダ）</li>
+          <li class="skill-chip"><svg class="icon" aria-hidden="true"><use href="/icons.svg#cpp"/></svg><span>C++</span></li>
+          <li class="skill-chip"><svg class="icon" aria-hidden="true"><use href="/icons.svg#d3d"/></svg><span>Direct3D 11 / 12</span></li>
+          <li class="skill-chip"><svg class="icon" aria-hidden="true"><use href="/icons.svg#ai"/></svg><span data-ja="AIエージェント活用" data-en="AI agents" data-zh="AI 代理應用">AIエージェント活用</span></li>
+          <li class="skill-chip is-placeholder"><svg class="icon" aria-hidden="true"><use href="/icons.svg#plus"/></svg><span data-ja="追加のスキル（プレースホルダ）" data-en="Another skill (placeholder)" data-zh="其他技能（佔位）">追加のスキル（プレースホルダ）</span></li>
         </ul>
+      </div>
+    </section>
+
+    <section class="section" id="timeline" aria-labelledby="timeline-title">
+      <div class="wrap">
+        <h2 class="section-title" id="timeline-title" data-ja="2026年の作品" data-en="Works in 2026" data-zh="2026 年的作品">2026年の作品</h2>
+        <ol class="year-line">
+          <li>
+            <a class="year-row is-solo" href="/portfolio/works/block-shooter/">
+              <span class="year-when" data-ja="1月" data-en="Jan" data-zh="1月">1月</span>
+              <span class="year-track">
+                <span class="year-bar" style="--months: 1"></span>
+                <span class="year-name">Block Shooter</span>
+                <span class="year-meta"><svg class="icon" aria-hidden="true"><use href="/icons.svg#person"/></svg><span data-ja="個人" data-en="Solo" data-zh="個人">個人</span></span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="year-row is-team" href="/portfolio/works/magnet-field/">
+              <span class="year-when" data-ja="3–7月" data-en="Mar–Jul" data-zh="3–7月">3–7月</span>
+              <span class="year-track">
+                <span class="year-bar" style="--months: 5"></span>
+                <span class="year-name">Magnet Field</span>
+                <span class="year-meta"><svg class="icon" aria-hidden="true"><use href="/icons.svg#people"/></svg><span data-ja="グループ" data-en="Group" data-zh="小組">グループ</span></span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="year-row is-solo" href="/portfolio/works/frisbee-arena/">
+              <span class="year-when" data-ja="9月" data-en="Sep" data-zh="9月">9月</span>
+              <span class="year-track">
+                <span class="year-bar" style="--months: 1"></span>
+                <span class="year-name">Frisbee Arena</span>
+                <span class="year-meta"><svg class="icon" aria-hidden="true"><use href="/icons.svg#person"/></svg><span data-ja="個人" data-en="Solo" data-zh="個人">個人</span></span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="year-row is-solo" href="/portfolio/works/gravity-swing/">
+              <span class="year-when" data-ja="9–10月" data-en="Sep–Oct" data-zh="9–10月">9–10月</span>
+              <span class="year-track">
+                <span class="year-bar" style="--months: 2"></span>
+                <span class="year-name">Gravity Swing</span>
+                <span class="year-meta"><svg class="icon" aria-hidden="true"><use href="/icons.svg#person"/></svg><span data-ja="個人" data-en="Solo" data-zh="個人">個人</span></span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="year-row is-solo is-open" href="/portfolio/works/village-and-goblin/">
+              <span class="year-when" data-ja="10月〜" data-en="Oct–" data-zh="10月起">10月〜</span>
+              <span class="year-track">
+                <span class="year-bar" style="--months: 2"></span>
+                <span class="year-name">Village &amp; Goblin</span>
+                <span class="year-meta"><svg class="icon" aria-hidden="true"><use href="/icons.svg#person"/></svg><span data-ja="個人" data-en="Solo" data-zh="個人">個人</span></span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="year-row is-undated" href="/portfolio/works/ivy-engine/">
+              <span class="year-when" data-ja="時期未記入" data-en="Date open" data-zh="時期未填">時期未記入</span>
+              <span class="year-track">
+                <span class="year-bar"></span>
+                <span class="year-name" data-ja="ツタエンジン" data-en="Ivy Engine" data-zh="常春藤引擎">ツタエンジン</span>
+                <span class="year-meta"><svg class="icon" aria-hidden="true"><use href="/icons.svg#person"/></svg><span data-ja="個人" data-en="Solo" data-zh="個人">個人</span></span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="year-row is-undated is-team" href="/portfolio/works/scrap-burst/">
+              <span class="year-when" data-ja="時期未記入" data-en="Date open" data-zh="時期未填">時期未記入</span>
+              <span class="year-track">
+                <span class="year-bar"></span>
+                <span class="year-name">Scrap Burst</span>
+                <span class="year-meta"><svg class="icon" aria-hidden="true"><use href="/icons.svg#people"/></svg><span data-ja="グループ" data-en="Group" data-zh="小組">グループ</span></span>
+              </span>
+            </a>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -89,6 +188,7 @@
               <span class="work-num" aria-hidden="true">01</span>
               <figure class="shot-well work-thumb">
                 <p class="shot-label">
+                  <svg class="icon" aria-hidden="true"><use href="/icons.svg#image"/></svg>
                   <strong data-ja="ここに入れる写真" data-en="Photograph to place here" data-zh="此處放置圖片">ここに入れる写真</strong>
                 </p>
               </figure>
@@ -96,9 +196,9 @@
                 <h3 data-ja="ツタエンジン" data-en="Ivy Engine" data-zh="常春藤引擎">ツタエンジン</h3>
                 <p class="work-line" data-ja="一人で書いた C++ / Direct3D 11 エンジン。エディタとランタイムを分離。" data-en="A solo C++ / Direct3D 11 engine. Editor and runtime are separate." data-zh="獨自編寫的 C++ / Direct3D 11 引擎。編輯器與運行時分開。">一人で書いた C++ / Direct3D 11 エンジン。エディタとランタイムを分離。</p>
                 <ul class="tag-list">
-                <li data-ja="個人" data-en="Solo" data-zh="個人">個人</li>
-                <li data-ja="C++ / D3D11" data-en="C++ / D3D11" data-zh="C++ / D3D11">C++ / D3D11</li>
-                <li data-ja="期間はプレースホルダ" data-en="Period is a placeholder" data-zh="時期為佔位">期間はプレースホルダ</li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#person"/></svg><span data-ja="個人" data-en="Solo" data-zh="個人">個人</span></li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#cpp"/></svg><span data-ja="C++ / D3D11" data-en="C++ / D3D11" data-zh="C++ / D3D11">C++ / D3D11</span></li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#cal"/></svg><span data-ja="期間はプレースホルダ" data-en="Period is a placeholder" data-zh="時期為佔位">期間はプレースホルダ</span></li>
                 </ul>
               </div>
             </a>
@@ -108,6 +208,7 @@
               <span class="work-num" aria-hidden="true">02</span>
               <figure class="shot-well work-thumb">
                 <p class="shot-label">
+                  <svg class="icon" aria-hidden="true"><use href="/icons.svg#image"/></svg>
                   <strong data-ja="ここに入れる写真" data-en="Photograph to place here" data-zh="此處放置圖片">ここに入れる写真</strong>
                 </p>
               </figure>
@@ -115,9 +216,9 @@
                 <h3 data-ja="Village &amp; Goblin" data-en="Village &amp; Goblin" data-zh="Village &amp; Goblin">Village &amp; Goblin</h3>
                 <p class="work-line" data-ja="昼は農作業、夜は防衛。俯視の 2D。" data-en="Farm by day, defend by night. Top-down 2D." data-zh="日間耕作，夜間防守。俯視 2D。">昼は農作業、夜は防衛。俯視の 2D。</p>
                 <ul class="tag-list">
-                <li data-ja="個人" data-en="Solo" data-zh="個人">個人</li>
-                <li data-ja="Ivy / 2D" data-en="Ivy / 2D" data-zh="Ivy / 2D">Ivy / 2D</li>
-                <li data-ja="2026年10月〜" data-en="Oct 2026–" data-zh="2026年10月起">2026年10月〜</li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#person"/></svg><span data-ja="個人" data-en="Solo" data-zh="個人">個人</span></li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#grid"/></svg><span data-ja="Ivy / 2D" data-en="Ivy / 2D" data-zh="Ivy / 2D">Ivy / 2D</span></li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#cal"/></svg><span data-ja="2026年10月〜" data-en="Oct 2026–" data-zh="2026年10月起">2026年10月〜</span></li>
                 </ul>
               </div>
             </a>
@@ -127,6 +228,7 @@
               <span class="work-num" aria-hidden="true">03</span>
               <figure class="shot-well work-thumb">
                 <p class="shot-label">
+                  <svg class="icon" aria-hidden="true"><use href="/icons.svg#image"/></svg>
                   <strong data-ja="ここに入れる写真" data-en="Photograph to place here" data-zh="此處放置圖片">ここに入れる写真</strong>
                 </p>
               </figure>
@@ -134,9 +236,9 @@
                 <h3 data-ja="Gravity Swing" data-en="Gravity Swing" data-zh="Gravity Swing">Gravity Swing</h3>
                 <p class="work-line" data-ja="フックで隙間を渡る 3D スイング。コース 2 本。" data-en="Hook across gaps on a 3D swing course. Two stages." data-zh="用鉤索跨越空隙的 3D 擺盪。共兩關。">フックで隙間を渡る 3D スイング。コース 2 本。</p>
                 <ul class="tag-list">
-                <li data-ja="個人" data-en="Solo" data-zh="個人">個人</li>
-                <li data-ja="Ivy / 3D" data-en="Ivy / 3D" data-zh="Ivy / 3D">Ivy / 3D</li>
-                <li data-ja="2026年9月〜10月" data-en="Sep–Oct 2026" data-zh="2026年9月至10月">2026年9月〜10月</li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#person"/></svg><span data-ja="個人" data-en="Solo" data-zh="個人">個人</span></li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#d3d"/></svg><span data-ja="Ivy / 3D" data-en="Ivy / 3D" data-zh="Ivy / 3D">Ivy / 3D</span></li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#cal"/></svg><span data-ja="2026年9月〜10月" data-en="Sep–Oct 2026" data-zh="2026年9月至10月">2026年9月〜10月</span></li>
                 </ul>
               </div>
             </a>
@@ -146,6 +248,7 @@
               <span class="work-num" aria-hidden="true">04</span>
               <figure class="shot-well work-thumb">
                 <p class="shot-label">
+                  <svg class="icon" aria-hidden="true"><use href="/icons.svg#image"/></svg>
                   <strong data-ja="ここに入れる写真" data-en="Photograph to place here" data-zh="此處放置圖片">ここに入れる写真</strong>
                 </p>
               </figure>
@@ -153,9 +256,9 @@
                 <h3 data-ja="Frisbee Arena" data-en="Frisbee Arena" data-zh="Frisbee Arena">Frisbee Arena</h3>
                 <p class="work-line" data-ja="ツタエンジン上のフリスビー。詳細は確認待ち。" data-en="A frisbee game on Ivy Engine. Details pending confirmation." data-zh="常春藤引擎上的飛盤遊戲。詳情尚待確認。">ツタエンジン上のフリスビー。詳細は確認待ち。</p>
                 <ul class="tag-list">
-                <li data-ja="個人" data-en="Solo" data-zh="個人">個人</li>
-                <li data-ja="Ivy" data-en="Ivy" data-zh="Ivy">Ivy</li>
-                <li data-ja="2026年9月" data-en="Sep 2026" data-zh="2026年9月">2026年9月</li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#person"/></svg><span data-ja="個人" data-en="Solo" data-zh="個人">個人</span></li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#leaf"/></svg><span data-ja="Ivy" data-en="Ivy" data-zh="Ivy">Ivy</span></li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#cal"/></svg><span data-ja="2026年9月" data-en="Sep 2026" data-zh="2026年9月">2026年9月</span></li>
                 </ul>
               </div>
             </a>
@@ -165,6 +268,7 @@
               <span class="work-num" aria-hidden="true">05</span>
               <figure class="shot-well work-thumb">
                 <p class="shot-label">
+                  <svg class="icon" aria-hidden="true"><use href="/icons.svg#image"/></svg>
                   <strong data-ja="ここに入れる写真" data-en="Photograph to place here" data-zh="此處放置圖片">ここに入れる写真</strong>
                 </p>
               </figure>
@@ -172,10 +276,10 @@
                 <h3 data-ja="Magnet Field" data-en="Magnet Field" data-zh="Magnet Field">Magnet Field</h3>
                 <p class="work-line" data-ja="磁気テーマのプロトタイプ。のちのツタエンジンの前身。" data-en="Magnet-themed prototype. Predecessor of Ivy Engine." data-zh="磁力主題的原型。後來常春藤引擎的前身。">磁気テーマのプロトタイプ。のちのツタエンジンの前身。</p>
                 <ul class="tag-list">
-                <li data-ja="グループ" data-en="Group" data-zh="小組">グループ</li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#people"/></svg><span data-ja="グループ" data-en="Group" data-zh="小組">グループ</span></li>
                 <li data-ja="技術はプレースホルダ" data-en="Tech is a placeholder" data-zh="技術為佔位">技術はプレースホルダ</li>
-                <li data-ja="2026年3月〜7月" data-en="Mar–Jul 2026" data-zh="2026年3月至7月">2026年3月〜7月</li>
-                <li data-ja="プログラミングを全て担当" data-en="All programming" data-zh="負責全部程式">プログラミングを全て担当</li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#cal"/></svg><span data-ja="2026年3月〜7月" data-en="Mar–Jul 2026" data-zh="2026年3月至7月">2026年3月〜7月</span></li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#code"/></svg><span data-ja="プログラミングを全て担当" data-en="All programming" data-zh="負責全部程式">プログラミングを全て担当</span></li>
                 </ul>
               </div>
             </a>
@@ -185,6 +289,7 @@
               <span class="work-num" aria-hidden="true">06</span>
               <figure class="shot-well work-thumb">
                 <p class="shot-label">
+                  <svg class="icon" aria-hidden="true"><use href="/icons.svg#image"/></svg>
                   <strong data-ja="ここに入れる写真" data-en="Photograph to place here" data-zh="此處放置圖片">ここに入れる写真</strong>
                 </p>
               </figure>
@@ -193,8 +298,8 @@
                 <p class="work-line" data-ja="D3D11 の三人称。99 秒タイムアタック。" data-en="A D3D11 third-person shooter. 99-second time attack." data-zh="D3D11 第三人稱。99 秒限時挑戰。">D3D11 の三人称。99 秒タイムアタック。</p>
                 <ul class="tag-list">
                 <li data-ja="体制はプレースホルダ" data-en="Team is a placeholder" data-zh="編制為佔位">体制はプレースホルダ</li>
-                <li data-ja="D3D11" data-en="D3D11" data-zh="D3D11">D3D11</li>
-                <li data-ja="2026年1月" data-en="Jan 2026" data-zh="2026年1月">2026年1月</li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#d3d"/></svg><span data-ja="D3D11" data-en="D3D11" data-zh="D3D11">D3D11</span></li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#cal"/></svg><span data-ja="2026年1月" data-en="Jan 2026" data-zh="2026年1月">2026年1月</span></li>
                 </ul>
               </div>
             </a>
@@ -204,6 +309,7 @@
               <span class="work-num" aria-hidden="true">07</span>
               <figure class="shot-well work-thumb">
                 <p class="shot-label">
+                  <svg class="icon" aria-hidden="true"><use href="/icons.svg#image"/></svg>
                   <strong data-ja="ここに入れる写真" data-en="Photograph to place here" data-zh="此處放置圖片">ここに入れる写真</strong>
                 </p>
               </figure>
@@ -211,10 +317,10 @@
                 <h3 data-ja="Scrap Burst" data-en="Scrap Burst" data-zh="Scrap Burst">Scrap Burst</h3>
                 <p class="work-line" data-ja="グループ制作。バックエンド／ゲームアルゴリズムとして枠組みを実装。期間は確認待ち。" data-en="A group project. Backend / game algorithm engineer; built the framework. Dates pending." data-zh="小組製作。以後端／遊戲演算法搭建框架。時期尚待確認。">グループ制作。バックエンド／ゲームアルゴリズムとして枠組みを実装。期間は確認待ち。</p>
                 <ul class="tag-list">
-                <li data-ja="グループ" data-en="Group" data-zh="小組">グループ</li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#people"/></svg><span data-ja="グループ" data-en="Group" data-zh="小組">グループ</span></li>
                 <li data-ja="技術はプレースホルダ" data-en="Tech is a placeholder" data-zh="技術為佔位">技術はプレースホルダ</li>
-                <li data-ja="期間はプレースホルダ" data-en="Period is a placeholder" data-zh="時期為佔位">期間はプレースホルダ</li>
-                <li data-ja="バックエンド／アルゴリズム" data-en="Backend / algorithms" data-zh="後端／演算法">バックエンド／アルゴリズム</li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#cal"/></svg><span data-ja="期間はプレースホルダ" data-en="Period is a placeholder" data-zh="時期為佔位">期間はプレースホルダ</span></li>
+                <li class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg#cpu"/></svg><span data-ja="バックエンド／アルゴリズム" data-en="Backend / algorithms" data-zh="後端／演算法">バックエンド／アルゴリズム</span></li>
                 </ul>
               </div>
             </a>
@@ -230,7 +336,7 @@
     <section class="section" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
         <h2 class="section-title" id="contact-title" data-ja="連絡先" data-en="Contact" data-zh="聯絡方式">連絡先</h2>
-        <p><a href="mailto:terryyeung234@gmail.com">terryyeung234@gmail.com</a></p>
+        <p><a href="mailto:terryyeung234@gmail.com"><svg class="icon" aria-hidden="true"><use href="/icons.svg#mail"/></svg>terryyeung234@gmail.com</a></p>
       </div>
     </section>
   </main>
