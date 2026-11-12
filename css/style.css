@@ -40,6 +40,38 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Noto Sans TC";
+  src: url("../fonts/NotoSansTC-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Sans TC";
+  src: url("../fonts/NotoSansTC-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Sans TC";
+  src: url("../fonts/NotoSansTC-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Sans TC";
+  src: url("../fonts/NotoSansTC-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --canopy: #0F1A16;
   --hollow: #1A2C26;
@@ -52,8 +84,8 @@
   --measure: 38rem;
   --wrap: 72rem;
   --rail: 2.75rem;
-  --font-display: "Dela Gothic One", "Noto Sans CJK JP", sans-serif;
-  --font-body: "IBM Plex Sans JP", "Noto Sans CJK JP", sans-serif;
+  --font-display: "Dela Gothic One", "Noto Sans TC", sans-serif;
+  --font-body: "IBM Plex Sans JP", "Noto Sans TC", sans-serif;
   color-scheme: dark;
 }
 
@@ -204,11 +236,30 @@ a:hover { text-decoration-thickness: 2px; }
 
 .lang-switch {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 0.35rem;
   margin: 0;
   padding: 0;
   border: 0;
 }
+
+html[lang="zh-Hant"] {
+  --font-body: "Noto Sans TC", "IBM Plex Sans JP", sans-serif;
+  --font-display: "Noto Sans TC", "Dela Gothic One", sans-serif;
+}
+
+html[lang="zh-Hant"] .display {
+  font-weight: 700;
+}
+
+.lang-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lang-list li + li { margin-top: 0.12rem; }
 
 .lang-switch button {
   appearance: none;

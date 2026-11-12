@@ -7,8 +7,15 @@ IBMPlexSansJP-SemiBold.woff2, IBMPlexSansJP-Bold.woff2)
 Copyright 2018 IBM Corp. All rights reserved.
 Licensed under the SIL Open Font License, Version 1.1, with Reserved Font Name "Plex".
 
+Noto Sans TC (NotoSansTC-Regular.woff2, NotoSansTC-Medium.woff2,
+NotoSansTC-SemiBold.woff2, NotoSansTC-Bold.woff2)
+Copyright 2014-2021 Adobe, with Reserved Font Name "Source".
+Copyright 2012 Google Inc.
+Licensed under the SIL Open Font License, Version 1.1.
+Used for Traditional Chinese. These files are a character subset.
+
 The WOFF2 files are subset to the characters used on the hub and portfolio,
-plus hiragana, katakana, and common Japanese punctuation. Family names are unchanged.
+plus kana and common punctuation. Family names are unchanged.
 
 The IBM Plex license text follows.
 

@@ -19,6 +19,7 @@
       </a>
       <div class="lang-switch" role="group" data-i18n-aria="lang-group" aria-label="表示言語">
         <button type="button" data-lang-btn="ja" aria-pressed="true">日本語</button>
+        <button type="button" data-lang-btn="zh" aria-pressed="false">繁體中文</button>
         <button type="button" data-lang-btn="en" aria-pressed="false">English</button>
       </div>
     </div>
@@ -137,83 +138,83 @@
 
     <section class="section" id="ivy-sheet" aria-labelledby="ivy-sheet-title">
       <div class="wrap">
-        <h2 class="section-title" id="ivy-sheet-title" data-ja="詳細" data-en="Details">詳細</h2>
+        <h2 class="section-title" id="ivy-sheet-title" data-ja="詳細" data-en="Details" data-zh="詳情">詳細</h2>
         <dl class="fact-list">
           <div>
-            <dt data-ja="作品名" data-en="Title">作品名</dt>
-            <dd data-ja="ツタエンジン" data-en="Ivy Engine">ツタエンジン</dd>
+            <dt data-ja="作品名" data-en="Title" data-zh="作品名稱">作品名</dt>
+            <dd data-ja="ツタエンジン" data-en="Ivy Engine" data-zh="常春藤引擎">ツタエンジン</dd>
           </div>
           <div>
-            <dt data-ja="ジャンル" data-en="Genre">ジャンル</dt>
-            <dd data-ja="自作ゲームエンジン" data-en="Custom game engine">自作ゲームエンジン</dd>
+            <dt data-ja="ジャンル" data-en="Genre" data-zh="類型">ジャンル</dt>
+            <dd data-ja="自作ゲームエンジン" data-en="Custom game engine" data-zh="自製遊戲引擎">自作ゲームエンジン</dd>
           </div>
           <div>
-            <dt data-ja="概要" data-en="Summary">概要</dt>
-            <dd data-ja="一人で書いた C++ / Direct3D 11 エンジン。エディタとランタイムを分離。" data-en="A solo C++ / Direct3D 11 engine. Editor and runtime are separate.">一人で書いた C++ / Direct3D 11 エンジン。エディタとランタイムを分離。</dd>
+            <dt data-ja="概要" data-en="Summary" data-zh="簡介">概要</dt>
+            <dd data-ja="一人で書いた C++ / Direct3D 11 エンジン。エディタとランタイムを分離。" data-en="A solo C++ / Direct3D 11 engine. Editor and runtime are separate." data-zh="獨自編寫的 C++ / Direct3D 11 引擎。編輯器與運行時分開。">一人で書いた C++ / Direct3D 11 エンジン。エディタとランタイムを分離。</dd>
           </div>
           <div>
-            <dt data-ja="設計目標" data-en="Design goals">設計目標</dt>
-            <dd data-ja="エディタとランタイムが本体を共有する。ゲームは独立コンテンツ（JSON、ECS、C++ DLL）。" data-en="Editor and runtime share the engine. Games are separate content (JSON, ECS, C++ DLL).">エディタとランタイムが本体を共有する。ゲームは独立コンテンツ（JSON、ECS、C++ DLL）。</dd>
+            <dt data-ja="設計目標" data-en="Design goals" data-zh="設計目標">設計目標</dt>
+            <dd data-ja="エディタとランタイムが本体を共有する。ゲームは独立コンテンツ（JSON、ECS、C++ DLL）。" data-en="Editor and runtime share the engine. Games are separate content (JSON, ECS, C++ DLL)." data-zh="編輯器與運行時共用引擎本體。遊戲是獨立內容（JSON、ECS、C++ DLL）。">エディタとランタイムが本体を共有する。ゲームは独立コンテンツ（JSON、ECS、C++ DLL）。</dd>
           </div>
           <div>
-            <dt data-ja="制作期間" data-en="Period">制作期間</dt>
-            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder">プレースホルダ</strong> <span data-ja="未記入。" data-en="Not filled in yet.">未記入。</span></p></dd>
+            <dt data-ja="制作期間" data-en="Period" data-zh="製作期間">制作期間</dt>
+            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="未記入。" data-en="Not filled in yet." data-zh="尚未填寫。">未記入。</span></p></dd>
           </div>
           <div>
-            <dt data-ja="制作人数・体制" data-en="Team">制作人数・体制</dt>
-            <dd data-ja="個人。" data-en="Solo.">個人。</dd>
+            <dt data-ja="制作人数・体制" data-en="Team" data-zh="人數與編制">制作人数・体制</dt>
+            <dd data-ja="個人。" data-en="Solo." data-zh="個人。">個人。</dd>
           </div>
           <div>
-            <dt data-ja="担当箇所" data-en="Owned work">担当箇所</dt>
-            <dd data-ja="個人。エンジン全体。" data-en="Solo. The whole engine.">個人。エンジン全体。</dd>
+            <dt data-ja="担当箇所" data-en="Owned work" data-zh="負責部分">担当箇所</dt>
+            <dd data-ja="個人。エンジン全体。" data-en="Solo. The whole engine." data-zh="個人。整個引擎。">個人。エンジン全体。</dd>
           </div>
           <div>
-            <dt data-ja="使用技術" data-en="Tech">使用技術</dt>
-            <dd data-ja="C++、Direct3D 11。サブシステムの一覧は上。" data-en="C++ and Direct3D 11. The subsystem list is above.">C++、Direct3D 11。サブシステムの一覧は上。</dd>
+            <dt data-ja="使用技術" data-en="Tech" data-zh="使用技術">使用技術</dt>
+            <dd data-ja="C++、Direct3D 11。サブシステムの一覧は上。" data-en="C++ and Direct3D 11. The subsystem list is above." data-zh="C++、Direct3D 11。子系統列表見上方。">C++、Direct3D 11。サブシステムの一覧は上。</dd>
           </div>
           <div>
-            <dt data-ja="エディタ" data-en="Editor">エディタ</dt>
-            <dd data-ja="ImGui エディタ、Play モード、ワンクリック /MT パッケージ。" data-en="ImGui editor, Play mode, one-click /MT packaging.">ImGui エディタ、Play モード、ワンクリック /MT パッケージ。</dd>
+            <dt data-ja="エディタ" data-en="Editor" data-zh="編輯器">エディタ</dt>
+            <dd data-ja="ImGui エディタ、Play モード、ワンクリック /MT パッケージ。" data-en="ImGui editor, Play mode, one-click /MT packaging." data-zh="ImGui 編輯器、Play 模式、一鍵 /MT 封裝。">ImGui エディタ、Play モード、ワンクリック /MT パッケージ。</dd>
           </div>
           <div>
-            <dt data-ja="自作と外部の境界" data-en="Custom vs third-party">自作と外部の境界</dt>
-            <dd data-ja="本体は自作。第三者ライブラリと基盤は下のクレジット。" data-en="The engine itself is custom. Third-party libraries and platform APIs are in the credits below.">本体は自作。第三者ライブラリと基盤は下のクレジット。</dd>
+            <dt data-ja="自作と外部の境界" data-en="Custom vs third-party" data-zh="自製與第三方的界線">自作と外部の境界</dt>
+            <dd data-ja="本体は自作。第三者ライブラリと基盤は下のクレジット。" data-en="The engine itself is custom. Third-party libraries and platform APIs are in the credits below." data-zh="本體為自製。第三方函式庫與平台見下方鳴謝。">本体は自作。第三者ライブラリと基盤は下のクレジット。</dd>
           </div>
           <div>
-            <dt data-ja="動作環境・操作方法" data-en="Platform and controls">動作環境・操作方法</dt>
-            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder">プレースホルダ</strong> <span data-ja="分かっている操作は 2D ビュー（F11）と Play モード（F3）。ほかは未記入。" data-en="Known controls: 2D view (F11) and Play mode (F3). The rest is not filled in yet.">分かっている操作は 2D ビュー（F11）と Play モード（F3）。ほかは未記入。</span></p></dd>
+            <dt data-ja="動作環境・操作方法" data-en="Platform and controls" data-zh="運行環境與操作">動作環境・操作方法</dt>
+            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="分かっている操作は 2D ビュー（F11）と Play モード（F3）。ほかは未記入。" data-en="Known controls: 2D view (F11) and Play mode (F3). The rest is not filled in yet." data-zh="已知操作為 2D 視圖（F11）與 Play 模式（F3）。其餘尚未填寫。">分かっている操作は 2D ビュー（F11）と Play モード（F3）。ほかは未記入。</span></p></dd>
           </div>
           <div>
-            <dt data-ja="プレイ動画" data-en="Play video">プレイ動画</dt>
-            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder">プレースホルダ</strong> <span data-ja="1〜3分のプレイ動画。" data-en="A 1–3 minute play video.">1〜3分のプレイ動画。</span></p></dd>
+            <dt data-ja="プレイ動画" data-en="Play video" data-zh="遊戲影片">プレイ動画</dt>
+            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="1〜3分のプレイ動画。" data-en="A 1–3 minute play video." data-zh="1 至 3 分鐘的遊戲影片。">1〜3分のプレイ動画。</span></p></dd>
           </div>
           <div>
-            <dt data-ja="スクリーンショット" data-en="Screenshots">スクリーンショット</dt>
-            <dd data-ja="上の3枠。2D ビュー、Play モード、ランタイム起動画面。" data-en="The three frames above: 2D view, Play mode, and the runtime boot screen.">上の3枠。2D ビュー、Play モード、ランタイム起動画面。</dd>
+            <dt data-ja="スクリーンショット" data-en="Screenshots" data-zh="截圖">スクリーンショット</dt>
+            <dd data-ja="上の3枠。2D ビュー、Play モード、ランタイム起動画面。" data-en="The three frames above: 2D view, Play mode, and the runtime boot screen." data-zh="上方三個框：2D 視圖、Play 模式、運行時啟動畫面。">上の3枠。2D ビュー、Play モード、ランタイム起動画面。</dd>
           </div>
           <div>
-            <dt data-ja="工夫した点 / 設計の理由" data-en="Decisions">工夫した点 / 設計の理由</dt>
-            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder">プレースホルダ</strong> <span data-ja="未記入。設計目標の行を参照。" data-en="Not filled in yet. See design goals.">未記入。設計目標の行を参照。</span></p></dd>
+            <dt data-ja="工夫した点 / 設計の理由" data-en="Decisions" data-zh="設計上的考量">工夫した点 / 設計の理由</dt>
+            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="未記入。設計目標の行を参照。" data-en="Not filled in yet. See design goals." data-zh="尚未填寫。請參閱設計目標一列。">未記入。設計目標の行を参照。</span></p></dd>
           </div>
           <div>
-            <dt data-ja="苦労した点と解決" data-en="Difficulties">苦労した点と解決</dt>
-            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder">プレースホルダ</strong> <span data-ja="未記入。" data-en="Not filled in yet.">未記入。</span></p></dd>
+            <dt data-ja="苦労した点と解決" data-en="Difficulties" data-zh="困難與解決">苦労した点と解決</dt>
+            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="未記入。" data-en="Not filled in yet." data-zh="尚未填寫。">未記入。</span></p></dd>
           </div>
           <div>
-            <dt data-ja="コード抜粋" data-en="Code">コード抜粋</dt>
-            <dd><pre class="code-block"><code data-ja="// コード抜粋（プレースホルダ）" data-en="// Code excerpt (placeholder)">// コード抜粋（プレースホルダ）</code></pre><span data-ja="解説はプレースホルダ。" data-en="Commentary is a placeholder.">解説はプレースホルダ。</span></dd>
+            <dt data-ja="コード抜粋" data-en="Code" data-zh="程式碼摘錄">コード抜粋</dt>
+            <dd><pre class="code-block"><code data-ja="// コード抜粋（プレースホルダ）" data-en="// Code excerpt (placeholder)" data-zh="// 程式碼摘錄（佔位）">// コード抜粋（プレースホルダ）</code></pre><span data-ja="解説はプレースホルダ。" data-en="Commentary is a placeholder." data-zh="解說為佔位。">解説はプレースホルダ。</span></dd>
           </div>
           <div>
-            <dt data-ja="既知の不具合・今後の改善" data-en="Known issues">既知の不具合・今後の改善</dt>
-            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder">プレースホルダ</strong> <span data-ja="未記入。" data-en="Not filled in yet.">未記入。</span></p></dd>
+            <dt data-ja="既知の不具合・今後の改善" data-en="Known issues" data-zh="已知問題與日後改善">既知の不具合・今後の改善</dt>
+            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="未記入。" data-en="Not filled in yet." data-zh="尚未填寫。">未記入。</span></p></dd>
           </div>
           <div>
-            <dt data-ja="クレジット" data-en="Credits">クレジット</dt>
-            <dd data-ja="自作。利用ライブラリ: ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。基盤: D3D11、XAudio2、XInput。" data-en="Custom engine. Libraries: ImGui, ImGuizmo, Box2D 3.1.1, Effekseer, FBX SDK, DirectXTex, nlohmann/json. Platform: D3D11, XAudio2, XInput.">自作。利用ライブラリ: ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。基盤: D3D11、XAudio2、XInput。</dd>
+            <dt data-ja="クレジット" data-en="Credits" data-zh="鳴謝">クレジット</dt>
+            <dd data-ja="自作。利用ライブラリ: ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。基盤: D3D11、XAudio2、XInput。" data-en="Custom engine. Libraries: ImGui, ImGuizmo, Box2D 3.1.1, Effekseer, FBX SDK, DirectXTex, nlohmann/json. Platform: D3D11, XAudio2, XInput." data-zh="自製。使用的函式庫：ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。平台：D3D11、XAudio2、XInput。">自作。利用ライブラリ: ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。基盤: D3D11、XAudio2、XInput。</dd>
           </div>
           <div>
-            <dt data-ja="ダウンロード" data-en="Download">ダウンロード</dt>
-            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder">プレースホルダ</strong> <span data-ja="実行ファイル・ソースは未掲載。リポジトリは非公開。" data-en="Executable and source are not posted. The repository is private.">実行ファイル・ソースは未掲載。リポジトリは非公開。</span></p></dd>
+            <dt data-ja="ダウンロード" data-en="Download" data-zh="下載">ダウンロード</dt>
+            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="実行ファイル・ソースは未掲載。リポジトリは非公開。" data-en="Executable and source are not posted. The repository is private." data-zh="執行檔與源碼尚未公開。儲存庫為私人。">実行ファイル・ソースは未掲載。リポジトリは非公開。</span></p></dd>
           </div>
         </dl>
       </div>
@@ -341,7 +342,14 @@
           </div>
           <div>
             <dt data-i18n="about-lang-l">言語</dt>
-            <dd data-i18n="about-lang-v">JLPT N1、TOEIC 940</dd>
+            <dd>
+              <ul class="lang-list">
+                <li data-ja="広東語（母語）" data-en="Cantonese (first language)" data-zh="廣東話（母語）">広東語（母語）</li>
+                <li data-ja="中国語・普通話（ネイティブ）" data-en="Chinese / Mandarin (native)" data-zh="普通話（母語水平）">中国語・普通話（ネイティブ）</li>
+                <li data-ja="英語（TOEIC 940）" data-en="English (TOEIC 940)" data-zh="英語（TOEIC 940）">英語（TOEIC 940）</li>
+                <li data-ja="日本語（JLPT N1）" data-en="Japanese (JLPT N1)" data-zh="日語（JLPT N1）">日本語（JLPT N1）</li>
+              </ul>
+            </dd>
           </div>
           <div>
             <dt data-i18n="about-loc-l">所在地</dt>
@@ -353,7 +361,7 @@
           </div>
           <div>
             <dt data-i18n="about-contact-l">連絡先</dt>
-            <dd data-i18n="about-contact-v">メール（準備中）</dd>
+            <dd><a href="mailto:terryyeung234@gmail.com">terryyeung234@gmail.com</a></dd>
           </div>
         </dl>
       </div>

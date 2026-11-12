@@ -157,57 +157,179 @@
     "about-edu-l": { ja: "経歴", en: "Background" },
     "about-edu-v": { ja: "プレースホルダ", en: "Placeholder" },
     "about-contact-l": { ja: "連絡先", en: "Contact" },
-    "about-contact-v": { ja: "メール（準備中）", en: "Email (to be added)" }
+    "about-contact-v": { ja: "terryyeung234@gmail.com", en: "terryyeung234@gmail.com" }
+  };
+
+  const zh = {
+    "skip": "跳至正文",
+    "brand-mark-hub": "作品集目錄",
+    "brand-mark-folio": "作品集",
+    "lang-group": "顯示語言",
+    "footer-hub": "部分項目為佔位。",
+    "footer-folio": "影片、建置與部分項目為佔位。",
+    "hub-title": "常春藤引擎",
+    "doc-title-hub": "Terry Yeung — 作品集目錄",
+    "hub-sentence": "自製引擎，以及用它做出的遊戲。",
+    "hub-folio-title": "作品集",
+    "hub-folio-desc": "引擎與遊戲",
+    "hub-handbook-title": "遊戲畫面表現手冊",
+    "hub-handbook-desc": "畫面演出目錄（/handbook/）",
+    "hub-ivy-title": "常春藤引擎",
+    "hub-ivy-desc": "引擎詳情",
+    "hub-note": "目標職位是引擎程式設計師／遊戲程式設計師。",
+    "back-portfolio": "返回作品集",
+    "doc-title-ivy": "常春藤引擎 — Terry Yeung",
+    "doc-title-folio": "作品集 — Terry Yeung",
+    "hero-title": "常春藤引擎",
+    "hero-lede": "獨自編寫的 C++ / Direct3D 11 引擎。編輯器與運行時分開。",
+    "ghost-title": "Ivy Engine 編輯器",
+    "ghost-hierarchy": "階層",
+    "ghost-inspector": "檢視器",
+    "ghost-assets": "資源瀏覽器",
+    "shot-editor-k": "即時示範",
+    "shot-editor-v": "WebGL 示意。實機編輯器畫面放在下方框內。",
+    "hier-mesh": "Icosahedron",
+    "hier-light": "DirectionalLight",
+    "hier-grid": "Grid",
+    "insp-rot-l": "Rotation",
+    "insp-rough-l": "Roughness",
+    "insp-metal-l": "Metallic",
+    "asset-mesh": "Icosahedron",
+    "asset-grid": "Grid",
+    "asset-mat": "DefaultPBR",
+    "shot-2d-k": "此處放置圖片",
+    "shot-2d-v": "2D 視圖。精靈與 Box2D 顯示（F11）。",
+    "shot-play-k": "此處放置圖片",
+    "shot-play-v": "Play 模式（F3）。與發行版本相同。",
+    "shot-boot-k": "此處放置圖片",
+    "shot-boot-v": "運行時啟動畫面（標誌與載入）。",
+    "systems-title": "引擎構成",
+    "sys-arch-t": "架構",
+    "sys-arch-d": "編輯器與運行時共用引擎本體。遊戲是獨立內容（JSON、ECS、C++ DLL）。",
+    "sys-ren-t": "渲染",
+    "sys-ren-d": "D3D11 前向渲染。IBL PBR、卡通、後製。",
+    "sys-phy-t": "物理",
+    "sys-phy-d": "3D 為自製碰撞。2D 使用官方 Box2D 3.1.1。",
+    "sys-2d-t": "2D 模式",
+    "sys-2d-d": "同一引擎的純 2D（正交相機、精靈、2D 視圖）。",
+    "sys-script-t": "腳本",
+    "sys-script-d": "C++ DLL。編輯時可熱重載。",
+    "sys-ed-t": "編輯器與封裝",
+    "sys-ed-d": "ImGui 編輯器、Play 模式、一鍵 /MT 封裝。",
+    "sys-credit": "自製。使用的函式庫：ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。平台：D3D11、XAudio2、XInput。儲存庫為私人。",
+    "games-title": "用常春藤引擎做的遊戲",
+    "vg-title": "Village & Goblin",
+    "vg-meta": "最新作品、個人、2026年10月起、Ivy / 2D",
+    "vg-body": "日間耕作，夜間防守。俯視 2D。暫名",
+    "vg-aka": "「農耕與哥布林襲村」",
+    "vg-body-end": "。",
+    "vg-shot-k": "此處放置圖片",
+    "vg-shot-v": "日間的村莊與田地（實機畫面。如有夜襲更佳）。",
+    "gs-title": "Gravity Swing",
+    "gs-meta": "個人、2026年9月至10月、Ivy / 3D",
+    "gs-body": "用鉤索跨越空隙的 3D 擺盪。共兩關。",
+    "gs-shot-k": "此處放置圖片",
+    "gs-shot-v": "擺盪中的遊戲畫面。",
+    "fa-title": "Frisbee Arena",
+    "fa-meta": "個人、2026年9月、Ivy",
+    "fa-body": "常春藤引擎上的飛盤遊戲。詳情尚待確認。",
+    "fa-shot-k": "此處放置圖片",
+    "fa-shot-v": "具代表性的遊戲畫面。",
+    "media-pending": "影片與建置（佔位）",
+    "other-title": "其他作品",
+    "mf-title": "Magnet Field",
+    "mf-meta": "小組、2026年3月至7月、負責部分為佔位",
+    "mf-body": "磁力主題的原型。後來常春藤引擎的前身。",
+    "mf-shot-k": "此處放置圖片",
+    "mf-shot-v": "遊戲畫面（如能顯示負責部分則更佳）。",
+    "tps-title": "第三人稱射擊",
+    "tps-meta": "2026年1月、編制為佔位",
+    "tps-body": "D3D11 第三人稱。99 秒限時挑戰。",
+    "tps-shot-k": "此處放置圖片",
+    "tps-shot-v": "能看到準星與敵人的遊戲畫面。",
+    "sb-title": "Scrap Burst",
+    "sb-meta": "小組、負責部分未定（TBD）",
+    "sb-body": "小組製作。負責部分與時期尚待確認。",
+    "sb-shot-k": "此處放置圖片",
+    "sb-shot-v": "遊戲畫面或主視覺（尚待提供）。",
+    "hb-title": "遊戲畫面表現手冊",
+    "hb-meta": "個人，已於 /handbook/ 公開",
+    "hb-body": "畫面演出與操作感的目錄。",
+    "hb-link": "開啟手冊",
+    "about-title": "簡介",
+    "about-name-l": "姓名",
+    "about-name-v": "Terry Yeung（日文姓名為佔位）",
+    "about-role-l": "目標職位",
+    "about-role-v": "引擎程式設計師／遊戲程式設計師",
+    "about-lang-l": "語言",
+    "about-lang-v": "廣東話（母語）、普通話（母語水平）、英語（TOEIC 940）、日語（JLPT N1）",
+    "about-loc-l": "所在地",
+    "about-loc-v": "佔位",
+    "about-edu-l": "經歷",
+    "about-edu-v": "佔位",
+    "about-contact-l": "聯絡方式",
+    "about-contact-v": "terryyeung234@gmail.com",
   };
 
   function currentLang() {
     const saved = localStorage.getItem(STORAGE_KEY);
-    return saved === "en" || saved === "ja" ? saved : "ja";
+    return saved === "en" || saved === "ja" || saved === "zh" ? saved : "ja";
+  }
+
+  function htmlLang(lang) {
+    return lang === "zh" ? "zh-Hant" : lang;
+  }
+
+  function fromDict(entry, key, lang) {
+    if (lang === "zh") return zh[key] || entry.ja;
+    return entry[lang] || entry.ja;
+  }
+
+  function attrFor(el, base, lang) {
+    return el.getAttribute(base + "-" + lang) || el.getAttribute(base + "-ja");
   }
 
   function apply(lang) {
-    document.documentElement.lang = lang;
+    document.documentElement.lang = htmlLang(lang);
     localStorage.setItem(STORAGE_KEY, lang);
 
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
       const entry = dict[key];
       if (!entry) return;
-      el.textContent = entry[lang];
+      el.textContent = fromDict(entry, key, lang);
     });
 
     document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
       const key = el.getAttribute("data-i18n-aria");
       const entry = dict[key];
       if (!entry) return;
-      el.setAttribute("aria-label", entry[lang]);
+      el.setAttribute("aria-label", fromDict(entry, key, lang));
     });
 
-    const titleKey = document.body.getAttribute("data-title-key");
-    if (titleKey && dict[titleKey]) {
-      document.title = dict[titleKey][lang];
-    }
-
     document.querySelectorAll("[data-ja]").forEach((el) => {
-      const value = el.getAttribute(lang === "en" ? "data-en" : "data-ja");
+      const value = attrFor(el, "data", lang);
       if (value == null) return;
       el.textContent = value;
     });
 
     document.querySelectorAll("[data-aria-ja]").forEach((el) => {
-      const value = el.getAttribute(lang === "en" ? "data-aria-en" : "data-aria-ja");
+      const value = attrFor(el, "data-aria", lang);
       if (value == null) return;
       el.setAttribute("aria-label", value);
     });
 
-    const titleJa = document.body.getAttribute("data-title-ja");
-    const titleEn = document.body.getAttribute("data-title-en");
-    if (titleJa && titleEn) document.title = lang === "en" ? titleEn : titleJa;
+    if (document.body.hasAttribute("data-title-ja")) {
+      document.title = attrFor(document.body, "data-title", lang);
+    } else {
+      const titleKey = document.body.getAttribute("data-title-key");
+      if (titleKey && dict[titleKey]) document.title = fromDict(dict[titleKey], titleKey, lang);
+    }
 
-    const descJa = document.body.getAttribute("data-desc-ja");
-    const descEn = document.body.getAttribute("data-desc-en");
     const desc = document.querySelector('meta[name="description"]');
-    if (desc && descJa && descEn) desc.setAttribute("content", lang === "en" ? descEn : descJa);
+    if (desc && document.body.hasAttribute("data-desc-ja")) {
+      desc.setAttribute("content", attrFor(document.body, "data-desc", lang));
+    }
 
     document.querySelectorAll("[data-lang-btn]").forEach((btn) => {
       const isActive = btn.getAttribute("data-lang-btn") === lang;
