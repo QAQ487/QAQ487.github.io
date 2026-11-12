@@ -11,7 +11,7 @@ The character attacks downward in mid-air; the moment the weapon's hitbox touche
 
 ## Not to be confused with
 
-Not coyote time (ACT-01) or jump buffering (ACT-02), which forgive the take-off. Not a plain head-stomp bounce (the body lands on the enemy, no attack needed). Not knockback (ACT-29, where the victim is pushed away); here the attacker is the one pushed back. Not an air juggle (ACT-47, which keeps the enemy in the air).
+Not coyote time (ACT-01) or jump buffering (ACT-02), which forgive the take-off. Not a plain head-stomp bounce (the body lands on the enemy, no attack needed). Not knockback (ACT-29, where the victim is pushed away); here the attacker is the one pushed back. Not an air juggle (ACT-47, which keeps the enemy in the air). Not a thrown-object springboard (ACT-54, where no attack hit is needed).
 
 ## Use it for
 
@@ -37,6 +37,8 @@ Give the airborne down attack a hitbox below the feet that is tested before the 
 - [ACT-47](ACT-47.md) — Air juggle / Launcher
 - [ACT-01](ACT-01.md) — Coyote Time / Ledge Grace Period
 - [ACT-05](ACT-05.md) — Wall-Jump Forgiveness / Wall-Jump Window
+- [ACT-54](ACT-54.md) — Thrown-object springboard / Cap jump
+- [ACT-55](ACT-55.md) — Ground pound & dive cancel
 
 ## References
 

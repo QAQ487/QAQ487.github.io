@@ -32,6 +32,7 @@ Compute displacement from contact direction and apply it over its own duration, 
 - [ACT-45](ACT-45.md) — Pogo bounce / Downward strike bounce
 - [ACT-47](ACT-47.md) — Air juggle / Launcher
 - [FB-33](FB-33.md) — Telekinetic grab & throw
+- [FB-36](FB-36.md) — Percentage knockback & trajectory influence
 
 ## References
 

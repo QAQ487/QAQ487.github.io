@@ -35,6 +35,7 @@ Ground pixel shader: d = distance(worldPos, source) + noise(worldPos*s)*amp; w =
 - [ENV-15](ENV-15.md) — Fog of war
 - [PIX-17](PIX-17.md) — Autotiling
 - [PIX-08](PIX-08.md) — Dithering
+- [ENV-22](ENV-22.md) — Spray-to-clean grime
 
 ## References
 

@@ -33,6 +33,7 @@ Detect when vertical speed is near zero and temporarily apply a lower downward a
 - [ACT-01](ACT-01.md) — Coyote Time / Ledge Grace Period
 - [ACT-45](ACT-45.md) — Pogo bounce / Downward strike bounce
 - [ACT-47](ACT-47.md) — Air juggle / Launcher
+- [ACT-56](ACT-56.md) — Hover float (puff, flutter, jet)
 
 ## References
 
