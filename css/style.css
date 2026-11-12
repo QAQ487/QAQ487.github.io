@@ -253,6 +253,21 @@ html[lang="zh-Hant"] .display {
   font-weight: 700;
 }
 
+h1.profile-name {
+  font-family: var(--font-body);
+  font-weight: 600;
+}
+
+html[lang="en"] h1.profile-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+html[lang="zh-Hant"] h1.profile-name {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 700;
+}
+
 .lang-list {
   margin: 0;
   padding: 0;
