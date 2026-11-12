@@ -1,8 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <style>
-      path, circle, rect, line, polyline { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+      symbol:not([id^="flag-"]) path,
+      symbol:not([id^="flag-"]) circle,
+      symbol:not([id^="flag-"]) rect,
+      symbol:not([id^="flag-"]) line,
+      symbol:not([id^="flag-"]) polyline { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
     </style>
+    <clipPath id="flag-round">
+      <rect width="30" height="20" rx="3.2"/>
+    </clipPath>
   </defs>
   <symbol id="cpp" viewBox="0 0 24 24"><path d="M9 8 5 12l4 4"/><path d="M14 8l4 4-4 4"/><path d="M11 7.5v.5M11 11v.5M15 7.5v.5M15 11v.5"/></symbol>
   <symbol id="d3d" viewBox="0 0 24 24"><path d="M12 3 20 7.5v9L12 21 4 16.5v-9z"/><path d="M12 12 20 7.5M12 12v9M12 12 4 7.5"/></symbol>
@@ -36,4 +43,43 @@
   <symbol id="flag" viewBox="0 0 24 24"><path d="M6 4v16M6 5h11l-2 3.5 2 3.5H6"/></symbol>
   <symbol id="plus" viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></symbol>
   <symbol id="school" viewBox="0 0 24 24"><path d="m3 10 9-5 9 5-9 5z"/><path d="M7 12.2V17c1.6 1.2 3.2 1.8 5 1.8s3.4-.6 5-1.8v-4.8"/></symbol>
+  <symbol id="flag-hk" viewBox="0 0 30 20">
+    <g clip-path="url(#flag-round)">
+      <rect width="30" height="20" fill="#DE2910"/>
+      <g fill="#fff" transform="translate(15 10)">
+        <ellipse rx="1.15" ry="2.55" cy="-3.15"/>
+        <ellipse rx="1.15" ry="2.55" cy="-3.15" transform="rotate(72)"/>
+        <ellipse rx="1.15" ry="2.55" cy="-3.15" transform="rotate(144)"/>
+        <ellipse rx="1.15" ry="2.55" cy="-3.15" transform="rotate(216)"/>
+        <ellipse rx="1.15" ry="2.55" cy="-3.15" transform="rotate(288)"/>
+      </g>
+    </g>
+  </symbol>
+  <symbol id="flag-cn" viewBox="0 0 30 20">
+    <g clip-path="url(#flag-round)">
+      <rect width="30" height="20" fill="#DE2910"/>
+      <g fill="#FFDE00">
+        <polygon points="6,2.15 6.7,4.25 8.95,4.25 7.12,5.55 7.82,7.65 6,6.35 4.18,7.65 4.88,5.55 3.05,4.25 5.3,4.25"/>
+        <polygon transform="translate(10.1 2.15) scale(0.38)" points="0,-3.2 0.94,-0.98 3.32,-0.98 1.19,0.38 2.01,2.6 0,1.24 -2.01,2.6 -1.19,0.38 -3.32,-0.98 -0.94,-0.98"/>
+        <polygon transform="translate(12.15 4.05) scale(0.38)" points="0,-3.2 0.94,-0.98 3.32,-0.98 1.19,0.38 2.01,2.6 0,1.24 -2.01,2.6 -1.19,0.38 -3.32,-0.98 -0.94,-0.98"/>
+        <polygon transform="translate(12.15 6.55) scale(0.38)" points="0,-3.2 0.94,-0.98 3.32,-0.98 1.19,0.38 2.01,2.6 0,1.24 -2.01,2.6 -1.19,0.38 -3.32,-0.98 -0.94,-0.98"/>
+        <polygon transform="translate(10.1 8.45) scale(0.38)" points="0,-3.2 0.94,-0.98 3.32,-0.98 1.19,0.38 2.01,2.6 0,1.24 -2.01,2.6 -1.19,0.38 -3.32,-0.98 -0.94,-0.98"/>
+      </g>
+    </g>
+  </symbol>
+  <symbol id="flag-uk" viewBox="0 0 30 20">
+    <g clip-path="url(#flag-round)">
+      <rect width="30" height="20" fill="#012169"/>
+      <path d="M0 0 L30 20 M30 0 L0 20" stroke="#fff" stroke-width="4.2"/>
+      <path d="M0 0 L30 20 M30 0 L0 20" stroke="#C8102E" stroke-width="2.2"/>
+      <path d="M15 0 V20 M0 10 H30" stroke="#fff" stroke-width="7"/>
+      <path d="M15 0 V20 M0 10 H30" stroke="#C8102E" stroke-width="4"/>
+    </g>
+  </symbol>
+  <symbol id="flag-jp" viewBox="0 0 30 20">
+    <g clip-path="url(#flag-round)">
+      <rect width="30" height="20" fill="#fff"/>
+      <circle cx="15" cy="10" r="5.6" fill="#BC002D"/>
+    </g>
+  </symbol>
 </svg>
