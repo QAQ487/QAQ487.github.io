@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="Ivy Engine。一人で書いた C++ / Direct3D 11 エンジン。">
+  <meta name="description" content="Ivy Engine。一人でゼロから書いた C++／Direct3D 11 ゲームエンジン。">
   <title>Ivy Engine — 楊 子悠（ヨウ シユ）</title>
   <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="../../../css/style.css?v=20261113f">
+  <link rel="stylesheet" href="../../../css/style.css?v=20261113g">
 </head>
 <body data-title-key="doc-title-ivy">
   <a class="skip" href="#main" data-i18n="skip">本文へ進む</a>
@@ -24,21 +24,24 @@
       </div>
     </div>
   </header>
-
   <main id="main">
     <header class="hero">
       <div class="wrap">
         <p class="back-row"><a href="/portfolio/" data-i18n="back-portfolio">作品集へ戻る</a></p>
         <h1 class="display hero-title" data-i18n="hero-title">Ivy Engine</h1>
-        <p class="lede" data-i18n="hero-lede">Scrap Burst のフレームワークを 2026/4 に改称。一人で継続。C++ / Direct3D 11。</p>
+        <p class="lede" data-i18n="hero-lede">一人でゼロから書いた C++／Direct3D 11 ゲームエンジン。ImGui エディタと、同じシーンを動かす 3D／2D ランタイムを持つ。</p>
         <ul class="tag-list">
           <li data-ja="個人制作" data-en="Personal" data-zh="個人製作">個人制作</li>
           <li data-ja="個人" data-en="Solo" data-zh="個人">個人</li>
           <li>2026/4–</li>
           <li data-ja="1人" data-en="1 person" data-zh="1 人">1人</li>
         </ul>
-        <p class="card-highlight" data-ja="ゲームと一緒に進めると、不足が見える。" data-en="Building it with a game shows what is missing." data-zh="和遊戲一起做，才看得見缺什麼。">ゲームと一緒に進めると、不足が見える。</p>
-
+        <ul class="stat-row">
+          <li><strong data-ja="約157" data-en="about 157" data-zh="約 157">約157</strong><span data-ja="公開ヘッダ" data-en="public headers" data-zh="公開標頭">公開ヘッダ</span></li>
+          <li><strong>30</strong><span data-ja="イージング" data-en="easing functions" data-zh="緩動函式">イージング</span></li>
+          <li><strong>23</strong><span data-ja="JSON コンポーネント" data-en="JSON components" data-zh="JSON 元件">JSON コンポーネント</span></li>
+          <li><strong data-ja="箱・球・カプセル・円柱・メッシュ" data-en="box, sphere, capsule, cylinder, mesh" data-zh="盒、球、膠囊、圓柱、網格">箱・球・カプセル・円柱・メッシュ</strong><span data-ja="3D コライダー" data-en="3D colliders" data-zh="3D 碰撞體">3D コライダー</span></li>
+        </ul>
         <figure class="ghost-editor" data-editor aria-label="Ivy Engine editor live sketch">
           <div class="ghost-titlebar">
             <span data-i18n="ghost-title">Ivy Engine エディタ</span>
@@ -63,18 +66,9 @@
             <div class="ghost-panel ghost-inspector">
               <div class="panel-kicker" data-i18n="ghost-inspector">インスペクタ</div>
               <dl class="insp-list">
-                <div>
-                  <dt data-i18n="insp-rot-l">Rotation</dt>
-                  <dd data-insp="rot">0.0, 0.0, 0.0</dd>
-                </div>
-                <div>
-                  <dt data-i18n="insp-rough-l">Roughness</dt>
-                  <dd data-insp="rough">0.34</dd>
-                </div>
-                <div>
-                  <dt data-i18n="insp-metal-l">Metallic</dt>
-                  <dd data-insp="metal">0.28</dd>
-                </div>
+                <div><dt data-i18n="insp-rot-l">Rotation</dt><dd data-insp="rot">0.0, 0.0, 0.0</dd></div>
+                <div><dt data-i18n="insp-rough-l">Roughness</dt><dd data-insp="rough">0.34</dd></div>
+                <div><dt data-i18n="insp-metal-l">Metallic</dt><dd data-insp="metal">0.28</dd></div>
               </dl>
             </div>
             <div class="ghost-panel ghost-assets">
@@ -85,192 +79,517 @@
             </div>
           </div>
         </figure>
-
         <div class="shot-row">
-          <figure class="shot-well">
-            <p class="shot-label">
-              <strong data-i18n="shot-2d-k">ここに入れる写真</strong>
-              <span data-i18n="shot-2d-v">2D ビュー。スプライトと Box2D 表示（F11）。</span>
-            </p>
-          </figure>
-          <figure class="shot-well">
-            <p class="shot-label">
-              <strong data-i18n="shot-play-k">ここに入れる写真</strong>
-              <span data-i18n="shot-play-v">Play モード（F3）。配布と同じ動作。</span>
-            </p>
-          </figure>
-          <figure class="shot-well">
-            <p class="shot-label">
-              <strong data-i18n="shot-boot-k">ここに入れる写真</strong>
-              <span data-i18n="shot-boot-v">ランタイム起動画面（ロゴと読み込み）。</span>
-            </p>
-          </figure>
+          <figure class="shot-well"><p class="shot-label"><strong data-i18n="shot-2d-k">ここに入れる写真</strong><span data-i18n="shot-2d-v">2D ビュー。スプライトと Box2D 表示（F11）。</span></p></figure>
+          <figure class="shot-well"><p class="shot-label"><strong data-i18n="shot-play-k">ここに入れる写真</strong><span data-i18n="shot-play-v">Play モード（F3）。配布と同じ動作。</span></p></figure>
+          <figure class="shot-well"><p class="shot-label"><strong data-i18n="shot-boot-k">ここに入れる写真</strong><span data-i18n="shot-boot-v">ランタイム起動画面（ロゴと読み込み）。</span></p></figure>
         </div>
       </div>
     </header>
 
     <section class="section" id="architecture" aria-labelledby="systems-title">
       <div class="wrap">
-        <h2 class="section-title" id="systems-title" data-i18n="systems-title">エンジンの構成</h2>
-        <div class="arch" aria-labelledby="systems-title">
-          <div class="arch-row">
-            <div class="arch-node is-shared">
-              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#window"/></svg>
+        <h2 class="section-title" id="systems-title" data-i18n="systems-title">構成</h2>
+        <div class="arch">
+          <div class="arch-row arch-row-3">
+            <div class="arch-node">
+              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#layers"/></svg>
               <div>
-                <strong data-ja="エディタ" data-en="Editor" data-zh="編輯器">エディタ</strong>
-                <span data-ja="ランタイムと本体を共有" data-en="Shares the engine with the runtime" data-zh="與運行時共用本體">ランタイムと本体を共有</span>
+                <strong data-ja="コンテンツ" data-en="Content" data-zh="內容">コンテンツ</strong>
+                <span>project.json · rom/ · GameScripts.dll</span>
               </div>
             </div>
             <div class="arch-node is-shared">
-              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#pulse"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#window"/></svg>
+              <div>
+                <strong data-ja="エディタ" data-en="Editor" data-zh="編輯器">エディタ</strong>
+                <span>IvyEngine.exe</span>
+              </div>
+            </div>
+            <div class="arch-node is-shared">
+              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#pulse"/></svg>
               <div>
                 <strong data-ja="ランタイム" data-en="Runtime" data-zh="運行時">ランタイム</strong>
-                <span data-ja="エディタと本体を共有" data-en="Shares the engine with the editor" data-zh="與編輯器共用本體">エディタと本体を共有</span>
+                <span>IvyEngineRuntime.exe</span>
               </div>
             </div>
           </div>
-          <div class="arch-row">
-            <div class="arch-node">
-              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#layers"/></svg>
+          <div class="arch-stack">
+            <div class="arch-node is-shared">
+              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#cpu"/></svg>
               <div>
-                <strong data-ja="コンテンツ" data-en="Content project" data-zh="內容專案">コンテンツ</strong>
-                <span>JSON、ECS</span>
+                <strong data-ja="エンジン基盤" data-en="Engine base" data-zh="引擎底層">エンジン基盤</strong>
+                <span data-ja="Win32／D3D11、GameScene、GameObject のシーングラフ、JSON v4、入力、ジョブ" data-en="Win32/D3D11, GameScene, GameObject scene graph, JSON v4, input, jobs" data-zh="Win32／D3D11、GameScene、GameObject 場景圖、JSON v4、輸入、工作">Win32／D3D11、GameScene、GameObject のシーングラフ、JSON v4、入力、ジョブ</span>
               </div>
             </div>
             <div class="arch-node">
-              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#box"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#sun"/></svg>
               <div>
-                <strong>C++ DLL</strong>
-                <span data-ja="ゲーム側のスクリプト" data-en="Game-side scripts" data-zh="遊戲端腳本">ゲーム側のスクリプト</span>
+                <strong data-ja="エンジン固有機能" data-en="Engine-specific features" data-zh="引擎專用功能">エンジン固有機能</strong>
+                <span data-ja="フォワード描画、自作3D物理と Box2D、音、画面UI、カメラ" data-en="Forward renderer, custom 3D physics and Box2D, audio, screen UI, cameras" data-zh="前向渲染、自製 3D 物理與 Box2D、音訊、螢幕 UI、相機">フォワード描画、自作3D物理と Box2D、音、画面UI、カメラ</span>
+              </div>
+            </div>
+            <div class="arch-node">
+              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#refresh"/></svg>
+              <div>
+                <strong data-ja="スクリプト層" data-en="Script layer" data-zh="腳本層">スクリプト層</strong>
+                <span>ScriptRuntimeApi v48 · GameScripts.dll</span>
               </div>
             </div>
           </div>
         </div>
-        <ul class="subsys-grid">
-          <li>
-            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#sun"/></svg><span data-i18n="sys-ren-t">レンダリング</span></h3>
-            <p data-i18n="sys-ren-d">D3D11 フォワード。IBL PBR、トゥーン、ポストFX。</p>
-          </li>
-          <li>
-            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#atom"/></svg><span data-i18n="sys-phy-t">物理</span></h3>
-            <p data-i18n="sys-phy-d">3D は自前の衝突。2D は公式 Box2D 3.1.1。</p>
-          </li>
-          <li>
-            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#grid"/></svg><span data-i18n="sys-2d-t">2D モード</span></h3>
-            <p data-i18n="sys-2d-d">同じエンジンで純 2D（直交カメラ、スプライト、2D ビュー）。</p>
-          </li>
-          <li>
-            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#refresh"/></svg><span data-i18n="sys-script-t">スクリプト</span></h3>
-            <p data-i18n="sys-script-d">C++ DLL。編集中にホットリロード。</p>
-          </li>
-          <li>
-            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#package"/></svg><span data-i18n="sys-ed-t">エディタと配布</span></h3>
-            <p data-i18n="sys-ed-d">ImGui エディタ、Play モード、ワンクリック /MT パッケージ。</p>
-          </li>
-          <li>
-            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#split"/></svg><span data-i18n="sys-arch-t">アーキテクチャ</span></h3>
-            <p data-i18n="sys-arch-d">エディタとランタイムが本体を共有。ゲームは独立コンテンツ（JSON、ECS、C++ DLL）。</p>
-          </li>
-        </ul>
-        <ul class="lib-row" data-aria-ja="第三者ライブラリと基盤" data-aria-en="Third-party libraries and platform" data-aria-zh="第三方函式庫與平台" aria-label="第三者ライブラリと基盤">
-          <li>ImGui</li><li>ImGuizmo</li><li>Box2D 3.1.1</li><li>Effekseer</li><li>FBX SDK</li><li>DirectXTex</li><li>nlohmann/json</li><li>D3D11</li><li>XAudio2</li><li>XInput</li>
-        </ul>
-        <p class="credit" data-i18n="sys-credit">自作。利用ライブラリ: ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。基盤: D3D11、XAudio2、XInput。リポジトリは非公開。</p>
       </div>
     </section>
 
-
+    <section class="section" id="features" aria-labelledby="features-title">
+      <div class="wrap">
+        <h2 class="section-title" id="features-title" data-ja="機能" data-en="Features" data-zh="功能">機能</h2>
+        <ul class="feat-map">
+<li class="feat-group" id="feat-core"><h3 class="feat-head"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#cpu"/></svg><span data-ja="コア／実行" data-en="Core / runtime" data-zh="核心／執行期">コア／実行</span><span class="feat-count">31</span></h3><ul class="feat-chips"><li class="feat"><span data-ja="Win32 ウィンドウ" data-en="Win32 window and swapchain" data-zh="Win32 視窗">Win32 ウィンドウ</span></li>
+<li class="feat"><span data-ja="ゲームループ" data-en="WinMain game loop" data-zh="遊戲主迴圈">ゲームループ</span></li>
+<li class="feat"><span data-ja="シーンマネージャ" data-en="Scene manager" data-zh="場景管理器">シーンマネージャ</span></li>
+<li class="feat"><span data-ja="コンポーネントシーングラフ" data-en="Component scene graph" data-zh="元件場景圖">コンポーネントシーングラフ</span></li>
+<li class="feat"><span data-ja="オブジェクト階層" data-en="GameObject parent/child hierarchy" data-zh="物件階層">オブジェクト階層</span></li>
+<li class="feat"><span data-ja="アクティブ切替" data-en="Active flag skips update and draw" data-zh="啟用開關">アクティブ切替</span></li></ul><details class="feat-more"><summary><span data-ja="すべて表示" data-en="Show all" data-zh="顯示全部">すべて表示</span> +25</summary><ul class="feat-chips"><li class="feat"><span data-ja="二重トランスフォーム" data-en="Legacy transform plus SceneTransform" data-zh="雙重變換">二重トランスフォーム</span></li>
+<li class="feat"><span data-ja="ローカル姿勢" data-en="Local position, Euler degrees, scale" data-zh="區域姿態">ローカル姿勢</span></li>
+<li class="feat"><span data-ja="タグ台帳" data-en="Project tag registry" data-zh="標籤登錄表">タグ台帳</span></li>
+<li class="feat"><span data-ja="組み込みタグ" data-en="Nine built-in tags" data-zh="內建標籤">組み込みタグ</span></li>
+<li class="feat"><span data-ja="カスタムタグ" data-en="Append-only custom tags" data-zh="自訂標籤">カスタムタグ</span></li>
+<li class="feat"><span data-ja="タグ削除の付け替え" data-en="Custom-tag delete remaps ids" data-zh="刪標籤重映射">タグ削除の付け替え</span></li>
+<li class="feat"><span data-ja="コンポーネント工場" data-en="Type-name component factory" data-zh="元件工廠">コンポーネント工場</span></li>
+<li class="feat"><span data-ja="コンポーネント寿命" data-en="Attach, detach, update, reset" data-zh="元件生命週期">コンポーネント寿命</span></li>
+<li class="feat"><span data-ja="更新順" data-en="Component, logic, physics, children" data-zh="更新順序">更新順</span></li>
+<li class="feat"><span data-ja="ジョブシステム" data-en="Custom job system" data-zh="工作系統">ジョブシステム</span></li>
+<li class="feat"><span data-ja="ワーカープール" data-en="Worker pool" data-zh="工作執行緒池">ワーカープール</span></li>
+<li class="feat"><span data-ja="依存グラフ" data-en="Job dependency graph" data-zh="相依圖">依存グラフ</span></li>
+<li class="feat"><span data-ja="並列スクリプト更新" data-en="Parallel script updates" data-zh="平行腳本更新">並列スクリプト更新</span></li>
+<li class="feat"><span data-ja="逐次フォールバック" data-en="Behavior-identical sequential fallback" data-zh="循序後備">逐次フォールバック</span></li>
+<li class="feat"><span data-ja="ジョブデバッグ窓" data-en="Job-system debug window" data-zh="工作除錯視窗">ジョブデバッグ窓</span></li>
+<li class="feat"><span data-ja="システムタイマー" data-en="System timer" data-zh="系統計時器">システムタイマー</span></li>
+<li class="feat"><span data-ja="スレッド親和性" data-en="Limit thread to current processor" data-zh="執行緒親和性">スレッド親和性</span></li>
+<li class="feat"><span data-ja="イージング" data-en="Easing curves" data-zh="緩動曲線">イージング</span></li>
+<li class="feat"><span data-ja="時間スケール" data-en="Time-scale cycle (F7)" data-zh="時間縮放">時間スケール</span></li>
+<li class="feat"><span data-ja="フレームステップ" data-en="Frame step (F12)" data-zh="單幀步進">フレームステップ</span></li>
+<li class="feat"><span data-ja="シーン遷移" data-en="Scene transition" data-zh="場景轉場">シーン遷移</span></li>
+<li class="feat"><span data-ja="フェード" data-en="Fade in / fade out" data-zh="淡入淡出">フェード</span></li>
+<li class="feat"><span data-ja="終了要求" data-en="Request exit from scripts" data-zh="要求結束">終了要求</span></li>
+<li class="feat"><span data-ja="プレイモード" data-en="Editor Play uses shipped components" data-zh="播放模式">プレイモード</span></li>
+<li class="feat"><span data-ja="停止で編集へ復帰" data-en="Stop restores edit state" data-zh="停止還原編輯">停止で編集へ復帰</span></li></ul></details></li>
+<li class="feat-group" id="feat-render"><h3 class="feat-head"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#sun"/></svg><span data-ja="レンダリング" data-en="Rendering" data-zh="渲染">レンダリング</span><span class="feat-count">64</span></h3><ul class="feat-chips"><li class="feat"><span data-ja="D3D11 フォワード" data-en="D3D11 forward renderer" data-zh="D3D11 前向渲染">D3D11 フォワード</span></li>
+<li class="feat"><span data-ja="デバイス公開" data-en="Script access to device and context" data-zh="裝置指標公開">デバイス公開</span></li>
+<li class="feat"><span data-ja="ビューポート矩形" data-en="Render viewport and backbuffer size" data-zh="視埠矩形">ビューポート矩形</span></li>
+<li class="feat"><span data-ja="ウィンドウ／全画面" data-en="Windowed / fullscreen" data-zh="視窗與全螢幕">ウィンドウ／全画面</span></li>
+<li class="feat"><span data-ja="標準ライティング" data-en="Standard lit shader" data-zh="標準光照">標準ライティング</span></li>
+<li class="feat"><span data-ja="半球ライティング" data-en="Hemisphere lighting" data-zh="半球光照">半球ライティング</span></li></ul><details class="feat-more"><summary><span data-ja="すべて表示" data-en="Show all" data-zh="顯示全部">すべて表示</span> +58</summary><ul class="feat-chips"><li class="feat"><span data-ja="リムライト" data-en="Rim lighting" data-zh="邊緣光">リムライト</span></li>
+<li class="feat"><span data-ja="サーフェス FX" data-en="Surface FX shader" data-zh="表面特效">サーフェス FX</span></li>
+<li class="feat"><span data-ja="トゥーン" data-en="Toon shader" data-zh="卡通著色">トゥーン</span></li>
+<li class="feat"><span data-ja="トゥーンアウトライン" data-en="Inverted-hull toon outline" data-zh="卡通外框">トゥーンアウトライン</span></li>
+<li class="feat"><span data-ja="アンリット" data-en="Unlit shader" data-zh="無光照">アンリット</span></li>
+<li class="feat"><span data-ja="ライト別ピクセル" data-en="Directional, point, spot pixel paths" data-zh="依光源像素路徑">ライト別ピクセル</span></li>
+<li class="feat"><span data-ja="PBR" data-en="Cook-Torrance PBR" data-zh="PBR 材質">PBR</span></li>
+<li class="feat"><span data-ja="エネルギー保存" data-en="Energy-conserving BRDF" data-zh="能量守恆">エネルギー保存</span></li>
+<li class="feat"><span data-ja="IBL" data-en="Irradiance and prefilter IBL" data-zh="影像式光照">IBL</span></li>
+<li class="feat"><span data-ja="共有 BRDF LUT" data-en="Shared `brdf_lut.png`" data-zh="共用 BRDF LUT">共有 BRDF LUT</span></li>
+<li class="feat"><span data-ja="IBL 不一致表示" data-en="“IBL not matching sky” notice" data-zh="IBL 不符提示">IBL 不一致表示</span></li>
+<li class="feat"><span data-ja="指向性ライト" data-en="Directional light" data-zh="方向光">指向性ライト</span></li>
+<li class="feat"><span data-ja="ポイントライト" data-en="Point light, range, attenuation" data-zh="點光源">ポイントライト</span></li>
+<li class="feat"><span data-ja="スポットライト" data-en="Spot light, inner/outer cone" data-zh="聚光燈">スポットライト</span></li>
+<li class="feat"><span data-ja="アンビエント" data-en="Ambient color" data-zh="環境光">アンビエント</span></li>
+<li class="feat"><span data-ja="ライト上限" data-en="Active-light cap" data-zh="光源上限">ライト上限</span></li>
+<li class="feat"><span data-ja="カスケードシャドウ" data-en="Cascaded shadow maps" data-zh="級聯陰影">カスケードシャドウ</span></li>
+<li class="feat"><span data-ja="シャドウ品質" data-en="Low / Medium / High presets" data-zh="陰影品質">シャドウ品質</span></li>
+<li class="feat"><span data-ja="シャドウ投影" data-en="Cast shadows on directional and spot" data-zh="投射陰影">シャドウ投影</span></li>
+<li class="feat is-partial"><span class="partial-dot" aria-hidden="true"></span><span data-ja="カスケードカリング" data-en="Per-cascade caster culling" data-zh="級聯投射物剔除">カスケードカリング</span><span class="visually-hidden" data-ja="一部" data-en="partial" data-zh="部分">一部</span></li>
+<li class="feat is-partial"><span class="partial-dot" aria-hidden="true"></span><span data-ja="視錐台カリング" data-en="Main-pass 3D mesh frustum culling" data-zh="視錐剔除">視錐台カリング</span><span class="visually-hidden" data-ja="一部" data-en="partial" data-zh="部分">一部</span></li>
+<li class="feat"><span data-ja="スカイボックス" data-en="Cubemap skybox" data-zh="天空盒">スカイボックス</span></li>
+<li class="feat"><span data-ja="スカイ色調" data-en="Tint, exposure, yaw rotation" data-zh="天空色調">スカイ色調</span></li>
+<li class="feat"><span data-ja="パノラマ PNG" data-en="Equirectangular PNG cooked to DDS" data-zh="等距柱狀 PNG">パノラマ PNG</span></li>
+<li class="feat"><span data-ja="パノラマ失敗表示" data-en="“Panorama failed” instead of silent clear" data-zh="全景失敗提示">パノラマ失敗表示</span></li>
+<li class="feat"><span data-ja="ハイトフォグ" data-en="Height fog" data-zh="高度霧">ハイトフォグ</span></li>
+<li class="feat"><span data-ja="クリア色" data-en="Clear color" data-zh="清除色">クリア色</span></li>
+<li class="feat"><span data-ja="既定シェーダ" data-en="Scene default shader" data-zh="預設著色器">既定シェーダ</span></li>
+<li class="feat"><span data-ja="オブジェクト上書き" data-en="Per-object shader override" data-zh="物件著色覆寫">オブジェクト上書き</span></li>
+<li class="feat"><span data-ja="FBX／OBJ" data-en="FBX and OBJ models" data-zh="FBX／OBJ">FBX／OBJ</span></li>
+<li class="feat"><span data-ja="スキンメッシュ" data-en="Skinned meshes and clips" data-zh="蒙皮網格">スキンメッシュ</span></li>
+<li class="feat"><span data-ja="GPU スキン" data-en="Vertex-shader skin palette" data-zh="GPU 蒙皮">GPU スキン</span></li>
+<li class="feat"><span data-ja="CPU スキン予備" data-en="CPU skin when GPU bind is ineligible" data-zh="CPU 蒙皮後備">CPU スキン予備</span></li>
+<li class="feat"><span data-ja="クリップ再生" data-en="Play, loop, duration, speed" data-zh="片段播放">クリップ再生</span></li>
+<li class="feat"><span data-ja="ボーンワールド取得" data-en="Bone world position and rotation" data-zh="骨骼世界座標">ボーンワールド取得</span></li>
+<li class="feat"><span data-ja="プロキシモデル" data-en="Edit / paused proxy mesh" data-zh="代理模型">プロキシモデル</span></li>
+<li class="feat"><span data-ja="マテリアル" data-en="Color, roughness, metallic, maps" data-zh="材質">マテリアル</span></li>
+<li class="feat"><span data-ja="法線マップ" data-en="Normal map" data-zh="法線貼圖">法線マップ</span></li>
+<li class="feat"><span data-ja="ランプテクスチャ" data-en="Toon ramp texture" data-zh="漸層貼圖">ランプテクスチャ</span></li>
+<li class="feat"><span data-ja="エミッション" data-en="Emission glow" data-zh="自發光">エミッション</span></li>
+<li class="feat"><span data-ja="ポストプロセス" data-en="PostFX pipeline" data-zh="後製管線">ポストプロセス</span></li>
+<li class="feat"><span data-ja="ブルーム" data-en="Bloom" data-zh="泛光">ブルーム</span></li>
+<li class="feat"><span data-ja="ビネット" data-en="Vignette" data-zh="暗角">ビネット</span></li>
+<li class="feat"><span data-ja="色収差" data-en="Chromatic aberration" data-zh="色差">色収差</span></li>
+<li class="feat"><span data-ja="RGB バースト" data-en="Script RGB-shift burst" data-zh="RGB 爆衝">RGB バースト</span></li>
+<li class="feat"><span data-ja="モザイク" data-en="Mosaic block post parameter" data-zh="馬賽克">モザイク</span></li>
+<li class="feat"><span data-ja="ビルボード" data-en="Immediate and component billboards" data-zh="公告板">ビルボード</span></li>
+<li class="feat"><span data-ja="地面揃えビルボード" data-en="Ground-aligned billboard" data-zh="貼地公告板">地面揃えビルボード</span></li>
+<li class="feat"><span data-ja="CPU パーティクル" data-en="CPU particle emitters" data-zh="CPU 粒子">CPU パーティクル</span></li>
+<li class="feat"><span data-ja="パーティクル制御" data-en="Emit, move, stop, burst, destroy" data-zh="粒子控制">パーティクル制御</span></li>
+<li class="feat"><span data-ja="Effekseer" data-en="Effekseer effects" data-zh="Effekseer 特效">Effekseer</span></li>
+<li class="feat"><span data-ja="エフェクト部品" data-en="Effect component play/stop" data-zh="特效元件">エフェクト部品</span></li>
+<li class="feat"><span data-ja="ラインスプライト" data-en="World line sprite" data-zh="線段精靈">ラインスプライト</span></li>
+<li class="feat"><span data-ja="デバッグ線／球" data-en="Debug line and wire sphere" data-zh="除錯線與球">デバッグ線／球</span></li>
+<li class="feat"><span data-ja="デバッグ形状" data-en="Box, sphere, capsule, cylinder debug draw" data-zh="除錯形體">デバッグ形状</span></li>
+<li class="feat"><span data-ja="エディタグリッド" data-en="Editor grid" data-zh="編輯器格線">エディタグリッド</span></li>
+<li class="feat"><span data-ja="モデルキャッシュ" data-en="Process-lifetime model/animation cache" data-zh="模型快取">モデルキャッシュ</span></li>
+<li class="feat is-partial"><span class="partial-dot" aria-hidden="true"></span><span data-ja="シェーダ数の不一致" data-en="Shader-count docs disagree" data-zh="著色器數量不一致">シェーダ数の不一致</span><span class="visually-hidden" data-ja="一部" data-en="partial" data-zh="部分">一部</span></li></ul></details></li>
+<li class="feat-group" id="feat-phys"><h3 class="feat-head"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#atom"/></svg><span data-ja="物理 3D" data-en="Physics 3D" data-zh="3D 物理">物理 3D</span><span class="feat-count">29</span></h3><ul class="feat-chips"><li class="feat"><span data-ja="カスタム剛体" data-en="Custom rigidbody" data-zh="自製剛體">カスタム剛体</span></li>
+<li class="feat"><span data-ja="重力" data-en="Project gravity" data-zh="重力">重力</span></li>
+<li class="feat"><span data-ja="質量と抗力" data-en="Mass and drag" data-zh="質量與阻尼">質量と抗力</span></li>
+<li class="feat"><span data-ja="反発と摩擦" data-en="Restitution and friction" data-zh="彈性與摩擦">反発と摩擦</span></li>
+<li class="feat"><span data-ja="運動学フラグ" data-en="Kinematic bodies" data-zh="運動學旗標">運動学フラグ</span></li>
+<li class="feat"><span data-ja="力モード" data-en="Force, acceleration, impulse, velocity change" data-zh="施力模式">力モード</span></li></ul><details class="feat-more"><summary><span data-ja="すべて表示" data-en="Show all" data-zh="顯示全部">すべて表示</span> +23</summary><ul class="feat-chips"><li class="feat"><span data-ja="トルク" data-en="Torque on the live body" data-zh="力矩">トルク</span></li>
+<li class="feat"><span data-ja="角度積分" data-en="Angular dynamics" data-zh="角向積分">角度積分</span></li>
+<li class="feat"><span data-ja="箱コライダー" data-en="Box collider" data-zh="盒碰撞體">箱コライダー</span></li>
+<li class="feat"><span data-ja="球コライダー" data-en="Sphere collider" data-zh="球碰撞體">球コライダー</span></li>
+<li class="feat"><span data-ja="カプセル" data-en="Capsule collider" data-zh="膠囊碰撞體">カプセル</span></li>
+<li class="feat"><span data-ja="円柱コライダー" data-en="Cylinder collider" data-zh="圓柱碰撞體">円柱コライダー</span></li>
+<li class="feat"><span data-ja="メッシュコライダー" data-en="Triangle mesh collider" data-zh="網格碰撞體">メッシュコライダー</span></li>
+<li class="feat"><span data-ja="汎用コライダー" data-en="Legacy aggregate `Collider`" data-zh="通用碰撞體">汎用コライダー</span></li>
+<li class="feat"><span data-ja="形状別コンポーネント" data-en="One component type per shape" data-zh="形狀專用元件">形状別コンポーネント</span></li>
+<li class="feat"><span data-ja="トリガー" data-en="Trigger volumes" data-zh="觸發器">トリガー</span></li>
+<li class="feat"><span data-ja="進入と退出" data-en="OnTriggerEnter / OnTriggerExit" data-zh="進入與離開">進入と退出</span></li>
+<li class="feat"><span data-ja="衝突コールバック" data-en="OnCollision / OnCollisionExit" data-zh="碰撞回呼">衝突コールバック</span></li>
+<li class="feat"><span data-ja="タグ無視" data-en="Ignore collision by tag" data-zh="依標籤忽略">タグ無視</span></li>
+<li class="feat"><span data-ja="個体無視" data-en="Ignore collision by object" data-zh="依物件忽略">個体無視</span></li>
+<li class="feat"><span data-ja="レイキャスト" data-en="Scene raycast" data-zh="射線檢測">レイキャスト</span></li>
+<li class="feat"><span data-ja="スイープ解決" data-en="Swept collision resolution" data-zh="掃掠解算">スイープ解決</span></li>
+<li class="feat"><span data-ja="接触可視化" data-en="Contact visualization (F11)" data-zh="接觸視覺化">接触可視化</span></li>
+<li class="feat"><span data-ja="物理統計" data-en="Live physics stats overlay" data-zh="物理統計">物理統計</span></li>
+<li class="feat"><span data-ja="コライダー生成 API" data-en="Create, resize, footprint, destroy" data-zh="碰撞體建立 API">コライダー生成 API</span></li>
+<li class="feat"><span data-ja="円柱ペア" data-en="Box, mesh, cylinder vs cylinder" data-zh="圓柱配對">円柱ペア</span></li>
+<li class="feat"><span data-ja="球と円柱" data-en="Sphere–cylinder closest point" data-zh="球對圓柱">球と円柱</span></li>
+<li class="feat"><span data-ja="カプセルと円柱" data-en="Capsule–cylinder three-point sample" data-zh="膠囊對圓柱">カプセルと円柱</span></li>
+<li class="feat is-partial"><span class="partial-dot" aria-hidden="true"></span><span data-ja="レイの種類は文書が一致しない" data-en="Raycast kinds are not defined in the manuals" data-zh="手冊沒有寫明射線種類">レイの種類は文書が一致しない</span><span class="visually-hidden" data-ja="一部" data-en="partial" data-zh="部分">一部</span></li></ul></details></li>
+<li class="feat-group" id="feat-d2"><h3 class="feat-head"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#grid"/></svg><span data-ja="2D" data-en="2D" data-zh="2D">2D</span><span class="feat-count">27</span></h3><ul class="feat-chips"><li class="feat"><span data-ja="2D 描画経路" data-en="Scene render path `&quot;2d&quot;`" data-zh="2D 繪製路徑">2D 描画経路</span></li>
+<li class="feat"><span data-ja="3D 作業の省略" data-en="2D skips models, shadows, sky, 3D particles, Effekseer, PostFX" data-zh="略過 3D 工作">3D 作業の省略</span></li>
+<li class="feat"><span data-ja="直交カメラ" data-en="Orthographic camera and view height" data-zh="正交相機">直交カメラ</span></li>
+<li class="feat"><span data-ja="投影の即時切替" data-en="Switch perspective and ortho directly" data-zh="投影直接切換">投影の即時切替</span></li>
+<li class="feat"><span data-ja="ワールドスプライト" data-en="World-space sprite renderer" data-zh="世界精靈">ワールドスプライト</span></li>
+<li class="feat"><span data-ja="親子とピボット" data-en="Parent transform, pivot, pixels per unit" data-zh="父子與樞紐">親子とピボット</span></li></ul><details class="feat-more"><summary><span data-ja="すべて表示" data-en="Show all" data-zh="顯示全部">すべて表示</span> +21</summary><ul class="feat-chips"><li class="feat"><span data-ja="色と反転" data-en="Tint and flip X/Y" data-zh="染色與翻面">色と反転</span></li>
+<li class="feat"><span data-ja="ソース矩形" data-en="Sprite source rectangle" data-zh="來源矩形">ソース矩形</span></li>
+<li class="feat"><span data-ja="描画順" data-en="Sorting layer, then order in layer" data-zh="繪製排序">描画順</span></li>
+<li class="feat is-partial"><span class="partial-dot" aria-hidden="true"></span><span data-ja="スプライトカリング" data-en="Ortho sprite view-rect culling" data-zh="精靈視域剔除">スプライトカリング</span><span class="visually-hidden" data-ja="一部" data-en="partial" data-zh="部分">一部</span></li>
+<li class="feat"><span data-ja="スプライトアニメ" data-en="Named clips, FPS, loop, autoplay" data-zh="精靈動畫器">スプライトアニメ</span></li>
+<li class="feat"><span data-ja="シート取り込み" data-en="Sheet-metadata JSON import" data-zh="表單匯入">シート取り込み</span></li>
+<li class="feat"><span data-ja="再生 API" data-en="Play, pause, stop, restart" data-zh="播放 API">再生 API</span></li>
+<li class="feat"><span data-ja="2D 編集視点" data-en="Toolbar 2D view, pan, zoom, frame" data-zh="2D 編輯視角">2D 編集視点</span></li>
+<li class="feat"><span data-ja="2D ギズモ" data-en="XY move, Z rotate, XY scale, undo" data-zh="2D 操作軸">2D ギズモ</span></li>
+<li class="feat"><span data-ja="画像ドロップ" data-en="Drop an image to spawn a sprite" data-zh="拖放貼圖">画像ドロップ</span></li>
+<li class="feat"><span data-ja="2D 新規プロジェクト" data-en="“2D Project” scaffold" data-zh="2D 新專案">2D 新規プロジェクト</span></li>
+<li class="feat"><span data-ja="Box2D" data-en="Optional Box2D world" data-zh="Box2D">Box2D</span></li>
+<li class="feat"><span data-ja="2D 剛体" data-en="Static, dynamic, kinematic" data-zh="2D 剛體">2D 剛体</span></li>
+<li class="feat"><span data-ja="箱と円" data-en="Box and circle colliders" data-zh="盒與圓">箱と円</span></li>
+<li class="feat"><span data-ja="2D トリガー" data-en="2D triggers and filter bits" data-zh="2D 觸發器">2D トリガー</span></li>
+<li class="feat"><span data-ja="60Hz 積分" data-en="60 Hz accumulator" data-zh="60Hz 積分">60Hz 積分</span></li>
+<li class="feat"><span data-ja="速度と移動" data-en="Set/get velocity, move position" data-zh="速度與移動">速度と移動</span></li>
+<li class="feat"><span data-ja="2D レイ" data-en="Masked 2D raycast" data-zh="2D 射線">2D レイ</span></li>
+<li class="feat"><span data-ja="2D イベント" data-en="Physics2D listener on the main thread" data-zh="2D 物理事件">2D イベント</span></li>
+<li class="feat"><span data-ja="2D デバッグ表示" data-en="F11 draws 2D boxes and circles" data-zh="2D 碰撞輪廓">2D デバッグ表示</span></li>
+<li class="feat"><span data-ja="俯瞰サンプル" data-en="Two top-down sample stages" data-zh="俯視範例">俯瞰サンプル</span></li></ul></details></li>
+<li class="feat-group" id="feat-editor"><h3 class="feat-head"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#window"/></svg><span data-ja="エディタ" data-en="Editor" data-zh="編輯器">エディタ</span><span class="feat-count">44</span></h3><ul class="feat-chips"><li class="feat"><span data-ja="ImGui エディタ" data-en="Full ImGui editor" data-zh="ImGui 編輯器">ImGui エディタ</span></li>
+<li class="feat"><span data-ja="表示切替" data-en="Toggle editor (F2)" data-zh="介面開關">表示切替</span></li>
+<li class="feat"><span data-ja="スタート画面" data-en="Branded start screen" data-zh="品牌起始畫面">スタート画面</span></li>
+<li class="feat"><span data-ja="階層パネル" data-en="Scene hierarchy" data-zh="階層面板">階層パネル</span></li>
+<li class="feat is-partial"><span class="partial-dot" aria-hidden="true"></span><span data-ja="インスペクタ" data-en="Inspector / Properties" data-zh="屬性檢視器">インスペクタ</span><span class="visually-hidden" data-ja="一部" data-en="partial" data-zh="部分">一部</span></li>
+<li class="feat"><span data-ja="コンポーネント追加" data-en="Searchable Add Component menu" data-zh="新增元件選單">コンポーネント追加</span></li></ul><details class="feat-more"><summary><span data-ja="すべて表示" data-en="Show all" data-zh="顯示全部">すべて表示</span> +38</summary><ul class="feat-chips"><li class="feat"><span data-ja="タグ編集" data-en="Pick, add, delete tags" data-zh="標籤編輯">タグ編集</span></li>
+<li class="feat"><span data-ja="Undo／Redo" data-en="Command-pattern undo, 100 deep" data-zh="復原／重做">Undo／Redo</span></li>
+<li class="feat"><span data-ja="変形の Undo" data-en="Transform undo" data-zh="變換復原">変形の Undo</span></li>
+<li class="feat"><span data-ja="部品編集の Undo" data-en="Component edit undo" data-zh="元件編輯復原">部品編集の Undo</span></li>
+<li class="feat"><span data-ja="生成と削除" data-en="Create and delete undo" data-zh="建立與刪除復原">生成と削除</span></li>
+<li class="feat"><span data-ja="改名とタグ" data-en="Rename and tag undo" data-zh="改名與標籤復原">改名とタグ</span></li>
+<li class="feat"><span data-ja="親子変更" data-en="Reparent undo" data-zh="改父層復原">親子変更</span></li>
+<li class="feat"><span data-ja="UI の Undo" data-en="UI create, delete, edit, reorder" data-zh="UI 復原">UI の Undo</span></li>
+<li class="feat"><span data-ja="プレハブドロップ" data-en="Prefab drag-drop undo" data-zh="預製體拖放復原">プレハブドロップ</span></li>
+<li class="feat"><span data-ja="トランスフォームギズモ" data-en="Transform gizmo" data-zh="變換操作軸">トランスフォームギズモ</span></li>
+<li class="feat"><span data-ja="選択ワイヤー" data-en="Selection wireframe" data-zh="選取線框">選択ワイヤー</span></li>
+<li class="feat"><span data-ja="ライトギズモ" data-en="Light gizmos" data-zh="光源操作提示">ライトギズモ</span></li>
+<li class="feat"><span data-ja="カメラギズモ" data-en="Camera gizmo" data-zh="相機操作軸">カメラギズモ</span></li>
+<li class="feat"><span data-ja="UI ギズモ" data-en="UI edit-mode gizmo" data-zh="UI 操作軸">UI ギズモ</span></li>
+<li class="feat"><span data-ja="UI 編集モード" data-en="Screen-canvas edit mode" data-zh="UI 編輯模式">UI 編集モード</span></li>
+<li class="feat"><span data-ja="固定アスペクト" data-en="Letterboxed 1920×1080 viewport" data-zh="固定長寬比">固定アスペクト</span></li>
+<li class="feat"><span data-ja="アセットブラウザ" data-en="Project asset browser" data-zh="資產瀏覽器">アセットブラウザ</span></li>
+<li class="feat"><span data-ja="グリッドとリスト" data-en="Grid / list and tile size" data-zh="格狀與列表">グリッドとリスト</span></li>
+<li class="feat"><span data-ja="検索と更新" data-en="Search and refresh" data-zh="搜尋與重新整理">検索と更新</span></li>
+<li class="feat"><span data-ja="右クリックメニュー" data-en="Context menus, including Set as Skybox" data-zh="右鍵選單">右クリックメニュー</span></li>
+<li class="feat"><span data-ja="ドラッグ＆ドロップ" data-en="Asset and prefab drag-drop" data-zh="拖放">ドラッグ＆ドロップ</span></li>
+<li class="feat"><span data-ja="資産操作" data-en="Rename, recycle-bin delete, new folder" data-zh="資產操作">資産操作</span></li>
+<li class="feat"><span data-ja="エクスプローラ表示" data-en="Show in Explorer" data-zh="在檔案總管顯示">エクスプローラ表示</span></li>
+<li class="feat"><span data-ja="参照検索" data-en="Find scene references" data-zh="場景引用搜尋">参照検索</span></li>
+<li class="feat"><span data-ja="プレハブパネル" data-en="Prefab browser panel" data-zh="預製體面板">プレハブパネル</span></li>
+<li class="feat"><span data-ja="再生ツールバー" data-en="Play / Stop (F3)" data-zh="播放工具列">再生ツールバー</span></li>
+<li class="feat"><span data-ja="ビューポート再生" data-en="Play in viewport" data-zh="視埠播放">ビューポート再生</span></li>
+<li class="feat"><span data-ja="全画面再生" data-en="Play fullscreen" data-zh="全螢幕播放">全画面再生</span></li>
+<li class="feat"><span data-ja="デバッグカメラ" data-en="Orbit / fly debug camera (F1)" data-zh="除錯相機">デバッグカメラ</span></li>
+<li class="feat"><span data-ja="シーン保存" data-en="Save scene (Ctrl+S)" data-zh="儲存場景">シーン保存</span></li>
+<li class="feat"><span data-ja="プロジェクト保存" data-en="Save project (Ctrl+Shift+S)" data-zh="儲存專案">プロジェクト保存</span></li>
+<li class="feat"><span data-ja="ダーティ警告" data-en="Unsaved-change warning" data-zh="未存檔警告">ダーティ警告</span></li>
+<li class="feat"><span data-ja="ファイルメニュー" data-en="New / Open / Save / Recent" data-zh="檔案選單">ファイルメニュー</span></li>
+<li class="feat"><span data-ja="テストベッドを開く" data-en="File → Open Testbed" data-zh="開啟測試台">テストベッドを開く</span></li>
+<li class="feat"><span data-ja="UI ズーム" data-en="ImGui zoom steps" data-zh="介面縮放">UI ズーム</span></li>
+<li class="feat"><span data-ja="プロジェクト設定" data-en="Gravity, buses, default scene" data-zh="專案設定">プロジェクト設定</span></li>
+<li class="feat"><span data-ja="状態ランプ" data-en="Scene and script status lights" data-zh="狀態燈">状態ランプ</span></li>
+<li class="feat"><span data-ja="コンテンツランプ" data-en="Content reload indicator" data-zh="內容狀態燈">コンテンツランプ</span></li></ul></details></li>
+<li class="feat-group" id="feat-scene"><h3 class="feat-head"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#package"/></svg><span data-ja="シーンとプレハブ" data-en="Scene and prefabs" data-zh="場景與預製體">シーンとプレハブ</span><span class="feat-count">24</span></h3><ul class="feat-chips"><li class="feat"><span data-ja="シーン JSON v4" data-en="Version-4 scene files" data-zh="場景 JSON 第 4 版">シーン JSON v4</span></li>
+<li class="feat"><span data-ja="設定ブロック" data-en="Execution, render, and camera settings" data-zh="設定區塊">設定ブロック</span></li>
+<li class="feat"><span data-ja="ノード木" data-en="Recursive node trees" data-zh="節點樹">ノード木</span></li>
+<li class="feat"><span data-ja="キャンバス埋め込み" data-en="Top-level `canvas` blob" data-zh="內嵌畫布">キャンバス埋め込み</span></li>
+<li class="feat"><span data-ja="3D／2D 経路" data-en="`renderPath` `&quot;3d&quot;` or `&quot;2d&quot;`" data-zh="3D／2D 路徑">3D／2D 経路</span></li>
+<li class="feat"><span data-ja="物理モード" data-en="`physicsMode` `3d` / `2d` / `none`" data-zh="物理模式">物理モード</span></li></ul><details class="feat-more"><summary><span data-ja="すべて表示" data-en="Show all" data-zh="顯示全部">すべて表示</span> +18</summary><ul class="feat-chips"><li class="feat"><span data-ja="登録コンポーネント" data-en="23 JSON component names" data-zh="已註冊元件">登録コンポーネント</span></li>
+<li class="feat"><span data-ja="プレハブ包み" data-en="Prefab file wrapper version 4" data-zh="預製體包裝">プレハブ包み</span></li>
+<li class="feat"><span data-ja="旧プレハブ" data-en="Bare-node prefabs still load" data-zh="舊版預製體">旧プレハブ</span></li>
+<li class="feat"><span data-ja="実行時生成" data-en="Instantiate and destroy prefabs" data-zh="執行期生成">実行時生成</span></li>
+<li class="feat"><span data-ja="破棄前コールバック" data-en="Before-destroy callback" data-zh="摧毀前回呼">破棄前コールバック</span></li>
+<li class="feat"><span data-ja="生成ルート" data-en="Runtime spawn root" data-zh="生成根節點">生成ルート</span></li>
+<li class="feat"><span data-ja="小数 3 桁" data-en="Floats stored to 3 decimal places" data-zh="浮點三位">小数 3 桁</span></li>
+<li class="feat"><span data-ja="旧コライダー読込" data-en="Old `Collider` + `colliderType` still loads" data-zh="舊碰撞體讀取">旧コライダー読込</span></li>
+<li class="feat"><span data-ja="プロジェクト JSON" data-en="`project.json` version 1" data-zh="專案 JSON">プロジェクト JSON</span></li>
+<li class="feat"><span data-ja="既定シーン" data-en="`default_scene.txt` kept in sync" data-zh="預設場景">既定シーン</span></li>
+<li class="feat"><span data-ja="最近のプロジェクト" data-en="Recent list, up to 12" data-zh="最近專案">最近のプロジェクト</span></li>
+<li class="feat"><span data-ja="コンテンツ監視" data-en="Editor watches project `rom/`" data-zh="內容熱重載">コンテンツ監視</span></li>
+<li class="feat"><span data-ja="テクスチャ差替" data-en="Stable texture ids, new pixels" data-zh="貼圖原位替換">テクスチャ差替</span></li>
+<li class="feat"><span data-ja="失敗時は現状維持" data-en="Bad JSON/model keeps the previous scene" data-zh="失敗保留舊場景">失敗時は現状維持</span></li>
+<li class="feat"><span data-ja="競合ダイアログ" data-en="Keep editor or load disk" data-zh="衝突對話框">競合ダイアログ</span></li>
+<li class="feat"><span data-ja="再生の再開" data-en="Successful Play reload restarts the scene" data-zh="播放中重載">再生の再開</span></li>
+<li class="feat is-partial"><span class="partial-dot" aria-hidden="true"></span><span data-ja="シーンファイル監視" data-en="Open-scene JSON monitor" data-zh="場景檔輪詢">シーンファイル監視</span><span class="visually-hidden" data-ja="一部" data-en="partial" data-zh="部分">一部</span></li>
+<li class="feat"><span data-ja="ランタイムは非監視" data-en="Shipping runtime does not watch scene files" data-zh="執行期不監看">ランタイムは非監視</span></li></ul></details></li>
+<li class="feat-group" id="feat-script"><h3 class="feat-head"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#refresh"/></svg><span data-ja="スクリプト" data-en="Scripting" data-zh="腳本">スクリプト</span><span class="feat-count">34</span></h3><ul class="feat-chips"><li class="feat"><span data-ja="C++ スクリプト" data-en="Gameplay scripts in C++" data-zh="C++ 腳本">C++ スクリプト</span></li>
+<li class="feat"><span data-ja="DLL 境界" data-en="`GameScripts.dll`" data-zh="DLL 邊界">DLL 境界</span></li>
+<li class="feat"><span data-ja="ホスト ABI" data-en="`ScriptRuntimeApi` version 48" data-zh="宿主 ABI">ホスト ABI</span></li>
+<li class="feat"><span data-ja="生成" data-en="OnCreate after deserialize" data-zh="建立">生成</span></li>
+<li class="feat"><span data-ja="更新" data-en="OnUpdate while active" data-zh="每幀更新">更新</span></li>
+<li class="feat"><span data-ja="破棄" data-en="OnDestroy" data-zh="摧毀">破棄</span></li></ul><details class="feat-more"><summary><span data-ja="すべて表示" data-en="Show all" data-zh="顯示全部">すべて表示</span> +28</summary><ul class="feat-chips"><li class="feat"><span data-ja="直列化" data-en="Serialize / Deserialize" data-zh="序列化">直列化</span></li>
+<li class="feat"><span data-ja="並列安全フラグ" data-en="`Update_IsParallelSafe` defaults false" data-zh="平行安全旗標">並列安全フラグ</span></li>
+<li class="feat"><span data-ja="登録マクロ" data-en="`REGISTER_SCRIPT`" data-zh="註冊巨集">登録マクロ</span></li>
+<li class="feat"><span data-ja="DLL と静的" data-en="DLL export table or static factory" data-zh="DLL 與靜態註冊">DLL と静的</span></li>
+<li class="feat"><span data-ja="編集可能フィールド" data-en="`SCRIPT_DECLARE_FIELD` macros" data-zh="可編輯欄位">編集可能フィールド</span></li>
+<li class="feat"><span data-ja="インスタンス上書き" data-en="JSON `properties`" data-zh="實例覆寫">インスタンス上書き</span></li>
+<li class="feat"><span data-ja="クラス名参照" data-en="`&quot;scriptClass&quot;` in JSON" data-zh="類別名稱引用">クラス名参照</span></li>
+<li class="feat"><span data-ja="スクリプト監視" data-en="DLL watcher and reload queue" data-zh="腳本監看">スクリプト監視</span></li>
+<li class="feat"><span data-ja="ホットリロード" data-en="Rebuild DLL, instances recreated" data-zh="熱重載">ホットリロード</span></li>
+<li class="feat"><span data-ja="UI スクリプト" data-en="`UICanvasScript` and `REGISTER_UI_SCRIPT`" data-zh="UI 腳本">UI スクリプト</span></li>
+<li class="feat"><span data-ja="クリック" data-en="UI OnClick" data-zh="點擊">クリック</span></li>
+<li class="feat"><span data-ja="ホスト関数表" data-en="`ScriptApi_*` wrappers" data-zh="宿主函式表">ホスト関数表</span></li>
+<li class="feat"><span data-ja="キーボード" data-en="State and edge trigger" data-zh="鍵盤">キーボード</span></li>
+<li class="feat"><span data-ja="マウス" data-en="Buttons, wheel, position" data-zh="滑鼠">マウス</span></li>
+<li class="feat"><span data-ja="マウス移動量" data-en="Mouse delta" data-zh="滑鼠位移">マウス移動量</span></li>
+<li class="feat"><span data-ja="キー詳細" data-en="Press, release, double-tap, long-press" data-zh="按鍵細節">キー詳細</span></li>
+<li class="feat"><span data-ja="コントローラ" data-en="XInput, pads 0–3" data-zh="手把">コントローラ</span></li>
+<li class="feat"><span data-ja="スティックとトリガ" data-en="Sticks, triggers, deadzones" data-zh="搖桿與扳機">スティックとトリガ</span></li>
+<li class="feat"><span data-ja="振動" data-en="Pad vibration" data-zh="震動">振動</span></li>
+<li class="feat"><span data-ja="シーンカメラ API" data-en="Set pose, activate node, matrices" data-zh="場景相機 API">シーンカメラ API</span></li>
+<li class="feat"><span data-ja="三人称カメラ" data-en="Follow camera, live pos/yaw pointers" data-zh="第三人稱相機">三人称カメラ</span></li>
+<li class="feat"><span data-ja="マグネット" data-en="Third-person magnet mode" data-zh="磁吸運鏡">マグネット</span></li>
+<li class="feat"><span data-ja="カメラ外傷" data-en="Camera trauma and speed factor" data-zh="鏡頭震動">カメラ外傷</span></li>
+<li class="feat"><span data-ja="一人称カメラ" data-en="First-person camera stack" data-zh="第一人稱相機">一人称カメラ</span></li>
+<li class="feat"><span data-ja="導入カメラ" data-en="Intro camera, not a JSON mode" data-zh="開場相機">導入カメラ</span></li>
+<li class="feat"><span data-ja="カメラブレンド" data-en="Director blend duration" data-zh="鏡頭混合">カメラブレンド</span></li>
+<li class="feat"><span data-ja="再生制御" data-en="Start/stop play, load scene file" data-zh="播放控制">再生制御</span></li>
+<li class="feat"><span data-ja="テクスチャ API" data-en="Load, size, white texture, release" data-zh="貼圖 API">テクスチャ API</span></li></ul></details></li>
+<li class="feat-group" id="feat-ui"><h3 class="feat-head"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#text"/></svg><span data-ja="UI" data-en="UI" data-zh="UI">UI</span><span class="feat-count">23</span></h3><ul class="feat-chips"><li class="feat"><span data-ja="スクリーンキャンバス" data-en="One screen-space canvas per scene" data-zh="螢幕畫布">スクリーンキャンバス</span></li>
+<li class="feat"><span data-ja="デザイン解像度" data-en="1920×1080, scaled to the viewport" data-zh="設計解析度">デザイン解像度</span></li>
+<li class="feat"><span data-ja="スプライト" data-en="UI sprite" data-zh="精靈">スプライト</span></li>
+<li class="feat"><span data-ja="テキスト" data-en="UI text" data-zh="文字">テキスト</span></li>
+<li class="feat"><span data-ja="ボタン" data-en="UI button" data-zh="按鈕">ボタン</span></li>
+<li class="feat"><span data-ja="バー" data-en="Health / progress bar" data-zh="計量條">バー</span></li></ul><details class="feat-more"><summary><span data-ja="すべて表示" data-en="Show all" data-zh="顯示全部">すべて表示</span> +17</summary><ul class="feat-chips"><li class="feat"><span data-ja="九アンカー" data-en="Nine UI anchors" data-zh="九個錨點">九アンカー</span></li>
+<li class="feat"><span data-ja="ピボット" data-en="UI pivot, including custom" data-zh="樞紐">ピボット</span></li>
+<li class="feat"><span data-ja="旧データ互換" data-en="Missing pivot keeps old layout" data-zh="舊場景相容">旧データ互換</span></li>
+<li class="feat"><span data-ja="放射状フィル" data-en="Radial 360 fill" data-zh="放射填充">放射状フィル</span></li>
+<li class="feat"><span data-ja="表示切替" data-en="Element visibility" data-zh="可見性">表示切替</span></li>
+<li class="feat"><span data-ja="テキスト更新" data-en="Set text from scripts" data-zh="文字更新">テキスト更新</span></li>
+<li class="feat"><span data-ja="要素の追加削除" data-en="Add sprite, remove by name" data-zh="元素增刪">要素の追加削除</span></li>
+<li class="feat"><span data-ja="重なり順" data-en="Move forward, back, front, back" data-zh="層級順序">重なり順</span></li>
+<li class="feat"><span data-ja="ボタン選択" data-en="Button navigation" data-zh="按鈕導覽">ボタン選択</span></li>
+<li class="feat"><span data-ja="三態テクスチャ" data-en="Normal, hover, pressed" data-zh="三態貼圖">三態テクスチャ</span></li>
+<li class="feat"><span data-ja="シーン読込ボタン" data-en="Built-in `LoadScene`" data-zh="載入場景按鈕">シーン読込ボタン</span></li>
+<li class="feat"><span data-ja="終了ボタン" data-en="Built-in `ExitGame`" data-zh="離開遊戲按鈕">終了ボタン</span></li>
+<li class="feat"><span data-ja="カウントダウン" data-en="Countdown and timer text" data-zh="倒數">カウントダウン</span></li>
+<li class="feat"><span data-ja="赤オーバーレイ" data-en="Red overlay and alpha" data-zh="紅色疊層">赤オーバーレイ</span></li>
+<li class="feat"><span data-ja="クリック音" data-en="UI click WAV from `project.json`" data-zh="點擊音效">クリック音</span></li>
+<li class="feat"><span data-ja="フォントアトラス" data-en="Font atlas, hot-reloaded in place" data-zh="字型圖集">フォントアトラス</span></li>
+<li class="feat is-partial"><span class="partial-dot" aria-hidden="true"></span><span data-ja="ドラッグ未確認" data-en="Pivot drag not hands-on accepted" data-zh="拖曳尚未目視">ドラッグ未確認</span><span class="visually-hidden" data-ja="一部" data-en="partial" data-zh="部分">一部</span></li></ul></details></li>
+<li class="feat-group" id="feat-audio"><h3 class="feat-head"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#speaker"/></svg><span data-ja="オーディオ" data-en="Audio" data-zh="音訊">オーディオ</span><span class="feat-count">13</span></h3><ul class="feat-chips"><li class="feat"><span data-ja="XAudio2" data-en="XAudio2 playback" data-zh="XAudio2">XAudio2</span></li>
+<li class="feat"><span data-ja="三次元音" data-en="X3DAudio spatial clips" data-zh="三維音效">三次元音</span></li>
+<li class="feat"><span data-ja="バス" data-en="BGM, SFX, Voice" data-zh="音軌匯流">バス</span></li>
+<li class="feat"><span data-ja="マスター音量" data-en="Master volume" data-zh="主音量">マスター音量</span></li>
+<li class="feat"><span data-ja="バス音量" data-en="Per-bus volumes in `project.json`" data-zh="匯流音量">バス音量</span></li>
+<li class="feat"><span data-ja="音コンポーネント" data-en="One clip on a node" data-zh="音訊元件">音コンポーネント</span></li></ul><details class="feat-more"><summary><span data-ja="すべて表示" data-en="Show all" data-zh="顯示全部">すべて表示</span> +7</summary><ul class="feat-chips"><li class="feat"><span data-ja="ループと自動再生" data-en="Loop and autoplay" data-zh="循環與自動播放">ループと自動再生</span></li>
+<li class="feat"><span data-ja="距離スケール" data-en="Spatial distance scale" data-zh="距離縮放">距離スケール</span></li>
+<li class="feat"><span data-ja="リスナー" data-en="Audio listener component" data-zh="聽者">リスナー</span></li>
+<li class="feat"><span data-ja="リスナー同期" data-en="Listener follows the camera" data-zh="聽者同步">リスナー同期</span></li>
+<li class="feat"><span data-ja="命令再生" data-en="AudioManager load/play/stop" data-zh="命令式播放">命令再生</span></li>
+<li class="feat"><span data-ja="三次元 SE" data-en="Positional SFX" data-zh="三維音效播放">三次元 SE</span></li>
+<li class="feat"><span data-ja="デバッグ表示" data-en="Audio debug draw" data-zh="音訊除錯">デバッグ表示</span></li></ul></details></li>
+<li class="feat-group" id="feat-assets"><h3 class="feat-head"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#download"/></svg><span data-ja="アセット" data-en="Assets" data-zh="資產">アセット</span><span class="feat-count">13</span></h3><ul class="feat-chips"><li class="feat"><span data-ja="rom 優先" data-en="Project `rom/`, then exe `resources/`" data-zh="rom 優先讀取">rom 優先</span></li>
+<li class="feat"><span data-ja="書き込みはプロジェクト" data-en="Writes never touch exe resources" data-zh="寫入只到專案">書き込みはプロジェクト</span></li>
+<li class="feat"><span data-ja="ジャンクションなし" data-en="No NTFS junctions" data-zh="不做連接點">ジャンクションなし</span></li>
+<li class="feat"><span data-ja="エンジン既定" data-en="Shaders, fonts, branding, primitives, IBL" data-zh="引擎預設資源">エンジン既定</span></li>
+<li class="feat"><span data-ja="時間分割プリロード" data-en="Time-sliced asset preload" data-zh="分幀預載">時間分割プリロード</span></li>
+<li class="feat"><span data-ja="起動ローディング" data-en="Boot screen with logo and progress" data-zh="啟動載入畫面">起動ローディング</span></li></ul><details class="feat-more"><summary><span data-ja="すべて表示" data-en="Show all" data-zh="顯示全部">すべて表示</span> +7</summary><ul class="feat-chips"><li class="feat"><span data-ja="エディタの重ね表示" data-en="Editor preload overlay" data-zh="編輯器預載覆層">エディタの重ね表示</span></li>
+<li class="feat"><span data-ja="シェーダコンパイル" data-en="HLSL compiled to `resources/shader/*.cso`" data-zh="著色器編譯">シェーダコンパイル</span></li>
+<li class="feat"><span data-ja="パノラマキャッシュ" data-en="PNG cooked under `rom/skybox/cache/`" data-zh="全景快取">パノラマキャッシュ</span></li>
+<li class="feat"><span data-ja="スクリプト再読込" data-en="DLL reload queue" data-zh="腳本熱重載">スクリプト再読込</span></li>
+<li class="feat"><span data-ja="内容の再読込" data-en="Editor content reconciliation" data-zh="內容熱重載">内容の再読込</span></li>
+<li class="feat"><span data-ja="500ms 安定" data-en="Batch must sit unchanged for 500 ms" data-zh="500 毫秒穩定">500ms 安定</span></li>
+<li class="feat"><span data-ja="再読込ログ" data-en="`content_hot_reload.log`, rotate at 1 MiB" data-zh="熱重載日誌">再読込ログ</span></li></ul></details></li>
+<li class="feat-group" id="feat-tools"><h3 class="feat-head"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#link"/></svg><span data-ja="テスト" data-en="Tools and testing" data-zh="測試">テスト</span><span class="feat-count">21</span></h3><ul class="feat-chips"><li class="feat"><span data-ja="名前付きパイプ" data-en="Debug named-pipe test bridge" data-zh="具名管道">名前付きパイプ</span></li>
+<li class="feat"><span data-ja="ランタイムとエディタ" data-en="Runtime and Editor Play hosts" data-zh="執行期與編輯器">ランタイムとエディタ</span></li>
+<li class="feat"><span data-ja="Release では無効" data-en="Compiled out of Release" data-zh="Release 編譯移除">Release では無効</span></li>
+<li class="feat"><span data-ja="オプトイン" data-en="`IVY_RUNTIME_TEST_BRIDGE=1` plus run id" data-zh="選擇啟用">オプトイン</span></li>
+<li class="feat"><span data-ja="プロトコル v1" data-en="UTF-8 JSON, LF frames, protocol 1" data-zh="協定第 1 版">プロトコル v1</span></li>
+<li class="feat"><span data-ja="入力注入" data-en="Keyboard, mouse, controller verbs" data-zh="輸入注入">入力注入</span></li></ul><details class="feat-more"><summary><span data-ja="すべて表示" data-en="Show all" data-zh="顯示全部">すべて表示</span> +15</summary><ul class="feat-chips"><li class="feat"><span data-ja="観察と一覧" data-en="Observe and list objects" data-zh="觀察與列表">観察と一覧</span></li>
+<li class="feat"><span data-ja="一時停止" data-en="Pause, resume, step" data-zh="暫停續行步進">一時停止</span></li>
+<li class="feat"><span data-ja="性能統計" data-en="Perf window, ring of 600" data-zh="效能統計">性能統計</span></li>
+<li class="feat"><span data-ja="カリング統計" data-en="Frustum, shadow, and sprite cull stats" data-zh="剔除計數">カリング統計</span></li>
+<li class="feat"><span data-ja="PNG キャプチャ" data-en="Viewport-cropped capture" data-zh="PNG 擷取">PNG キャプチャ</span></li>
+<li class="feat"><span data-ja="シーン操作" data-en="Reset, transform, velocity, impulses" data-zh="場景操作">シーン操作</span></li>
+<li class="feat"><span data-ja="設定の白名簿" data-en="Three culling toggles via `set_setting`" data-zh="設定白名單">設定の白名簿</span></li>
+<li class="feat"><span data-ja="再生の出入り" data-en="Editor `play_enter` / `play_exit`" data-zh="進出播放">再生の出入り</span></li>
+<li class="feat"><span data-ja="エディタでシーン読込" data-en="Editor `load_scene`" data-zh="編輯器載入場景">エディタでシーン読込</span></li>
+<li class="feat"><span data-ja="シナリオ JSON" data-en="Versioned bridge scenarios" data-zh="情境 JSON">シナリオ JSON</span></li>
+<li class="feat"><span data-ja="Python クライアント" data-en="`tools/runtime_test_client.py`" data-zh="Python 客戶端">Python クライアント</span></li>
+<li class="feat"><span data-ja="角度の受入試験" data-en="Torque, rolling, reset determinism" data-zh="角向驗收">角度の受入試験</span></li>
+<li class="feat"><span data-ja="14 ボタン" data-en="Controller probe of all 14 buttons" data-zh="14 個按鍵">14 ボタン</span></li>
+<li class="feat"><span data-ja="Linux 単体試験" data-en="Offline protocol and physics checks" data-zh="Linux 單元測試">Linux 単体試験</span></li>
+<li class="feat is-partial"><span class="partial-dot" aria-hidden="true"></span><span data-ja="ライブパイプ未完" data-en="Live Windows mouse-pipe check still pending" data-zh="實機管道未完成">ライブパイプ未完</span><span class="visually-hidden" data-ja="一部" data-en="partial" data-zh="部分">一部</span></li></ul></details></li>
+<li class="feat-group" id="feat-agent"><h3 class="feat-head"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#ai"/></svg><span data-ja="エージェント" data-en="AI-agent workflow" data-zh="代理流程">エージェント</span><span class="feat-count">8</span></h3><ul class="feat-chips"><li class="feat"><span data-ja="エージェント文書" data-en="English docs pack for game repos" data-zh="代理文件包">エージェント文書</span></li>
+<li class="feat"><span data-ja="API 印" data-en="`` `api:` `` symbols checked against headers" data-zh="API 標記">API 印</span></li>
+<li class="feat"><span data-ja="モジュール印" data-en="`` `mod:` `` header-stem markers" data-zh="模組標記">モジュール印</span></li>
+<li class="feat"><span data-ja="ドリフト検査" data-en="`tools/agent_docs_check.py`" data-zh="漂移檢查">ドリフト検査</span></li>
+<li class="feat"><span data-ja="文書の書き出し" data-en="`tools/export_agent_docs.py`" data-zh="文件匯出">文書の書き出し</span></li>
+<li class="feat"><span data-ja="コミット印" data-en="Export writes the engine git hash" data-zh="提交戳記">コミット印</span></li></ul><details class="feat-more"><summary><span data-ja="すべて表示" data-en="Show all" data-zh="顯示全部">すべて表示</span> +2</summary><ul class="feat-chips"><li class="feat"><span data-ja="管理セクション" data-en="Idempotent block in `AGENTS.md` / `CLAUDE.md`" data-zh="受管理區段">管理セクション</span></li>
+<li class="feat"><span data-ja="API 目録の再生成" data-en="`tools/extract_api_headers.py`" data-zh="重建 API 目錄">API 目録の再生成</span></li></ul></details></li>
+<li class="feat-group" id="feat-build"><h3 class="feat-head"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#box"/></svg><span data-ja="ビルド" data-en="Build" data-zh="建置">ビルド</span><span class="feat-count">19</span></h3><ul class="feat-chips"><li class="feat"><span data-ja="Windows 専用" data-en="Windows only" data-zh="僅 Windows">Windows 専用</span></li>
+<li class="feat"><span data-ja="C++17" data-en="C++17" data-zh="C++17">C++17</span></li>
+<li class="feat"><span data-ja="Win32 と D3D11" data-en="Win32 and Direct3D 11" data-zh="Win32 與 D3D11">Win32 と D3D11</span></li>
+<li class="feat"><span data-ja="エディタターゲット" data-en="`IvyEngine.exe`" data-zh="編輯器目標">エディタターゲット</span></li>
+<li class="feat"><span data-ja="ランタイムターゲット" data-en="`IvyEngineRuntime.exe` (`GAME_RUNTIME`)" data-zh="執行期目標">ランタイムターゲット</span></li>
+<li class="feat"><span data-ja="スクリプトは別" data-en="`GameScripts` is not in the engine solution" data-zh="腳本另建">スクリプトは別</span></li></ul><details class="feat-more"><summary><span data-ja="すべて表示" data-en="Show all" data-zh="顯示全部">すべて表示</span> +13</summary><ul class="feat-chips"><li class="feat"><span data-ja="x64" data-en="Prefer x64 Debug and Release" data-zh="x64">x64</span></li>
+<li class="feat"><span data-ja="静的 CRT" data-en="Debug `/MTd`, Release `/MT`" data-zh="靜態 CRT">静的 CRT</span></li>
+<li class="feat"><span data-ja="再頒布なし" data-en="Release runtime needs no VC++ redist" data-zh="免 VC++ 可轉散發">再頒布なし</span></li>
+<li class="feat"><span data-ja="全体最適化" data-en="Release `WholeProgramOptimization`" data-zh="全程式最佳化">全体最適化</span></li>
+<li class="feat"><span data-ja="ワンクリックパッケージ" data-en="File → Build Current Project" data-zh="一鍵打包">ワンクリックパッケージ</span></li>
+<li class="feat"><span data-ja="ゲーム名の exe" data-en="`&lt;GameName&gt;.exe` plus assets" data-zh="遊戲名稱 exe">ゲーム名の exe</span></li>
+<li class="feat"><span data-ja="ブランドの上書き" data-en="Engine branding, content may override" data-zh="品牌可覆寫">ブランドの上書き</span></li>
+<li class="feat"><span data-ja="deploy.bat" data-en="Batch deploy still named `IvyEngineRuntime.exe`" data-zh="deploy.bat">deploy.bat</span></li>
+<li class="feat"><span data-ja="FBX DLL" data-en="`libfbxsdk.dll` beside the package" data-zh="FBX DLL">FBX DLL</span></li>
+<li class="feat"><span data-ja="外部テンプレート" data-en="`external_content_template/`" data-zh="外部範本">外部テンプレート</span></li>
+<li class="feat"><span data-ja="テストベッド" data-en="In-repo `testbed/` content project" data-zh="測試台">テストベッド</span></li>
+<li class="feat is-partial"><span class="partial-dot" aria-hidden="true"></span><span data-ja="ツールセット v145" data-en="VS 18 / 2026 toolset, not v143" data-zh="工具集 v145">ツールセット v145</span><span class="visually-hidden" data-ja="一部" data-en="partial" data-zh="部分">一部</span></li>
+<li class="feat is-partial"><span class="partial-dot" aria-hidden="true"></span><span data-ja="文書は VS2022" data-en="README and user guide still say VS 2022" data-zh="文件仍寫 VS2022">文書は VS2022</span><span class="visually-hidden" data-ja="一部" data-en="partial" data-zh="部分">一部</span></li></ul></details></li>
+        </ul>
+      </div>
+    </section>
+    <section class="section" id="limits" aria-labelledby="limits-title">
+      <div class="wrap">
+        <details class="feat-more">
+          <summary><span id="limits-title" data-ja="既知の制限" data-en="Known limitations" data-zh="已知限制">既知の制限</span></summary>
+          <ul class="feat-chips"><li class="feat"><span data-ja="ネットワークなし" data-en="No networking" data-zh="無網路">ネットワークなし</span></li>
+<li class="feat"><span data-ja="キャッシュ非 LRU" data-en="No LRU or refcount on that cache" data-zh="快取無 LRU">キャッシュ非 LRU</span></li>
+<li class="feat"><span data-ja="距離カリングなし" data-en="No distance cull or LOD" data-zh="無距離剔除">距離カリングなし</span></li>
+<li class="feat"><span data-ja="オクルージョンなし" data-en="No occlusion culling" data-zh="無遮擋剔除">オクルージョンなし</span></li>
+<li class="feat"><span data-ja="メッシュは三角形" data-en="Concave mesh is not a solid volume" data-zh="網格逐三角形">メッシュは三角形</span></li>
+<li class="feat"><span data-ja="一体につき一つ" data-en="One 3D collider per object" data-zh="每物件一個">一体につき一つ</span></li>
+<li class="feat"><span data-ja="Stay なし" data-en="No OnTriggerStay" data-zh="無停留事件">Stay なし</span></li>
+<li class="feat"><span data-ja="箱は線形摩擦" data-en="Box friction does not roll the crate" data-zh="箱子僅線性摩擦">箱は線形摩擦</span></li>
+<li class="feat"><span data-ja="運動学メッシュ" data-en="Most mesh pairs skip kinematic targets" data-zh="運動學網格">運動学メッシュ</span></li>
+<li class="feat"><span data-ja="ジョイントなし" data-en="No joints exposed" data-zh="無關節">ジョイントなし</span></li>
+<li class="feat"><span data-ja="任意多角形なし" data-en="No arbitrary polygons" data-zh="無任意多邊形">任意多角形なし</span></li>
+<li class="feat"><span data-ja="再生中の縮尺固定" data-en="No scale or shape edits while playing" data-zh="播放中不可改縮放">再生中の縮尺固定</span></li>
+<li class="feat"><span data-ja="動的はルートのみ" data-en="Dynamic/kinematic must be a semantic root" data-zh="動態須為根節點">動的はルートのみ</span></li>
+<li class="feat"><span data-ja="タイルマップなし" data-en="No tilemap in the first 2D delivery" data-zh="無 Tilemap">タイルマップなし</span></li>
+<li class="feat"><span data-ja="バッチなし" data-en="Sprite batching not in v1" data-zh="無精靈批次">バッチなし</span></li>
+<li class="feat"><span data-ja="2D/3D 混合なし" data-en="Mixed 2D/3D not a v1 contract" data-zh="無 2D／3D 混合">2D/3D 混合なし</span></li>
+<li class="feat"><span data-ja="ギズモ線の太さ" data-en="ImGuizmo polyline argument order" data-zh="操作軸線寬">ギズモ線の太さ</span></li>
+<li class="feat"><span data-ja="インスペクタ再設計" data-en="Properties panel redesign still open" data-zh="屬性面板重做">インスペクタ再設計</span></li>
+<li class="feat"><span data-ja="ワールド空間 UI" data-en="No world-space UI editor" data-zh="世界空間 UI">ワールド空間 UI</span></li>
+<li class="feat"><span data-ja="リスナー欄なし" data-en="Listener v1 has no editable fields" data-zh="聽者無欄位">リスナー欄なし</span></li>
+<li class="feat"><span data-ja="削除は赤ランプ" data-en="Any `rom/` delete raises the failure light" data-zh="刪除即紅燈">削除は赤ランプ</span></li>
+<li class="feat"><span data-ja="シェーダは対象外" data-en="Shader and engine-API edits need a rebuild" data-zh="著色器不熱重載">シェーダは対象外</span></li>
+<li class="feat"><span data-ja="既定資源は再起動" data-en="Changing engine defaults needs an editor restart" data-zh="預設資源需重啟">既定資源は再起動</span></li>
+<li class="feat"><span data-ja="実行時は未対応" data-en="Runtime rejects `load_scene` and `play_enter`" data-zh="執行期不支援">実行時は未対応</span></li>
+<li class="feat"><span data-ja="連続力は未実装" data-en="No multi-frame `apply_force` / `apply_torque`" data-zh="連續施力未做">連続力は未実装</span></li>
+<li class="feat"><span data-ja="画面座標変換なし" data-en="No world-to-screen mouse helper" data-zh="無世界轉螢幕">画面座標変換なし</span></li>
+<li class="feat"><span data-ja="注入は量子化しない" data-en="Injected axes skip XInput quantization" data-zh="注入不經量化">注入は量子化しない</span></li>
+<li class="feat"><span data-ja="MCP なし" data-en="No MCP server for this pack" data-zh="無 MCP">MCP なし</span></li>
+<li class="feat"><span data-ja="Linux では未検証" data-en="Agents must not claim a Windows D3D pass" data-zh="Linux 不能驗證 D3D">Linux では未検証</span></li>
+<li class="feat"><span data-ja="最適化フラグ未記載" data-en="Do not claim a specific `/O` flag" data-zh="未寫最佳化旗標">最適化フラグ未記載</span></li>
+<li class="feat"><span data-ja="自作ソルバ（PhysX ではない）" data-en="Custom solver, not PhysX" data-zh="自製求解器（不是 PhysX）">自作ソルバ（PhysX ではない）</span></li>
+<li class="feat"><span data-ja="NavMesh・行動木・EQS なし" data-en="No NavMesh, behavior tree, or EQS" data-zh="無 NavMesh、行為樹、EQS">NavMesh・行動木・EQS なし</span></li>
+<li class="feat"><span data-ja="ビルボード・粒子・画面UIはカリング外" data-en="Billboards, particles, and screen UI are not culled" data-zh="公告板、粒子、螢幕 UI 不在剔除內">ビルボード・粒子・画面UIはカリング外</span></li>
+<li class="feat"><span data-ja="GPUスキンは位置のみ" data-en="GPU skin is positions only" data-zh="GPU 蒙皮只含位置">GPUスキンは位置のみ</span></li>
+<li class="feat"><span data-ja="透視カメラはスプライトをカリングしない" data-en="Perspective cameras do not sprite-cull" data-zh="透視相機不剔除精靈">透視カメラはスプライトをカリングしない</span></li>
+<li class="feat"><span data-ja="カメラ別アスペクト欄なし" data-en="No per-camera aspect field" data-zh="無每相機長寬比欄位">カメラ別アスペクト欄なし</span></li></ul>
+        </details>
+      </div>
+    </section>
+    <section class="section" id="credits" aria-labelledby="credits-title">
+      <div class="wrap">
+        <h2 class="section-title" id="credits-title" data-ja="ライブラリ" data-en="Libraries" data-zh="函式庫">ライブラリ</h2>
+        <ul class="lib-row">
+          <li>Direct3D 11</li><li>DirectXMath</li><li>Win32</li><li>XInput</li><li>XAudio2</li><li>X3DAudio</li><li>WIC</li><li>DirectXTex</li><li>FBX SDK</li><li>Dear ImGui 1.92.5</li><li>ImGuizmo</li><li>nlohmann/json</li><li>Effekseer</li><li>Box2D 3.1.1</li>
+        </ul>
+      </div>
+    </section>
     <section class="section" id="ivy-sheet" aria-labelledby="ivy-sheet-title">
       <div class="wrap">
         <h2 class="section-title" id="ivy-sheet-title" data-ja="詳細" data-en="Details" data-zh="詳情">詳細</h2>
         <dl class="fact-list">
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#leaf"/></svg><span data-ja="作品名" data-en="Title" data-zh="作品名稱">作品名</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#leaf"/></svg><span data-ja="作品名" data-en="Title" data-zh="作品名稱">作品名</span></dt>
             <dd data-ja="Ivy Engine" data-en="Ivy Engine" data-zh="Ivy Engine">Ivy Engine</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#grid"/></svg><span data-ja="ジャンル" data-en="Genre" data-zh="類型">ジャンル</span></dt>
-            <dd data-ja="自作ゲームエンジン" data-en="Custom game engine" data-zh="自製遊戲引擎">自作ゲームエンジン</dd>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#cal"/></svg><span data-ja="制作期間" data-en="Period" data-zh="製作期間">制作期間</span></dt>
+            <dd><span>2026/4–</span> <span data-ja="起点は 2025/10 のフレームワーク。" data-en="Origin is the Oct 2025 framework." data-zh="起點是 2025/10 的框架。">起点は 2025/10 のフレームワーク。</span></dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#text"/></svg><span data-ja="概要" data-en="Summary" data-zh="簡介">概要</span></dt>
-            <dd data-ja="Scrap Burst のフレームワーク（2025/10）を 2026/4 に改称。一人で継続。C++ / Direct3D 11。エディタとランタイムを分離。" data-en="Scrap Burst's framework (Oct 2025), rebranded in Apr 2026. Solo and ongoing. C++ / Direct3D 11. Editor and runtime are separate." data-zh="Scrap Burst 的框架（2025/10）於 2026/4 改稱。個人持續。C++ / Direct3D 11。編輯器與運行時分開。">Scrap Burst のフレームワーク（2025/10）を 2026/4 に改称。一人で継続。C++ / Direct3D 11。エディタとランタイムを分離。</dd>
-          </div>
-          <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#branch"/></svg><span data-ja="設計目標" data-en="Design goals" data-zh="設計目標">設計目標</span></dt>
-            <dd data-ja="エディタとランタイムが本体を共有する。ゲームは独立コンテンツ（JSON、ECS、C++ DLL）。" data-en="Editor and runtime share the engine. Games are separate content (JSON, ECS, C++ DLL)." data-zh="編輯器與運行時共用引擎本體。遊戲是獨立內容（JSON、ECS、C++ DLL）。">エディタとランタイムが本体を共有する。ゲームは独立コンテンツ（JSON、ECS、C++ DLL）。</dd>
-          </div>
-          <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#cal"/></svg><span data-ja="制作期間" data-en="Period" data-zh="製作期間">制作期間</span></dt>
-            <dd><span>2026/4–</span></dd>
-          </div>
-          <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#people"/></svg><span data-ja="制作人数・体制" data-en="Team" data-zh="人數與編制">制作人数・体制</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#people"/></svg><span data-ja="制作人数・体制" data-en="Team" data-zh="人數與編制">制作人数・体制</span></dt>
             <dd data-ja="個人、1人。個人制作。" data-en="Solo, 1 person. Personal." data-zh="個人，1 人。個人製作。">個人、1人。個人制作。</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#person"/></svg><span data-ja="担当箇所" data-en="Owned work" data-zh="負責部分">担当箇所</span></dt>
-            <dd data-ja="個人。エンジン全体。起点は 2025/10 のフレームワーク。" data-en="Solo. The whole engine. Origin is the Oct 2025 framework." data-zh="個人。整個引擎。起點是 2025/10 的框架。">個人。エンジン全体。起点は 2025/10 のフレームワーク。</dd>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#person"/></svg><span data-ja="担当箇所" data-en="Owned work" data-zh="負責部分">担当箇所</span></dt>
+            <dd data-ja="個人。エンジン全体。" data-en="Solo. The whole engine." data-zh="個人。整個引擎。">個人。エンジン全体。</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#cpu"/></svg><span data-ja="使用技術" data-en="Tech" data-zh="使用技術">使用技術</span></dt>
-            <dd data-ja="C++、Direct3D 11。サブシステムの一覧は上。" data-en="C++ and Direct3D 11. The subsystem list is above." data-zh="C++、Direct3D 11。子系統列表見上方。">C++、Direct3D 11。サブシステムの一覧は上。</dd>
-          </div>
-          <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#window"/></svg><span data-ja="エディタ" data-en="Editor" data-zh="編輯器">エディタ</span></dt>
-            <dd data-ja="ImGui エディタ、Play モード、ワンクリック /MT パッケージ。" data-en="ImGui editor, Play mode, one-click /MT packaging." data-zh="ImGui 編輯器、Play 模式、一鍵 /MT 封裝。">ImGui エディタ、Play モード、ワンクリック /MT パッケージ。</dd>
-          </div>
-          <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#split"/></svg><span data-ja="自作と外部の境界" data-en="Custom vs third-party" data-zh="自製與第三方的界線">自作と外部の境界</span></dt>
-            <dd data-ja="本体は自作。第三者ライブラリと基盤は下のクレジット。" data-en="The engine itself is custom. Third-party libraries and platform APIs are in the credits below." data-zh="本體為自製。第三方函式庫與平台見下方鳴謝。">本体は自作。第三者ライブラリと基盤は下のクレジット。</dd>
-          </div>
-          <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#play"/></svg><span data-ja="動作環境・操作方法" data-en="Platform and controls" data-zh="運行環境與操作">動作環境・操作方法</span></dt>
-            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="分かっている操作は 2D ビュー（F11）と Play モード（F3）。ほかは未記入。" data-en="Known controls: 2D view (F11) and Play mode (F3). The rest is not filled in yet." data-zh="已知操作為 2D 視圖（F11）與 Play 模式（F3）。其餘尚未填寫。">分かっている操作は 2D ビュー（F11）と Play モード（F3）。ほかは未記入。</span></p></dd>
-          </div>
-          <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#film"/></svg><span data-ja="プレイ動画" data-en="Play video" data-zh="遊戲影片">プレイ動画</span></dt>
-            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="1〜3分のプレイ動画。" data-en="A 1–3 minute play video." data-zh="1 至 3 分鐘的遊戲影片。">1〜3分のプレイ動画。</span></p></dd>
-          </div>
-          <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#image"/></svg><span data-ja="スクリーンショット" data-en="Screenshots" data-zh="截圖">スクリーンショット</span></dt>
-            <dd data-ja="上の3枠。2D ビュー、Play モード、ランタイム起動画面。" data-en="The three frames above: 2D view, Play mode, and the runtime boot screen." data-zh="上方三個框：2D 視圖、Play 模式、運行時啟動畫面。">上の3枠。2D ビュー、Play モード、ランタイム起動画面。</dd>
-          </div>
-          <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#branch"/></svg><span data-ja="工夫した点 / 設計の理由" data-en="Decisions" data-zh="設計上的考量">工夫した点 / 設計の理由</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#branch"/></svg><span data-ja="工夫した点 / 設計の理由" data-en="Decisions" data-zh="設計上的考量">工夫した点 / 設計の理由</span></dt>
             <dd><ul class="note-list">
               <li data-ja="ゲームと一緒にエンジンを進める。" data-en="Develop the engine together with a game." data-zh="引擎與遊戲一起推進。">ゲームと一緒にエンジンを進める。</li>
               <li data-ja="ゲーム側で足したいものから、不足が見える。" data-en="What you want to add to the game shows what is missing." data-zh="想加進遊戲的東西，會露出引擎的不足。">ゲーム側で足したいものから、不足が見える。</li>
             </ul></dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#peak"/></svg><span data-ja="苦労した点と解決" data-en="Difficulties" data-zh="困難與解決">苦労した点と解決</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#peak"/></svg><span data-ja="苦労した点と解決" data-en="Difficulties" data-zh="困難與解決">苦労した点と解決</span></dt>
             <dd><ul class="note-list">
               <li data-ja="機能をどの層に置くか。基盤、スクリプト、固有機能。" data-en="Which layer a feature belongs to: base, script, or an engine-specific feature." data-zh="功能放在哪一層：底層、腳本，或專用功能。">機能をどの層に置くか。基盤、スクリプト、固有機能。</li>
             </ul></dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#learn"/></svg><span data-ja="学んだこと" data-en="What I learned" data-zh="學到的事">学んだこと</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#learn"/></svg><span data-ja="学んだこと" data-en="What I learned" data-zh="學到的事">学んだこと</span></dt>
             <dd><ul class="note-list">
               <li data-ja="ゲームと同時に進めた方が、エンジンの不足が分かる。" data-en="Developing the game at the same time makes the engine's gaps clear." data-zh="和遊戲同時做，才清楚引擎缺什麼。">ゲームと同時に進めた方が、エンジンの不足が分かる。</li>
             </ul></dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#flag"/></svg><span data-ja="既知の不具合・今後の改善" data-en="Known issues" data-zh="已知問題與日後改善">既知の不具合・今後の改善</span></dt>
-            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="未記入。" data-en="Not filled in yet." data-zh="尚未填寫。">未記入。</span></p></dd>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#cpu"/></svg><span data-ja="使用技術" data-en="Tech" data-zh="使用技術">使用技術</span></dt>
+            <dd>C++17、Direct3D 11、DirectXMath</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#book"/></svg><span data-ja="クレジット" data-en="Credits" data-zh="鳴謝">クレジット</span></dt>
-            <dd data-ja="自作。利用ライブラリ: ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。基盤: D3D11、XAudio2、XInput。" data-en="Custom engine. Libraries: ImGui, ImGuizmo, Box2D 3.1.1, Effekseer, FBX SDK, DirectXTex, nlohmann/json. Platform: D3D11, XAudio2, XInput." data-zh="自製。使用的函式庫：ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。平台：D3D11、XAudio2、XInput。">自作。利用ライブラリ: ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。基盤: D3D11、XAudio2、XInput。</dd>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#image"/></svg><span data-ja="スクリーンショット" data-en="Screenshots" data-zh="截圖">スクリーンショット</span></dt>
+            <dd data-ja="上の3枠。2D ビュー、Play モード、ランタイム起動画面。" data-en="The three frames above: 2D view, Play mode, and the runtime boot screen." data-zh="上方三個框：2D 視圖、Play 模式、運行時啟動畫面。">上の3枠。2D ビュー、Play モード、ランタイム起動画面。</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#download"/></svg><span data-ja="ダウンロード" data-en="Download" data-zh="下載">ダウンロード</span></dt>
-            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="実行ファイル・ソースは未掲載。リポジトリは非公開。" data-en="Executable and source are not posted. The repository is private." data-zh="執行檔與源碼尚未公開。儲存庫為私人。">実行ファイル・ソースは未掲載。リポジトリは非公開。</span></p></dd>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#film"/></svg><span data-ja="プレイ動画" data-en="Play video" data-zh="遊戲影片">プレイ動画</span></dt>
+            <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="1〜3分のプレイ動画。" data-en="A 1–3 minute play video." data-zh="1 至 3 分鐘的遊戲影片。">1〜3分のプレイ動画。</span></p></dd>
           </div>
         </dl>
       </div>
     </section>
-
     <section class="section" id="games" aria-labelledby="games-title">
       <div class="wrap">
         <h2 class="section-title" id="games-title" data-i18n="games-title">Ivy Engine で作ったゲーム</h2>
@@ -384,15 +703,15 @@
         <h2 class="section-title" id="about-title" data-i18n="about-title">プロフィール</h2>
         <dl class="about-list">
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#person"/></svg><span data-i18n="about-name-l">名前</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#person"/></svg><span data-i18n="about-name-l">名前</span></dt>
             <dd data-i18n="about-name-v">楊 子悠（ヨウ シユ）</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#flag"/></svg><span data-i18n="about-role-l">志望職種</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#flag"/></svg><span data-i18n="about-role-l">志望職種</span></dt>
             <dd data-i18n="about-role-v">エンジンプログラマー（ゲームも可）</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#text"/></svg><span data-i18n="about-lang-l">言語</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#text"/></svg><span data-i18n="about-lang-l">言語</span></dt>
             <dd>
               <ul class="lang-list">
                 <li data-ja="広東語（母語）" data-en="Cantonese (first language)" data-zh="廣東話（母語）">広東語（母語）</li>
@@ -403,15 +722,15 @@
             </dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#flag"/></svg><span data-i18n="about-loc-l">所在地</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#flag"/></svg><span data-i18n="about-loc-l">所在地</span></dt>
             <dd data-i18n="about-loc-v">プレースホルダ</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#school"/></svg><span data-i18n="about-edu-l">経歴</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#school"/></svg><span data-i18n="about-edu-l">経歴</span></dt>
             <dd data-i18n="about-edu-v">プレースホルダ</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113f#mail"/></svg><span data-i18n="about-contact-l">連絡先</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113g#mail"/></svg><span data-i18n="about-contact-l">連絡先</span></dt>
             <dd><a href="mailto:terryyeung234@gmail.com">terryyeung234@gmail.com</a></dd>
           </div>
         </dl>
@@ -424,7 +743,7 @@
       <p data-i18n="footer-folio">映像・ビルド・一部の項目はプレースホルダ。</p>
     </div>
   </footer>
-  <script src="../../../js/i18n.js?v=20261113f"></script>
-  <script src="../../../js/editor-demo.js?v=20261113f"></script>
+  <script src="../../../js/i18n.js?v=20261113g"></script>
+  <script src="../../../js/editor-demo.js?v=20261113g"></script>
 </body>
 </html>

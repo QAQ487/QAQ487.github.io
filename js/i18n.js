@@ -40,8 +40,8 @@
     "doc-title-folio": { ja: "作品集 — 楊 子悠（ヨウ シユ）", en: "Portfolio — YEUNG Tsz Yau (Terry)" },
     "hero-title": { ja: "Ivy Engine", en: "Ivy Engine" },
     "hero-lede": {
-      ja: "Scrap Burst のフレームワークを 2026/4 に改称。一人で継続。C++ / Direct3D 11。",
-      en: "Scrap Burst's framework, rebranded in Apr 2026. Solo and ongoing. C++ / Direct3D 11."
+      ja: "一人でゼロから書いた C++／Direct3D 11 ゲームエンジン。ImGui エディタと、同じシーンを動かす 3D／2D ランタイムを持つ。",
+      en: "A from-scratch C++ / Direct3D 11 game engine with an ImGui editor and a shared 3D/2D scene loop, written by one developer."
     },
     "ghost-title": { ja: "Ivy Engine エディタ", en: "Ivy Engine Editor" },
     "ghost-hierarchy": { ja: "ヒエラルキー", en: "Hierarchy" },
@@ -68,41 +68,7 @@
     "shot-boot-k": { ja: "ここに入れる写真", en: "Photograph to place here" },
     "shot-boot-v": { ja: "ランタイム起動画面（ロゴと読み込み）。", en: "Runtime boot screen (logo and loading)." },
 
-    "systems-title": { ja: "エンジンの構成", en: "Engine systems" },
-    "sys-arch-t": { ja: "アーキテクチャ", en: "Architecture" },
-    "sys-arch-d": {
-      ja: "エディタとランタイムが本体を共有。ゲームは独立コンテンツ（JSON、ECS、C++ DLL）。",
-      en: "Editor and runtime share the engine. Games are separate content (JSON, ECS, C++ DLL)."
-    },
-    "sys-ren-t": { ja: "レンダリング", en: "Rendering" },
-    "sys-ren-d": {
-      ja: "D3D11 フォワード。IBL PBR、トゥーン、ポストFX。",
-      en: "D3D11 forward renderer. IBL PBR, toon, post FX."
-    },
-    "sys-phy-t": { ja: "物理", en: "Physics" },
-    "sys-phy-d": {
-      ja: "3D は自前の衝突。2D は公式 Box2D 3.1.1。",
-      en: "Custom 3D collision. Official Box2D 3.1.1 in 2D."
-    },
-    "sys-2d-t": { ja: "2D モード", en: "2D mode" },
-    "sys-2d-d": {
-      ja: "同じエンジンで純 2D（直交カメラ、スプライト、2D ビュー）。",
-      en: "Pure 2D in the same engine (ortho camera, sprites, 2D view)."
-    },
-    "sys-script-t": { ja: "スクリプト", en: "Scripting" },
-    "sys-script-d": {
-      ja: "C++ DLL。編集中にホットリロード。",
-      en: "C++ DLL, with hot reload in the editor."
-    },
-    "sys-ed-t": { ja: "エディタと配布", en: "Editor and packaging" },
-    "sys-ed-d": {
-      ja: "ImGui エディタ、Play モード、ワンクリック /MT パッケージ。",
-      en: "ImGui editor, Play mode, one-click /MT packaging."
-    },
-    "sys-credit": {
-      ja: "自作。利用ライブラリ: ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。基盤: D3D11、XAudio2、XInput。リポジトリは非公開。",
-      en: "Custom engine. Libraries: ImGui, ImGuizmo, Box2D 3.1.1, Effekseer, FBX SDK, DirectXTex, nlohmann/json. Platform: D3D11, XAudio2, XInput. Repo is private."
-    },
+    "systems-title": { ja: "構成", en: "Architecture" },
 
     "games-title": { ja: "Ivy Engine で作ったゲーム", en: "Games on Ivy Engine" },
     "vg-title": { ja: "Village & Goblin", en: "Village & Goblin" },
@@ -181,7 +147,7 @@
     "doc-title-ivy": "Ivy Engine — 楊子悠",
     "doc-title-folio": "作品集 — 楊子悠",
     "hero-title": "Ivy Engine",
-    "hero-lede": "2026/4 把 Scrap Burst 的框架改稱此名。個人持續。C++ / Direct3D 11。",
+    "hero-lede": "由一人從零撰寫的 C++／Direct3D 11 遊戲引擎，附 ImGui 編輯器，並以同一場景迴圈執行 3D 與 2D。",
     "ghost-title": "Ivy Engine 編輯器",
     "ghost-hierarchy": "階層",
     "ghost-inspector": "檢視器",
@@ -203,20 +169,7 @@
     "shot-play-v": "Play 模式（F3）。與發行版本相同。",
     "shot-boot-k": "此處放置圖片",
     "shot-boot-v": "運行時啟動畫面（標誌與載入）。",
-    "systems-title": "引擎構成",
-    "sys-arch-t": "架構",
-    "sys-arch-d": "編輯器與運行時共用引擎本體。遊戲是獨立內容（JSON、ECS、C++ DLL）。",
-    "sys-ren-t": "渲染",
-    "sys-ren-d": "D3D11 前向渲染。IBL PBR、卡通、後製。",
-    "sys-phy-t": "物理",
-    "sys-phy-d": "3D 為自製碰撞。2D 使用官方 Box2D 3.1.1。",
-    "sys-2d-t": "2D 模式",
-    "sys-2d-d": "同一引擎的純 2D（正交相機、精靈、2D 視圖）。",
-    "sys-script-t": "腳本",
-    "sys-script-d": "C++ DLL。編輯時可熱重載。",
-    "sys-ed-t": "編輯器與封裝",
-    "sys-ed-d": "ImGui 編輯器、Play 模式、一鍵 /MT 封裝。",
-    "sys-credit": "自製。使用的函式庫：ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。平台：D3D11、XAudio2、XInput。儲存庫為私人。",
+    "systems-title": "構成",
     "games-title": "用 Ivy Engine 做的遊戲",
     "vg-title": "Village & Goblin",
     "vg-meta": "2026/10–、個人・1 人、個人製作。推進 2D",

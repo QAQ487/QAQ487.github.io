@@ -46,6 +46,7 @@
   <symbol id="trophy" viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H5.5A2.5 2.5 0 0 0 8 10M16 6h2.5A2.5 2.5 0 0 1 16 10M12 13v3M9 20h6M10 17h4"/></symbol>
   <symbol id="school" viewBox="0 0 24 24"><path d="m3 10 9-5 9 5-9 5z"/><path d="M7 12.2V17c1.6 1.2 3.2 1.8 5 1.8s3.4-.6 5-1.8v-4.8"/></symbol>
   <symbol id="learn" viewBox="0 0 24 24"><path d="M7 4.5h8.5A2.5 2.5 0 0 1 18 7v12.5H9.2A2.2 2.2 0 0 0 7 21.7z"/><path d="M7 4.5v17M10.5 9h4.5M10.5 12.5h4.5"/></symbol>
+  <symbol id="speaker" viewBox="0 0 24 24"><path d="M4 9.5h3.5L13 5v14l-5.5-4.5H4z"/><path d="M16 9.2a3.6 3.6 0 0 1 0 5.6"/></symbol>
   <symbol id="flag-hk" viewBox="0 0 30 20">
     <g clip-path="url(#flag-round)">
       <rect width="30" height="20" fill="#DE2910"/>
