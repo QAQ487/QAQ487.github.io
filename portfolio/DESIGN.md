@@ -4,7 +4,7 @@ The live portfolio is a person-first job page at `/portfolio/`. This document st
 
 
 
-Subject: a Japanese-primary 就職 portfolio for Terry Yeung, an engine programmer who built Ivy Engine (ツタエンジン) and shipped games on it.
+Subject: a Japanese-primary 就職 portfolio for Terry Yeung, an engine programmer who built Ivy Engine and shipped games on it.
 Audience: hiring engineers and recruiters at Japanese game companies (they skim).
 Job of the page: make the engine’s world felt in one glance, then prove it with short project rows.
 
@@ -36,7 +36,7 @@ Portfolio (`/portfolio/`):
 ```
 [ name | 作品集                    日本語  English ]
 
-ツタエンジン          (large wordmark)
+Ivy Engine          (large wordmark)
 lede (one line)
 
 +------------------------------------------------------+
