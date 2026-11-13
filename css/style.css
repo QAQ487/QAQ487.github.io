@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "Dela Gothic One";
-  src: url("../fonts/DelaGothicOne-Regular.woff2?v=20261112b") format("woff2");
+  src: url("../fonts/DelaGothicOne-Regular.woff2?v=20261113") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
   font-family: "IBM Plex Sans JP";
-  src: url("../fonts/IBMPlexSansJP-Regular.woff2?v=20261112b") format("woff2");
+  src: url("../fonts/IBMPlexSansJP-Regular.woff2?v=20261113") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -18,7 +18,7 @@
 
 @font-face {
   font-family: "IBM Plex Sans JP";
-  src: url("../fonts/IBMPlexSansJP-Medium.woff2?v=20261112b") format("woff2");
+  src: url("../fonts/IBMPlexSansJP-Medium.woff2?v=20261113") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -26,7 +26,7 @@
 
 @font-face {
   font-family: "IBM Plex Sans JP";
-  src: url("../fonts/IBMPlexSansJP-SemiBold.woff2?v=20261112b") format("woff2");
+  src: url("../fonts/IBMPlexSansJP-SemiBold.woff2?v=20261113") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -34,7 +34,7 @@
 
 @font-face {
   font-family: "IBM Plex Sans JP";
-  src: url("../fonts/IBMPlexSansJP-Bold.woff2?v=20261112b") format("woff2");
+  src: url("../fonts/IBMPlexSansJP-Bold.woff2?v=20261113") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -42,7 +42,7 @@
 
 @font-face {
   font-family: "Noto Sans TC";
-  src: url("../fonts/NotoSansTC-Regular.woff2?v=20261112b") format("woff2");
+  src: url("../fonts/NotoSansTC-Regular.woff2?v=20261113") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -50,7 +50,7 @@
 
 @font-face {
   font-family: "Noto Sans TC";
-  src: url("../fonts/NotoSansTC-Medium.woff2?v=20261112b") format("woff2");
+  src: url("../fonts/NotoSansTC-Medium.woff2?v=20261113") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -58,7 +58,7 @@
 
 @font-face {
   font-family: "Noto Sans TC";
-  src: url("../fonts/NotoSansTC-SemiBold.woff2?v=20261112b") format("woff2");
+  src: url("../fonts/NotoSansTC-SemiBold.woff2?v=20261113") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -66,7 +66,7 @@
 
 @font-face {
   font-family: "Noto Sans TC";
-  src: url("../fonts/NotoSansTC-Bold.woff2?v=20261112b") format("woff2");
+  src: url("../fonts/NotoSansTC-Bold.woff2?v=20261113") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -372,7 +372,7 @@ a.skill-chip {
 
 .year-row {
   display: grid;
-  grid-template-columns: 6.2rem minmax(0, 1fr);
+  grid-template-columns: 9.4rem minmax(0, 1fr);
   gap: 0.35rem 0.8rem;
   align-items: center;
   color: inherit;
@@ -393,9 +393,15 @@ a.year-row:focus-visible .year-name { color: var(--fern); }
 
 .year-track {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.35rem 0.55rem;
   min-height: 1.7rem;
+}
+
+.year-track > .award {
+  flex: 1 0 100%;
+  margin: 0;
 }
 
 .year-bar {
@@ -416,6 +422,80 @@ a.year-row:focus-visible .year-name { color: var(--fern); }
   width: 1.1rem;
   background: transparent;
   border: 1px dashed var(--trellis);
+}
+
+.lineage {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 1.35rem;
+  list-style: none;
+  max-width: 48rem;
+}
+
+.lineage::before {
+  content: "";
+  position: absolute;
+  left: 0.28rem;
+  top: 0.55rem;
+  bottom: 0.55rem;
+  width: 2px;
+  background: linear-gradient(var(--trellis), var(--fern) 32%, var(--fern));
+}
+
+.lineage > li {
+  position: relative;
+  margin: 0 0 0.95rem;
+}
+
+.lineage-mark {
+  position: absolute;
+  left: -1.28rem;
+  top: 0.45rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 2px solid var(--fern);
+  border-radius: 50%;
+  background: var(--canopy);
+}
+
+.lineage > li.is-origin .lineage-mark,
+.lineage > li.is-rebrand .lineage-mark {
+  background: var(--fern);
+}
+
+.lineage-kicker {
+  display: block;
+  color: var(--fern);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.award {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.35rem 0 0;
+  color: var(--fern);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.card-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--lumen);
+  font-size: 0.9rem;
+}
+
+.card-facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0;
 }
 
 .year-name { font-weight: 600; }
@@ -516,7 +596,7 @@ a.year-row:focus-visible .year-name { color: var(--fern); }
   .meter-name { font-size: 0.92rem; }
   .meter-note { width: 6.6rem; font-size: 0.72rem; }
   .flag { width: 1.15rem; height: 0.77rem; }
-  .year-row { grid-template-columns: 5.2rem minmax(0, 1fr); }
+  .year-row { grid-template-columns: 1fr; }
   .arch-row,
   .subsys-grid { grid-template-columns: 1fr; }
   .hub-link { display: flex; gap: 0.65rem; align-items: flex-start; }
