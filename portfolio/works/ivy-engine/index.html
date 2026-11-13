@@ -7,7 +7,7 @@
   <meta name="description" content="Ivy Engine。一人で書いた C++ / Direct3D 11 エンジン。">
   <title>Ivy Engine — 楊 子悠（ヨウ シユ）</title>
   <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="../../../css/style.css?v=20261113c">
+  <link rel="stylesheet" href="../../../css/style.css?v=20261113d">
 </head>
 <body data-title-key="doc-title-ivy">
   <a class="skip" href="#main" data-i18n="skip">本文へ進む</a>
@@ -115,14 +115,14 @@
         <div class="arch" aria-labelledby="systems-title">
           <div class="arch-row">
             <div class="arch-node is-shared">
-              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#window"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#window"/></svg>
               <div>
                 <strong data-ja="エディタ" data-en="Editor" data-zh="編輯器">エディタ</strong>
                 <span data-ja="ランタイムと本体を共有" data-en="Shares the engine with the runtime" data-zh="與運行時共用本體">ランタイムと本体を共有</span>
               </div>
             </div>
             <div class="arch-node is-shared">
-              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#pulse"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#pulse"/></svg>
               <div>
                 <strong data-ja="ランタイム" data-en="Runtime" data-zh="運行時">ランタイム</strong>
                 <span data-ja="エディタと本体を共有" data-en="Shares the engine with the editor" data-zh="與編輯器共用本體">エディタと本体を共有</span>
@@ -131,14 +131,14 @@
           </div>
           <div class="arch-row">
             <div class="arch-node">
-              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#layers"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#layers"/></svg>
               <div>
                 <strong data-ja="コンテンツ" data-en="Content project" data-zh="內容專案">コンテンツ</strong>
                 <span>JSON、ECS</span>
               </div>
             </div>
             <div class="arch-node">
-              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#box"/></svg>
+              <svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#box"/></svg>
               <div>
                 <strong>C++ DLL</strong>
                 <span data-ja="ゲーム側のスクリプト" data-en="Game-side scripts" data-zh="遊戲端腳本">ゲーム側のスクリプト</span>
@@ -148,27 +148,27 @@
         </div>
         <ul class="subsys-grid">
           <li>
-            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#sun"/></svg><span data-i18n="sys-ren-t">レンダリング</span></h3>
+            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#sun"/></svg><span data-i18n="sys-ren-t">レンダリング</span></h3>
             <p data-i18n="sys-ren-d">D3D11 フォワード。IBL PBR、トゥーン、ポストFX。</p>
           </li>
           <li>
-            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#atom"/></svg><span data-i18n="sys-phy-t">物理</span></h3>
+            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#atom"/></svg><span data-i18n="sys-phy-t">物理</span></h3>
             <p data-i18n="sys-phy-d">3D は自前の衝突。2D は公式 Box2D 3.1.1。</p>
           </li>
           <li>
-            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#grid"/></svg><span data-i18n="sys-2d-t">2D モード</span></h3>
+            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#grid"/></svg><span data-i18n="sys-2d-t">2D モード</span></h3>
             <p data-i18n="sys-2d-d">同じエンジンで純 2D（直交カメラ、スプライト、2D ビュー）。</p>
           </li>
           <li>
-            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#refresh"/></svg><span data-i18n="sys-script-t">スクリプト</span></h3>
+            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#refresh"/></svg><span data-i18n="sys-script-t">スクリプト</span></h3>
             <p data-i18n="sys-script-d">C++ DLL。編集中にホットリロード。</p>
           </li>
           <li>
-            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#package"/></svg><span data-i18n="sys-ed-t">エディタと配布</span></h3>
+            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#package"/></svg><span data-i18n="sys-ed-t">エディタと配布</span></h3>
             <p data-i18n="sys-ed-d">ImGui エディタ、Play モード、ワンクリック /MT パッケージ。</p>
           </li>
           <li>
-            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#split"/></svg><span data-i18n="sys-arch-t">アーキテクチャ</span></h3>
+            <h3><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#split"/></svg><span data-i18n="sys-arch-t">アーキテクチャ</span></h3>
             <p data-i18n="sys-arch-d">エディタとランタイムが本体を共有。ゲームは独立コンテンツ（JSON、ECS、C++ DLL）。</p>
           </li>
         </ul>
@@ -185,90 +185,90 @@
         <h2 class="section-title" id="ivy-sheet-title" data-ja="詳細" data-en="Details" data-zh="詳情">詳細</h2>
         <dl class="fact-list">
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#leaf"/></svg><span data-ja="作品名" data-en="Title" data-zh="作品名稱">作品名</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#leaf"/></svg><span data-ja="作品名" data-en="Title" data-zh="作品名稱">作品名</span></dt>
             <dd data-ja="Ivy Engine" data-en="Ivy Engine" data-zh="Ivy Engine">Ivy Engine</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#grid"/></svg><span data-ja="ジャンル" data-en="Genre" data-zh="類型">ジャンル</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#grid"/></svg><span data-ja="ジャンル" data-en="Genre" data-zh="類型">ジャンル</span></dt>
             <dd data-ja="自作ゲームエンジン" data-en="Custom game engine" data-zh="自製遊戲引擎">自作ゲームエンジン</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#text"/></svg><span data-ja="概要" data-en="Summary" data-zh="簡介">概要</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#text"/></svg><span data-ja="概要" data-en="Summary" data-zh="簡介">概要</span></dt>
             <dd data-ja="Scrap Burst のフレームワーク（2025/10）を 2026/4 に改称。一人で継続。C++ / Direct3D 11。エディタとランタイムを分離。" data-en="Scrap Burst's framework (Oct 2025), rebranded in Apr 2026. Solo and ongoing. C++ / Direct3D 11. Editor and runtime are separate." data-zh="Scrap Burst 的框架（2025/10）於 2026/4 改稱。個人持續。C++ / Direct3D 11。編輯器與運行時分開。">Scrap Burst のフレームワーク（2025/10）を 2026/4 に改称。一人で継続。C++ / Direct3D 11。エディタとランタイムを分離。</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#branch"/></svg><span data-ja="設計目標" data-en="Design goals" data-zh="設計目標">設計目標</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#branch"/></svg><span data-ja="設計目標" data-en="Design goals" data-zh="設計目標">設計目標</span></dt>
             <dd data-ja="エディタとランタイムが本体を共有する。ゲームは独立コンテンツ（JSON、ECS、C++ DLL）。" data-en="Editor and runtime share the engine. Games are separate content (JSON, ECS, C++ DLL)." data-zh="編輯器與運行時共用引擎本體。遊戲是獨立內容（JSON、ECS、C++ DLL）。">エディタとランタイムが本体を共有する。ゲームは独立コンテンツ（JSON、ECS、C++ DLL）。</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#cal"/></svg><span data-ja="制作期間" data-en="Period" data-zh="製作期間">制作期間</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#cal"/></svg><span data-ja="制作期間" data-en="Period" data-zh="製作期間">制作期間</span></dt>
             <dd><span>2026/4–</span></dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#people"/></svg><span data-ja="制作人数・体制" data-en="Team" data-zh="人數與編制">制作人数・体制</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#people"/></svg><span data-ja="制作人数・体制" data-en="Team" data-zh="人數與編制">制作人数・体制</span></dt>
             <dd data-ja="個人、1人。個人制作。" data-en="Solo, 1 person. Personal." data-zh="個人，1 人。個人製作。">個人、1人。個人制作。</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#person"/></svg><span data-ja="担当箇所" data-en="Owned work" data-zh="負責部分">担当箇所</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#person"/></svg><span data-ja="担当箇所" data-en="Owned work" data-zh="負責部分">担当箇所</span></dt>
             <dd data-ja="個人。エンジン全体。起点は 2025/10 のフレームワーク。" data-en="Solo. The whole engine. Origin is the Oct 2025 framework." data-zh="個人。整個引擎。起點是 2025/10 的框架。">個人。エンジン全体。起点は 2025/10 のフレームワーク。</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#cpu"/></svg><span data-ja="使用技術" data-en="Tech" data-zh="使用技術">使用技術</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#cpu"/></svg><span data-ja="使用技術" data-en="Tech" data-zh="使用技術">使用技術</span></dt>
             <dd data-ja="C++、Direct3D 11。サブシステムの一覧は上。" data-en="C++ and Direct3D 11. The subsystem list is above." data-zh="C++、Direct3D 11。子系統列表見上方。">C++、Direct3D 11。サブシステムの一覧は上。</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#window"/></svg><span data-ja="エディタ" data-en="Editor" data-zh="編輯器">エディタ</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#window"/></svg><span data-ja="エディタ" data-en="Editor" data-zh="編輯器">エディタ</span></dt>
             <dd data-ja="ImGui エディタ、Play モード、ワンクリック /MT パッケージ。" data-en="ImGui editor, Play mode, one-click /MT packaging." data-zh="ImGui 編輯器、Play 模式、一鍵 /MT 封裝。">ImGui エディタ、Play モード、ワンクリック /MT パッケージ。</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#split"/></svg><span data-ja="自作と外部の境界" data-en="Custom vs third-party" data-zh="自製與第三方的界線">自作と外部の境界</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#split"/></svg><span data-ja="自作と外部の境界" data-en="Custom vs third-party" data-zh="自製與第三方的界線">自作と外部の境界</span></dt>
             <dd data-ja="本体は自作。第三者ライブラリと基盤は下のクレジット。" data-en="The engine itself is custom. Third-party libraries and platform APIs are in the credits below." data-zh="本體為自製。第三方函式庫與平台見下方鳴謝。">本体は自作。第三者ライブラリと基盤は下のクレジット。</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#play"/></svg><span data-ja="動作環境・操作方法" data-en="Platform and controls" data-zh="運行環境與操作">動作環境・操作方法</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#play"/></svg><span data-ja="動作環境・操作方法" data-en="Platform and controls" data-zh="運行環境與操作">動作環境・操作方法</span></dt>
             <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="分かっている操作は 2D ビュー（F11）と Play モード（F3）。ほかは未記入。" data-en="Known controls: 2D view (F11) and Play mode (F3). The rest is not filled in yet." data-zh="已知操作為 2D 視圖（F11）與 Play 模式（F3）。其餘尚未填寫。">分かっている操作は 2D ビュー（F11）と Play モード（F3）。ほかは未記入。</span></p></dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#film"/></svg><span data-ja="プレイ動画" data-en="Play video" data-zh="遊戲影片">プレイ動画</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#film"/></svg><span data-ja="プレイ動画" data-en="Play video" data-zh="遊戲影片">プレイ動画</span></dt>
             <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="1〜3分のプレイ動画。" data-en="A 1–3 minute play video." data-zh="1 至 3 分鐘的遊戲影片。">1〜3分のプレイ動画。</span></p></dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#image"/></svg><span data-ja="スクリーンショット" data-en="Screenshots" data-zh="截圖">スクリーンショット</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#image"/></svg><span data-ja="スクリーンショット" data-en="Screenshots" data-zh="截圖">スクリーンショット</span></dt>
             <dd data-ja="上の3枠。2D ビュー、Play モード、ランタイム起動画面。" data-en="The three frames above: 2D view, Play mode, and the runtime boot screen." data-zh="上方三個框：2D 視圖、Play 模式、運行時啟動畫面。">上の3枠。2D ビュー、Play モード、ランタイム起動画面。</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#branch"/></svg><span data-ja="工夫した点 / 設計の理由" data-en="Decisions" data-zh="設計上的考量">工夫した点 / 設計の理由</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#branch"/></svg><span data-ja="工夫した点 / 設計の理由" data-en="Decisions" data-zh="設計上的考量">工夫した点 / 設計の理由</span></dt>
             <dd><ul class="note-list">
               <li data-ja="ゲームと一緒にエンジンを進める。" data-en="Develop the engine together with a game." data-zh="引擎與遊戲一起推進。">ゲームと一緒にエンジンを進める。</li>
               <li data-ja="ゲーム側で足したいものから、不足が見える。" data-en="What you want to add to the game shows what is missing." data-zh="想加進遊戲的東西，會露出引擎的不足。">ゲーム側で足したいものから、不足が見える。</li>
             </ul></dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#peak"/></svg><span data-ja="苦労した点と解決" data-en="Difficulties" data-zh="困難與解決">苦労した点と解決</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#peak"/></svg><span data-ja="苦労した点と解決" data-en="Difficulties" data-zh="困難與解決">苦労した点と解決</span></dt>
             <dd><ul class="note-list">
               <li data-ja="機能をどの層に置くか。基盤、スクリプト、固有機能。" data-en="Which layer a feature belongs to: base, script, or an engine-specific feature." data-zh="功能放在哪一層：底層、腳本，或專用功能。">機能をどの層に置くか。基盤、スクリプト、固有機能。</li>
             </ul></dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#learn"/></svg><span data-ja="学んだこと" data-en="What I learned" data-zh="學到的事">学んだこと</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#learn"/></svg><span data-ja="学んだこと" data-en="What I learned" data-zh="學到的事">学んだこと</span></dt>
             <dd><ul class="note-list">
               <li data-ja="ゲームと同時に進めた方が、エンジンの不足が分かる。" data-en="Developing the game at the same time makes the engine's gaps clear." data-zh="和遊戲同時做，才清楚引擎缺什麼。">ゲームと同時に進めた方が、エンジンの不足が分かる。</li>
             </ul></dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#code"/></svg><span data-ja="コード抜粋" data-en="Code" data-zh="程式碼摘錄">コード抜粋</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#code"/></svg><span data-ja="コード抜粋" data-en="Code" data-zh="程式碼摘錄">コード抜粋</span></dt>
             <dd><pre class="code-block"><code data-ja="// コード抜粋（プレースホルダ）" data-en="// Code excerpt (placeholder)" data-zh="// 程式碼摘錄（佔位）">// コード抜粋（プレースホルダ）</code></pre><span data-ja="解説はプレースホルダ。" data-en="Commentary is a placeholder." data-zh="解說為佔位。">解説はプレースホルダ。</span></dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#flag"/></svg><span data-ja="既知の不具合・今後の改善" data-en="Known issues" data-zh="已知問題與日後改善">既知の不具合・今後の改善</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#flag"/></svg><span data-ja="既知の不具合・今後の改善" data-en="Known issues" data-zh="已知問題與日後改善">既知の不具合・今後の改善</span></dt>
             <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="未記入。" data-en="Not filled in yet." data-zh="尚未填寫。">未記入。</span></p></dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#book"/></svg><span data-ja="クレジット" data-en="Credits" data-zh="鳴謝">クレジット</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#book"/></svg><span data-ja="クレジット" data-en="Credits" data-zh="鳴謝">クレジット</span></dt>
             <dd data-ja="自作。利用ライブラリ: ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。基盤: D3D11、XAudio2、XInput。" data-en="Custom engine. Libraries: ImGui, ImGuizmo, Box2D 3.1.1, Effekseer, FBX SDK, DirectXTex, nlohmann/json. Platform: D3D11, XAudio2, XInput." data-zh="自製。使用的函式庫：ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。平台：D3D11、XAudio2、XInput。">自作。利用ライブラリ: ImGui、ImGuizmo、Box2D 3.1.1、Effekseer、FBX SDK、DirectXTex、nlohmann/json。基盤: D3D11、XAudio2、XInput。</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#download"/></svg><span data-ja="ダウンロード" data-en="Download" data-zh="下載">ダウンロード</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#download"/></svg><span data-ja="ダウンロード" data-en="Download" data-zh="下載">ダウンロード</span></dt>
             <dd><p class="shot-label"><strong data-ja="プレースホルダ" data-en="Placeholder" data-zh="佔位">プレースホルダ</strong> <span data-ja="実行ファイル・ソースは未掲載。リポジトリは非公開。" data-en="Executable and source are not posted. The repository is private." data-zh="執行檔與源碼尚未公開。儲存庫為私人。">実行ファイル・ソースは未掲載。リポジトリは非公開。</span></p></dd>
           </div>
         </dl>
@@ -366,7 +366,7 @@
             </figure>
             <div>
               <h3><a href="/portfolio/works/scrap-burst/" data-i18n="sb-title">Scrap Burst</a></h3>
-              <p class="prose" data-i18n="sb-body">授業の10人チーム。フレームワークとゲームオブジェクトの算法。</p>
+              <p class="prose" data-i18n="sb-body">授業の10人チーム。物理、コライダー、敵AI。</p>
               <p class="project-meta" data-i18n="sb-meta">2025/10–2026/3、10人、授業制作</p>
               <p class="project-meta" data-i18n="media-pending">映像・ビルド（準備中）</p>
             </div>
@@ -388,15 +388,15 @@
         <h2 class="section-title" id="about-title" data-i18n="about-title">プロフィール</h2>
         <dl class="about-list">
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#person"/></svg><span data-i18n="about-name-l">名前</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#person"/></svg><span data-i18n="about-name-l">名前</span></dt>
             <dd data-i18n="about-name-v">楊 子悠（ヨウ シユ）</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#flag"/></svg><span data-i18n="about-role-l">志望職種</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#flag"/></svg><span data-i18n="about-role-l">志望職種</span></dt>
             <dd data-i18n="about-role-v">エンジンプログラマー（ゲームも可）</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#text"/></svg><span data-i18n="about-lang-l">言語</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#text"/></svg><span data-i18n="about-lang-l">言語</span></dt>
             <dd>
               <ul class="lang-list">
                 <li data-ja="広東語（母語）" data-en="Cantonese (first language)" data-zh="廣東話（母語）">広東語（母語）</li>
@@ -407,15 +407,15 @@
             </dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#flag"/></svg><span data-i18n="about-loc-l">所在地</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#flag"/></svg><span data-i18n="about-loc-l">所在地</span></dt>
             <dd data-i18n="about-loc-v">プレースホルダ</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#school"/></svg><span data-i18n="about-edu-l">経歴</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#school"/></svg><span data-i18n="about-edu-l">経歴</span></dt>
             <dd data-i18n="about-edu-v">プレースホルダ</dd>
           </div>
           <div>
-            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113c#mail"/></svg><span data-i18n="about-contact-l">連絡先</span></dt>
+            <dt class="with-icon"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261113d#mail"/></svg><span data-i18n="about-contact-l">連絡先</span></dt>
             <dd><a href="mailto:terryyeung234@gmail.com">terryyeung234@gmail.com</a></dd>
           </div>
         </dl>
@@ -428,7 +428,7 @@
       <p data-i18n="footer-folio">映像・ビルド・一部の項目はプレースホルダ。</p>
     </div>
   </footer>
-  <script src="../../../js/i18n.js?v=20261113c"></script>
-  <script src="../../../js/editor-demo.js?v=20261113c"></script>
+  <script src="../../../js/i18n.js?v=20261113d"></script>
+  <script src="../../../js/editor-demo.js?v=20261113d"></script>
 </body>
 </html>
