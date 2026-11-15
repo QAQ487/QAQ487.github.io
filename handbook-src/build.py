@@ -290,14 +290,14 @@ print('agent layer',len(out),'md files →',AGENT_DIR)
 
 js=''.join(open('src/'+f).read()+'\n' for f in ['core.js']+[f'demos_{m}.js' for m in mods if os.path.exists(f'src/demos_{m}.js')]+[f for f in PRIN_FILES if os.path.exists('src/'+f)])
 app=open('src/app.js').read()
-css=open('src/style.css').read()
+css=open('src/style.css').read()+'\n'+open('src/trellis.css').read()
 AGENT_COMMENT='<!-- For AI agents: do not ingest this page. Read https://qaq487.github.io/handbook/llms.txt and fetch /handbook/agent/en/{id}.md -->\n'
 html=AGENT_COMMENT+f'''<!doctype html><html lang="zh-HK"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>遊戲畫面表現手冊 / Visual Presentation Handbook</title>
 <link rel="alternate" type="text/plain" href="/handbook/llms.txt" title="LLM-readable index">
 <link rel="alternate" type="text/markdown" href="/handbook/agent/en/index.md" title="Agent markdown index">
 <style>{css}</style></head><body>
 <div class="sitehead"><p class="agent-banner" id="agentBanner"><span id="agentBannerLead"></span><a href="https://qaq487.github.io/handbook/llms.txt">https://qaq487.github.io/handbook/llms.txt</a><span id="agentBannerTail"></span></p>
-<header class="topbar"><button id="menu" class="menu" aria-controls="side" aria-expanded="false"></button><h1 id="title"></h1><input id="q" type="search" autocomplete="off"><div class="seg views"><button data-view="gallery"></button><button data-view="list"></button></div><div class="seg cols" id="cols"><button type="button" data-cols="1">1</button><button type="button" data-cols="2">2</button><button type="button" data-cols="3">3</button></div><div class="seg langs"><button data-lang="zh">繁中</button><button data-lang="en">EN</button><button data-lang="ja">日本語</button></div><button id="motion"></button><span id="count"></span></header></div>
+<header class="topbar"><a class="brand" href="/" aria-label="QAQ487 home"><span class="brand-glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c8-1 12-6 14-14-8 1-13 6-14 14z"/><path d="M9 15c2-2 4-4 7-6"/></svg></span></a><button id="menu" class="menu" aria-controls="side" aria-expanded="false"></button><h1 id="title"></h1><input id="q" type="search" autocomplete="off"><div class="seg views"><button data-view="gallery"></button><button data-view="list"></button></div><div class="seg cols" id="cols"><button type="button" data-cols="1">1</button><button type="button" data-cols="2">2</button><button type="button" data-cols="3">3</button></div><div class="seg langs"><button data-lang="zh">繁中</button><button data-lang="en">EN</button><button data-lang="ja">日本語</button></div><button id="motion"></button><span id="count"></span></header></div>
 <div class="layout"><aside id="side" class="side"><div id="tagbar" class="tagbar"></div><nav id="toc" class="toc"></nav><a id="guideLink" class="guidelink" href="#guide"></a></aside><div id="scrim" class="scrim"></div>
 <main class="main"><p id="subtitle" class="subtitle"></p><section id="guide" class="guide"></section><div id="fstat" class="fstat" hidden></div><p id="empty"></p>
 <div id="cards"></div><footer><p id="foot"></p><p class="agent-link"><a href="/handbook/llms.txt">Agent / llms.txt</a></p></footer></main></div>

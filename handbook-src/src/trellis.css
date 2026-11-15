@@ -1,0 +1,209 @@
+/* ==== Trellis Telemetry layer (2026/11) ====
+   Re-skins the handbook to match /portfolio/ (see /portfolio/DESIGN.md).
+   Loaded after style.css by build.py; only overrides look, never layout logic.
+   Fonts: ./fonts/ holds subsets of the handbook's own characters (tools/subset_fonts.py);
+   the Latin-only Plex Mono is shared with the portfolio at ../fonts/. Offline, the page
+   falls back to system fonts. */
+@font-face{font-family:"Dela Gothic One";src:url("fonts/DelaGothicOne-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Sans JP";src:url("fonts/IBMPlexSansJP-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Sans JP";src:url("fonts/IBMPlexSansJP-SemiBold.woff2") format("woff2");font-weight:600 700;font-display:swap}
+@font-face{font-family:"Noto Sans TC";src:url("fonts/NotoSansTC-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Noto Sans TC";src:url("fonts/NotoSansTC-Bold.woff2") format("woff2");font-weight:600 700;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url("../fonts/IBMPlexMono-Regular.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url("../fonts/IBMPlexMono-Medium.woff2") format("woff2");font-weight:500 700;font-display:swap}
+
+:root{
+  --canopy:#0F1A16;--hollow:#1A2C26;--lumen:#E6EFE8;--moss:#9EB0A8;--fern:#9FD0B0;--trellis:#7E9A8F;
+  --deep:color-mix(in srgb,var(--canopy) 70%,#000);
+  --hair:color-mix(in srgb,var(--trellis) 22%,var(--canopy));
+  --hair2:color-mix(in srgb,var(--trellis) 40%,var(--canopy));
+  --bg:var(--canopy);--panel:color-mix(in srgb,var(--hollow) 72%,transparent);--panel2:color-mix(in srgb,var(--hollow) 55%,var(--canopy));
+  --line:var(--hair2);--text:var(--lumen);--muted:var(--moss);--accent:var(--fern);--tag:var(--trellis);
+  --btn:transparent;--btnline:var(--hair2);
+  --font-mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --font-body:"IBM Plex Sans JP","Noto Sans TC",system-ui,"Hiragino Sans","PingFang TC","Microsoft JhengHei",sans-serif;
+  --font-display:"Dela Gothic One","Noto Sans TC",sans-serif;
+  --bar:64px;--side:268px;
+}
+html[lang="zh-HK"]{--font-body:"Noto Sans TC","IBM Plex Sans JP",system-ui,"PingFang TC","Microsoft JhengHei",sans-serif;--font-display:"Noto Sans TC",system-ui,sans-serif}
+::selection{background:color-mix(in srgb,var(--fern) 32%,var(--canopy));color:var(--lumen)}
+html{scrollbar-color:var(--hair2) var(--canopy)}
+
+/* ---- ground: the trellis lattice ---- */
+body{font-family:var(--font-body);color:var(--lumen);
+  background:
+    radial-gradient(ellipse 60% 900px at 8% 0%,color-mix(in srgb,var(--fern) 9%,transparent),transparent 70%),
+    radial-gradient(ellipse 50% 700px at 100% 40%,color-mix(in srgb,var(--fern) 4%,transparent),transparent 70%),
+    linear-gradient(color-mix(in srgb,var(--hair) 38%,transparent) 1px,transparent 1px) 0 0/48px 48px,
+    linear-gradient(90deg,color-mix(in srgb,var(--hair) 38%,transparent) 1px,transparent 1px) 0 0/48px 48px,
+    var(--canopy);
+  background-attachment:fixed}
+a{color:var(--fern)}
+:focus-visible{outline:2px solid var(--fern);outline-offset:2px}
+
+/* ---- controls: pills, segmented switches ---- */
+button{background:transparent;color:var(--moss);border:1px solid var(--hair2);border-radius:999px;padding:5px 13px;font-size:12.5px;transition:color .15s,border-color .15s,background .15s}
+button:hover{border-color:var(--fern);color:var(--lumen)}
+button.active{background:var(--fern);color:var(--canopy);border-color:var(--fern);font-weight:600}
+.seg{border:1px solid var(--hair2);border-radius:999px;padding:0;gap:0;overflow:hidden}
+.seg button{border:0;border-radius:0;padding:5px 12px}
+.seg.cols button{font-family:var(--font-mono);font-size:11.5px;padding:5px 10px}
+
+/* agent notice: style is fixed by tools/check_agent_banner.js (yellow, >=16px) — left as in style.css */
+
+/* ---- toolbar ---- */
+.topbar{gap:12px;padding:0 24px;background:color-mix(in srgb,var(--canopy) 84%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--hair2)}
+.brand{display:flex;align-items:center;flex:none;text-decoration:none}
+.brand-glyph{width:34px;height:34px;border:1px solid var(--fern);border-radius:50%;display:grid;place-items:center;color:var(--fern);transition:background .15s}
+.brand-glyph svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.brand:hover .brand-glyph{background:color-mix(in srgb,var(--fern) 14%,transparent)}
+.topbar h1{font-family:var(--font-display);font-weight:400;font-size:17px;letter-spacing:.04em;color:var(--lumen)}
+html[lang="zh-HK"] .topbar h1{font-weight:700}
+#q{background:color-mix(in srgb,var(--canopy) 70%,transparent);border:1px solid var(--hair2);border-radius:999px;padding:7px 16px;color:var(--lumen);font-size:13.5px}
+#q::placeholder{color:color-mix(in srgb,var(--moss) 70%,transparent)}
+#q:focus{outline:none;border-color:var(--fern);box-shadow:0 0 0 3px color-mix(in srgb,var(--fern) 16%,transparent)}
+#count{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--trellis);text-transform:uppercase}
+
+/* ---- sidebar ---- */
+.side{padding-top:22px}
+.tagbar{gap:6px;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--hair)}
+.tagbar .tl,.toch{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--trellis);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.tagbar .tl::before,.toch::before{content:"";width:18px;height:1px;background:var(--fern);flex:none}
+.tagbar .tl{flex-wrap:wrap;row-gap:2px}.tagbar .th{flex-basis:100%;padding-left:26px;font-family:var(--font-body);letter-spacing:0;text-transform:none;opacity:.8;font-size:11px}
+.chip{background:color-mix(in srgb,var(--canopy) 80%,transparent);border:1px solid var(--hair2);color:var(--moss);padding:3px 11px;font-size:12px}
+.chip:hover{border-color:var(--fern);color:var(--lumen)}
+.chip.active{background:var(--fern);border-color:var(--fern);color:var(--canopy)}
+.chip.clr{border-style:dashed}
+.chip.sm{background:transparent;border-radius:3px;color:var(--moss)}
+.toc .tc,.toc .ts{border-left:1px solid var(--hair);border-radius:0;padding:5px 10px;color:var(--moss)}
+.toc .tc{color:var(--lumen)}
+.toc .tc:hover,.toc .ts:hover{background:color-mix(in srgb,var(--hollow) 60%,transparent);color:var(--fern)}
+.toc .n{font-family:var(--font-mono);font-size:10.5px;color:var(--trellis)}
+.toc .tg.spy>.tc{border-left:2px solid var(--fern);color:var(--fern);background:color-mix(in srgb,var(--hollow) 55%,transparent)}
+.toc .tg .tc.active{background:color-mix(in srgb,var(--fern) 14%,transparent);color:var(--fern);border-left:2px solid var(--fern)}
+.toc .tg .tc.active .n{color:var(--fern)}
+.toc .subs{border-left:1px solid var(--hair);margin-left:0;padding-left:0}
+.toc .ts{border-left:0;padding-left:20px;font-size:12px}
+.guidelink{border-top:1px solid var(--hair);color:var(--fern);font-size:12.5px}
+
+/* ---- intro ---- */
+.main{padding-top:30px}
+.subtitle{position:relative;font-size:15px;line-height:1.85;color:var(--moss);max-width:64ch;margin:0 0 18px}
+.subtitle::before{content:"FIG. 00 — FIELD GUIDE";display:flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;color:var(--fern);margin-bottom:12px}
+.guide details{background:var(--panel);border:1px solid var(--hair2);border-radius:4px;padding:8px 16px}
+.guide details details{background:color-mix(in srgb,var(--canopy) 60%,transparent);border-color:var(--hair)}
+.guide summary{color:var(--lumen);font-size:13.5px}
+.guide summary::marker{color:var(--fern)}
+.guide h3{color:var(--trellis)}
+summary{color:var(--fern)}
+
+/* ---- chapter heads: "— CAM" eyebrow, display title, mono count ---- */
+h2.sect{margin:64px 0 4px;padding-bottom:14px;border-bottom:1px solid var(--hair2);gap:10px 18px;flex-wrap:wrap;align-items:baseline}
+#cards>h2.sect:first-child{margin-top:28px}
+h2.sect::before{content:attr(data-g);flex-basis:100%;display:block;padding-left:40px;background:linear-gradient(var(--fern),var(--fern)) 0 55%/28px 1px no-repeat;font-family:var(--font-mono);font-weight:400;font-size:11px;letter-spacing:.18em;color:var(--fern)}
+h2.sect .sid{font-family:var(--font-display);font-weight:400;font-size:clamp(24px,2.6vw,34px);line-height:1.15;letter-spacing:.03em;color:var(--lumen)}
+html[lang="zh-HK"] h2.sect .sid{font-weight:700}
+h2.sect .n{margin-left:auto;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--trellis)}
+h2.sect .n::before{content:"N = "}
+.view-list h2.sect{margin-top:48px}
+
+/* ---- entry tiles ---- */
+article{background:var(--panel);border:1px solid var(--hair2);border-radius:4px}
+article:target,article.flash{border-color:var(--fern);box-shadow:0 0 0 1px var(--fern)}
+body:not(.view-list) #cards>article:hover{border-color:color-mix(in srgb,var(--fern) 55%,var(--hair2))}
+#cards{gap:20px}
+.visual{position:relative;background:var(--deep);border:1px solid var(--hair2);border-radius:3px}
+.visual canvas{background:var(--deep)}
+.svgfig svg{background:var(--deep);border-radius:2px}
+/* registration corners, as on the portfolio's media frames */
+body:not(.view-list) #cards>article>.visual::after{content:"";position:absolute;inset:8px;pointer-events:none;
+  background:
+    linear-gradient(var(--trellis),var(--trellis)) 0 0/12px 1px no-repeat,linear-gradient(var(--trellis),var(--trellis)) 0 0/1px 12px no-repeat,
+    linear-gradient(var(--trellis),var(--trellis)) 100% 0/12px 1px no-repeat,linear-gradient(var(--trellis),var(--trellis)) 100% 0/1px 12px no-repeat,
+    linear-gradient(var(--trellis),var(--trellis)) 0 100%/12px 1px no-repeat,linear-gradient(var(--trellis),var(--trellis)) 0 100%/1px 12px no-repeat,
+    linear-gradient(var(--trellis),var(--trellis)) 100% 100%/12px 1px no-repeat,linear-gradient(var(--trellis),var(--trellis)) 100% 100%/1px 12px no-repeat;
+  opacity:.7}
+body:not(.view-list) #cards>article>.visual{background:var(--deep);border-bottom:1px solid var(--hair2);padding:14px 0;min-height:160px}
+body:not(.view-list) #cards>article{padding-bottom:18px}
+body:not(.view-list) #cards>article>*{margin-left:18px;margin-right:18px}
+body:not(.view-list) #cards>article>.visual{margin:0 0 14px}
+.ctl{background:color-mix(in srgb,var(--hollow) 70%,var(--canopy));border-top:1px solid var(--hair)}
+.ctl input{accent-color:var(--fern)}
+.stl{font-family:var(--font-mono);font-size:11px;color:var(--trellis)}
+.visual .cap{color:var(--moss)}
+
+.hd{font-size:11.5px}
+.eid,.rid{font-family:var(--font-mono);font-weight:500;letter-spacing:.08em;color:var(--fern);opacity:1}
+.badge{border-radius:2px;padding:0 6px;font-family:var(--font-mono);font-weight:500;font-size:10.5px;line-height:17px;background:transparent;border:1px solid}
+.t-S{color:var(--fern);border-color:color-mix(in srgb,var(--fern) 60%,transparent)}
+.t-C{color:var(--moss);border-color:var(--hair2)}
+.t-D{color:var(--trellis);border-color:var(--hair2);border-style:dashed}
+.subn,body:not(.view-list) #cards>article>.hd .subn{color:var(--trellis)}
+.entry-link{color:var(--trellis)}
+.hit{background:transparent;border:1px dashed var(--trellis);color:var(--moss);border-radius:2px}
+h2.nm{font-family:var(--font-display);font-weight:400;letter-spacing:.02em;color:var(--lumen)}
+html[lang="zh-HK"] h2.nm{font-weight:700}
+body:not(.view-list) #cards>article>h2.nm{font-weight:400;font-size:19px;line-height:28px;height:28px;margin-top:8px}
+html[lang="zh-HK"] body:not(.view-list) #cards>article>h2.nm{font-weight:700}
+.std{color:var(--moss)}
+body:not(.view-list) #cards>article>.std{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.02em;color:var(--trellis);margin-top:4px;line-height:18px;height:18px}
+body:not(.view-list) #cards>article>.hd{height:20px;line-height:18px}
+body:not(.view-list) #cards>article>.recog{color:color-mix(in srgb,var(--lumen) 82%,var(--moss));font-size:14px;line-height:25px;height:calc(3 * 25px + 13px);margin-top:12px;padding-top:12px;border-top:1px solid var(--hair)}
+html[data-cols="1"] body:not(.view-list) #cards>article>.recog{height:calc(4 * 25px + 13px)}
+.recog .rl{color:var(--fern)}
+
+/* ---- entry body ---- */
+dt{color:var(--trellis);font-weight:600}
+dd.ex{color:var(--moss)}
+.mono{font-family:var(--font-mono);color:var(--moss)}
+.meta{border-top:1px solid var(--hair)}
+.ext{color:var(--moss)}.nosrc{color:var(--trellis)}
+a.idl{color:var(--fern);font-family:var(--font-mono)}
+.banner p{background:color-mix(in srgb,var(--hollow) 60%,transparent);border-left:2px solid var(--trellis);border-radius:0 3px 3px 0}
+.banner .canon,.banner .note{border-left-color:var(--fern)}.banner .var{border-left-color:var(--moss)}
+.callout{background:color-mix(in srgb,var(--hollow) 55%,transparent);border-left:2px solid var(--trellis);border-radius:0 3px 3px 0}
+.callout .ct{color:var(--moss)}
+.param-chip{background:transparent;border:1px solid var(--hair2);color:var(--moss);font-family:var(--font-mono);border-radius:2px}
+.prompt{background:var(--deep);border:1px solid var(--hair2);border-radius:3px}
+.prompt .ph{color:var(--trellis);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em}
+.prompt p{font-family:var(--font-mono);color:var(--lumen)}
+.prompt .cp{background:var(--fern);color:var(--canopy);border-radius:999px}
+.prompt .cp.done{background:var(--lumen)}
+dl.pf dd code,.ntx code{font-family:var(--font-mono);background:var(--deep)}
+details.sec{background:color-mix(in srgb,var(--canopy) 55%,transparent);border:1px solid var(--hair);border-radius:3px}
+.ntx th{background:color-mix(in srgb,var(--hollow) 70%,transparent)}
+.ntx th,.ntx td{border-color:var(--hair2)}
+.ntx h3{color:var(--trellis)}
+mark.kw-match{background:color-mix(in srgb,var(--fern) 30%,transparent);color:var(--lumen)}
+.fstat{background:var(--panel);border:1px solid var(--hair2);border-radius:4px}
+.fstat .fv{background:color-mix(in srgb,var(--fern) 14%,transparent);color:var(--fern);border-radius:2px}
+#empty:empty{display:none}
+#empty{font-family:var(--font-mono);letter-spacing:.06em;color:var(--trellis);padding:40px 0}
+
+/* ---- list view ---- */
+.view-list article{border-color:var(--hair)}
+.view-list .row{border-radius:0}
+.view-list .row:hover{background:color-mix(in srgb,var(--hollow) 55%,transparent)}
+.view-list article.open{background:var(--panel);border:1px solid var(--hair2);border-radius:4px}
+.rnm{color:var(--lumen)}.rpv{color:var(--moss)}
+.rstd{font-family:var(--font-mono);font-style:normal;font-size:11.5px;color:var(--trellis)}
+
+/* ---- modal ---- */
+.msrim{background:color-mix(in srgb,var(--deep) 80%,transparent);backdrop-filter:blur(3px)}
+.mpanel{background:color-mix(in srgb,var(--hollow) 92%,var(--canopy));border:1px solid var(--hair2);border-radius:4px;box-shadow:0 24px 64px rgba(0,0,0,.55);padding:16px 22px 24px}
+.mclose{background:var(--canopy);border:1px solid var(--hair2);border-radius:999px;color:var(--moss)}
+article.in-modal h2.nm{font-size:26px;line-height:1.3}
+
+/* ---- footer, toast ---- */
+footer{border-top:1px solid var(--hair2);margin-top:72px;padding-top:18px;color:var(--trellis);font-size:12px;line-height:1.8}
+footer .agent-link a{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;color:var(--fern)}
+#toast{background:var(--hollow);border:1px solid var(--fern);border-radius:999px}
+
+@media(max-width:900px){
+  :root{--bar:96px}
+  .topbar{padding:8px 12px}
+  .side{background:var(--canopy)}
+  .brand-glyph{width:30px;height:30px}
+}
+@media(prefers-reduced-motion:reduce){button,.brand-glyph{transition:none}}
+@media print{body{background:#fff}.visual::after{display:none}}
