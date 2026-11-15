@@ -4,6 +4,7 @@ Licensed under the SIL Open Font License, Version 1.1.
 
 IBM Plex Sans JP (IBMPlexSansJP-Regular.woff2, IBMPlexSansJP-Medium.woff2,
 IBMPlexSansJP-SemiBold.woff2, IBMPlexSansJP-Bold.woff2)
+and IBM Plex Mono (IBMPlexMono-Regular.woff2, IBMPlexMono-Medium.woff2, Latin subset)
 Copyright 2018 IBM Corp. All rights reserved.
 Licensed under the SIL Open Font License, Version 1.1, with Reserved Font Name "Plex".
 
