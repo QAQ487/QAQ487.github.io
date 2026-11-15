@@ -321,6 +321,11 @@ html[lang="zh-Hant"] .stat-row strong { font-family: "Noto Sans TC", sans-serif;
 .section-title { font-family: var(--font-display); font-weight: 400; letter-spacing: .03em; }
 html[lang="zh-Hant"] .section-title { font-family: "Noto Sans TC", sans-serif; font-weight: 700; }
 .fact-list > div { border-color: var(--line); }
+.plate { margin: 1.5rem 0 0; }
+.plate-link { display: block; max-width: 40rem; margin: 0 auto; border: 1px solid var(--line-2); border-radius: 4px; background: var(--deep); overflow: hidden; transition: border-color .2s; }
+.plate-link:hover, .plate-link:focus-visible { border-color: var(--fern); }
+.plate-link img { display: block; width: 100%; height: auto; }
+.plate .diagram-caption { max-width: 40rem; margin-inline: auto; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1100px) {
