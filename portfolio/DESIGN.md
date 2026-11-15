@@ -40,6 +40,15 @@ A garden trellis and an instrument graticule laid over each other, with one livi
   7. Works — cards with a muted loop, PV button, role / challenge / lesson rows.
 - Work pages (`/portfolio/works/<work>/`): title, PV player, KPI column, challenge and lesson panels, a spec sheet (unfilled items shown as dashed cards), previous / next.
 
+## Ivy Engine page — "Pressed Signal" (2026/11)
+
+`/portfolio/works/ivy-engine/` is the flagship work page. It keeps the work-page parts (`w-hero`, `sh`, `facts2`, `w-nav`) and adds a field-journal layer in `css/ivy.css` and `js/ivy.js` (feature atlas tabs; without JS every panel shows).
+
+- Hero: Fig. 01 anatomy plate (portrait) beside six KPIs and the five layers L4–L0.
+- Sections 01–10: anatomy diagrams (inline SVG, trilingual), frame, rendering + GPU-skin case, feature atlas (350 items from the old chips), editor live sketch, test bridge, ADR 0001–0008, limits and next, games, spec sheet.
+- Plates live in `plate/`: `fig02-frame`, `fig03-strata`, `fig04-bridge`, `fig05-rings` (pycairo scripts with a shared `common.py`; PDF + PNG + a 1600px WebP for the page). Labels inside plates are code-like English; every caption around them is ja / en / zh. The design philosophy is `plate/pressed-signal-philosophy.md`.
+- Source of facts: the engine repo `docs/` (manual, user guide, content project, test bridge, ADRs, TODO).
+
 ## Rules
 
 1. Information is plotted before it is written. Words anchor what the chart already shows.

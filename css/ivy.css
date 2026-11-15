@@ -1,0 +1,237 @@
+/* Ivy Engine page — "Pressed Signal" layer (loaded after style.css and trellis.css, this page only).
+   Plates are field-journal figures; everything else stays Trellis Telemetry: hairlines, mono labels,
+   one Fern accent for what is alive. */
+
+.is-ivy .w-title { margin-bottom: .35rem; }
+.ivy-kana {
+  margin: 0 0 1.4rem;
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  letter-spacing: .28em;
+  color: var(--trellis);
+}
+html[lang="ja"] .ivy-kana, html[lang="zh-Hant"] .ivy-kana { font-family: inherit; letter-spacing: .4em; }
+.ivy-hero .page-nav { margin-top: 1.75rem; }
+
+/* ---------- figures (plates) ---------- */
+.ivy-fig { margin: 0; }
+.ivy-fig-link {
+  display: block;
+  border: 1px solid var(--line-2);
+  border-radius: 4px;
+  background: var(--deep);
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.ivy-fig-link:hover, .ivy-fig-link:focus-visible { border-color: var(--fern); }
+.ivy-fig-link img { display: block; width: 100%; height: auto; }
+.ivy-fig figcaption {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  padding: .75rem .1rem 0;
+  color: var(--moss);
+  font-size: .86rem;
+  line-height: 1.7;
+}
+.ivy-fig figcaption .mono { flex: none; }
+.ivy-fig figcaption a.mono { margin-left: auto; color: var(--fern); }
+.ivy-fig-cap { flex: 1 1 auto; }
+
+/* ---------- hero stage ---------- */
+.ivy-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 25rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  margin-top: 2.75rem;
+  align-items: start;
+}
+.ivy-stage-side { display: flex; flex-direction: column; gap: 1.5rem; }
+.ivy-kpis {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 1px solid var(--line-2);
+  border-radius: 4px;
+  background: var(--panel);
+}
+.ivy-kpis li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  padding: 1.15rem 1.25rem 1.1rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.ivy-kpis li:nth-child(3n) { border-right: 0; }
+.ivy-kpis li:nth-last-child(-n + 3) { border-bottom: 0; }
+.ivy-kpis .icon { position: absolute; top: 1rem; right: 1rem; width: .95rem; height: .95rem; color: var(--fern); }
+.ivy-kpis b { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 2.6vw, 2.2rem); line-height: 1.05; color: var(--lumen); }
+.ivy-kpis .mono { font-size: .64rem; text-transform: none; letter-spacing: .06em; }
+html[lang="ja"] .ivy-kpis .mono, html[lang="zh-Hant"] .ivy-kpis .mono { font-family: inherit; font-size: .74rem; letter-spacing: .02em; }
+
+.ivy-layers { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
+.ivy-layers li {
+  display: grid;
+  grid-template-columns: 2.6rem 8.5rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: .85rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.ivy-layers li:first-child .mono { text-shadow: 0 0 12px color-mix(in srgb, var(--fern) 60%, transparent); }
+.ivy-layers b { font-weight: 600; font-size: .95rem; }
+.ivy-layer-d { color: var(--moss); font-size: .88rem; line-height: 1.7; }
+
+/* ---------- notes under figures ---------- */
+.ivy-notes {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.ivy-notes.is-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ivy-notes li {
+  border: 1px solid var(--line-2);
+  border-radius: 4px;
+  background: var(--panel);
+  padding: 1.1rem 1.25rem 1.2rem;
+}
+.ivy-notes li > .mono { display: flex; justify-content: space-between; align-items: center; margin: 0 0 .7rem; }
+.ivy-notes li > .mono .icon { color: var(--fern); width: .95rem; height: .95rem; }
+.ivy-notes h3 { margin: 0 0 .45rem; font-size: .98rem; font-weight: 600; line-height: 1.5; }
+.ivy-notes p { margin: 0; color: var(--moss); font-size: .88rem; line-height: 1.75; }
+
+/* ---------- diagrams (section 01) ---------- */
+.ivy-diagram { margin-bottom: 1.5rem; }
+.ivy-diagram .diagram-frame svg { min-width: 44rem; }
+.ivy-diagram .diagram-label.is-code { font-family: var(--font-mono); font-size: 12px; fill: var(--lumen); }
+.ivy-diagram .diagram-label.is-code.is-small { font-size: 10.5px; fill: var(--moss); }
+.ivy-diagram .diagram-label.is-fern { fill: var(--fern); }
+.ivy-file { fill: color-mix(in srgb, var(--canopy) 60%, var(--hollow)); stroke: var(--line-2); stroke-width: 1; }
+.ivy-file.is-fern { stroke: var(--fern); }
+.ivy-bracket { fill: none; stroke: var(--fern); stroke-width: 1.25; }
+.ivy-leader { stroke: var(--trellis); stroke-width: .75; stroke-dasharray: 2 3; }
+
+/* ---------- case panels ---------- */
+.ivy-case { margin-top: 1.5rem; }
+.ivy-case .ph .mono { color: var(--fern); }
+
+/* ---------- feature atlas ---------- */
+.atlas {
+  display: grid;
+  grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+.atlas-total { display: flex; gap: .8rem; align-items: baseline; margin: 0 0 1rem; }
+.atlas-total b { font-family: var(--font-display); font-weight: 400; font-size: 2.4rem; line-height: 1; color: var(--lumen); }
+.atlas-total .mono { text-transform: none; letter-spacing: .04em; font-size: .72rem; }
+html[lang="ja"] .atlas-total .mono, html[lang="zh-Hant"] .atlas-total .mono { font-family: inherit; font-size: .82rem; }
+.atlas-rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
+.atlas-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.1rem minmax(0, 8.5rem) minmax(0, 1fr) 2.2rem;
+  gap: .75rem;
+  align-items: center;
+  padding: .62rem .5rem;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--moss);
+  font: inherit;
+  font-size: .88rem;
+  text-align: left;
+  cursor: pointer;
+}
+.atlas-row .icon { color: var(--trellis); }
+.atlas-row:hover { color: var(--lumen); background: color-mix(in srgb, var(--hollow) 45%, transparent); }
+.atlas-row[aria-pressed="true"] { color: var(--lumen); background: var(--panel); }
+.atlas-row[aria-pressed="true"] .icon { color: var(--fern); }
+.atlas-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.atlas-bar { position: relative; height: 6px; border: 1px solid var(--line-2); border-radius: 1px; }
+.atlas-bar span {
+  position: absolute; inset: 0 auto 0 0;
+  background: repeating-linear-gradient(135deg, var(--trellis) 0 1px, transparent 1px 4px);
+}
+.atlas-row[aria-pressed="true"] .atlas-bar span { background: var(--fern); }
+.atlas-n { font-family: var(--font-mono); font-size: .78rem; text-align: right; color: var(--lumen); }
+.atlas-legend { display: flex; gap: .5rem; align-items: center; margin: .9rem 0 0; }
+.atlas-legend .mono { text-transform: none; letter-spacing: .04em; }
+.atlas-panel {
+  border: 1px solid var(--line-2);
+  border-radius: 4px;
+  background: var(--panel);
+  padding: 1.25rem 1.4rem 1.4rem;
+}
+.atlas-panel + .atlas-panel { margin-top: 1rem; }
+.atlas.is-live .atlas-panel[data-hidden] { display: none; }
+.atlas.is-live .atlas-panel + .atlas-panel { margin-top: 0; }
+.atlas-head { display: flex; gap: .65rem; align-items: center; margin: 0 0 1rem; font-size: 1.05rem; }
+.atlas-head .icon { color: var(--fern); }
+.atlas-head .mono { margin-left: auto; font-size: .9rem; }
+.atlas-panel .feat-chips { margin: 0; }
+
+/* ---------- decisions ---------- */
+.adr-list {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+.adr { border: 1px solid var(--line-2); border-radius: 4px; background: var(--panel); padding: 1rem 1.15rem 1.15rem; }
+.adr.is-old { background: transparent; border-style: dashed; }
+.adr-top { display: flex; justify-content: space-between; align-items: center; margin: 0 0 .6rem; }
+.adr-no { font-family: var(--font-display); color: var(--fern); font-size: 1.05rem; letter-spacing: .04em; }
+.adr.is-old .adr-no { color: var(--trellis); }
+.adr-st { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--fern); border: 1px solid color-mix(in srgb, var(--fern) 50%, transparent); border-radius: 999px; padding: .1rem .55rem; }
+html[lang="ja"] .adr-st, html[lang="zh-Hant"] .adr-st { font-family: inherit; text-transform: none; letter-spacing: .04em; font-size: .68rem; }
+.adr-st.is-old { color: var(--trellis); border-color: var(--line-2); }
+.adr h3 { margin: 0 0 .4rem; font-size: .92rem; font-weight: 600; line-height: 1.55; }
+.adr p { margin: 0; color: var(--moss); font-size: .84rem; line-height: 1.7; }
+
+/* ---------- limits and next ---------- */
+.ivy-two { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.ivy-limits .feat-chips { margin: 0 1.4rem; }
+.ivy-limits, .ivy-next { padding-bottom: 1.4rem; }
+.ivy-limits .ph, .ivy-next .ph { margin-bottom: 1.1rem; }
+.ivy-next ol { list-style: none; margin: 0 1.4rem; padding: 0; display: flex; flex-direction: column; gap: .9rem; }
+.ivy-next li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: .5rem; font-size: .9rem; line-height: 1.75; }
+
+/* ---------- games ---------- */
+.ivy-games .ivy-thumb { display: block; border: 1px solid var(--line-2); border-radius: 4px; overflow: hidden; background: var(--deep); }
+.ivy-games .ivy-thumb img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .4s; }
+.ivy-games .ivy-thumb:hover img { transform: scale(1.02); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1100px) {
+  .ivy-notes.is-4, .adr-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .ivy-stage, .atlas, .ivy-two { grid-template-columns: minmax(0, 1fr); }
+  .ivy-stage .is-portrait { max-width: 26rem; }
+  .ivy-notes { grid-template-columns: minmax(0, 1fr); }
+  .ivy-layers li { grid-template-columns: 2.4rem minmax(0, 1fr); }
+  .ivy-layer-d { grid-column: 2; }
+}
+@media (max-width: 560px) {
+  .ivy-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ivy-kpis li:nth-child(3n) { border-right: 1px solid var(--line); }
+  .ivy-kpis li:nth-child(2n) { border-right: 0; }
+  .ivy-kpis li:nth-last-child(-n + 3) { border-bottom: 1px solid var(--line); }
+  .ivy-kpis li:nth-last-child(-n + 2) { border-bottom: 0; }
+  .ivy-notes.is-4, .adr-list { grid-template-columns: minmax(0, 1fr); }
+  .ivy-fig figcaption { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ivy-games .ivy-thumb img, .ivy-fig-link { transition: none; }
+}
