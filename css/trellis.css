@@ -165,8 +165,9 @@ html[lang="zh-Hant"] .pillar h3 { font-family: "Noto Sans TC", sans-serif; font-
 .tech h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; line-height: 1.15; margin: 0 0 .6rem; letter-spacing: .02em; }
 html[lang="zh-Hant"] .tech h3 { font-family: "Noto Sans TC", sans-serif; font-weight: 700; }
 .tech p { font-size: .82rem; color: var(--moss); line-height: 1.65; margin: 0 0 1rem; }
-.langs2 { display: grid; grid-template-columns: repeat(4, 1fr); padding: 1.6rem .9rem 1.4rem; list-style: none; margin: 0; }
-.langs2 li { text-align: center; }
+.langs2 { display: grid; grid-template-columns: repeat(6, 1fr); row-gap: 1.6rem; padding: 1.6rem .9rem 1.4rem; list-style: none; margin: 0; }
+.langs2 li { text-align: center; grid-column: span 2; }
+.langs2 li:nth-child(4) { grid-column: 2 / span 2; }
 .langs2 svg { width: min(7.4rem, 100%); height: auto; display: block; margin: 0 auto .9rem; }
 .langs2 b { display: block; font-weight: 500; font-size: .95rem; }
 .langs2 span { font-size: .78rem; color: var(--moss); }
@@ -348,6 +349,8 @@ html[lang="zh-Hant"] .section-title { font-family: "Noto Sans TC", sans-serif; f
   .tech li, .pillar { border-right: 0; border-bottom: 1px solid var(--line); }
   .pillar { padding: 1.25rem 1rem; }
   .langs2 { grid-template-columns: repeat(2, 1fr); row-gap: 1.5rem; }
+  .langs2 li, .langs2 li:nth-child(4) { grid-column: auto; }
+  .langs2 li:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .comp, .works2, .cl, .facts2, .w-nav { grid-template-columns: 1fr; }
   .donut { flex-direction: column; align-items: stretch; }
   .donut svg { margin: 0 auto; }
