@@ -171,6 +171,14 @@ html[lang="zh-Hant"] .tech h3 { font-family: "Noto Sans TC", sans-serif; font-we
 .langs2 svg { width: min(7.4rem, 100%); height: auto; display: block; margin: 0 auto .9rem; }
 .langs2 b { display: block; font-weight: 500; font-size: .95rem; }
 .langs2 span { font-size: .78rem; color: var(--moss); }
+.skills2 .certs { grid-column: 1 / -1; }
+.cert-list { list-style: none; margin: 0; padding: 0; }
+.cert-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; padding: 1.6rem; }
+.cert-list li + li { border-top: 1px solid var(--line); }
+.cert-list h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; line-height: 1.2; margin: 0 0 .35rem; letter-spacing: .02em; }
+html[lang="zh-Hant"] .cert-list h3 { font-family: "Noto Sans TC", sans-serif; font-weight: 700; }
+.cert-list p { font-size: .82rem; color: var(--moss); margin: 0; }
+.cert-list li > .mono { margin-left: auto; }
 
 /* ---------- portfolio: engine ---------- */
 .pull { display: grid; grid-template-columns: auto 1fr auto; gap: 1.1rem; align-items: center; border-top: 1px solid var(--line); padding: 1.5rem 1.9rem; }
@@ -246,7 +254,7 @@ html[lang="zh-Hant"] .hb h3 { font-family: "Noto Sans TC", sans-serif; font-weig
 
 /* ---------- contact ---------- */
 .contact2 { margin-top: clamp(5rem, 9vw, 8.25rem); border-top: 1px solid var(--line-2); padding: 5rem 0 2.5rem; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2.5rem; }
-.contact2 h2 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(2.8rem, 7vw, 6rem); line-height: 1.05; letter-spacing: .02em; }
+.contact2 h2 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(1.7rem, 5.2vw, 4.5rem); line-height: 1.15; letter-spacing: .02em; }
 html[lang="zh-Hant"] .contact2 h2 { font-family: "Noto Sans TC", sans-serif; font-weight: 700; }
 .contact2 h2 em { font-style: normal; color: var(--fern); }
 .cta { display: flex; flex-direction: column; gap: .75rem; align-items: flex-end; }
