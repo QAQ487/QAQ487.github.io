@@ -13,42 +13,12 @@
 html[lang="ja"] .ivy-kana, html[lang="zh-Hant"] .ivy-kana { font-family: inherit; letter-spacing: .4em; }
 .ivy-hero .page-nav { margin-top: 1.75rem; }
 
-/* ---------- figures (plates) ---------- */
-.ivy-fig { margin: 0; }
-.ivy-fig-link {
-  display: block;
-  border: 1px solid var(--line-2);
-  border-radius: 4px;
-  background: var(--deep);
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.ivy-fig-link:hover, .ivy-fig-link:focus-visible { border-color: var(--fern); }
-.ivy-fig-link img { display: block; width: 100%; height: auto; }
-.ivy-fig figcaption {
-  display: flex;
-  gap: 1rem;
-  align-items: baseline;
-  padding: .75rem .1rem 0;
-  color: var(--moss);
-  font-size: .86rem;
-  line-height: 1.7;
-}
-.ivy-fig figcaption .mono { flex: none; }
-.ivy-fig figcaption a.mono { margin-left: auto; color: var(--fern); }
-.ivy-fig-cap { flex: 1 1 auto; }
-
 /* ---------- hero stage ---------- */
 .ivy-stage {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-  margin-top: 2.75rem;
-}
-.ivy-stage-side {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
   gap: clamp(1.5rem, 3vw, 3rem);
+  margin-top: 2.75rem;
   align-items: start;
 }
 .ivy-kpis {
@@ -174,37 +144,75 @@ html[lang="ja"] .ivy-kpis .mono, html[lang="zh-Hant"] .ivy-kpis .mono { font-fam
 .ivy-game-d { margin: 0 0 .4rem; color: var(--moss); font-size: .88rem; line-height: 1.7; }
 .ivy-game .project-meta { margin: 0; }
 
-/* ---------- story ---------- */
-.ivy-story {
+/* ---------- vine (inline SVG, drawn with page tokens) ---------- */
+.ivy-vine { margin: 0 0 2rem; overflow-x: auto; scrollbar-width: thin; }
+.ivy-vine-svg { display: block; width: 100%; min-width: 46rem; height: auto; overflow: visible; }
+.vine-stem { fill: none; stroke: var(--fern); stroke-width: 2.4; }
+.vine-halo { fill: none; stroke: color-mix(in srgb, var(--fern) 14%, transparent); stroke-width: 10; }
+.vine-pet { stroke: var(--moss); stroke-width: 1.3; }
+.vine-face { fill: var(--hollow); }
+.vine-ring { fill: none; stroke: var(--line-2); stroke-width: .8; }
+.vine-vein { fill: none; stroke: color-mix(in srgb, var(--moss) 60%, transparent); stroke-width: .9; }
+.vine-edge { fill: none; stroke: var(--moss); stroke-width: 1.5; transition: stroke .2s; }
+.vine-node { fill: var(--fern); }
+.vine-bud-r { fill: none; stroke: color-mix(in srgb, var(--fern) 30%, transparent); stroke-width: 1; }
+.vine-lead { stroke: var(--line-2); stroke-width: 1; stroke-dasharray: 2 4; }
+.vine-lead.is-fern { stroke: color-mix(in srgb, var(--fern) 50%, transparent); }
+.vine-n { font-family: var(--font-display); font-size: 30px; fill: var(--lumen); }
+.vine-l { font-size: 14px; fill: var(--moss); letter-spacing: .04em; }
+.vine-l.is-fern { fill: var(--fern); }
+.vine-leaf.is-hot .vine-edge, .vine-leaf:hover .vine-edge { stroke: var(--fern); }
+.ivy-feat { transition: border-color .2s; }
+.ivy-feat.is-hot { border-color: var(--fern); }
+
+/* ---------- story: three stages ---------- */
+.ivy-steps {
   list-style: none;
-  margin: 1.5rem 0 0;
+  margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
 }
-.ivy-story li { padding: 1.1rem 1.25rem 1.25rem; }
-.ivy-story li.is-learn { border-color: color-mix(in srgb, var(--fern) 55%, transparent); }
-.ivy-story-h { display: flex; gap: .55rem; align-items: center; margin: 0 0 .6rem; }
-.ivy-story-h .icon { color: var(--fern); width: .95rem; height: .95rem; }
-.ivy-story-h b { font-weight: 600; font-size: .95rem; }
-.ivy-story p:not(.ivy-story-h) { margin: 0; color: var(--moss); font-size: .88rem; line-height: 1.75; }
+.ivy-step { display: flex; flex-direction: column; overflow: hidden; }
+.ivy-step-fig { margin: 0; padding: 1.25rem 1rem .5rem; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--canopy) 55%, transparent); }
+.ivy-sk { display: block; width: 100%; max-width: 17rem; height: auto; margin: 0 auto; }
+.sk-floor { stroke: var(--line-2); stroke-width: 1; }
+.sk-ghost { fill: none; stroke: var(--trellis); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+.sk-key { fill: none; stroke: var(--lumen); stroke-width: 1; stroke-dasharray: 3 4; opacity: .55; }
+.sk-key.is-inner { opacity: .45; }
+.sk-bone { fill: var(--hollow); stroke: var(--moss); stroke-width: 1.4; }
+.sk-tick { stroke: var(--fern); stroke-width: 1.4; }
+.sk-ok { fill: var(--hollow); stroke: var(--fern); stroke-width: 1.6; filter: drop-shadow(0 0 5px color-mix(in srgb, var(--fern) 45%, transparent)); }
+.sk-joint { fill: var(--fern); }
+.ivy-step-body { padding: 1.1rem 1.25rem 1.3rem; }
+.ivy-step-h { display: flex; gap: .7rem; align-items: baseline; margin: 0 0 .5rem; }
+.ivy-step-tag { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--trellis); }
+html[lang="ja"] .ivy-step-tag, html[lang="zh-Hant"] .ivy-step-tag { font-family: inherit; text-transform: none; letter-spacing: .06em; font-size: .78rem; }
+.ivy-step h3 { display: flex; gap: .5rem; align-items: center; margin: 0 0 .5rem; font-size: 1rem; font-weight: 600; }
+.ivy-step h3 .icon { color: var(--fern); width: .95rem; height: .95rem; }
+.ivy-step p:not(.ivy-step-h) { margin: 0; color: var(--moss); font-size: .88rem; line-height: 1.75; }
+.ivy-step.is-s3 { border-color: color-mix(in srgb, var(--fern) 45%, transparent); }
+.ivy-lesson { display: flex; gap: .8rem; align-items: baseline; margin-top: 1rem; padding: 1rem 1.4rem; border-color: color-mix(in srgb, var(--fern) 45%, transparent); }
+.ivy-lesson .icon { color: var(--fern); flex: none; align-self: center; }
+.ivy-lesson b { flex: none; font-weight: 600; font-size: .95rem; }
+.ivy-lesson p { margin: 0; color: var(--lumen); font-size: .95rem; line-height: 1.7; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1100px) {
-  .ivy-feats, .ivy-story { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ivy-feats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 900px) {
-  .ivy-stage-side { grid-template-columns: minmax(0, 1fr); }
-  .ivy-games { grid-template-columns: minmax(0, 1fr); }
+  .ivy-stage { grid-template-columns: minmax(0, 1fr); }
+  .ivy-games, .ivy-steps { grid-template-columns: minmax(0, 1fr); }
+  .ivy-lesson { flex-wrap: wrap; }
   .ivy-notes { grid-template-columns: minmax(0, 1fr); }
   .ivy-layers li { grid-template-columns: 2.4rem minmax(0, 1fr); }
   .ivy-layer-d { grid-column: 2; }
 }
 @media (max-width: 560px) {
-  .ivy-feats, .ivy-story { grid-template-columns: minmax(0, 1fr); }
-  .ivy-fig figcaption { flex-wrap: wrap; }
+  .ivy-feats { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ivy-game .ivy-thumb, .ivy-fig-link { transition: none; }
+  .ivy-game .ivy-thumb, .ivy-feat, .vine-edge { transition: none; }
 }
