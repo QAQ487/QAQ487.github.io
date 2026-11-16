@@ -286,7 +286,10 @@
       el(s, "circle", { cx: 59, cy: 59, r, fill: "none", stroke: F, "stroke-width": 6, "stroke-dasharray": `${c * v} ${c}`, transform: "rotate(-90 59 59)", "stroke-linecap": v < 1 ? "round" : "butt" });
       const big = s.getAttribute("data-big"), small = s.getAttribute("data-small");
       const bigT = big.startsWith("{") ? JSON.parse(big) : big;
-      tx(s, { x: 59, y: 63, "text-anchor": "middle", fill: L, "font-family": DISP, "font-size": v < 1 ? 22 : 17 }, bigT);
+      // Fit the label inside the ring: CJK glyphs ≈ 1em wide, Latin ≈ 0.55em.
+      const em = (t) => [...t].reduce((w, ch) => w + (ch.charCodeAt(0) < 0x2e80 ? 0.55 : 1), 0);
+      const widest = Math.max(...(typeof bigT === "string" ? [bigT] : Object.values(bigT)).map(em));
+      tx(s, { x: 59, y: 63, "text-anchor": "middle", fill: L, "font-family": DISP, "font-size": Math.min(17, 72 / widest) }, bigT);
       tx(s, { x: 59, y: 79, "text-anchor": "middle", fill: T, "font-family": MONO, "font-size": 8, "letter-spacing": 1 }, small);
     });
   }
