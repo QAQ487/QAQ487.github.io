@@ -42,11 +42,12 @@ A garden trellis and an instrument graticule laid over each other, with one livi
 
 ## Ivy Engine page — "Pressed Signal" (2026/11)
 
-`/portfolio/works/ivy-engine/` is the flagship work page. It keeps the work-page parts (`w-hero`, `sh`, `facts2`, `w-nav`) and adds a field-journal layer in `css/ivy.css` and `js/ivy.js` (feature atlas tabs; without JS every panel shows).
+`/portfolio/works/ivy-engine/` is the flagship work page. It keeps the work-page parts (`w-hero`, `sh`, `facts2`, `w-nav`) and adds a field-journal layer in `css/ivy.css`. `js/ivy.js` only plays the game preview loops while they are on screen (never under reduced motion).
 
-- Hero: Fig. 01 anatomy plate (portrait) beside six KPIs and the five layers L4–L0.
-- Sections 01–10: anatomy diagrams (inline SVG, trilingual), frame, rendering + GPU-skin case, feature atlas (350 items from the old chips), editor live sketch, test bridge, ADR 0001–0008, limits and next, games, spec sheet.
-- Plates live in `plate/`: `fig02-frame`, `fig03-strata`, `fig04-bridge`, `fig05-rings` (pycairo scripts with a shared `common.py`; PDF + PNG + a 1600px WebP for the page). Labels inside plates are code-like English; every caption around them is ja / en / zh. The design philosophy is `plate/pressed-signal-philosophy.md`.
+- Redesigned 2026/11/16 to be simpler and show no code: no file names, executable names, API names, version numbers or shortcut keys anywhere on the page or inside the plates.
+- Hero: Fig. 01 plate (portrait) beside four KPIs (14 months, 350 features, 3 games, 1 developer) and three plain lines (build, play, grow).
+- Sections 01–06: what the engine is (one trilingual SVG diagram + three notes), features (eight system cards; the number is the feature count, the bar is relative to the largest), games (three looping previews), the GPU-skin story (Fig. 02 + problem / approach / result / lesson), approach (three habits), spec sheet with three "next" items.
+- Plates live in `plate/`. On the page: `ivy-engine-pressed-signal` (Fig. 01, eight leaves) and `fig03-strata` (shown as Fig. 02). `fig02-frame`, `fig04-bridge` and `fig05-rings` are no longer used by the page. Philosophy: `plate/pressed-signal-philosophy.md`, plus `plate/pressed-signal-quiet-philosophy.md` for the code-free edition.
 - Source of facts: the engine repo `docs/` (manual, user guide, content project, test bridge, ADRs, TODO).
 
 ## Rules

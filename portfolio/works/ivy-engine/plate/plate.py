@@ -21,27 +21,21 @@ MONO = "IBM Plex Mono"
 CJK = "Noto Sans CJK JP"
 
 # strata (top -> bottom)
-Y_TIP = 234
-Y_L4 = 220
-Y_L3 = 322
+Y_TIP = 244
+Y_L3 = 222
 Y_L2 = 782
 Y_GROUND = 872
 Y_SOIL_END = 1010
 
-FEATURES = [  # bottom -> top, alternating sides; (no, key, label, count, adr)
-    ("01", "core", "CORE / RUNTIME", 31, None),
-    ("02", "build", "BUILD", 19, "A02"),
-    ("03", "assets", "ASSETS", 13, None),
-    ("04", "scene", "SCENE / PREFAB", 24, None),
-    ("05", "render", "RENDERING", 64, "A03"),
-    ("06", "phys3d", "PHYSICS 3D", 29, "A04"),
-    ("07", "2d", "2D / BOX2D", 27, "A08"),
-    ("08", "audio", "AUDIO", 13, "A01"),
-    ("09", "ui", "UI", 23, None),
-    ("10", "editor", "EDITOR", 44, None),
-    ("11", "script", "SCRIPTING", 34, "A06"),
-    ("12", "test", "TEST BRIDGE", 21, None),
-    ("13", "agent", "AGENT DOCS", 8, None),
+FEATURES = [  # bottom -> top, alternating sides; (no, key, label, count, adr, jp)
+    ("01", "core", "CORE / SCENE", 55, None, "核・シーン"),
+    ("02", "build", "BUILD / TEST", 48, None, "ビルドと検証"),
+    ("03", "render", "RENDERING", 77, None, "描画・アニメーション"),
+    ("04", "phys", "PHYSICS 3D · 2D", 56, None, "物理"),
+    ("05", "editor", "EDITOR", 44, None, "エディタ"),
+    ("06", "script", "SCRIPTING", 34, None, "スクリプト"),
+    ("07", "ui", "UI", 23, None, "メニュー・HUD"),
+    ("08", "audio", "AUDIO", 13, None, "サウンド"),
 ]
 
 
@@ -92,32 +86,27 @@ def notch_point(cx, cy, R, ang):
 
 # ---------------------------------------------------------------- layout solver
 LAYOUT = {  # key: (node_y, leaf centre x, leaf centre y) — placed by hand
-    "core": (754, 352, 728),
-    "build": (740, 486, 714),
-    "assets": (678, 246, 650),
-    "scene": (664, 612, 652),
-    "phys3d": (630, 494, 608),
-    "render": (614, 344, 588),
-    "audio": (558, 604, 536),
-    "2d": (524, 242, 504),
-    "editor": (502, 506, 478),
-    "ui": (488, 362, 468),
-    "script": (434, 236, 400),
-    "test": (420, 612, 398),
-    "agent": (374, 378, 350),
+    "core": (752, 300, 712),
+    "build": (700, 548, 664),
+    "render": (628, 282, 566),
+    "phys": (548, 556, 494),
+    "editor": (474, 296, 424),
+    "script": (412, 540, 362),
+    "ui": (352, 318, 306),
+    "audio": (300, 512, 268),
 }
 
 
 def solve_leaves():
     placed = []
-    for no, key, label, count, adr in FEATURES:
+    for no, key, label, count, adr, jp in FEATURES:
         ny, cx, cy = LAYOUT[key]
         nx = stem_x(ny)
         R = 7.2 * math.sqrt(count)
         side = -1 if cx < nx else 1
         ang = math.atan2(cy - ny, cx - nx)
         pxn, pyn = notch_point(cx, cy, R, ang)
-        placed.append(dict(no=no, key=key, label=label, count=count, adr=adr, side=side, R=R,
+        placed.append(dict(no=no, key=key, label=label, count=count, adr=adr, jp=jp, side=side, R=R,
                            cx=cx, cy=cy, ang=ang, nx=nx, ny=ny, px=pxn, py=pyn))
     placed.sort(key=lambda q: -q["ny"])
     for i, q in enumerate(placed):
@@ -297,20 +286,19 @@ def draw_header(ctx):
     xr = W - M
     text(ctx, xr, 162, "350", DISPLAY, 58, rgb(LUMEN), align="r")
     text(ctx, xr, 82, "FEATURES PLOTTED", MONO, 6.2, rgb(TRELLIS), align="r", track=1.6)
-    text(ctx, xr, 92, "13 SYSTEMS  ·  LEAF AREA = COUNT", MONO, 6.2, rgb(TRELLIS, 0.7), align="r", track=1.0)
-    text(ctx, xr, 188, "solo  ·  2025.10 framework → 2026.04 engine → now", MONO, 6.6, rgb(MOSS), align="r")
+    text(ctx, xr, 92, "8 SYSTEMS  ·  LEAF AREA = COUNT", MONO, 6.2, rgb(TRELLIS, 0.7), align="r", track=1.0)
+    text(ctx, xr, 188, "solo  ·  2025.10 → now", MONO, 6.6, rgb(MOSS), align="r")
     line(ctx, M, 206, W - M, 206, rgb(TRELLIS, 0.45), 0.45)
 
 
 def draw_strata(ctx):
     bands = [
-        (Y_L4, Y_L3, "L4  SCRIPT ABI"),
-        (Y_L3, Y_L2, "L3  FEATURES"),
-        (Y_L2, Y_GROUND, "L2  FOUNDATION"),
-        (Y_GROUND, Y_SOIL_END, "L0  CONTENT PROJECT"),
+        (Y_L3, Y_L2, "FEATURES"),
+        (Y_L2, Y_GROUND, "FOUNDATION"),
+        (Y_GROUND, Y_SOIL_END, "GAME CONTENT"),
     ]
     ctx.set_dash([1.2, 2.8])
-    for y in (Y_L4, Y_L3, Y_L2, Y_SOIL_END):
+    for y in (Y_L3, Y_L2, Y_SOIL_END):
         line(ctx, M, y, W - M, y, rgb(TRELLIS, 0.38), 0.4)
     ctx.set_dash([])
     line(ctx, M, Y_GROUND, W - M, Y_GROUND, rgb(TRELLIS, 0.75), 0.6)
@@ -345,8 +333,8 @@ def draw_soil(ctx):
 
     base_x = stem_x(Y_GROUND)
     roots = [
-        (-1, (base_x - 150, Y_SOIL_END - 30), "EDITOR", "IvyEngine.exe"),
-        (1, (base_x + 150, Y_SOIL_END - 30), "RUNTIME", "<GameName>.exe"),
+        (-1, (base_x - 150, Y_SOIL_END - 30), "EDITOR", "つくる"),
+        (1, (base_x + 150, Y_SOIL_END - 30), "GAME", "あそぶ"),
     ]
     rnd = random.Random(48)
     for side, (tx, ty), lab, exe in roots:
@@ -383,13 +371,13 @@ def draw_soil(ctx):
         al = "r" if side < 0 else "l"
         lx = tx - 8 if side < 0 else tx + 8
         text(ctx, lx, ty - 1, lab, MONO, 6.2, rgb(LUMEN), align=al, track=1.4)
-        text(ctx, lx, ty + 8.5, exe, MONO, 5.8, rgb(MOSS), align=al)
+        text(ctx, lx, ty + 10, exe, CJK, 6.4, rgb(MOSS), align=al)
 
-    text(ctx, base_x, Y_SOIL_END - 6, "two hosts  ·  one scene loop", MONO, 5.8, rgb(TRELLIS), align="c", track=0.6)
+    text(ctx, base_x, Y_SOIL_END - 6, "two roots  ·  one stem", MONO, 5.8, rgb(TRELLIS), align="c", track=0.6)
 
     # sediment tags (content project files)
-    for x, y, s in [(M + 28, Y_GROUND + 30, "project.json"), (M + 28, Y_GROUND + 62, "rom/"),
-                    (W - M - 28, Y_GROUND + 46, "GameScripts.dll")]:
+    for x, y, s in [(M + 28, Y_GROUND + 30, "scenes"), (M + 28, Y_GROUND + 62, "models · sounds"),
+                    (W - M - 28, Y_GROUND + 46, "game logic")]:
         al = "l" if x < W / 2 else "r"
         font(ctx, MONO, 6.2)
         w = ctx.text_extents(s).x_advance
@@ -434,7 +422,7 @@ def draw_stem(ctx):
     ctx.stroke()
 
     # L2 foundation nodes
-    for y, lab in [(Y_L2 + 22, "Win32  ·  D3D11"), (Y_L2 + 45, "scene graph"), (Y_L2 + 68, "JSON v4")]:
+    for y, lab in [(Y_L2 + 22, "Windows  ·  DirectX 11"), (Y_L2 + 45, "objects & components"), (Y_L2 + 68, "scene files")]:
         x = stem_x(y)
         line(ctx, x - 9, y, x - 3, y, rgb(TRELLIS), 0.5)
         ctx.set_source_rgba(*rgb(CANOPY))
@@ -446,35 +434,6 @@ def draw_stem(ctx):
         ctx.stroke()
         text(ctx, x - 14, y + 2.2, lab, MONO, 6.2, rgb(MOSS), align="r")
 
-    # L4 ABI ticks: v40 .. v48
-    y_lo, y_hi = Y_L3 - 8, Y_TIP + 12
-    for i, v in enumerate(range(40, 49)):
-        y = y_lo - i * (y_lo - y_hi) / 8
-        x = stem_x(y)
-        major = v in (40, 41, 42, 48)
-        L = 9 if major else 5
-        line(ctx, x + 3, y, x + 3 + L, y, rgb(TRELLIS if v != 48 else FERN, 0.9), 0.5)
-        if major:
-            note = {40: "", 41: "  lock  A05", 42: "  1st-person  A06", 48: "  now"}[v]
-            text(ctx, x + 16, y + 2, f"v{v}{note}", MONO, 5.8,
-                 rgb(FERN) if v == 48 else rgb(MOSS))
-    ym = y_lo - 5 * (y_lo - y_hi) / 8
-    text(ctx, stem_x(ym) + 16, ym + 2, "ScriptRuntimeApi", MONO, 5.8, rgb(TRELLIS), track=0.4)
-
-    # unfreeze ring at the L3/L4 boundary
-    y = Y_L3
-    x = stem_x(y)
-    ctx.set_source_rgba(*rgb(CANOPY))
-    ctx.arc(x, y, 4.2, 0, 2 * math.pi)
-    ctx.fill()
-    ctx.set_source_rgba(*rgb(FERN))
-    ctx.set_line_width(0.6)
-    ctx.arc(x, y, 4.2, 0, 2 * math.pi)
-    ctx.stroke()
-    ctx.arc(x, y, 1.4, 0, 2 * math.pi)
-    ctx.fill()
-    text(ctx, x - 10, y + 2, "A07  unfreeze  2026.10", MONO, 5.8, rgb(MOSS), align="r")
-
     # tip bud
     x = stem_x(Y_TIP)
     for r, a in [(11, 0.10), (7.5, 0.18), (4.5, 0.35)]:
@@ -485,6 +444,7 @@ def draw_stem(ctx):
     ctx.set_source_rgba(*rgb(FERN))
     ctx.arc(x, Y_TIP, 2.4, 0, 2 * math.pi)
     ctx.fill()
+    text(ctx, x + 16, Y_TIP + 2, "still growing", MONO, 5.8, rgb(FERN), track=0.6)
 
 
 def draw_leaf(ctx, lf):
@@ -571,16 +531,18 @@ def draw_leaf_label(ctx, lf):
         text(ctx, M, ly - 3, lf["no"], MONO, 5.8, rgb(TRELLIS))
         text(ctx, M + 14, ly - 3, lf["label"], MONO, 5.8, rgb(LUMEN), track=0.9)
         text(ctx, M, ly + 13, str(lf["count"]), DISPLAY, 13, rgb(MOSS))
+        text(ctx, M, ly + 26, lf["jp"], CJK, 6.4, rgb(TRELLIS))
     else:
         xr = W - M
         text(ctx, xr, ly - 3, lf["no"], MONO, 5.8, rgb(TRELLIS), align="r")
         text(ctx, xr - 14, ly - 3, lf["label"], MONO, 5.8, rgb(LUMEN), align="r", track=0.9)
         text(ctx, xr, ly + 13, str(lf["count"]), DISPLAY, 13, rgb(MOSS), align="r")
+        text(ctx, xr, ly + 26, lf["jp"], CJK, 6.4, rgb(TRELLIS), align="r")
 
 
 def draw_footer(ctx):
     y0 = 1040
-    stats = [("157", "PUBLIC HEADERS"), ("23", "JSON COMPONENTS"), ("30", "EASINGS"), ("08", "ADR")]
+    stats = [("14", "MONTHS"), ("08", "SYSTEMS"), ("03", "GAMES"), ("01", "PERSON")]
     x = M
     for num, lab in stats:
         text(ctx, x, y0 + 30, num, DISPLAY, 24, rgb(LUMEN))
@@ -606,7 +568,7 @@ def draw_footer(ctx):
     text(ctx, cx0 + cw - 14, cy0 + 20, "No. 001", MONO, 6, rgb(TRELLIS), align="r")
     line(ctx, cx0 + 14, cy0 + 27, cx0 + cw - 14, cy0 + 27, rgb(TRELLIS, 0.5), 0.35)
     rows = [("coll.", "楊 子悠  /  YEUNG Tsz Yau"), ("det.", "C++17  ·  Direct3D 11  ·  ImGui editor"),
-            ("loc.", "Win32  ·  x64  ·  static CRT"), ("date", "2025.10  →  2026.11")]
+            ("loc.", "HAL Tokyo  ·  personal work"), ("date", "2025.10  →  2026.11")]
     for i, (k, v) in enumerate(rows):
         yy = cy0 + 41 + i * 13
         text(ctx, cx0 + 14, yy, k, MONO, 6, rgb(TRELLIS))

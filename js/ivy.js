@@ -1,36 +1,20 @@
-/* Ivy Engine page: feature atlas. Without this script every group panel stays visible. */
+/* Ivy Engine page: game preview loops. They play only while on screen, and never for reduced-motion users. */
 (() => {
-  "use strict";
-  const root = document.querySelector("[data-atlas-root]");
-  if (!root) return;
-  const rows = Array.from(root.querySelectorAll("[data-atlas]"));
-  const panels = Array.from(root.querySelectorAll(".atlas-panel"));
-  if (!rows.length || !panels.length) return;
+  const videos = Array.from(document.querySelectorAll(".ivy-game video"));
+  if (!videos.length) return;
 
-  function select(id, focusPanel) {
-    rows.forEach((row) => row.setAttribute("aria-pressed", row.dataset.atlas === id ? "true" : "false"));
-    panels.forEach((panel) => {
-      if (panel.id === id) panel.removeAttribute("data-hidden");
-      else panel.setAttribute("data-hidden", "");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const stopAll = () => videos.forEach((v) => { v.pause(); v.removeAttribute("autoplay"); });
+  if (reduce.matches) { stopAll(); return; }
+  reduce.addEventListener("change", (e) => { if (e.matches) stopAll(); });
+
+  if (!("IntersectionObserver" in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (reduce.matches) return;
+      if (isIntersecting) target.play().catch(() => {});
+      else target.pause();
     });
-    if (focusPanel && window.matchMedia("(max-width: 900px)").matches) {
-      const panel = document.getElementById(id);
-      if (panel) panel.scrollIntoView({ block: "nearest", behavior: "smooth" });
-    }
-  }
-
-  rows.forEach((row, i) => {
-    row.addEventListener("click", () => select(row.dataset.atlas, true));
-    row.addEventListener("keydown", (e) => {
-      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
-      e.preventDefault();
-      const next = rows[(i + (e.key === "ArrowDown" ? 1 : rows.length - 1)) % rows.length];
-      next.focus();
-      select(next.dataset.atlas, false);
-    });
-  });
-
-  root.classList.add("is-live");
-  const first = rows.find((row) => row.getAttribute("aria-pressed") === "true") || rows[0];
-  select(first.dataset.atlas, false);
+  }, { threshold: 0.25 });
+  videos.forEach((v) => io.observe(v));
 })();
