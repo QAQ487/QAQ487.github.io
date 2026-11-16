@@ -155,7 +155,7 @@ def tex_sprites(ctx, x0, y0, x1, y1):
             line(ctx, x + fw / 2 + lean * 0.4, y + 9.5, x + fw / 2, y + 17, col, 0.5)
             line(ctx, x + fw / 2, y + 17, x + fw / 2 - 3 + lean, y + 23, col, 0.5)
             line(ctx, x + fw / 2, y + 17, x + fw / 2 + 3 - lean, y + 23, col, 0.5)
-    text(ctx, gx, gy + rws * (fh + 2) + 9, "ortho · sortingLayer · orderInLayer", MONO, 5.2, rgb(TRELLIS))
+    text(ctx, gx, gy + rws * (fh + 2) + 9, "sprites, drawn layer by layer", MONO, 5.2, rgb(TRELLIS))
 
 
 def draw_cores(ctx):
@@ -163,8 +163,8 @@ def draw_cores(ctx):
     bottom = rows[-1][2] + rows[-1][3]
     text(ctx, (C3[0] + C3[1]) / 2, TOP - 30, "3D", DISPLAY, 22, rgb(LUMEN), align="c")
     text(ctx, (C2[0] + C2[1]) / 2, TOP - 30, "2D", DISPLAY, 22, rgb(LUMEN), align="c")
-    text(ctx, (C3[0] + C3[1]) / 2, TOP - 14, "renderPath: 3d", MONO, 5.8, rgb(TRELLIS), align="c")
-    text(ctx, (C2[0] + C2[1]) / 2, TOP - 14, "renderPath: 2d", MONO, 5.8, rgb(TRELLIS), align="c")
+    text(ctx, (C3[0] + C3[1]) / 2, TOP - 14, "full path", MONO, 5.8, rgb(TRELLIS), align="c")
+    text(ctx, (C2[0] + C2[1]) / 2, TOP - 14, "lighter path", MONO, 5.8, rgb(TRELLIS), align="c")
     for i, (key, label, y, h) in enumerate(rows):
         # row label on the left with index
         text(ctx, C3[0] - 18, y + 12, f"{i + 1:02d}", MONO, 5.8, rgb(TRELLIS), align="r")
@@ -213,16 +213,16 @@ def draw_cores(ctx):
         line(ctx, x0, by, x1, by, rgb(FERN), 1.1)
         for k in range(0, int(x1 - x0) + 1, 6):
             line(ctx, x0 + k, by + 2, x0 + k, by + 5, rgb(FERN, 0.5), 0.4)
-    text(ctx, (C3[0] + C2[1]) / 2, by + 18, "backbuffer", MONO, 6, rgb(MOSS), align="c", track=1.2)
+    text(ctx, (C3[0] + C2[1]) / 2, by + 18, "screen", MONO, 6, rgb(MOSS), align="c", track=1.2)
     return bottom
 
 
 def draw_palette(ctx):
     X0 = 690
     text(ctx, X0, TOP - 30, "SKIN PALETTE", MONO, 6.6, rgb(LUMEN), track=1.6)
-    text(ctx, X0, TOP - 19, "vertex-shader skin  ·  same formula as SkinFromScratch", MONO, 5.9, rgb(MOSS))
+    text(ctx, X0, TOP - 19, "bones moved on the GPU  ·  checked against a slow, known-right version", MONO, 5.9, rgb(MOSS))
     cols, cell, gap = 13, 30, 5.2
-    meshes = [("mesh 0", "Alpha_Surface"), ("mesh 1", "Alpha_Joints")]
+    meshes = [("mesh 0", "body surface"), ("mesh 1", "joints")]
     y = TOP + 4
     hi = 52  # first slot of mesh 1: meshIndex * boneCount
     for m, (tag, name) in enumerate(meshes):
@@ -253,11 +253,11 @@ def draw_palette(ctx):
     gx1 = X0 + cols * (cell + gap) - gap
     # formula
     fy = y + 8
-    text(ctx, X0, fy, "slot = meshIndex × boneCount + bone", MONO, 7, rgb(LUMEN))
-    text(ctx, gx1, fy, "2 × 52 = 104", MONO, 7, rgb(FERN), align="r")
+    text(ctx, X0, fy, "2 meshes  ×  52 bones", MONO, 7, rgb(LUMEN))
+    text(ctx, gx1, fy, "104 slots", MONO, 7, rgb(FERN), align="r")
     line(ctx, X0, fy + 10, gx1, fy + 10, rgb(TRELLIS, 0.45), 0.4)
-    rows = [("CPU", "SkinFromScratch", "oracle, not the frame path"),
-            ("GPU", "Shader_SetSkinPalette", "frame path, positions only")]
+    rows = [("CPU", "slow, known-right", "kept as the answer key"),
+            ("GPU", "fast", "matched to it, every frame")]
     for i, (k, a, b) in enumerate(rows):
         yy = fy + 26 + i * 13
         text(ctx, X0, yy, k, MONO, 6.2, rgb(TRELLIS))
@@ -268,13 +268,13 @@ def draw_palette(ctx):
 
 def draw(ctx):
     ground(ctx, W, H, avoid=[(0, 0, W, M + 30), (0, H - M - 40, W, H)])
-    masthead(ctx, W, M, "03", "STRATA", "TWO RENDER PATHS, ONE DEVICE", "D3D11  ·  FORWARD  ·  GPU SKIN")
+    masthead(ctx, W, M, "02", "STRATA", "TWO RENDER PATHS, ONE DEVICE", "DIRECTX 11  ·  FORWARD  ·  GPU SKIN")
     bottom = draw_cores(ctx)
     gx1 = draw_palette(ctx)
     yb = bottom + 52
     line(ctx, 690, yb - 22, W - M, yb - 22, rgb(TRELLIS, 0.45), 0.45)
     text(ctx, 690, yb, "Ivy Engine", DISPLAY, 18, rgb(LUMEN))
-    text(ctx, W - M, yb, "03", DISPLAY, 18, rgb(MOSS), align="r")
+    text(ctx, W - M, yb, "02", DISPLAY, 18, rgb(MOSS), align="r")
     text(ctx, W / 2, H - 40, "PRESSED SIGNAL  ·  what the 2D path leaves out is drawn as absence", MONO, 5.6,
          rgb(TRELLIS, 0.8), align="c", track=1.4)
 

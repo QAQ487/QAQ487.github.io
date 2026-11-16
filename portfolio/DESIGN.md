@@ -42,11 +42,13 @@ A garden trellis and an instrument graticule laid over each other, with one livi
 
 ## Ivy Engine page — "Pressed Signal" (2026/11)
 
-`/portfolio/works/ivy-engine/` is the flagship work page. It keeps the work-page parts (`w-hero`, `sh`, `facts2`, `w-nav`) and adds a field-journal layer in `css/ivy.css` and `js/ivy.js` (feature atlas tabs; without JS every panel shows).
+`/portfolio/works/ivy-engine/` is the flagship work page. It keeps the work-page parts (`w-hero`, `sh`, `facts2`, `w-nav`) and adds a field-journal layer in `css/ivy.css`. `js/ivy.js` only plays the game preview loops while they are on screen (never under reduced motion).
 
-- Hero: Fig. 01 anatomy plate (portrait) beside six KPIs and the five layers L4–L0.
-- Sections 01–10: anatomy diagrams (inline SVG, trilingual), frame, rendering + GPU-skin case, feature atlas (350 items from the old chips), editor live sketch, test bridge, ADR 0001–0008, limits and next, games, spec sheet.
-- Plates live in `plate/`: `fig02-frame`, `fig03-strata`, `fig04-bridge`, `fig05-rings` (pycairo scripts with a shared `common.py`; PDF + PNG + a 1600px WebP for the page). Labels inside plates are code-like English; every caption around them is ja / en / zh. The design philosophy is `plate/pressed-signal-philosophy.md`.
+- Redesigned 2026/11/16 to be simpler and show no code: no file names, executable names, API names, version numbers or shortcut keys anywhere on the page or inside the plates.
+- Hero: four KPIs (14 months, 350 features, 3 games, 1 developer) beside three plain lines (build, play, grow). No figure in the hero.
+- Sections 01–06: what the engine is (one trilingual SVG diagram + three notes), features (an inline SVG vine, then eight system cards; hovering a leaf lights its card and back), games (three looping previews), the GPU-skin story (three panels, each with an inline SVG skeleton: scattered → compared → matched, then a one-line lesson), approach (three habits), spec sheet with three "next" items.
+- The vine and the skeletons are inline SVG drawn with the page tokens (`--fern`, `--moss`, `--hollow`, `--line-2`) and page fonts, with no frame or baked-in text, so they sit on the site grid like the other diagrams. Their geometry is generated from the leaf outline in `plate/plate.py`; labels are `data-ja/en/zh` text.
+- Plates in `plate/` (`fig01-vine`, `fig02-skin`, `ivy-engine-pressed-signal`, `fig02-frame`, `fig03-strata`, `fig04-bridge`, `fig05-rings`) are no longer on the page. Philosophies: `plate/pressed-signal-philosophy.md`, `plate/pressed-signal-quiet-philosophy.md`, `plate/specimen-scale-philosophy.md`.
 - Source of facts: the engine repo `docs/` (manual, user guide, content project, test bridge, ADRs, TODO).
 
 ## Rules

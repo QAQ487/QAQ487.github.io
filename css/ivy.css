@@ -13,46 +13,20 @@
 html[lang="ja"] .ivy-kana, html[lang="zh-Hant"] .ivy-kana { font-family: inherit; letter-spacing: .4em; }
 .ivy-hero .page-nav { margin-top: 1.75rem; }
 
-/* ---------- figures (plates) ---------- */
-.ivy-fig { margin: 0; }
-.ivy-fig-link {
-  display: block;
-  border: 1px solid var(--line-2);
-  border-radius: 4px;
-  background: var(--deep);
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.ivy-fig-link:hover, .ivy-fig-link:focus-visible { border-color: var(--fern); }
-.ivy-fig-link img { display: block; width: 100%; height: auto; }
-.ivy-fig figcaption {
-  display: flex;
-  gap: 1rem;
-  align-items: baseline;
-  padding: .75rem .1rem 0;
-  color: var(--moss);
-  font-size: .86rem;
-  line-height: 1.7;
-}
-.ivy-fig figcaption .mono { flex: none; }
-.ivy-fig figcaption a.mono { margin-left: auto; color: var(--fern); }
-.ivy-fig-cap { flex: 1 1 auto; }
-
 /* ---------- hero stage ---------- */
 .ivy-stage {
   display: grid;
-  grid-template-columns: minmax(0, 25rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
   gap: clamp(1.5rem, 3vw, 3rem);
   margin-top: 2.75rem;
   align-items: start;
 }
-.ivy-stage-side { display: flex; flex-direction: column; gap: 1.5rem; }
 .ivy-kpis {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   border: 1px solid var(--line-2);
   border-radius: 4px;
   background: var(--panel);
@@ -62,12 +36,12 @@ html[lang="ja"] .ivy-kana, html[lang="zh-Hant"] .ivy-kana { font-family: inherit
   display: flex;
   flex-direction: column;
   gap: .35rem;
-  padding: 1.15rem 1.25rem 1.1rem;
+  padding: 1.3rem 1.35rem 1.2rem;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-.ivy-kpis li:nth-child(3n) { border-right: 0; }
-.ivy-kpis li:nth-last-child(-n + 3) { border-bottom: 0; }
+.ivy-kpis li:nth-child(2n) { border-right: 0; }
+.ivy-kpis li:nth-last-child(-n + 2) { border-bottom: 0; }
 .ivy-kpis .icon { position: absolute; top: 1rem; right: 1rem; width: .95rem; height: .95rem; color: var(--fern); }
 .ivy-kpis b { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 2.6vw, 2.2rem); line-height: 1.05; color: var(--lumen); }
 .ivy-kpis .mono { font-size: .64rem; text-transform: none; letter-spacing: .06em; }
@@ -76,7 +50,7 @@ html[lang="ja"] .ivy-kpis .mono, html[lang="zh-Hant"] .ivy-kpis .mono { font-fam
 .ivy-layers { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
 .ivy-layers li {
   display: grid;
-  grid-template-columns: 2.6rem 8.5rem minmax(0, 1fr);
+  grid-template-columns: 2.6rem 6.5rem minmax(0, 1fr);
   gap: 1rem;
   align-items: baseline;
   padding: .85rem 0;
@@ -122,116 +96,123 @@ html[lang="ja"] .ivy-kpis .mono, html[lang="zh-Hant"] .ivy-kpis .mono { font-fam
 .ivy-case { margin-top: 1.5rem; }
 .ivy-case .ph .mono { color: var(--fern); }
 
-/* ---------- feature atlas ---------- */
-.atlas {
-  display: grid;
-  grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
-  gap: 1.5rem;
-  align-items: start;
-}
-.atlas-total { display: flex; gap: .8rem; align-items: baseline; margin: 0 0 1rem; }
-.atlas-total b { font-family: var(--font-display); font-weight: 400; font-size: 2.4rem; line-height: 1; color: var(--lumen); }
-.atlas-total .mono { text-transform: none; letter-spacing: .04em; font-size: .72rem; }
-html[lang="ja"] .atlas-total .mono, html[lang="zh-Hant"] .atlas-total .mono { font-family: inherit; font-size: .82rem; }
-.atlas-rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line-2); }
-.atlas-row {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1.1rem minmax(0, 8.5rem) minmax(0, 1fr) 2.2rem;
-  gap: .75rem;
-  align-items: center;
-  padding: .62rem .5rem;
-  border: 0;
-  border-bottom: 1px solid var(--line);
-  border-radius: 0;
-  background: transparent;
-  color: var(--moss);
-  font: inherit;
-  font-size: .88rem;
-  text-align: left;
-  cursor: pointer;
-}
-.atlas-row .icon { color: var(--trellis); }
-.atlas-row:hover { color: var(--lumen); background: color-mix(in srgb, var(--hollow) 45%, transparent); }
-.atlas-row[aria-pressed="true"] { color: var(--lumen); background: var(--panel); }
-.atlas-row[aria-pressed="true"] .icon { color: var(--fern); }
-.atlas-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.atlas-bar { position: relative; height: 6px; border: 1px solid var(--line-2); border-radius: 1px; }
-.atlas-bar span {
-  position: absolute; inset: 0 auto 0 0;
-  background: repeating-linear-gradient(135deg, var(--trellis) 0 1px, transparent 1px 4px);
-}
-.atlas-row[aria-pressed="true"] .atlas-bar span { background: var(--fern); }
-.atlas-n { font-family: var(--font-mono); font-size: .78rem; text-align: right; color: var(--lumen); }
-.atlas-legend { display: flex; gap: .5rem; align-items: center; margin: .9rem 0 0; }
-.atlas-legend .mono { text-transform: none; letter-spacing: .04em; }
-.atlas-panel {
-  border: 1px solid var(--line-2);
-  border-radius: 4px;
-  background: var(--panel);
-  padding: 1.25rem 1.4rem 1.4rem;
-}
-.atlas-panel + .atlas-panel { margin-top: 1rem; }
-.atlas.is-live .atlas-panel[data-hidden] { display: none; }
-.atlas.is-live .atlas-panel + .atlas-panel { margin-top: 0; }
-.atlas-head { display: flex; gap: .65rem; align-items: center; margin: 0 0 1rem; font-size: 1.05rem; }
-.atlas-head .icon { color: var(--fern); }
-.atlas-head .mono { margin-left: auto; font-size: .9rem; }
-.atlas-panel .feat-chips { margin: 0; }
+.ivy-diagram .diagram-label.is-left { fill: var(--lumen); }
 
-/* ---------- decisions ---------- */
-.adr-list {
+/* ---------- features ---------- */
+.ivy-sub { margin: -.5rem 0 1.5rem; color: var(--moss); font-size: .92rem; line-height: 1.75; }
+.ivy-feats {
   list-style: none;
-  margin: 2rem 0 0;
+  margin: 0;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
-.adr { border: 1px solid var(--line-2); border-radius: 4px; background: var(--panel); padding: 1rem 1.15rem 1.15rem; }
-.adr.is-old { background: transparent; border-style: dashed; }
-.adr-top { display: flex; justify-content: space-between; align-items: center; margin: 0 0 .6rem; }
-.adr-no { font-family: var(--font-display); color: var(--fern); font-size: 1.05rem; letter-spacing: .04em; }
-.adr.is-old .adr-no { color: var(--trellis); }
-.adr-st { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--fern); border: 1px solid color-mix(in srgb, var(--fern) 50%, transparent); border-radius: 999px; padding: .1rem .55rem; }
-html[lang="ja"] .adr-st, html[lang="zh-Hant"] .adr-st { font-family: inherit; text-transform: none; letter-spacing: .04em; font-size: .68rem; }
-.adr-st.is-old { color: var(--trellis); border-color: var(--line-2); }
-.adr h3 { margin: 0 0 .4rem; font-size: .92rem; font-weight: 600; line-height: 1.55; }
-.adr p { margin: 0; color: var(--moss); font-size: .84rem; line-height: 1.7; }
-
-/* ---------- limits and next ---------- */
-.ivy-two { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
-.ivy-limits .feat-chips { margin: 0 1.4rem; }
-.ivy-limits, .ivy-next { padding-bottom: 1.4rem; }
-.ivy-limits .ph, .ivy-next .ph { margin-bottom: 1.1rem; }
-.ivy-next ol { list-style: none; margin: 0 1.4rem; padding: 0; display: flex; flex-direction: column; gap: .9rem; }
-.ivy-next li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: .5rem; font-size: .9rem; line-height: 1.75; }
+.ivy-feat {
+  border: 1px solid var(--line-2);
+  border-radius: 4px;
+  background: var(--panel);
+  padding: 1.15rem 1.25rem 1.25rem;
+  min-width: 0;
+}
+.ivy-feat-top { display: flex; justify-content: space-between; align-items: center; margin: 0 0 .9rem; }
+.ivy-feat-top .icon { color: var(--fern); width: 1.05rem; height: 1.05rem; }
+.ivy-feat-top b { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; line-height: 1; color: var(--lumen); }
+.ivy-feat h3 { margin: 0 0 .65rem; font-size: .98rem; font-weight: 600; line-height: 1.5; }
+.ivy-feat-bar { display: block; position: relative; height: 4px; margin: 0 0 .95rem; border: 1px solid var(--line-2); border-radius: 1px; }
+.ivy-feat-bar span { position: absolute; inset: 0 auto 0 0; background: var(--fern); opacity: .8; }
+.ivy-feat ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .4rem; }
+.ivy-feat li { position: relative; padding-left: .95rem; color: var(--moss); font-size: .86rem; line-height: 1.65; }
+.ivy-feat li::before { content: ""; position: absolute; left: 0; top: .72em; width: .4rem; height: 1px; background: var(--trellis); }
 
 /* ---------- games ---------- */
-.ivy-games .ivy-thumb { display: block; border: 1px solid var(--line-2); border-radius: 4px; overflow: hidden; background: var(--deep); }
-.ivy-games .ivy-thumb img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .4s; }
-.ivy-games .ivy-thumb:hover img { transform: scale(1.02); }
+.ivy-games {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+.ivy-game { min-width: 0; }
+.ivy-game .ivy-thumb { display: block; border: 1px solid var(--line-2); border-radius: 4px; overflow: hidden; background: var(--deep); transition: border-color .2s; }
+.ivy-game .ivy-thumb:hover { border-color: var(--fern); }
+.ivy-game video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.ivy-game h3 { margin: 1rem 0 .35rem; font-family: var(--font-display); font-weight: 400; font-size: 1.15rem; }
+.ivy-game h3 a { color: var(--lumen); text-decoration: none; }
+.ivy-game h3 a:hover { color: var(--fern); }
+.ivy-game-d { margin: 0 0 .4rem; color: var(--moss); font-size: .88rem; line-height: 1.7; }
+.ivy-game .project-meta { margin: 0; }
+
+/* ---------- vine (inline SVG, drawn with page tokens) ---------- */
+.ivy-vine { margin: 0 0 2rem; overflow-x: auto; scrollbar-width: thin; }
+.ivy-vine-svg { display: block; width: 100%; min-width: 46rem; height: auto; overflow: visible; }
+.vine-stem { fill: none; stroke: var(--fern); stroke-width: 2.4; }
+.vine-halo { fill: none; stroke: color-mix(in srgb, var(--fern) 14%, transparent); stroke-width: 10; }
+.vine-pet { stroke: var(--moss); stroke-width: 1.3; }
+.vine-face { fill: var(--hollow); }
+.vine-ring { fill: none; stroke: var(--line-2); stroke-width: .8; }
+.vine-vein { fill: none; stroke: color-mix(in srgb, var(--moss) 60%, transparent); stroke-width: .9; }
+.vine-edge { fill: none; stroke: var(--moss); stroke-width: 1.5; transition: stroke .2s; }
+.vine-node { fill: var(--fern); }
+.vine-bud-r { fill: none; stroke: color-mix(in srgb, var(--fern) 30%, transparent); stroke-width: 1; }
+.vine-lead { stroke: var(--line-2); stroke-width: 1; stroke-dasharray: 2 4; }
+.vine-lead.is-fern { stroke: color-mix(in srgb, var(--fern) 50%, transparent); }
+.vine-n { font-family: var(--font-display); font-size: 30px; fill: var(--lumen); }
+.vine-l { font-size: 14px; fill: var(--moss); letter-spacing: .04em; }
+.vine-l.is-fern { fill: var(--fern); }
+.vine-leaf.is-hot .vine-edge, .vine-leaf:hover .vine-edge { stroke: var(--fern); }
+.ivy-feat { transition: border-color .2s; }
+.ivy-feat.is-hot { border-color: var(--fern); }
+
+/* ---------- story: three stages ---------- */
+.ivy-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.ivy-step { display: flex; flex-direction: column; overflow: hidden; }
+.ivy-step-fig { margin: 0; padding: 1.25rem 1rem .5rem; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--canopy) 55%, transparent); }
+.ivy-sk { display: block; width: 100%; max-width: 17rem; height: auto; margin: 0 auto; }
+.sk-floor { stroke: var(--line-2); stroke-width: 1; }
+.sk-ghost { fill: none; stroke: var(--trellis); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+.sk-key { fill: none; stroke: var(--lumen); stroke-width: 1; stroke-dasharray: 3 4; opacity: .55; }
+.sk-key.is-inner { opacity: .45; }
+.sk-bone { fill: var(--hollow); stroke: var(--moss); stroke-width: 1.4; }
+.sk-tick { stroke: var(--fern); stroke-width: 1.4; }
+.sk-ok { fill: var(--hollow); stroke: var(--fern); stroke-width: 1.6; filter: drop-shadow(0 0 5px color-mix(in srgb, var(--fern) 45%, transparent)); }
+.sk-joint { fill: var(--fern); }
+.ivy-step-body { padding: 1.1rem 1.25rem 1.3rem; }
+.ivy-step-h { display: flex; gap: .7rem; align-items: baseline; margin: 0 0 .5rem; }
+.ivy-step-tag { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--trellis); }
+html[lang="ja"] .ivy-step-tag, html[lang="zh-Hant"] .ivy-step-tag { font-family: inherit; text-transform: none; letter-spacing: .06em; font-size: .78rem; }
+.ivy-step h3 { display: flex; gap: .5rem; align-items: center; margin: 0 0 .5rem; font-size: 1rem; font-weight: 600; }
+.ivy-step h3 .icon { color: var(--fern); width: .95rem; height: .95rem; }
+.ivy-step p:not(.ivy-step-h) { margin: 0; color: var(--moss); font-size: .88rem; line-height: 1.75; }
+.ivy-step.is-s3 { border-color: color-mix(in srgb, var(--fern) 45%, transparent); }
+.ivy-lesson { display: flex; gap: .8rem; align-items: baseline; margin-top: 1rem; padding: 1rem 1.4rem; border-color: color-mix(in srgb, var(--fern) 45%, transparent); }
+.ivy-lesson .icon { color: var(--fern); flex: none; align-self: center; }
+.ivy-lesson b { flex: none; font-weight: 600; font-size: .95rem; }
+.ivy-lesson p { margin: 0; color: var(--lumen); font-size: .95rem; line-height: 1.7; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1100px) {
-  .ivy-notes.is-4, .adr-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ivy-feats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 900px) {
-  .ivy-stage, .atlas, .ivy-two { grid-template-columns: minmax(0, 1fr); }
-  .ivy-stage .is-portrait { max-width: 26rem; }
+  .ivy-stage { grid-template-columns: minmax(0, 1fr); }
+  .ivy-games, .ivy-steps { grid-template-columns: minmax(0, 1fr); }
+  .ivy-lesson { flex-wrap: wrap; }
   .ivy-notes { grid-template-columns: minmax(0, 1fr); }
   .ivy-layers li { grid-template-columns: 2.4rem minmax(0, 1fr); }
   .ivy-layer-d { grid-column: 2; }
 }
 @media (max-width: 560px) {
-  .ivy-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .ivy-kpis li:nth-child(3n) { border-right: 1px solid var(--line); }
-  .ivy-kpis li:nth-child(2n) { border-right: 0; }
-  .ivy-kpis li:nth-last-child(-n + 3) { border-bottom: 1px solid var(--line); }
-  .ivy-kpis li:nth-last-child(-n + 2) { border-bottom: 0; }
-  .ivy-notes.is-4, .adr-list { grid-template-columns: minmax(0, 1fr); }
-  .ivy-fig figcaption { flex-wrap: wrap; }
+  .ivy-feats { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .ivy-games .ivy-thumb img, .ivy-fig-link { transition: none; }
+  .ivy-game .ivy-thumb, .ivy-feat, .vine-edge { transition: none; }
 }
