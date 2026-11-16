@@ -40,13 +40,17 @@ html[lang="ja"] .ivy-kana, html[lang="zh-Hant"] .ivy-kana { font-family: inherit
 
 /* ---------- hero stage ---------- */
 .ivy-stage {
-  display: grid;
-  grid-template-columns: minmax(0, 25rem) minmax(0, 1fr);
-  gap: clamp(1.5rem, 3vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
   margin-top: 2.75rem;
+}
+.ivy-stage-side {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
   align-items: start;
 }
-.ivy-stage-side { display: flex; flex-direction: column; gap: 1.5rem; }
 .ivy-kpis {
   list-style: none;
   margin: 0;
@@ -191,9 +195,8 @@ html[lang="ja"] .ivy-kpis .mono, html[lang="zh-Hant"] .ivy-kpis .mono { font-fam
   .ivy-feats, .ivy-story { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 900px) {
-  .ivy-stage { grid-template-columns: minmax(0, 1fr); }
+  .ivy-stage-side { grid-template-columns: minmax(0, 1fr); }
   .ivy-games { grid-template-columns: minmax(0, 1fr); }
-  .ivy-stage .is-portrait { max-width: 26rem; }
   .ivy-notes { grid-template-columns: minmax(0, 1fr); }
   .ivy-layers li { grid-template-columns: 2.4rem minmax(0, 1fr); }
   .ivy-layer-d { grid-column: 2; }

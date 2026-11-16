@@ -45,9 +45,9 @@ A garden trellis and an instrument graticule laid over each other, with one livi
 `/portfolio/works/ivy-engine/` is the flagship work page. It keeps the work-page parts (`w-hero`, `sh`, `facts2`, `w-nav`) and adds a field-journal layer in `css/ivy.css`. `js/ivy.js` only plays the game preview loops while they are on screen (never under reduced motion).
 
 - Redesigned 2026/11/16 to be simpler and show no code: no file names, executable names, API names, version numbers or shortcut keys anywhere on the page or inside the plates.
-- Hero: Fig. 01 plate (portrait) beside four KPIs (14 months, 350 features, 3 games, 1 developer) and three plain lines (build, play, grow).
+- Hero: Fig. 01 vine plate (landscape, full width), then four KPIs (14 months, 350 features, 3 games, 1 developer) beside three plain lines (build, play, grow).
 - Sections 01–06: what the engine is (one trilingual SVG diagram + three notes), features (eight system cards; the number is the feature count, the bar is relative to the largest), games (three looping previews), the GPU-skin story (Fig. 02 + problem / approach / result / lesson), approach (three habits), spec sheet with three "next" items.
-- Plates live in `plate/`. On the page: `ivy-engine-pressed-signal` (Fig. 01, eight leaves) and `fig03-strata` (shown as Fig. 02). `fig02-frame`, `fig04-bridge` and `fig05-rings` are no longer used by the page. Philosophy: `plate/pressed-signal-philosophy.md`, plus `plate/pressed-signal-quiet-philosophy.md` for the code-free edition.
+- Plates live in `plate/`. On the page: `fig01-vine` (Fig. 01, eight leaves on a horizontal stem) and `fig02-skin` (Fig. 02, scattered → compared → matched). Both are 1600×1000 pt landscape, drawn with large forms and labels so they read at web size; the page uses the 2400px WebP. Philosophy: `plate/specimen-scale-philosophy.md`. Older plates (`ivy-engine-pressed-signal`, `fig02-frame`, `fig03-strata`, `fig04-bridge`, `fig05-rings`) stay in the folder but are no longer on the page.
 - Source of facts: the engine repo `docs/` (manual, user guide, content project, test bridge, ADRs, TODO).
 
 ## Rules
