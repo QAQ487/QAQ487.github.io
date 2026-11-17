@@ -315,7 +315,19 @@
     vids.forEach((v) => io.observe(v));
   }
 
-  vine(); duration(); loop(); grow(); gantt();
+  // Hero reel: name the work on screen. Segment starts match portfolio/media/reel.mp4.
+  function reel() {
+    const v = document.querySelector("video[data-reel]"), out = document.querySelector("[data-reel-now]");
+    if (!v || !out) return;
+    const seg = [[0, "Scrap Burst"], [4.1, "Magnet Field"], [7.7, "Frisbee Arena"], [11.8, "Gravity Swing"], [15.4, "Village & Goblin"], [19.0, "Block Shooter"]];
+    v.addEventListener("timeupdate", () => {
+      let name = seg[0][1];
+      for (const [t, n] of seg) if (v.currentTime + 0.2 >= t) name = n;
+      if (out.textContent !== name) out.textContent = name;
+    });
+  }
+
+  vine(); duration(); loop(); grow(); gantt(); reel();
   donut("d1", [5, 2], "07"); donut("d2", [4, 2, 1], "07");
   rings(); swatches(); clips();
 })();

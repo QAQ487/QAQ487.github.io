@@ -31,7 +31,7 @@ A garden trellis and an instrument graticule laid over each other, with one livi
 
 - Hub (`/`): wordmark, three destination panels.
 - Portfolio (`/portfolio/`):
-  1. Hero — name, role line, chips; a spiral "vine" plotting the seven works in time order.
+  1. Hero — name, role line, chips; a 23-second muted gameplay reel (`media/reel.mp4`, six works, caption names the work on screen). It replaced the spiral "vine" in 2026/11 so recruiters see play first. Rebuild the reel with ffmpeg from the PVs; keep the segment starts in `folio.js` `reel()` in sync.
   2. Stat strip — six numbers with icons.
   3. 自己PR — the statement, a build-time bar chart with awards, the debug loop (hypothesis → options → compare → verify → isolate), and three goals after joining.
   4. Skills — tech stack cards and four language rings.
