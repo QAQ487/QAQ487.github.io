@@ -31,8 +31,8 @@
     "hub-ivy-title": { ja: "Ivy Engine", en: "Ivy Engine" },
     "hub-ivy-desc": { ja: "エンジンの詳細", en: "The engine, in detail" },
     "hub-note": {
-      ja: "志望はエンジンプログラマー／ゲームプログラマー。",
-      en: "Target roles: engine programmer / game programmer."
+      ja: "志望はエンジン／ツール／ゲームプログラマー。",
+      en: "Target roles: engine / tools / game programmer."
     },
     "back-portfolio": { ja: "作品集へ戻る", en: "Back to the portfolio" },
     "doc-title-ivy": { ja: "Ivy Engine — 楊 子悠（ヨウ シユ）", en: "Ivy Engine — YEUNG Tsz Yau (Terry)" },
@@ -115,7 +115,7 @@
     "about-name-l": { ja: "名前", en: "Name" },
     "about-name-v": { ja: "楊 子悠（ヨウ シユ）", en: "YEUNG Tsz Yau (Terry)" },
     "about-role-l": { ja: "志望職種", en: "Target role" },
-    "about-role-v": { ja: "エンジンプログラマー／ゲームプログラマー", en: "Engine programmer / game programmer" },
+    "about-role-v": { ja: "エンジン／ツール／ゲームプログラマー", en: "Engine / tools / game programmer" },
     "about-lang-l": { ja: "言語", en: "Languages" },
     "about-lang-v": { ja: "JLPT N1、TOEIC 940", en: "JLPT N1, TOEIC 940" },
     "about-loc-l": { ja: "所在地", en: "Location" },
@@ -142,7 +142,7 @@
     "hub-handbook-desc": "畫面演出目錄（/handbook/）",
     "hub-ivy-title": "Ivy Engine",
     "hub-ivy-desc": "引擎詳情",
-    "hub-note": "目標職位是引擎程式設計師／遊戲程式設計師。",
+    "hub-note": "目標職位是引擎／工具／遊戲程式設計師。",
     "back-portfolio": "返回作品集",
     "doc-title-ivy": "Ivy Engine — 楊子悠",
     "doc-title-folio": "作品集 — 楊子悠",
@@ -213,7 +213,7 @@
     "about-name-l": "姓名",
     "about-name-v": "楊子悠",
     "about-role-l": "目標職位",
-    "about-role-v": "引擎程式設計師／遊戲程式設計師",
+    "about-role-v": "引擎／工具／遊戲程式設計師",
     "about-lang-l": "語言",
     "about-lang-v": "廣東話（母語）、普通話（母語水平）、英語（TOEIC 940）、日語（JLPT N1）",
     "about-loc-l": "所在地",
