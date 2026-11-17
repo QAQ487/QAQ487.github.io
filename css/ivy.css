@@ -216,3 +216,18 @@ html[lang="ja"] .ivy-step-tag, html[lang="zh-Hant"] .ivy-step-tag { font-family:
 @media (prefers-reduced-motion: reduce) {
   .ivy-game .ivy-thumb, .ivy-feat, .vine-edge { transition: none; }
 }
+
+/* Code excerpts (section 06) */
+.ivy-code { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.5rem; }
+.ivy-code-card { padding: 0 0 1.4rem; min-width: 0; }
+.ivy-code-card .ph { margin-bottom: 1rem; }
+.ivy-code-why { margin: 0 1.6rem 1.1rem; color: var(--moss); font-size: .92rem; line-height: 1.8; }
+.ivy-code-file { margin: 0 1.6rem .4rem; }
+.ivy-code-file a { font-size: .72rem; letter-spacing: .04em; text-transform: none; color: var(--fern); word-break: break-all; }
+.ivy-code-card pre { margin: 0 1.6rem 1rem; padding: 1rem 1.1rem; background: var(--canopy); border: 1px solid var(--line); border-radius: 6px; overflow-x: auto; tab-size: 4; }
+.ivy-code-card pre:last-child { margin-bottom: 0; }
+.ivy-code-card code { font-family: var(--font-mono); font-size: .78rem; line-height: 1.5; color: var(--lumen); white-space: pre; }
+@media (max-width: 640px) {
+  .ivy-code-why, .ivy-code-file { margin-left: 1rem; margin-right: 1rem; }
+  .ivy-code-card pre { margin-left: 1rem; margin-right: 1rem; padding: .8rem; }
+}

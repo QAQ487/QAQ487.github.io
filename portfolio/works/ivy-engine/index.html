@@ -8,9 +8,9 @@
   <meta name="description" content="一人でゼロから書いた C++／Direct3D 11 ゲームエンジン。ImGui エディタ、3D／2D ランタイム、テストブリッジ。">
   <title>Ivy Engine — 楊 子悠（ヨウ シユ）</title>
   <link rel="icon" href="/favicon.ico">
-  <link rel="stylesheet" href="../../../css/style.css?v=20261117b">
+  <link rel="stylesheet" href="../../../css/style.css?v=20261117c">
   <link rel="stylesheet" href="../../../css/trellis.css?v=20261117a">
-  <link rel="stylesheet" href="../../../css/ivy.css?v=20261116a">
+  <link rel="stylesheet" href="../../../css/ivy.css?v=20261117a">
 </head>
 <body class="is-ivy" data-title-ja="Ivy Engine — 楊 子悠（ヨウ シユ）" data-title-en="Ivy Engine — YEUNG Tsz Yau (Terry)" data-title-zh="Ivy Engine — 楊子悠" data-desc-ja="一人でゼロから書いた C++／Direct3D 11 ゲームエンジン。ImGui エディタ、3D／2D ランタイム、テストブリッジ。" data-desc-en="A C++ / Direct3D 11 game engine written alone from scratch: ImGui editor, 3D / 2D runtimes, and a test bridge." data-desc-zh="一個人從零寫的 C++／Direct3D 11 遊戲引擎：ImGui 編輯器、3D／2D 執行期與測試橋。">
   <a class="skip" href="#main" data-i18n="skip">本文へ進む</a>
@@ -43,7 +43,7 @@
           <li class="tag"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#window"/></svg><span data-ja="ImGui エディタ" data-en="ImGui editor" data-zh="ImGui 編輯器">ImGui エディタ</span></li>
           <li class="tag"><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#layers"/></svg><span>3D · 2D</span></li>
         </ul>
-        <nav class="page-nav" aria-label="ページ内" data-aria-ja="ページ内" data-aria-en="On this page" data-aria-zh="本頁目錄"><a href="#about"><span class="mono">01</span><span data-ja="構成" data-en="Overview" data-zh="構成">構成</span></a><a href="#features"><span class="mono">02</span><span data-ja="機能" data-en="Features" data-zh="功能">機能</span></a><a href="#games"><span class="mono">03</span><span data-ja="ゲーム" data-en="Games" data-zh="遊戲">ゲーム</span></a><a href="#story"><span class="mono">04</span><span data-ja="山場" data-en="Hard part" data-zh="難關">山場</span></a><a href="#approach"><span class="mono">05</span><span data-ja="進め方" data-en="Approach" data-zh="做法">進め方</span></a><a href="#details"><span class="mono">06</span><span data-ja="詳細" data-en="Details" data-zh="詳情">詳細</span></a></nav>
+        <nav class="page-nav" aria-label="ページ内" data-aria-ja="ページ内" data-aria-en="On this page" data-aria-zh="本頁目錄"><a href="#about"><span class="mono">01</span><span data-ja="構成" data-en="Overview" data-zh="構成">構成</span></a><a href="#features"><span class="mono">02</span><span data-ja="機能" data-en="Features" data-zh="功能">機能</span></a><a href="#games"><span class="mono">03</span><span data-ja="ゲーム" data-en="Games" data-zh="遊戲">ゲーム</span></a><a href="#story"><span class="mono">04</span><span data-ja="山場" data-en="Hard part" data-zh="難關">山場</span></a><a href="#approach"><span class="mono">05</span><span data-ja="進め方" data-en="Approach" data-zh="做法">進め方</span></a><a href="#code"><span class="mono">06</span><span data-ja="コード" data-en="Code" data-zh="程式碼">コード</span></a><a href="#details"><span class="mono">07</span><span data-ja="詳細" data-en="Details" data-zh="詳情">詳細</span></a></nav>
       </header>
       <div class="ivy-stage">
           <ul class="ivy-kpis">
@@ -263,16 +263,84 @@
 <li><p class="mono"><span class="fern">03</span><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#bot"/></svg></p><h3 data-ja="人も AI も同じテストを使う" data-en="One test tool for people and AI" data-zh="人與 AI 用同一套測試">人も AI も同じテストを使う</h3><p data-ja="自作のテストツールで、操作の再生と結果の確認を自動にした。" data-en="My own test tool replays input and checks the results automatically." data-zh="自製測試工具，自動重播操作並確認結果。">自作のテストツールで、操作の再生と結果の確認を自動にした。</p></li>
         </ol>
       </section>
+      <section class="t-section" id="code" aria-labelledby="code-h">
+        <div class="sh"><p class="sh-idx">06</p><h2 id="code-h"><span data-ja="コード" data-en="Code" data-zh="程式碼">コード</span><small>From the repository</small></h2></div>
+        <p class="ivy-sub"><span data-ja="エンジンのソースは GitHub で公開している。設計の考え方が分かる 3 か所を抜き出した。" data-en="The engine source is public on GitHub. Here are three excerpts that show how it is designed." data-zh="引擎原始碼已在 GitHub 公開。以下節錄 3 段能看出設計思路的程式碼。">エンジンのソースは GitHub で公開している。設計の考え方が分かる 3 か所を抜き出した。</span> <a href="https://github.com/QAQ487/ivy-engine" rel="noopener">github.com/QAQ487/ivy-engine</a></p>
+        <ol class="ivy-code">
+<li class="panel ivy-code-card"><div class="ph"><b><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#cpu"/></svg><span data-ja="GPU スキン：CPU 版を「答え」として残す" data-en="GPU skinning: keep the CPU path as the answer key" data-zh="GPU 蒙皮：保留 CPU 版作為「答案」">GPU スキン：CPU 版を「答え」として残す</span></b><span class="mono">01</span></div><p class="ivy-code-why" data-ja="GPU 版はシェーダーで最大 4 本の骨を重み付きで合成する。CPU 版は消さずに残し、コンパイル時のスイッチ一つで「答え」に戻して見比べられるようにした。" data-en="The GPU path blends up to four weighted bones in the shader. I kept the CPU path instead of deleting it, so one compile-time switch brings back the answer key for comparison." data-zh="GPU 版在著色器中以權重混合最多 4 根骨骼。CPU 版沒有刪掉，只要切換一個編譯開關，就能回到「答案」來比對。">GPU 版はシェーダーで最大 4 本の骨を重み付きで合成する。CPU 版は消さずに残し、コンパイル時のスイッチ一つで「答え」に戻して見比べられるようにした。</p><div class="ivy-code-file"><a class="mono" href="https://github.com/QAQ487/ivy-engine/blob/5d72e5dd5b0d0fdc7427acaa13bd5b2427728950/shaders/ShaderCommon.hlsli#L23-L47" rel="noopener">shaders/ShaderCommon.hlsli · L23–47</a></div><pre tabindex="0"><code>float3 SkinPositionOS(float3 p, uint4 indices, float4 weights)
+{
+    float3 result = p;
+    if (SkinEnabled != 0)
+    {
+        const float4 hp = float4(p, 1.0f);
+        float4 acc = 0.0f;
+        float wsum = 0.0f;
+        [unroll]
+        for (int i = 0; i &lt; 4; ++i)
+        {
+            const float w = weights[i];
+            if (w &lt;= 0.0f)
+                continue;
+            const uint idx = indices[i];
+            if (idx &gt;= (uint)SkinBoneCount)
+                continue;
+            acc += w * mul(hp, SkinBones[idx]);
+            wsum += w;
+        }
+        acc += (1.0f - wsum) * hp;
+        result = acc.xyz;
+    }
+    return result;
+}</code></pre><div class="ivy-code-file"><a class="mono" href="https://github.com/QAQ487/ivy-engine/blob/5d72e5dd5b0d0fdc7427acaa13bd5b2427728950/engine/rendering/model/model.cpp#L1969-L1976" rel="noopener">engine/rendering/model/model.cpp · L1969–1976</a></div><pre tabindex="0"><code>#if MODEL3D_CPU_SKIN_ORACLE
+        SkinFromScratch();
+#else
+        if (m_gpuSkinEligible &amp;&amp; !m_gpuBindConflict)
+            UpdateGpuSkinPalette();
+        else
+            SkinFromScratch();
+#endif</code></pre></li>
+<li class="panel ivy-code-card"><div class="ph"><b><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#layers"/></svg><span data-ja="並列更新：安全なものだけワーカーへ" data-en="Parallel update: only safe work goes to workers" data-zh="平行更新：只有安全的工作交給 worker">並列更新：安全なものだけワーカーへ</span></b><span class="mono">02</span></div><p class="ivy-code-why" data-ja="スクリプトごとに「並列で動かして安全か」を申告させ、安全なものだけをワーカーで動かす。全部終わるのを待ってから残りをメインスレッドで順に動かすので、隣のオブジェクトの更新途中の状態を読むことがない。並列を切っても同じ動きになる。" data-en="Each script declares whether it is safe to run in parallel, and only those run on workers. The rest run in order on the main thread after all workers finish, so no script reads a neighbour mid-update. Turning parallelism off gives the same behaviour." data-zh="每個腳本自行申報能否安全平行執行，只有安全的才交給 worker。等全部完成後，其餘的才在主執行緒依序執行，因此不會讀到鄰居更新到一半的狀態。關掉平行化，行為也完全相同。">スクリプトごとに「並列で動かして安全か」を申告させ、安全なものだけをワーカーで動かす。全部終わるのを待ってから残りをメインスレッドで順に動かすので、隣のオブジェクトの更新途中の状態を読むことがない。並列を切っても同じ動きになる。</p><div class="ivy-code-file"><a class="mono" href="https://github.com/QAQ487/ivy-engine/blob/5d72e5dd5b0d0fdc7427acaa13bd5b2427728950/src/app/scene/game_scene.cpp#L482-L501" rel="noopener">src/app/scene/game_scene.cpp · L482–501</a></div><pre tabindex="0"><code>// Parallel-safe players on workers; WaitAll before sequential players
+// so main-thread scripts never read mid-update neighbor state.
+if (JobSystem_UseParallel()) {
+    for (GameObject* obj : players) {
+        if (obj-&gt;Update_IsParallelSafe()) {
+            JobSystem_Submit([obj, elapsed_time]() {
+                obj-&gt;Update(elapsed_time);
+            });
+        }
+    }
+    JobSystem_WaitAll();
+    for (GameObject* obj : players) {
+        if (!obj-&gt;Update_IsParallelSafe())
+            obj-&gt;Update(elapsed_time);
+    }
+}
+else {
+    for (GameObject* obj : players)
+        obj-&gt;Update(elapsed_time);
+}</code></pre></li>
+<li class="panel ivy-code-card"><div class="ph"><b><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#refresh"/></svg><span data-ja="Undo / Redo：すべての編集をコマンドに" data-en="Undo / redo: every edit is a command" data-zh="Undo / Redo：所有編輯都是指令">Undo / Redo：すべての編集をコマンドに</span></b><span class="mono">03</span></div><p class="ivy-code-why" data-ja="エディタの操作（移動、名前変更、親子付け、部品の追加など）はすべてコマンドとして記録する。Undo と Redo を持つ小さな基底クラスにまとめ、履歴は 100 手まで残す。" data-en="Every editor action (move, rename, reparent, add component and more) is recorded as a command. They share a small base class with Undo and Redo, and the history keeps 100 steps." data-zh="編輯器的每個操作（移動、改名、調整父子關係、新增元件等）都記錄為指令。它們共用一個只有 Undo 與 Redo 的小型基底類別，歷史保留 100 步。">エディタの操作（移動、名前変更、親子付け、部品の追加など）はすべてコマンドとして記録する。Undo と Redo を持つ小さな基底クラスにまとめ、履歴は 100 手まで残す。</p><div class="ivy-code-file"><a class="mono" href="https://github.com/QAQ487/ivy-engine/blob/5d72e5dd5b0d0fdc7427acaa13bd5b2427728950/engine/editor/editor_undo.h#L26-L31" rel="noopener">engine/editor/editor_undo.h · L26–31</a></div><pre tabindex="0"><code>struct EditorCommand {
+    virtual ~EditorCommand() = default;
+    virtual void Undo() = 0;
+    virtual void Redo() = 0;
+    virtual std::string Describe() const = 0;
+};</code></pre><div class="ivy-code-file"><a class="mono" href="https://github.com/QAQ487/ivy-engine/blob/5d72e5dd5b0d0fdc7427acaa13bd5b2427728950/engine/editor/editor_undo.h#L54-L57" rel="noopener">engine/editor/editor_undo.h · L54–57</a></div><pre tabindex="0"><code>static constexpr size_t kMaxDepth = 100;
+std::vector&lt;std::unique_ptr&lt;EditorCommand&gt;&gt; m_undo;
+std::vector&lt;std::unique_ptr&lt;EditorCommand&gt;&gt; m_redo;
+std::vector&lt;std::string&gt; m_labels;</code></pre></li>
+        </ol>
+      </section>
       <section class="t-section" id="details" aria-labelledby="details-h">
-        <div class="sh"><p class="sh-idx">06</p><h2 id="details-h"><span data-ja="詳細" data-en="Details" data-zh="詳情">詳細</span><small>Spec sheet</small></h2></div>
+        <div class="sh"><p class="sh-idx">07</p><h2 id="details-h"><span data-ja="詳細" data-en="Details" data-zh="詳情">詳細</span><small>Spec sheet</small></h2></div>
         <dl class="facts2">
 <div><dt><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#leaf"/></svg><span data-ja="作品名" data-en="Title" data-zh="作品名稱">作品名</span></dt><dd><span>Ivy Engine</span></dd></div>
 <div><dt><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#cal"/></svg><span data-ja="制作期間" data-en="Period" data-zh="製作期間">制作期間</span></dt><dd><span>2025/10–</span> <span data-ja="フレームワークから始め、2026/4 にエンジン化。" data-en="Began as a framework; became an engine in Apr 2026." data-zh="從框架開始，2026/4 成為引擎。">フレームワークから始め、2026/4 にエンジン化。</span></dd></div>
 <div><dt><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#people"/></svg><span data-ja="体制" data-en="Team" data-zh="編制">体制</span></dt><dd><span data-ja="個人、1 人。エンジン全体を担当。" data-en="Solo, 1 person. The whole engine." data-zh="個人，1 人。負責整個引擎。">個人、1 人。エンジン全体を担当。</span></dd></div>
 <div><dt><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#cpu"/></svg><span data-ja="使用技術" data-en="Tech" data-zh="使用技術">使用技術</span></dt><dd><span>C++17 · Direct3D 11 · HLSL · Visual Studio 2022</span></dd></div>
+<div><dt><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#code"/></svg><span data-ja="コード量" data-en="Code size" data-zh="程式碼量">コード量</span></dt><dd><span data-ja="約 7 万行（自作部分。外部ライブラリを除く）" data-en="About 70,000 lines (my own code, excluding outside libraries)" data-zh="約 7 萬行（自行撰寫部分，不含外部函式庫）">約 7 万行（自作部分。外部ライブラリを除く）</span></dd></div>
 <div class="is-wide"><dt><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#book"/></svg><span data-ja="ライブラリ" data-en="Libraries" data-zh="函式庫">ライブラリ</span></dt><dd><span>Dear ImGui · ImGuizmo · FBX SDK · DirectXTex · XAudio2 · XInput · Effekseer · Box2D · nlohmann/json</span></dd></div>
 <div class="is-wide"><dt><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#flag"/></svg><span data-ja="次にやること" data-en="Next" data-zh="下一步">次にやること</span></dt><dd><ul><li data-ja="タイルマップ" data-en="Tilemaps" data-zh="Tilemap">タイルマップ</li><li data-ja="スプライトをまとめて描く" data-en="Sprite batching" data-zh="精靈批次繪製">スプライトをまとめて描く</li><li data-ja="ネットワーク対戦" data-en="Online play" data-zh="網路連線">ネットワーク対戦</li></ul></dd></div>
-<div><dt><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#download"/></svg><span data-ja="ダウンロード" data-en="Download" data-zh="下載">ダウンロード</span></dt><dd><span data-ja="ソースコードは GitHub で公開予定。" data-en="Source code will be published on GitHub." data-zh="原始碼預計在 GitHub 公開。">ソースコードは GitHub で公開予定。</span> <a href="https://github.com/QAQ487" rel="noopener">github.com/QAQ487</a></dd></div>
+<div><dt><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#download"/></svg><span data-ja="ダウンロード" data-en="Download" data-zh="下載">ダウンロード</span></dt><dd><span data-ja="ソースコードを GitHub で公開中。" data-en="Source code is public on GitHub." data-zh="原始碼已在 GitHub 公開。">ソースコードを GitHub で公開中。</span> <a href="https://github.com/QAQ487/ivy-engine" rel="noopener">github.com/QAQ487/ivy-engine</a></dd></div>
 <div><dt><svg class="icon" aria-hidden="true"><use href="/icons.svg?v=20261116a#mail"/></svg><span data-ja="連絡先" data-en="Contact" data-zh="聯絡方式">連絡先</span></dt><dd><a href="mailto:terryyeung234@gmail.com">terryyeung234@gmail.com</a></dd></div>
         </dl>
         <nav class="w-nav" aria-label="作品の移動" data-aria-ja="作品の移動" data-aria-en="Other works" data-aria-zh="其他作品"><a href="/portfolio/#works"><span class="mono">←</span><b><span data-ja="作品集" data-en="Portfolio" data-zh="作品集">作品集</span></b></a><a class="is-next" href="/portfolio/works/village-and-goblin/"><span class="mono">02 →</span><b>Village &amp; Goblin</b></a></nav>
