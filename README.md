@@ -12,6 +12,7 @@ Static personal site served by GitHub Pages from the repository root (`main` bra
 | `portfolio/media/` | Stills (`<work>.jpg`), muted loops (`<work>-loop.mp4`, ~10 s) and the full PVs re-encoded to 720p (`<work>-pv.mp4`). |
 | `css/trellis.css`, `js/folio.js` | The 2026/11 redesign layer: lattice ground, panels, charts. `folio.js` draws the portfolio charts; every chart label carries `data-ja` / `data-en` / `data-zh`, so `i18n.js` translates it. Load it before `i18n.js`. |
 | `css/`, `js/`, `fonts/` | Styles, language toggle, WebGL editor sketch, and self-hosted fonts shared by the hub and portfolio. Fonts are subset WOFF2 (Dela Gothic One, IBM Plex Sans JP); see `fonts/OFL.txt`. |
+| `portfolio/pdf/` | Builds the downloadable PDF (`portfolio/YEUNG_TszYau_portfolio_ja.pdf`, A4 landscape, Japanese) from the site pages: `python3 portfolio/pdf/build_print.py` then `node portfolio/pdf/render.js`. Re-run both after editing portfolio text. Needs `qrcode` (Python) and Playwright. |
 | `handbook/index.html` | Self-contained, offline single-file page: 遊戲畫面表現手冊 / Game Visual Handbook / ゲーム画面表現ハンドブック. |
 | `handbook/llms.txt` | Agent catalog for the handbook (do not ingest the SPA HTML). |
 | `handbook/agent/en/*.md` | One English Markdown file per handbook entry for agents. |

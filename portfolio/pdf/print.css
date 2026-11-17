@@ -1,0 +1,108 @@
+/* Print layout for the PDF portfolio (A4 landscape, light paper version of the site palette). */
+@font-face { font-family: "Dela Gothic One"; src: url("/fonts/DelaGothicOne-Regular.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "IBM Plex Sans JP"; src: url("/fonts/IBMPlexSansJP-Regular.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "IBM Plex Sans JP"; src: url("/fonts/IBMPlexSansJP-SemiBold.woff2") format("woff2"); font-weight: 600; }
+@font-face { font-family: "IBM Plex Sans JP"; src: url("/fonts/IBMPlexSansJP-Bold.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "IBM Plex Mono"; src: url("/fonts/IBMPlexMono-Regular.woff2") format("woff2"); font-weight: 400; }
+
+:root {
+  --paper: #FAFCFA;
+  --ink: #0F1A16;     /* Canopy */
+  --sub: #4E5F58;
+  --line: #CBD8D1;
+  --well: #EEF4F0;
+  --fern: #2F7A52;    /* Fern, darkened for paper */
+  --dark: #1A2C26;    /* Hollow */
+}
+@page { size: A4 landscape; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--paper); color: var(--ink); }
+body { font-family: "IBM Plex Sans JP", sans-serif; font-size: 9.6pt; line-height: 1.7; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 297mm; height: 210mm; padding: 14mm 16mm 12mm; position: relative; overflow: hidden; page-break-after: always; break-after: page; }
+.page:last-child { page-break-after: auto; break-after: auto; }
+h1, h2, h3, p, ul, ol, dl, dd { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img { display: block; max-width: 100%; }
+
+/* page header and footer */
+.ph { display: flex; align-items: baseline; gap: 5mm; padding-bottom: 3.5mm; margin-bottom: 5mm; border-bottom: 1px solid var(--line); }
+.ph .idx { font-family: "IBM Plex Mono", monospace; font-size: 9pt; color: var(--fern); letter-spacing: .12em; }
+.ph h2 { font-family: "Dela Gothic One", sans-serif; font-weight: 400; font-size: 22pt; line-height: 1.1; letter-spacing: .02em; }
+.ph .sub { color: var(--sub); font-size: 9pt; }
+.ph .badge { margin-left: auto; border: 1px solid var(--fern); color: var(--fern); border-radius: 99px; padding: .5mm 3.5mm; font-size: 8.5pt; font-weight: 600; }
+.pg-foot { position: absolute; left: 16mm; right: 16mm; bottom: 6mm; display: flex; justify-content: space-between; font-family: "IBM Plex Mono", "IBM Plex Sans JP", monospace; font-size: 7pt; color: var(--sub); letter-spacing: .08em; }
+h3 { font-size: 9.5pt; font-weight: 700; color: var(--fern); margin: 0 0 2mm; }
+.small { font-size: 8pt; color: var(--sub); line-height: 1.6; }
+.lede { font-size: 10pt; margin-bottom: 4mm; }
+
+/* cover */
+.cover { display: grid; grid-template-columns: 1.05fr 1fr; gap: 12mm; align-items: center; background: var(--dark); color: #E6EFE8; padding: 18mm; }
+.cover .eyebrow { font-size: 9pt; color: #9FD0B0; letter-spacing: .08em; margin-bottom: 6mm; }
+.cover .name { font-family: "Dela Gothic One", sans-serif; font-weight: 400; font-size: 54pt; line-height: 1.05; }
+.cover .kana { margin: 3mm 0 7mm; color: #9EB0A8; font-size: 10pt; letter-spacing: .1em; }
+.cover .tag { font-size: 14pt; margin-bottom: 9mm; }
+.cover .tag em { font-style: normal; color: #9FD0B0; }
+.cover-facts { display: grid; gap: 2mm; font-size: 9.5pt; }
+.cover-facts div { display: grid; grid-template-columns: 18mm 1fr; }
+.cover-facts dt { color: #9EB0A8; }
+.cover-r img { border-radius: 2mm; border: 1px solid #2E4A40; }
+.cover-qr { display: flex; align-items: center; gap: 3mm; margin-top: 5mm; font-size: 8pt; color: var(--sub); }
+.cover .cover-qr { color: #9EB0A8; }
+.qr { width: 20mm; height: 20mm; background: #fff; padding: 1mm; border-radius: 1mm; flex: none; }
+.qr path { fill: #0F1A16; }
+
+/* self-PR */
+.cols-pr { display: grid; grid-template-columns: 1.35fr 1fr; gap: 10mm; }
+.pr-big { font-family: "Dela Gothic One", sans-serif; font-size: 15pt; line-height: 1.45; margin-bottom: 5mm; }
+.pr-text p { margin-bottom: 3mm; text-align: justify; }
+.kv { display: grid; gap: 1.6mm; margin-bottom: 5mm; }
+.kv div { display: grid; grid-template-columns: 25mm 1fr; gap: 2mm; padding-bottom: 1.6mm; border-bottom: 1px dotted var(--line); }
+.kv dt { color: var(--sub); font-size: 8.5pt; }
+.kv dd { font-size: 8.8pt; line-height: 1.6; }
+.pillars { display: grid; gap: 2mm; counter-reset: p; }
+.pillars li { counter-increment: p; background: var(--well); border-radius: 1.5mm; padding: 2mm 3mm; display: grid; }
+.pillars li b::before { content: "0" counter(p) "  "; font-family: "IBM Plex Mono", monospace; color: var(--fern); font-weight: 400; }
+.pillars span { font-size: 8.5pt; color: var(--sub); }
+
+/* Ivy overview */
+.kpis { display: flex; gap: 4mm; margin-bottom: 4.5mm; }
+.kpis li { flex: 1; background: var(--well); border-radius: 1.5mm; padding: 2.5mm 4mm; display: flex; align-items: baseline; gap: 2mm; }
+.kpis b { font-family: "Dela Gothic One", sans-serif; font-weight: 400; font-size: 20pt; color: var(--fern); line-height: 1.1; }
+.kpis span { font-size: 8.5pt; color: var(--sub); }
+.cols-ivy { display: grid; grid-template-columns: 1.5fr 1fr; gap: 10mm; }
+.bars { display: grid; gap: 1.3mm; }
+.bars li { display: grid; grid-template-columns: 36mm 1fr 9mm; column-gap: 3mm; align-items: center; }
+.bars .fn { font-weight: 600; font-size: 9pt; }
+.bars .bar { height: 3mm; background: var(--well); border-radius: 99px; overflow: hidden; }
+.bars .bar i { display: block; height: 100%; background: var(--fern); border-radius: 99px; }
+.bars b { font-family: "IBM Plex Mono", monospace; font-weight: 400; text-align: right; font-size: 9pt; }
+.bars .fp { grid-column: 2 / 4; font-size: 7.4pt; color: var(--sub); line-height: 1.4; }
+.notes { display: grid; gap: 2.5mm; margin-bottom: 5mm; }
+.notes li { display: grid; border-left: 2px solid var(--fern); padding-left: 3mm; }
+.notes span { font-size: 8.5pt; color: var(--sub); }
+aside h3 + p.small { margin-bottom: 3.5mm; }
+
+/* GPU skinning */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; margin-bottom: 6mm; }
+.steps li { background: var(--well); border-radius: 1.5mm; padding: 3.5mm 4mm; }
+.steps .st { display: inline-block; font-weight: 700; color: var(--fern); margin-bottom: 1.5mm; }
+.cols-code { display: grid; grid-template-columns: 52mm 1fr auto; gap: 7mm; align-items: start; }
+.cols-code .cover-qr { flex-direction: column; margin-top: 0; text-align: center; }
+.metric .m-l { font-size: 8.5pt; color: var(--sub); }
+.metric .m-v { font-size: 11pt; margin-bottom: 2.5mm; }
+.metric .m-v b { font-family: "Dela Gothic One", sans-serif; font-weight: 400; font-size: 20pt; }
+.metric .fern { color: var(--fern); }
+pre { margin: 2mm 0 0; background: var(--dark); color: #E6EFE8; border-radius: 1.5mm; padding: 3.5mm 4.5mm; }
+code { font-family: "IBM Plex Mono", monospace; font-size: 8.4pt; line-height: 1.55; white-space: pre; }
+.lesson { margin-top: 6mm; padding: 3mm 4mm; border: 1px solid var(--fern); border-radius: 1.5mm; display: flex; gap: 4mm; font-size: 10pt; }
+.lesson b { color: var(--fern); }
+
+/* work pages */
+.ph h2.latin { font-size: 24pt; }
+.cols-work { display: grid; grid-template-columns: 1.25fr 1fr; gap: 9mm; }
+.still { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 1.5mm; border: 1px solid var(--line); margin-bottom: 4mm; }
+.cl { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+.cl li { position: relative; padding-left: 3.5mm; font-size: 8.6pt; line-height: 1.6; margin-bottom: 1.4mm; }
+.cl li::before { content: ""; position: absolute; left: 0; top: .62em; width: 1.6mm; height: 1.6mm; border-radius: 50%; background: var(--fern); }
+.cols-work aside .kv { margin-bottom: 3mm; }
+.cols-work aside .kv dd { font-size: 8.3pt; }
