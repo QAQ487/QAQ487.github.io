@@ -38,7 +38,7 @@ A garden trellis and an instrument graticule laid over each other, with one livi
   5. Ivy Engine — six stages with screenshots, and a stacked "capability layers" chart showing what each work added to the engine.
   6. Timeline — Gantt chart with the framework → engine lineage, two donuts, awards.
   7. Works — cards with a muted loop, PV button, role / challenge / lesson rows.
-- Work pages (`/portfolio/works/<work>/`): title, PV player, KPI column, challenge and lesson panels, a spec sheet (unfilled items shown as dashed cards), previous / next.
+- Work pages (`/portfolio/works/<work>/`): title, PV player, KPI column, challenge and lesson panels, a spec sheet (empty items are hidden), previous / next.
 
 ## Ivy Engine page — "Pressed Signal" (2026/11)
 
@@ -56,7 +56,7 @@ A garden trellis and an instrument graticule laid over each other, with one livi
 1. Information is plotted before it is written. Words anchor what the chart already shows.
 2. Fern is used sparingly; everything else is Trellis, Moss and hairlines.
 3. Every visible string has ja / en / zh. Chart labels are SVG `<text>` with `data-ja` / `data-en` / `data-zh`.
-4. Honesty: unfilled facts stay visible as "not filled in yet"; the WebGL editor is labelled as a sketch.
+4. Honesty: state only facts that are confirmed; a spec field or panel that is still empty (`is-empty`, `.pending`) is hidden rather than shown as "not filled in yet". Say plainly where generative AI made shipped assets. The WebGL editor is labelled as a sketch.
 5. Motion: loop clips play only while on screen and never under `prefers-reduced-motion`.
 
 Icons: the original hand-drawn sprite in `/icons.svg`, plus a few from Lucide (ISC License), marked in the sprite.

@@ -291,7 +291,9 @@ html[lang="zh-Hant"] .kpis b.is-big { font-family: "Noto Sans TC", sans-serif; f
 .facts2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 0; }
 .facts2 > div { border: 1px solid var(--line-2); background: var(--panel); border-radius: 4px; padding: 1.1rem 1.35rem 1.2rem; }
 .facts2 > div.is-wide { grid-column: 1 / -1; }
-.facts2 > div.is-empty { background: transparent; border-style: dashed; }
+.facts2 > div.is-empty { display: none; }
+.cl > .panel:has(> .pending) { display: none; }
+.cl:has(> .panel > .pending) { grid-template-columns: 1fr; }
 .facts2 dt { display: flex; gap: .6rem; align-items: center; font-size: .78rem; font-weight: 500; color: var(--fern); margin-bottom: .55rem; }
 .facts2 dt .icon { width: 1rem; height: 1rem; }
 .facts2 dd { margin: 0; font-size: .92rem; line-height: 1.75; }
